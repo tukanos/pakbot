@@ -186,6 +186,6 @@ PBPakbotProjectDependency >> version: aString [
 
 	aString isEmptyOrNil ifTrue: [ constraints := #(). ^ self].
 
-	constraints := {(PBDependencyConstraint fromVersion: aString)}
+	constraints := {(PBFixedVersionDependencyConstraint fromVersion: aString)}
 
 ]

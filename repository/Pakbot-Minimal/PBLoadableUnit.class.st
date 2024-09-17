@@ -101,7 +101,7 @@ PBLoadableUnit >> asPackageVersionReference [
 { #category : 'accessing' }
 PBLoadableUnit >> constraints [
 	
-	^ { PBFixedVersionConstraint with: self version }
+	^ { PBFixedVersionDependencyConstraint with: self version }
 ]
 
 { #category : 'accessing' }

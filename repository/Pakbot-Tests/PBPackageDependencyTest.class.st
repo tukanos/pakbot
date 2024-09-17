@@ -103,7 +103,7 @@ PBPackageDependencyTest >> testCreateDependencyWithoutEqualGeneratesAConstraint 
 	dep := PBPackageDependency newFrom: #A -> #('1.1.1').
 
 	self assert: dep constraints size equals: 1.
-	self assert: dep constraints anyOne class equals: PBFixedVersionConstraint.
+	self assert: dep constraints anyOne class equals: PBFixedVersionDependencyConstraint.
 	self deny: dep constraints anyOne version isInvalid.
 ]
 

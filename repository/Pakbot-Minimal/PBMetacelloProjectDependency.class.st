@@ -87,7 +87,7 @@ PBMetacelloProjectDependency >> additionalConflictingInstalledProjects [
 { #category : 'accessing' }
 PBMetacelloProjectDependency >> constraints [
 
-	^ { PBFixedVersionConstraint with: version }
+	^ { PBFixedVersionDependencyConstraint with: version }
 ]
 
 { #category : 'accessing' }

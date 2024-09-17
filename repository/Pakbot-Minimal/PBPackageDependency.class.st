@@ -63,7 +63,7 @@ PBPackageDependency >> addDefaultVersionConstraint: aResolutionStrategy from: re
 						in: repositories
 						forEnvironment: platformAttributes.
 	defaultPackageVersionRef ifNil: [ PBPackageNotFoundError signal: targetedPackage ].
-	constraints := { PBFixedVersionConstraint with: defaultPackageVersionRef versionString }
+	constraints := { PBFixedVersionDependencyConstraint with: defaultPackageVersionRef versionString }
 
 ]
 
@@ -145,7 +145,7 @@ PBPackageDependency >> initializeWith: anAssociation [
 	self initializeTargetAndScopeFrom: anAssociation key asSymbol.
 	constraintStringList := anAssociation value.
 	constraints := constraintStringList collect: 
-		[ :constraintString | PBDependencyConstraint fromString: constraintString  ]
+		[ :constraintString | PBFixedVersionDependencyConstraint fromString: constraintString  ]
 ]
 
 { #category : 'testing' }
