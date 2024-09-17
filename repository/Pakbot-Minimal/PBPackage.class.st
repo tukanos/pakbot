@@ -2,23 +2,25 @@
 Current version of the package unit metadata. As a PackageVersion is not editable, it is the only way  to update it.
 "
 Class {
-	#name : #PBPackage,
-	#superclass : #PBProjectElement,
+	#name : 'PBPackage',
+	#superclass : 'PBProjectElement',
 	#instVars : [
 		'provisions',
 		'platformRequirements'
 	],
-	#category : #'Pakbot-Minimal-Model'
+	#category : 'Pakbot-Minimal-Model',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 PBPackage class >> example [
 	^ (self named: #UnitTest project: (PBProjectVersion named: #MyProject))
 		description: 'A simple ongoing package unit.';
 		yourself
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PBPackage >> = anotherPackage [
 
 	self species = anotherPackage species ifFalse: [ ^ false ].
@@ -26,54 +28,54 @@ PBPackage >> = anotherPackage [
 	^ self project = anotherPackage project
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PBPackage >> addDependencyOn: aPackageName [
 	self addDependency: (PBPackageDependency on: aPackageName)
 ]
 
-{ #category : #'accessing - dependencies' }
+{ #category : 'accessing - dependencies' }
 PBPackage >> allDependencies [
 	
 	^ dependencies
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackage >> allPackages [
 	
 	^ { self }
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBPackage >> asPackageDependency [
 	^ (self name -> {('=', self version asString)}) asPackageDependency
 		project: project;
 		yourself
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBPackage >> asSerializedPackage [
 	"Package repository version of the unit metadata (i.e. full metadata)"
 	^ PBSerializedPackage from: self
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBPackage >> asSerializedPackageUnit [
 	"VCS version of the unit metadata (i.e. minimum metadata)"
 	^ PBSerializedPackage from: self
 ]
 
-{ #category : #'private-loading' }
+{ #category : 'private-loading' }
 PBPackage >> basicLoad [
 
 	self repository loadPackageNamed: self name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackage >> dependencies [
 	^ dependencies
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBPackage >> dependencies: aDependencyList [ 
 	dependencies := aDependencyList.
 	dependencies do: 
@@ -83,18 +85,18 @@ PBPackage >> dependencies: aDependencyList [
 				project: self project. ].
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBPackage >> fitsPlatformRequirements [
 	^ Pakbot platformAttributes includesAll: platformRequirements
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PBPackage >> hash [
 
 	^ self name hash
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPackage >> initializeFromPackageVersion: aCGOPackageVersion [
 	self initialize.
 	dependencies := aCGOPackageVersion dependencies collect: #copy as: OrderedCollection.
@@ -102,7 +104,7 @@ PBPackage >> initializeFromPackageVersion: aCGOPackageVersion [
 	platformRequirements := aCGOPackageVersion platformRequirements asOrderedCollection.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPackage >> initializeWithPackageName: aPackageName andProject: aCargoProject [
 	self initialize.
 	name := aPackageName.
@@ -111,7 +113,7 @@ PBPackage >> initializeWithPackageName: aPackageName andProject: aCargoProject [
 	platformRequirements := OrderedCollection new: 0.	
 ]
 
-{ #category : #'querying - installed' }
+{ #category : 'querying - installed' }
 PBPackage >> isInstalled [
 	
 	project registry systemPackageOrganizer packageNamed: self name ifAbsent: [ ^false ].
@@ -119,56 +121,56 @@ PBPackage >> isInstalled [
 	" To avoid overriding of an existing system package, we do not check package registration in the registry."
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBPackage >> isLoadable [
 	^ self satisfyPlatformRequirements: self registry currentPlatformRequirements
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBPackage >> isUnit [
 	^ true
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBPackage >> load [
 
 	self basicLoad.
 	self registry register: self.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackage >> platformRequirements [
 	^ platformRequirements
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBPackage >> platformRequirements: aListOfSymbols [ 
 	platformRequirements := aListOfSymbols
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackage >> project: aPBProjectVersion [ 
 
 	super project: aPBProjectVersion.
 	self dependencies do: [ :dep | dep project: aPBProjectVersion ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackage >> provisions [
 	^ provisions
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBPackage >> provisions: aListOfVirtualPackageVersionsReference [ 
 	provisions := (CGOPackageUnit provisionsFromListOfProvisionStrings: aListOfVirtualPackageVersionsReference)	asOrderedCollection
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 PBPackage >> removeDependency: aDependency [
 	dependencies remove: aDependency ifAbsent: [  ].
 ]
 
-{ #category : #'system-package' }
+{ #category : 'system-package' }
 PBPackage >> removePackageFromSystem [
 	
 	| systemPackage |
@@ -176,25 +178,25 @@ PBPackage >> removePackageFromSystem [
 	systemPackage removeFromSystem
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBPackage >> resolve [
 	
 	^ self project registry newSolver solvePackage: self
 ]
 
-{ #category : #'querying - installed' }
+{ #category : 'querying - installed' }
 PBPackage >> satisfyConstraints: aVersion [ 
 
 	^ aVersion = self version
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackage >> systemPackage [
 	
 	^ RPackageOrganizer default packageNamed: self name
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBPackage >> updateDependency: aPackageDependency [
 	dependencies := dependencies collect: 
 		[ :dependency | 
@@ -203,7 +205,7 @@ PBPackage >> updateDependency: aPackageDependency [
 			ifFalse: [ dependency ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PBPackage >> versionLoaded [
 	self repository versionLoaded: self name.
 ]

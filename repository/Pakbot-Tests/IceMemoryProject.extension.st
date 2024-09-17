@@ -1,6 +1,6 @@
-Extension { #name : #IceMemoryProject }
+Extension { #name : 'IceMemoryProject' }
 
-{ #category : #'*Pakbot-Tests' }
+{ #category : '*Pakbot-Tests' }
 IceMemoryProject >> isPakbotProject [
 	^ false
 ]

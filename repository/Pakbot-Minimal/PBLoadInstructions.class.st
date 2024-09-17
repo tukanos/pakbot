@@ -5,16 +5,18 @@ This object contains the information needed to load the result of a solving.
 - packageRepositories are the package repositories used for the solving where package versions can be found.
 "
 Class {
-	#name : #PBLoadInstructions,
-	#superclass : #Object,
+	#name : 'PBLoadInstructions',
+	#superclass : 'Object',
 	#instVars : [
 		'groups',
 		'packageRepositories'
 	],
-	#category : #'Pakbot-Minimal-Loader'
+	#category : 'Pakbot-Minimal-Loader',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Loader'
 }
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PBLoadInstructions >> = anotherObject [
 	self species = anotherObject species
 		ifFalse: [ ^ false ].
@@ -22,81 +24,81 @@ PBLoadInstructions >> = anotherObject [
 	^ self groups = anotherObject groups
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PBLoadInstructions >> addGroup: aPackageLoadGroup [
 	groups add: aPackageLoadGroup
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBLoadInstructions >> anySatisfy: aBlock [
 	
 	^ groups anySatisfy: [ :group | group anySatisfy: aBlock ] 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadInstructions >> cacheRepository [
 	^ MCCacheRepository uniqueInstance
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBLoadInstructions >> fetch [
 	self fetchInto: self cacheRepository
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBLoadInstructions >> fetchInto: aMCRepository [
 	groups 
 		do: [ :group | group fetchInto: aMCRepository ]
 		displayingProgress: [ :group | 'Fetching ' , group name ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadInstructions >> groups [
 	^ groups
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBLoadInstructions >> includes: aLoadableUnit [
 	
 	^ groups anySatisfy: [ :group | group includes: aLoadableUnit ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBLoadInstructions >> initialize [
 	super initialize.
 	groups := OrderedCollection new.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBLoadInstructions >> isEmpty [
 	
 	^ groups isEmpty
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBLoadInstructions >> load [
 	groups 
 		do: [ :group | group load ]
 		displayingProgress: [ :group | 'Installing ' , group name ]
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBLoadInstructions >> mcVersions [
 	^ groups collect: #mcVersions
 ]
 
-{ #category : #serialization }
+{ #category : 'serialization' }
 PBLoadInstructions >> saveTo: aFileReference [
 	aFileReference writeStreamDo: [:stream | stream nextPutAll: self stonString ]
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBLoadInstructions >> size [
 
 	^ groups size
 ]
 
-{ #category : #serialization }
+{ #category : 'serialization' }
 PBLoadInstructions >> stonString [
 	self flag: 'TODO: ensure that we only use package references in load instructions and not the full package version'.
 	^ (STON toStringPretty: self) withInternetLineEndings

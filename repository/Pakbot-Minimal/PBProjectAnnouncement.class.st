@@ -2,21 +2,23 @@
 I represent all the announcements in Cargo Projects
 "
 Class {
-	#name : #PBProjectAnnouncement,
-	#superclass : #SystemAnnouncement,
+	#name : 'PBProjectAnnouncement',
+	#superclass : 'SystemAnnouncement',
 	#instVars : [
 		'project'
 	],
-	#category : #'Pakbot-Minimal-Announcements'
+	#category : 'Pakbot-Minimal-Announcements',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Announcements'
 }
 
-{ #category : #announcing }
+{ #category : 'announcing' }
 PBProjectAnnouncement class >> announceOnProject: aProject [
 	
 	(self onProject: aProject) announce
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBProjectAnnouncement class >> onProject: aProject [
 
 	^ self new
@@ -24,18 +26,18 @@ PBProjectAnnouncement class >> onProject: aProject [
 		yourself
 ]
 
-{ #category : #announcing }
+{ #category : 'announcing' }
 PBProjectAnnouncement >> announce [
 
 	Pakbot announcer announce: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectAnnouncement >> project [
 	^ project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectAnnouncement >> project: anObject [
 	project := anObject
 ]

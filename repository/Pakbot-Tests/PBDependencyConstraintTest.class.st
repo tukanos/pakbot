@@ -1,10 +1,12 @@
 Class {
-	#name : #PBDependencyConstraintTest,
-	#superclass : #TestCase,
-	#category : #'Pakbot-Tests-Dependencies'
+	#name : 'PBDependencyConstraintTest',
+	#superclass : 'TestCase',
+	#category : 'Pakbot-Tests-Dependencies',
+	#package : 'Pakbot-Tests',
+	#tag : 'Dependencies'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBDependencyConstraintTest >> testFromString [
 	| dependency |
 	dependency := PBDependencyConstraint fromString: '=1.0'.
@@ -16,13 +18,13 @@ PBDependencyConstraintTest >> testFromString [
 		equals: '1.0'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBDependencyConstraintTest >> testFromStringWithBadVersion [
 
 	self assert: (PBDependencyConstraint fromString: '=foo') version isInvalid
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBDependencyConstraintTest >> testMergeAll [
 	| c1 c2 result |
 	

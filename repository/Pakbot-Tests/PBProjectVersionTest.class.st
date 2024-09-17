@@ -1,18 +1,20 @@
 Class {
-	#name : #PBProjectVersionTest,
-	#superclass : #PBModelTest,
+	#name : 'PBProjectVersionTest',
+	#superclass : 'PBModelTest',
 	#instVars : [
 		'repository'
 	],
-	#category : #'Pakbot-Tests-Model'
+	#category : 'Pakbot-Tests-Model',
+	#package : 'Pakbot-Tests',
+	#tag : 'Model'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectVersionTest >> pharoCounterGitUrl [
 	^ 'https://github.com/pharo-pkg/pharo-counter.git'
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBProjectVersionTest >> tearDown [ 
 	repository ifNotNil: [:repo | repo iceRepository delete].
 	self removePackageIfExists: 'Counter-Core'.
@@ -20,7 +22,7 @@ PBProjectVersionTest >> tearDown [
 	super tearDown.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectVersionTest >> testAddingDependencyPerformAnnouncement [
 	| announced subscription |
 
@@ -37,7 +39,7 @@ PBProjectVersionTest >> testAddingDependencyPerformAnnouncement [
 	] ensure: [ Pakbot announcer removeSubscription: subscription ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectVersionTest >> testCanGetMetacelloProjects [
 	| metacelloProjects |
 	ongoingProject 
@@ -65,7 +67,7 @@ PBProjectVersionTest >> testCanGetMetacelloProjects [
 		equals: 'http://ss3.gemstone.com/ss/STON'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectVersionTest >> testCanGetPackageUnits [
 	| units |
 	units := ongoingProject packageUnits.
@@ -73,7 +75,7 @@ PBProjectVersionTest >> testCanGetPackageUnits [
 	self assert: (units allSatisfy: #isUnit).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectVersionTest >> testCanLoadProjectWithoutUnresolvedDependenciesWarning [
 
 	| project |
@@ -89,7 +91,7 @@ PBProjectVersionTest >> testCanLoadProjectWithoutUnresolvedDependenciesWarning [
 		raise: Warning.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectVersionTest >> testIcebergRepositoryHavingPakbotProjectReferencingADifferentPakbotProjectRaisesError [
 	
 	| project newRepository |
@@ -103,7 +105,7 @@ PBProjectVersionTest >> testIcebergRepositoryHavingPakbotProjectReferencingADiff
 	 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectVersionTest >> testRemovingDependencyPerformAnnouncement [
 	| announced subscription dep |
 

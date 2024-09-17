@@ -2,15 +2,17 @@
 I represent a part of a project
 "
 Class {
-	#name : #PBProjectElement,
-	#superclass : #PBLoadableUnit,
+	#name : 'PBProjectElement',
+	#superclass : 'PBLoadableUnit',
 	#instVars : [
 		'project'
 	],
-	#category : #'Pakbot-Minimal-Model'
+	#category : 'Pakbot-Minimal-Model',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 PBProjectElement >> addDependency: aDependency [
 
 	dependencies add: aDependency.
@@ -18,35 +20,35 @@ PBProjectElement >> addDependency: aDependency [
 	self project announceChangeInDependencies.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectElement >> fullyQualifiedName [
 
 	 ^ self projectName, '::' , self name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectElement >> project [
 	^ project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectElement >> project: aPBProjectVersion [ 
 
 	project := aPBProjectVersion
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectElement >> registry [
 	^ project registry
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PBProjectElement >> remove [
 	
 	self subclassResponsibility
 ]
 
-{ #category : #'conditional loading' }
+{ #category : 'conditional loading' }
 PBProjectElement >> satisfyPlatformRequirements: platformAttributes [ 
 	^ self platformRequirements allSatisfy: 
 		[ :requirement | 

@@ -11,8 +11,8 @@ github:// <github user> / <github project>  [ : <version identifier> ] [ / <repo
 You can ask me to be converted to a git or a metacello URL.
 "
 Class {
-	#name : #PBMetacelloRepositorySpec,
-	#superclass : #Object,
+	#name : 'PBMetacelloRepositorySpec',
+	#superclass : 'Object',
 	#instVars : [
 		'url',
 		'project',
@@ -21,10 +21,12 @@ Class {
 		'repositoryPath',
 		'scheme'
 	],
-	#category : #'Pakbot-Minimal-Metacello-Support'
+	#category : 'Pakbot-Minimal-Metacello-Support',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Metacello-Support'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PBMetacelloRepositorySpec class >> hostFromScheme: scheme [
 	scheme = 'github'
 		ifTrue: [ ^ 'github.com' ].
@@ -36,14 +38,14 @@ PBMetacelloRepositorySpec class >> hostFromScheme: scheme [
 	self error: 'scheme ' , scheme , ' not supported in Metacello repository spec.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloRepositorySpec class >> metacelloSupportedSchemes [
 	^ (MCGitBasedNetworkRepository subclasses 
 			reject: #isAbstract
 			thenCollect: #basicDescription) copyWith: 'gitlocal'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBMetacelloRepositorySpec class >> schemeFromHost: host [
 	host = 'github.com'
 		ifTrue: [ ^ 'github' ].
@@ -55,7 +57,7 @@ PBMetacelloRepositorySpec class >> schemeFromHost: host [
 	self error: 'host ' , host , ' not supported in Metacello repository spec.'
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBMetacelloRepositorySpec class >> url: repositoryString [
 	(self metacelloSupportedSchemes includes: repositoryString asZnUrl scheme)
 		ifTrue: [ ^ self new
@@ -67,7 +69,7 @@ PBMetacelloRepositorySpec class >> url: repositoryString [
 	
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBMetacelloRepositorySpec >> asGitUrl [
 
 	url:=  'ssh://{host}{port}/{owner}/{project}.git' format: 
@@ -79,7 +81,7 @@ PBMetacelloRepositorySpec >> asGitUrl [
 	^ PBGitUrl url: url
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBMetacelloRepositorySpec >> asMetacelloUrl [
 
 	^ '{scheme}://{owner}/{project}{version}{repositoryPath}' format: 
@@ -91,23 +93,23 @@ PBMetacelloRepositorySpec >> asMetacelloUrl [
 			with: 'repositoryPath' -> (self repositoryPath  ifNil: [ '' ] ifNotNil: [ '/', self repositoryPath ]) )
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloRepositorySpec >> basicUrl [
 
 	^ url
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloRepositorySpec >> owner [
 	^ owner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloRepositorySpec >> owner: aString [ 
 	owner := aString
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 PBMetacelloRepositorySpec >> parseOwnerStartAt: startIndex [
 	| index |
 	index := url indexOf: $/ startingAt: startIndex ifAbsent: [ self error: 'Metacello repository spec must define an owner!' ].
@@ -116,7 +118,7 @@ PBMetacelloRepositorySpec >> parseOwnerStartAt: startIndex [
 	^ index + 1.
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 PBMetacelloRepositorySpec >> parseProjectStartAt: startIndex [
 	| index |
 	index := url indexOfAnyOf: '/:' startingAt: startIndex ifAbsent: [ url size + 1 ].
@@ -125,13 +127,13 @@ PBMetacelloRepositorySpec >> parseProjectStartAt: startIndex [
 	^ index "next parsing needs to know if the character found is $/ or $:"
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 PBMetacelloRepositorySpec >> parseRepositoryPathStartAt: startIndex [
 	startIndex < url size ifFalse: [ ^ startIndex ].
 	repositoryPath :=  url copyFrom: startIndex to: url size.
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 PBMetacelloRepositorySpec >> parseScheme [
 	| index |
 	((index := url indexOfSubCollection: '://') > 0)
@@ -139,7 +141,7 @@ PBMetacelloRepositorySpec >> parseScheme [
 					^ index + 3].
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 PBMetacelloRepositorySpec >> parseUrl [
 	| start |
 	start := self parseScheme.
@@ -150,7 +152,7 @@ PBMetacelloRepositorySpec >> parseUrl [
 	
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 PBMetacelloRepositorySpec >> parseVersionStartAt: startIndex [
 	| index |
 	startIndex < url size ifFalse: [ ^ startIndex ].
@@ -161,44 +163,44 @@ PBMetacelloRepositorySpec >> parseVersionStartAt: startIndex [
 	^ index + 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloRepositorySpec >> project [
 	^ project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloRepositorySpec >> project: aString [ 
 	project := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloRepositorySpec >> repositoryPath [
 	^ repositoryPath
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloRepositorySpec >> repositoryPath: aRelativePathString [
 	"e.g. src"
 	repositoryPath := aRelativePathString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloRepositorySpec >> scheme [
 	^ scheme
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloRepositorySpec >> scheme: aString [ 
 	scheme := aString
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBMetacelloRepositorySpec >> url: aString [ 
 	url := aString.
 	self parseUrl.
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBMetacelloRepositorySpec >> urlWithoutVersion [
 
 	^ '{scheme}://{owner}/{project}{repositoryPath}' format: 
@@ -209,12 +211,12 @@ PBMetacelloRepositorySpec >> urlWithoutVersion [
 			with: 'repositoryPath' -> (self repositoryPath  ifNil: [ '' ] ifNotNil: [ '/', self repositoryPath ]) )
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloRepositorySpec >> version [
 	^ version
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloRepositorySpec >> version: aVersionString [
 	version := aVersionString
 ]

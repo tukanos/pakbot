@@ -1,6 +1,6 @@
-Extension { #name : #Association }
+Extension { #name : 'Association' }
 
-{ #category : #'*Pakbot-Minimal' }
+{ #category : '*Pakbot-Minimal' }
 Association >> asPackageDependency [
 	^ PBPackageDependency newFrom: self
 ]

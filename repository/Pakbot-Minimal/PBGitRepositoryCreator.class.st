@@ -7,18 +7,20 @@ You can use it to set:
 - git version referenced (may be a tag, a branch or a commit hash)
 "
 Class {
-	#name : #PBGitRepositoryCreator,
-	#superclass : #Object,
+	#name : 'PBGitRepositoryCreator',
+	#superclass : 'Object',
 	#instVars : [
 		'url',
 		'version',
 		'subdirectory',
 		'location'
 	],
-	#category : #'Pakbot-Minimal-Repository'
+	#category : 'Pakbot-Minimal-Repository',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Repository'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 PBGitRepositoryCreator class >> example [
 	^ self new
 		url: 'https://github.com/pharo-pkg/pharo-counter.git';
@@ -26,26 +28,26 @@ PBGitRepositoryCreator class >> example [
 		create.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBGitRepositoryCreator class >> isGitHubScheme: url [
 	^ url scheme = #github
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBGitRepositoryCreator class >> normalizeUrl: aString [ 
 	| colonIndex |
 	colonIndex := aString indexOf: $:.
 	^ aString copyReplaceFrom: colonIndex to: colonIndex with: '/'
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PBGitRepositoryCreator class >> repositoryCreatorWithUrl: urlString [
 	^ self new 
 		url: urlString;
 		yourself
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PBGitRepositoryCreator class >> repositoryFromIceRepository: anIceRepository [ 
 	^ PBGitRepository 
 		url: anIceRepository origin url
@@ -53,26 +55,26 @@ PBGitRepositoryCreator class >> repositoryFromIceRepository: anIceRepository [
 		version: anIceRepository branchName
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PBGitRepositoryCreator class >> repositoryFromUrl: urlOrString [
 	^ (self repositoryCreatorWithUrl: urlOrString) create
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBGitRepositoryCreator class >> urlWithScheme: anUrlStringOrUrl [ 
 	^ (anUrlStringOrUrl asString beginsWith: 'git@')
 		ifTrue: [ ('ssh://' , (self normalizeUrl: anUrlStringOrUrl asString)) asZnUrl ]
 		ifFalse: [ anUrlStringOrUrl asZnUrl ]
 ]
 
-{ #category : #querying }
+{ #category : 'querying' }
 PBGitRepositoryCreator >> commitishFrom: anUrl [
 	^ (anUrl lastPathSegment includes: $:)
 		ifTrue: [ anUrl asString copyAfterLast: $: ]
 		ifFalse: [ nil ]
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PBGitRepositoryCreator >> create [
 	| creator |
 	creator := IceRepositoryCreator new 
@@ -87,14 +89,14 @@ PBGitRepositoryCreator >> create [
 		version: version
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PBGitRepositoryCreator >> createAndClone [
 	^ self create
 		ensureCloned;
 		yourself
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PBGitRepositoryCreator >> createNewRepositoryNamed: aString [ 
 	| iceRepository |
 	iceRepository := IceRepositoryCreator new 
@@ -104,33 +106,33 @@ PBGitRepositoryCreator >> createNewRepositoryNamed: aString [
 	^ PBGitRepository repository: iceRepository
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBGitRepositoryCreator >> icebergUrl [
 	^ url asGitUrl scpUrl
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGitRepositoryCreator >> initialize [
 	location := nil
 ]
 
-{ #category : #setting }
+{ #category : 'setting' }
 PBGitRepositoryCreator >> location: aFileReference [
 	location := aFileReference
 ]
 
-{ #category : #setting }
+{ #category : 'setting' }
 PBGitRepositoryCreator >> subdirectory: aString [ 
 	subdirectory := aString
 ]
 
-{ #category : #setting }
+{ #category : 'setting' }
 PBGitRepositoryCreator >> url: aString [
 
 	url := aString
 ]
 
-{ #category : #setting }
+{ #category : 'setting' }
 PBGitRepositoryCreator >> version: aCommitishString [
 	"a version can be a reference to a git branch, a git tag or a git commit" 
 	version := aCommitishString

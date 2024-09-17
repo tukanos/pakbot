@@ -3,19 +3,21 @@ I represent a Metacello package spec.
 See my superclass for more information.
 "
 Class {
-	#name : #PBMetacelloPackageSpec,
-	#superclass : #PBMetacelloSpec,
-	#category : #'Pakbot-Minimal-Metacello-Support'
+	#name : 'PBMetacelloPackageSpec',
+	#superclass : 'PBMetacelloSpec',
+	#category : 'Pakbot-Minimal-Metacello-Support',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Metacello-Support'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBMetacelloPackageSpec class >> named: aName [
 	^ self new
 		name: aName;
 		yourself
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBMetacelloPackageSpec >> addRequirementsTo: aPBPackage [
 
 	requirements do: [ :requirement | | dependency |
@@ -24,7 +26,7 @@ PBMetacelloPackageSpec >> addRequirementsTo: aPBPackage [
 		aPBPackage addDependency: dependency ]
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBMetacelloPackageSpec >> asPakbotPackageIn: aPBproject [
 	| package |
 
@@ -35,7 +37,7 @@ PBMetacelloPackageSpec >> asPakbotPackageIn: aPBproject [
 	^ package
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBMetacelloPackageSpec >> attributeMappingFor: aMetacelloAttribute [
 
 	aMetacelloAttribute = #windows ifTrue: [ ^ PBPlatformAttributes windowsOSKey ].
@@ -44,19 +46,19 @@ PBMetacelloPackageSpec >> attributeMappingFor: aMetacelloAttribute [
 	^ aMetacelloAttribute
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBMetacelloPackageSpec >> initialize [ 
 	requirements := OrderedCollection new.
 	attributes := #().
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBMetacelloPackageSpec >> isPackageSpec [
 	
 	^ true
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBMetacelloPackageSpec >> mergeIn: aPBPackage [
 	self name 
 		ifNotNil: [ self name = aPBPackage name ifFalse: [ self error: 'Cannot merge spec for a different packages!' ] ].
@@ -64,13 +66,13 @@ PBMetacelloPackageSpec >> mergeIn: aPBPackage [
 	self addRequirementsTo: aPBPackage.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloPackageSpec >> nonCommonAttributes [
 	^ self attributes 
 		reject: [ :each | each isEmpty or: [ each = #common ] ]
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBMetacelloPackageSpec >> platformRequirements [
 	| filteredAttributes attribute |
 	filteredAttributes := self nonCommonAttributes.

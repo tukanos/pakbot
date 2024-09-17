@@ -1,10 +1,12 @@
 Class {
-	#name : #PBMetacelloConfigurationProjectDependencyTest,
-	#superclass : #TestCase,
-	#category : #'Pakbot-Tests-Dependencies'
+	#name : 'PBMetacelloConfigurationProjectDependencyTest',
+	#superclass : 'TestCase',
+	#category : 'Pakbot-Tests-Dependencies',
+	#package : 'Pakbot-Tests',
+	#tag : 'Dependencies'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloConfigurationProjectDependencyTest >> testCanCreateDependency [
 	| dependency |
 	dependency := PBMetacelloConfigurationProjectDependency example.
@@ -19,7 +21,7 @@ PBMetacelloConfigurationProjectDependencyTest >> testCanCreateDependency [
 		equals: #stable.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloConfigurationProjectDependencyTest >> testCanDeserializeDependency [
 	| dependency |
 	dependency := STON fromString: 'MetacelloConfigurationProject {
@@ -35,7 +37,7 @@ PBMetacelloConfigurationProjectDependencyTest >> testCanDeserializeDependency [
 		equals: #stable.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloConfigurationProjectDependencyTest >> testCanSerializeDependency [
 	| projectDependencyString |
 	projectDependencyString := STON toStringPretty: PBMetacelloConfigurationProjectDependency example.

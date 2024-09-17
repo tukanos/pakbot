@@ -2,12 +2,13 @@
 I present some usage examples of Pakbot command-line API to load projects.
 "
 Class {
-	#name : #PakbotExamples,
-	#superclass : #Object,
-	#category : #'Pakbot-Minimal'
+	#name : 'PakbotExamples',
+	#superclass : 'Object',
+	#category : 'Pakbot-Minimal',
+	#package : 'Pakbot-Minimal'
 }
 
-{ #category : #'load instructions' }
+{ #category : 'load instructions' }
 PakbotExamples >> getAProjectLoadInstructionsFromPharoCatalog [
 
 	Pakbot new
@@ -16,7 +17,7 @@ PakbotExamples >> getAProjectLoadInstructionsFromPharoCatalog [
 		loadInstructions
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PakbotExamples >> loadAProjectBranchFromItsGitRepository [
 	"load Unicode master branch from the specified git repository"
 	
@@ -27,7 +28,7 @@ PakbotExamples >> loadAProjectBranchFromItsGitRepository [
 
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PakbotExamples >> loadAProjectFromItsGitRepository [
 	"load Unicode default branch from the specified git repository"
 
@@ -36,7 +37,7 @@ PakbotExamples >> loadAProjectFromItsGitRepository [
 		load. 
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PakbotExamples >> loadAProjectFromPharoCatalog [
 	"load Unicode 1.0 from package repository"
 
@@ -46,7 +47,7 @@ PakbotExamples >> loadAProjectFromPharoCatalog [
 		load. 
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PakbotExamples >> loadAProjectGroupFromPharoCatalog [
 	"load Unicode 1.1.0 'Collate' group from package repository"
 
@@ -56,7 +57,7 @@ PakbotExamples >> loadAProjectGroupFromPharoCatalog [
 		load: 'Collate'. 
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PakbotExamples >> loadAProjectPackageFromPharoCatalog [
 	"load Unicode 1.1.0 'Unicode-Character-Data' package from package repository"
 	

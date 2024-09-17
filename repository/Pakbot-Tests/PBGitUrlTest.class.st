@@ -2,19 +2,21 @@
 A PBGitUrlTest is a test class for testing the behavior of PBGitUrl
 "
 Class {
-	#name : #PBGitUrlTest,
-	#superclass : #TestCase,
-	#category : #'Pakbot-Tests-Model'
+	#name : 'PBGitUrlTest',
+	#superclass : 'TestCase',
+	#category : 'Pakbot-Tests-Model',
+	#package : 'Pakbot-Tests',
+	#tag : 'Model'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitUrlTest >> testCanBeConvertedToMetacelloUrl [
 	self
 		assert: (PBGitUrl url: 'ssh://git@github.com/demarey/pharo-counter.git') asMetacelloUrl
 		equals: 'github://demarey/pharo-counter'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitUrlTest >> testCanBeInitializedFromString [
 	"test we do not return a PBMetacelloRepositorySpec when giving a valid git URL"
 	
@@ -23,7 +25,7 @@ PBGitUrlTest >> testCanBeInitializedFromString [
 		equals: PBGitUrl.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitUrlTest >> testCanBeInitializedOnGitUrl [
 	| gitUrl |
 	gitUrl := PBGitUrl url: 'git://git@github.com/demarey/pharo-counter.git'.
@@ -49,7 +51,7 @@ PBGitUrlTest >> testCanBeInitializedOnGitUrl [
 		equals: 'pharo-counter'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitUrlTest >> testCanBeInitializedOnGitUrlWithoutScheme [
 	| gitUrl |
 	gitUrl := PBGitUrl url: 'git@github.com:demarey/pharo-counter.git'.
@@ -75,7 +77,7 @@ PBGitUrlTest >> testCanBeInitializedOnGitUrlWithoutScheme [
 		equals: 'pharo-counter'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitUrlTest >> testCanBeInitializedOnHttpUrl [
 	| gitUrl |
 	gitUrl := PBGitUrl url: 'https://github.com/demarey/pharo-counter.git'.
@@ -97,14 +99,14 @@ PBGitUrlTest >> testCanBeInitializedOnHttpUrl [
 		equals: 'pharo-counter'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitUrlTest >> testCanGetHttpUrl [
 	self
 		assert: (PBGitUrl url: 'git@github.com/demarey/pharo-counter.git') httpUrl
 		equals: 'https://github.com/demarey/pharo-counter.git'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitUrlTest >> testCanGetScpUrl [
 	self
 		assert: (PBGitUrl url: 'https://github.com/demarey/pharo-counter.git') scpUrl

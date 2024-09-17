@@ -1,11 +1,11 @@
-Extension { #name : #String }
+Extension { #name : 'String' }
 
-{ #category : #'*Pakbot-Minimal' }
+{ #category : '*Pakbot-Minimal' }
 String >> asGitUrl [
 	^ self asGitUrlOrMetacelloRepositorySpec asGitUrl 
 ]
 
-{ #category : #'*Pakbot-Minimal' }
+{ #category : '*Pakbot-Minimal' }
 String >> asGitUrlOrMetacelloRepositorySpec [
 	^ (PBGitUrl canHandleUrl: self)
 		ifTrue: [ PBGitUrl url: self ]
@@ -13,17 +13,17 @@ String >> asGitUrlOrMetacelloRepositorySpec [
 
 ]
 
-{ #category : #'*Pakbot-Minimal' }
+{ #category : '*Pakbot-Minimal' }
 String >> asMetacelloRepositorySpec [
 	^ PBMetacelloRepositorySpec url: self
 ]
 
-{ #category : #'*Pakbot-Minimal' }
+{ #category : '*Pakbot-Minimal' }
 String >> asPackageDependency [
 	^ PBPackageDependency newFrom: self -> #()
 ]
 
-{ #category : #'*Pakbot-Minimal' }
+{ #category : '*Pakbot-Minimal' }
 String >> asSemanticVersion [
 	^ SemanticVersion fromString: self
 ]

@@ -1,47 +1,49 @@
 Class {
-	#name : #PBAbstractTest,
-	#superclass : #ParametrizedTestCase,
+	#name : 'PBAbstractTest',
+	#superclass : 'ParametrizedTestCase',
 	#instVars : [
 		'testRegistry'
 	],
-	#category : #'Pakbot-Tests-Integration-Tests'
+	#category : 'Pakbot-Tests-Integration-Tests',
+	#package : 'Pakbot-Tests',
+	#tag : 'Integration-Tests'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PBAbstractTest class >> isAbstract [
 	^ self name = #PBAbstractTest
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAbstractTest >> expectedPakbotResolvedProject [
 
 	^ (PBProjectVersion named: self pharoCounterProjectName)
 		repository: (PBGitRepositoryCreator repositoryFromUrl: self pharoCounterGitUrl)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractTest >> pharoCounterGitUrl [
 	^ 'https://github.com/pharo-pkg/pharo-counter.git'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractTest >> pharoCounterProjectName [
 	^ 'PharoCounter'
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 PBAbstractTest >> removePackageIfExists: aPackageName [
 
 	(aPackageName asPackageIfAbsent: [ nil ]) ifNotNil: #removeFromSystem
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAbstractTest >> setUp [
 	super setUp.
 	testRegistry := PBPackageRegistry new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAbstractTest >> tearDown [
 
 	super tearDown.
@@ -59,7 +61,7 @@ PBAbstractTest >> tearDown [
 	(MCRepositoryGroup default repositories select: [ :each | each species = IceMetacelloRepositoryAdapter and: [ each repository name = 'PakbotTestExample' ] ]) do: #unregister
 ]
 
-{ #category : #unloading }
+{ #category : 'unloading' }
 PBAbstractTest >> unloadMetacelloBaseline [
 	
 	"We fetch the loaded configuration and remove it"
@@ -81,7 +83,7 @@ PBAbstractTest >> unloadMetacelloBaseline [
 
 ]
 
-{ #category : #unloading }
+{ #category : 'unloading' }
 PBAbstractTest >> unloadMetacelloConfiguration [
 	"We fetch the loaded configuration and remove it"
 
@@ -99,7 +101,7 @@ PBAbstractTest >> unloadMetacelloConfiguration [
 	('ConfigurationOfCargoTestExample' asPackageIfAbsent: nil) ifNotNil: #removeFromSystem
 ]
 
-{ #category : #unloading }
+{ #category : 'unloading' }
 PBAbstractTest >> unloadPakbotProject [
 	
 	#(#'Counter-Core' #'Counter-Tests' #'PakbotTestExample-PackageA' #'PakbotTestExample-PackageB' #'PakbotTestExample-PackageC' #'PakbotTestExample-PackageD') 

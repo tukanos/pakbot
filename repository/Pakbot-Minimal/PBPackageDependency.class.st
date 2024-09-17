@@ -5,33 +5,35 @@ Scope is a Symbol reprensenting the name of an external project dependency decla
 Platform requirements allow conditional loading of the dependency (ex: only on Windows).
 "
 Class {
-	#name : #PBPackageDependency,
-	#superclass : #PBAbstractPackageDependency,
+	#name : 'PBPackageDependency',
+	#superclass : 'PBAbstractPackageDependency',
 	#instVars : [
 		'dependent',
 		'constraints',
 		'scope'
 	],
-	#category : #'Pakbot-Minimal-Dependencies'
+	#category : 'Pakbot-Minimal-Dependencies',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Dependencies'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBPackageDependency class >> newFrom: anAssociation [
 	^ self new
 		initializeWith: anAssociation
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBPackageDependency class >> on: targetedPackageName [
 	^ self on: targetedPackageName for: nil
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBPackageDependency class >> on: targetedPackageName for: aPackageName [
 	^ self on: targetedPackageName for: aPackageName withConstraints: #()
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBPackageDependency class >> on: targetedPackageName for: aPackageName withConstraints: contraints [
 	self flag: 'TODO: set the dependent with aPackage'.
 	^ self new
@@ -39,12 +41,12 @@ PBPackageDependency class >> on: targetedPackageName for: aPackageName withConst
 		yourself.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageDependency class >> scopeSeparator [
 	^ '::'
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PBPackageDependency >> = other [
 	(targetedPackage = other targetedPackage) ifFalse: [ ^ false ].
 	(constraints = other constraints) ifFalse: [ ^ false ].
@@ -52,7 +54,7 @@ PBPackageDependency >> = other [
 	^ true
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBPackageDependency >> addDefaultVersionConstraint: aResolutionStrategy from: repositories for: platformAttributes [
 	| defaultPackageVersionRef |
 	constraints ifNotEmpty: [ ^ self ].
@@ -65,24 +67,24 @@ PBPackageDependency >> addDefaultVersionConstraint: aResolutionStrategy from: re
 
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBPackageDependency >> asLiteral [
 	^ constraints 
 		ifEmpty: [ self packageName ]
 		ifNotEmpty: [ self packageName -> (constraints collect: #asString as: Array) ]
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBPackageDependency >> asPackageDependency [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageDependency >> constraints [
 	^ constraints
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageDependency >> dependencyName [
 	"Name used to find the depencency in a package repository"
 	^ scope
@@ -90,42 +92,42 @@ PBPackageDependency >> dependencyName [
 		ifNotNil: [ scope , self class scopeSeparator , targetedPackage ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageDependency >> dependent [
 	"Returns the entity that declared the dependency"
 	^ dependent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageDependency >> dependent: aPBLoadableUnit [
 
 	dependent := aPBLoadableUnit
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBPackageDependency >> hasScope [
 	^ scope isNotNil
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PBPackageDependency >> hash [
 	^ targetedPackage hash 
 		bitXor: dependent hash
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBPackageDependency >> indexOfScope: packageName [
 	^ packageName indexOfSubCollection: self class scopeSeparator
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPackageDependency >> initializeOn: aPackageName withConstraints: aConstraintList [
 	self initializeTargetAndScopeFrom: aPackageName.
 	constraints := Array newFrom: aConstraintList.
 	platformRequirements := Array new.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPackageDependency >> initializeTargetAndScopeFrom: aPackageName [
 	| index |
 	index := self indexOfScope: aPackageName.
@@ -137,7 +139,7 @@ PBPackageDependency >> initializeTargetAndScopeFrom: aPackageName [
 				to: aPackageName size) asSymbol ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPackageDependency >> initializeWith: anAssociation [ 
 	| constraintStringList |
 	self initializeTargetAndScopeFrom: anAssociation key asSymbol.
@@ -146,36 +148,36 @@ PBPackageDependency >> initializeWith: anAssociation [
 		[ :constraintString | PBDependencyConstraint fromString: constraintString  ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBPackageDependency >> isSolved [
 	self shouldBeImplemented.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageDependency >> name [
 	
 	^ targetedPackage
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageDependency >> packageName [
 	^ targetedPackage
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PBPackageDependency >> printOn: aStream [
 	aStream << self packageName << ' ('.
 	constraints printOn: aStream delimiter: Character space.
 	aStream << ')'.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageDependency >> project [
 	"project is not set on dependencies after deserialization from STON"
 	^ project ifNil: [ dependent ifNotNil: [ :theDependent | theDependent project ] ]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBPackageDependency >> resolveIn: aPBResolvedProject solver: aPBSolver [
 	aPBResolvedProject addToLoadList: self packageName.
 	self resolvedDependency dependencies 
@@ -184,17 +186,17 @@ PBPackageDependency >> resolveIn: aPBResolvedProject solver: aPBSolver [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBPackageDependency >> resolvedDependency [
 	^ self project packageNamed: self packageName
 ]
 
-{ #category : #constrains }
+{ #category : 'constrains' }
 PBPackageDependency >> satisfyConstraints: aSemanticVersion [ 
 	^ constraints allSatisfy: [ :each | each isCompatibleWith: aSemanticVersion ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageDependency >> scope [
 	^ scope
 ]

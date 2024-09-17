@@ -1,10 +1,12 @@
 Class {
-	#name : #PBGitRepositoryCreatorTest,
-	#superclass : #PBGitCreationTest,
-	#category : #'Pakbot-Tests-Repository'
+	#name : 'PBGitRepositoryCreatorTest',
+	#superclass : 'PBGitCreationTest',
+	#category : 'Pakbot-Tests-Repository',
+	#package : 'Pakbot-Tests',
+	#tag : 'Repository'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryCreatorTest >> testCanCreateLocalDirectory [
 	| tempFolder |
 	tempFolder := FileLocator temp	/
@@ -17,7 +19,7 @@ PBGitRepositoryCreatorTest >> testCanCreateLocalDirectory [
 	tempFolder ensureDeleteAll.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryCreatorTest >> testCanCreateRepositoryFromGitHubUrl [
 
 	repository := PBGitRepositoryCreator new
@@ -32,7 +34,7 @@ PBGitRepositoryCreatorTest >> testCanCreateRepositoryFromGitHubUrl [
 		equals: 'git@github.com:demarey/pharo-counter.git'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryCreatorTest >> testCanCreateRepositoryFromHttpUrl [
 
 	repository := PBGitRepositoryCreator new
@@ -48,7 +50,7 @@ PBGitRepositoryCreatorTest >> testCanCreateRepositoryFromHttpUrl [
 		equals: 'https://github.com/demarey/pharo-counter.git'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryCreatorTest >> testCanCreateRepositoryFromIcebergRepository [
 	| iceRepository |
 	iceRepository := IceRepositoryCreator new 
@@ -66,7 +68,7 @@ PBGitRepositoryCreatorTest >> testCanCreateRepositoryFromIcebergRepository [
 		equals: 'https://github.com/demarey/pharo-counter.git'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryCreatorTest >> testCanCreateRepositoryFromSshUrl [
 
 	repository := PBGitRepositoryCreator new
@@ -82,7 +84,7 @@ PBGitRepositoryCreatorTest >> testCanCreateRepositoryFromSshUrl [
 		equals: 'ssh://git@github.com/demarey/pharo-counter.git'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryCreatorTest >> testCanCreateRepositoryFromSshUrlWithNoProtocol [
 
 	repository := PBGitRepositoryCreator repositoryFromUrl: 'git@github.com:demarey/pharo-counter.git'.

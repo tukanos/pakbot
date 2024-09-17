@@ -2,16 +2,18 @@
 A PackageGroup represents a set of artifacts to load together.
 "
 Class {
-	#name : #PBLoadGroup,
-	#superclass : #Object,
+	#name : 'PBLoadGroup',
+	#superclass : 'Object',
 	#instVars : [
 		'name',
 		'loadableUnits'
 	],
-	#category : #'Pakbot-Minimal-Loader'
+	#category : 'Pakbot-Minimal-Loader',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Loader'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBLoadGroup class >> newWithAll: aListOfPackageVersionReferenceStrings [
 	^ self new 
 		intializeWithPackageVersions: aListOfPackageVersionReferenceStrings;
@@ -19,7 +21,7 @@ PBLoadGroup class >> newWithAll: aListOfPackageVersionReferenceStrings [
 		
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PBLoadGroup >> = anotherObject [
 	self species = anotherObject species
 		ifFalse: [ ^ false ].
@@ -28,25 +30,25 @@ PBLoadGroup >> = anotherObject [
 		and: [ self loadableUnits = anotherObject loadableUnits ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBLoadGroup >> anySatisfy: aBlock [
 	
 	^ loadableUnits anySatisfy: aBlock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBLoadGroup >> computeName [
 	name := ', ' join: (loadableUnits collect: #name)
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBLoadGroup >> fetchInto: aMCRepository [
 	^ self mcVersions
 		do: [ :version | aMCRepository storeVersion: version ];
 		yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBLoadGroup >> includes: aLoadableUnit [ 
 
 	^ loadableUnits 
@@ -55,46 +57,46 @@ PBLoadGroup >> includes: aLoadableUnit [
 		ifNone: [ false ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBLoadGroup >> intializeWithPackageVersions: aListOfPackageVersions [
 	loadableUnits := aListOfPackageVersions.
 	self computeName
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBLoadGroup >> load [
 
 	self loadableUnits do: [ :aLoadableUnit | aLoadableUnit basicLoad ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadGroup >> loadableUnits [
 	^ loadableUnits
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBLoadGroup >> mcVersionFor: aPackageVersion [
 	^ aPackageVersion repository mcVersionFor: aPackageVersion
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBLoadGroup >> mcVersions [
 	^ self packageVersions
 		reject: #isAssembly "Assemblies are not associated to a code artefact, so nothing to load ..."
 		thenCollect: [ :pkgVersion | self mcVersionFor: pkgVersion ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadGroup >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadGroup >> packageVersions [
 	^ self loadableUnits
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PBLoadGroup >> printOn: aStream [
 	aStream
 		<< self class name

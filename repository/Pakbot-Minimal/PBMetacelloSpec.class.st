@@ -4,17 +4,19 @@ I'm used to store information during the visit of a Baseline by `PBBaselineVisit
 Once the visit step is finished, `PBBaselineVisitor` uses me to generate the appropriate Pakbot metadata.
 "
 Class {
-	#name : #PBMetacelloSpec,
-	#superclass : #Object,
+	#name : 'PBMetacelloSpec',
+	#superclass : 'Object',
 	#instVars : [
 		'requirements',
 		'name',
 		'attributes'
 	],
-	#category : #'Pakbot-Minimal-Metacello-Support'
+	#category : 'Pakbot-Minimal-Metacello-Support',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Metacello-Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloSpec >> addRequirements: aRequirementList [
 	aRequirementList isString 
 		ifTrue: [ requirements add: aRequirementList ]
@@ -22,35 +24,35 @@ PBMetacelloSpec >> addRequirements: aRequirementList [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloSpec >> attributes [
 	^ attributes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloSpec >> attributes: anAttributeOrListOfAttributes [
 	attributes := anAttributeOrListOfAttributes isString 
 		ifTrue: [ Array with: anAttributeOrListOfAttributes ]
 		ifFalse: [ anAttributeOrListOfAttributes copy ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBMetacelloSpec >> initialize [ 
 	requirements := OrderedCollection new. 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBMetacelloSpec >> isPackageSpec [
 	
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloSpec >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloSpec >> name: aName [
 	name := aName
 ]

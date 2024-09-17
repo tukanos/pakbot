@@ -2,27 +2,29 @@
 I represent a semantic version that has not been set.
 "
 Class {
-	#name : #PBNoVersion,
-	#superclass : #Object,
-	#category : #'Pakbot-Minimal-Model'
+	#name : 'PBNoVersion',
+	#superclass : 'Object',
+	#category : 'Pakbot-Minimal-Model',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PBNoVersion >> = anObject [
 	^ anObject class == self class
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBNoVersion >> asSemanticVersion [
 	^ self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBNoVersion >> isInvalid [
 	^ true
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PBNoVersion >> printOn: aStream [
 	aStream nextPutAll: 'no version set'
 ]

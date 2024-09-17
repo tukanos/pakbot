@@ -3,12 +3,14 @@ Error raised when a PBIcebergProject is referencing a different pakbot project (
 
 "
 Class {
-	#name : #PBIcebergProjectMismatch,
-	#superclass : #PBError,
-	#category : #'Pakbot-Minimal-Iceberg-Integration'
+	#name : 'PBIcebergProjectMismatch',
+	#superclass : 'PBError',
+	#category : 'Pakbot-Minimal-Iceberg-Integration',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Iceberg-Integration'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBIcebergProjectMismatch >> isResumable [
 	^ true
 ]

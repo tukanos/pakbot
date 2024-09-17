@@ -1,16 +1,18 @@
 Class {
-	#name : #PBProjectCreationTest,
-	#superclass : #PBTest,
+	#name : 'PBProjectCreationTest',
+	#superclass : 'PBTest',
 	#traits : 'TTemporaryFilesTrait',
 	#classTraits : 'TTemporaryFilesTrait classTrait',
 	#instVars : [
 		'project',
 		'workDir'
 	],
-	#category : #'Pakbot-Tests-API'
+	#category : 'Pakbot-Tests-API',
+	#package : 'Pakbot-Tests',
+	#tag : 'API'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PBProjectCreationTest >> setUp [
 	super setUp.
 	
@@ -21,7 +23,7 @@ PBProjectCreationTest >> setUp [
 	workDir := self newTempDirectoryReference.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectCreationTest >> testCanAddExternalDependency [
 
 	| dependency |
@@ -41,7 +43,7 @@ PBProjectCreationTest >> testCanAddExternalDependency [
 		equals: dependency.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectCreationTest >> testCanCommitAProject [
 
 	"Commit action uses Iceberg that is only available in UI mode to review changes."
@@ -59,7 +61,7 @@ PBProjectCreationTest >> testCanCommitAProject [
 	self assert: changes last key equals: repository projectMetadataFileName
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectCreationTest >> testCanCreateAProject [
 
 	project := (PBProjectVersion named: #'Counter')
@@ -72,7 +74,7 @@ PBProjectCreationTest >> testCanCreateAProject [
 	self assert: project name equals: #Counter
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectCreationTest >> testCanCreatePackageInProjectAndSetDescription [
 
 	| description package |
@@ -89,7 +91,7 @@ PBProjectCreationTest >> testCanCreatePackageInProjectAndSetDescription [
 		equals: description.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectCreationTest >> testCanImportPackageInProjectAndSetDescription [
 
 	| description |
@@ -106,7 +108,7 @@ PBProjectCreationTest >> testCanImportPackageInProjectAndSetDescription [
 		equals: description
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectCreationTest >> testCanImportPackagesInProject [
 
 	project importPackagesNamed: #('Foo' 'Bar').
@@ -116,7 +118,7 @@ PBProjectCreationTest >> testCanImportPackagesInProject [
 		hasSameElements: #('Foo' 'Bar')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectCreationTest >> testCanSetProjectRepository [
 
 	| repository |

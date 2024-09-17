@@ -2,27 +2,29 @@
 Announcement used when a package is loaded in the System.
 "
 Class {
-	#name : #PBPackageLoaded,
-	#superclass : #SystemAnnouncement,
+	#name : 'PBPackageLoaded',
+	#superclass : 'SystemAnnouncement',
 	#instVars : [
 		'package'
 	],
-	#category : #'Pakbot-Minimal-Announcements'
+	#category : 'Pakbot-Minimal-Announcements',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Announcements'
 }
 
-{ #category : #announcing }
+{ #category : 'announcing' }
 PBPackageLoaded class >> announceOnPackage: aPackage [
 	self new 
 		package: aPackage;
 		announce
 ]
 
-{ #category : #announcing }
+{ #category : 'announcing' }
 PBPackageLoaded >> announce [
 	SystemAnnouncer uniqueInstance announce: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageLoaded >> package: aPackage [ 
 	package := aPackage
 ]

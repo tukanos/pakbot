@@ -2,12 +2,14 @@
 Error raised when a package (i.e. the package name) cannot be found.
 "
 Class {
-	#name : #PBPackageNotFoundError,
-	#superclass : #PBError,
-	#category : #'Pakbot-Minimal-Model'
+	#name : 'PBPackageNotFoundError',
+	#superclass : 'PBError',
+	#category : 'Pakbot-Minimal-Model',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #signalling }
+{ #category : 'signalling' }
 PBPackageNotFoundError >> signal: aPackageName [
 	^ super signal: 'Cannot find ' , aPackageName , ' package!'
 ]

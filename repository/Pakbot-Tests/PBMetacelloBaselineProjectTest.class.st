@@ -1,10 +1,12 @@
 Class {
-	#name : #PBMetacelloBaselineProjectTest,
-	#superclass : #TestCase,
-	#category : #'Pakbot-Tests-Metacello-Support'
+	#name : 'PBMetacelloBaselineProjectTest',
+	#superclass : 'TestCase',
+	#category : 'Pakbot-Tests-Metacello-Support',
+	#package : 'Pakbot-Tests',
+	#tag : 'Metacello-Support'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloBaselineProjectTest >> testCanConvertGitOverHttpUrlPointingToGitHubToMetacelloUrl [
 	| project |
 	
@@ -18,7 +20,7 @@ PBMetacelloBaselineProjectTest >> testCanConvertGitOverHttpUrlPointingToGitHubTo
 		equals: 'github://sbragagnolo/taskit:v1.0.1'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloBaselineProjectTest >> testCanConvertGitOverSSHUrlPointingToGitHubToMetacelloUrl [
 	| project |
 	
@@ -32,7 +34,7 @@ PBMetacelloBaselineProjectTest >> testCanConvertGitOverSSHUrlPointingToGitHubToM
 		equals: 'github://sbragagnolo/taskit:v1.0.1'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloBaselineProjectTest >> testCanConvertMetacelloGitHubUrlToMetacelloUrl [
 	| project |
 	
@@ -46,7 +48,7 @@ PBMetacelloBaselineProjectTest >> testCanConvertMetacelloGitHubUrlToMetacelloUrl
 		equals: 'github://pharo-pkg/PakbotTestExample:1.0'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloBaselineProjectTest >> testCanConvertMetacelloGitHubUrlWithSourceDirectoryToMetacelloUrl [
 	| project |
 
@@ -61,7 +63,7 @@ PBMetacelloBaselineProjectTest >> testCanConvertMetacelloGitHubUrlWithSourceDire
 		equals: 'github://pharo-pkg/PakbotTestExample:1.0/src'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloBaselineProjectTest >> testCanConvertRepositoryWithSourceRepositoryToMetacelloUrl [
 	| project |
 

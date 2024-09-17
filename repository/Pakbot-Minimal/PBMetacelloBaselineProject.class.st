@@ -5,18 +5,20 @@ I represent a Metacello Project using a BaselineOf and act as a Cargo project.
 ```
 "
 Class {
-	#name : #PBMetacelloBaselineProject,
-	#superclass : #PBMetacelloProject,
-	#category : #'Pakbot-Minimal-Metacello-Support'
+	#name : 'PBMetacelloBaselineProject',
+	#superclass : 'PBMetacelloProject',
+	#category : 'Pakbot-Minimal-Metacello-Support',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Metacello-Support'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 PBMetacelloBaselineProject class >> example [
 	^ self 
 		fromProjectDependency: PBMetacelloBaselineProjectDependency example
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBMetacelloBaselineProject >> asDependency [
 	^ PBMetacelloBaselineProjectDependency
 		name: self name
@@ -24,7 +26,7 @@ PBMetacelloBaselineProject >> asDependency [
 		version: self version
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBMetacelloBaselineProject >> basicLoad [
 	| metacello |
 	
@@ -37,7 +39,7 @@ PBMetacelloBaselineProject >> basicLoad [
 		ifNotEmpty: [ metacello load: packageNames asArray ].
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBMetacelloBaselineProject >> basicLoad: aListOfPackageName [
 	aListOfPackageName 
 		ifEmpty: [ ^ self. "packages are laready installed. DO NOT trigger a full install of the project" ].
@@ -48,23 +50,23 @@ PBMetacelloBaselineProject >> basicLoad: aListOfPackageName [
 		load: aListOfPackageName asArray.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloBaselineProject >> fullVersionString [
 	
 	^ self version, ' (Baseline from ' , self repository , ')'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBMetacelloBaselineProject >> initialize [
 	super initialize.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloBaselineProject >> isConfiguration [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloBaselineProject >> metacelloUrl [
 	^ repository asMetacelloRepositorySpec
 		version: self version;
@@ -72,22 +74,22 @@ PBMetacelloBaselineProject >> metacelloUrl [
 		asMetacelloUrl
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloBaselineProject >> resolvedVersion [
 	^ self version
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBMetacelloBaselineProject >> satisfyConstraints: aVersionString [ 
 	^ self asDependency satisfyConstraints: aVersionString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloBaselineProject >> sourceDirectory [
 	^ sourceDirectory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloBaselineProject >> sourceDirectory: aRelativePathString [
 	"e.g. src"
 	sourceDirectory := aRelativePathString

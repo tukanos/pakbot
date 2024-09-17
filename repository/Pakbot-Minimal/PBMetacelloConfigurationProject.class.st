@@ -4,18 +4,20 @@ I represent a Metacello Project using a ConfigurationOf and act as a Cargo proje
 	self exampleConfiguration inspect
 "
 Class {
-	#name : #PBMetacelloConfigurationProject,
-	#superclass : #PBMetacelloProject,
-	#category : #'Pakbot-Minimal-Metacello-Support'
+	#name : 'PBMetacelloConfigurationProject',
+	#superclass : 'PBMetacelloProject',
+	#category : 'Pakbot-Minimal-Metacello-Support',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Metacello-Support'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 PBMetacelloConfigurationProject class >> exampleConfiguration [
 	^ self 
 		fromProjectDependency: PBMetacelloConfigurationProjectDependency example
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBMetacelloConfigurationProject >> basicLoad [
 	Metacello new 
 		repository: repository asString;
@@ -24,7 +26,7 @@ PBMetacelloConfigurationProject >> basicLoad [
 		load: packageNames.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloConfigurationProject >> configurationClass [
 
 	Smalltalk at: #ConfigurationOf , name ifPresent: [ :aClass | ^ aClass ].
@@ -37,12 +39,12 @@ PBMetacelloConfigurationProject >> configurationClass [
 	^ Smalltalk at: #ConfigurationOf , name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloConfigurationProject >> isConfiguration [
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PBMetacelloConfigurationProject >> resolvedVersion [
 	
 	self version isSymbol ifFalse: [ ^ self version ].

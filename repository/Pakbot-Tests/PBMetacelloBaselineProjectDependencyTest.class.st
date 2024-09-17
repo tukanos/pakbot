@@ -1,10 +1,12 @@
 Class {
-	#name : #PBMetacelloBaselineProjectDependencyTest,
-	#superclass : #TestCase,
-	#category : #'Pakbot-Tests-Dependencies'
+	#name : 'PBMetacelloBaselineProjectDependencyTest',
+	#superclass : 'TestCase',
+	#category : 'Pakbot-Tests-Dependencies',
+	#package : 'Pakbot-Tests',
+	#tag : 'Dependencies'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloBaselineProjectDependencyTest >> testCanBeConvertedToPakbotDependency [
 	| dependency converted |
 	dependency := PBMetacelloBaselineProjectDependency example.
@@ -35,7 +37,7 @@ PBMetacelloBaselineProjectDependencyTest >> testCanBeConvertedToPakbotDependency
 		equals: dependency project.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloBaselineProjectDependencyTest >> testCanCreateDependency [
 	| dependency |
 	dependency := PBMetacelloBaselineProjectDependency example.
@@ -50,7 +52,7 @@ PBMetacelloBaselineProjectDependencyTest >> testCanCreateDependency [
 		equals: '0866472ddded2a8fc36d3bae23f01aecfe947dc7'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloBaselineProjectDependencyTest >> testCanDeserializeDependency [
 	| dependency |
 	dependency := STON fromString: 'MetacelloBaselineProject {
@@ -66,7 +68,7 @@ PBMetacelloBaselineProjectDependencyTest >> testCanDeserializeDependency [
 		equals: '0866472ddded2a8fc36d3bae23f01aecfe947dc7'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloBaselineProjectDependencyTest >> testCanSerializeDependency [
 	| projectDependencyString |
 	projectDependencyString := STON toStringPretty: PBMetacelloBaselineProjectDependency example.
@@ -80,7 +82,7 @@ PBMetacelloBaselineProjectDependencyTest >> testCanSerializeDependency [
 }'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloBaselineProjectDependencyTest >> testIcebergUrlWhenGitUrlProvided [
 	| dependency |
 	dependency := PBMetacelloBaselineProjectDependency 
@@ -93,7 +95,7 @@ PBMetacelloBaselineProjectDependencyTest >> testIcebergUrlWhenGitUrlProvided [
 		equals: 'git@github.com:pharo-pkg/PakbotTestExample.git'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloBaselineProjectDependencyTest >> testIcebergUrlWhenMetacelloGithubUrlProvided [
 	| dependency |
 	dependency := PBMetacelloBaselineProjectDependency 

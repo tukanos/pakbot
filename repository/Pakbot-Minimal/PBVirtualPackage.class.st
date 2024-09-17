@@ -2,12 +2,14 @@
 Current version of avirtual  package  metadata. As a PackageVersion is not editable, it is the only way  to update it.
 "
 Class {
-	#name : #PBVirtualPackage,
-	#superclass : #PBProjectElement,
-	#category : #'Pakbot-Minimal-Model'
+	#name : 'PBVirtualPackage',
+	#superclass : 'PBProjectElement',
+	#category : 'Pakbot-Minimal-Model',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 PBVirtualPackage class >> example [
 	^ (self for: #'Virtual-Mail')
 		description: 'I am a virtual package providing a mail functionality in version 1.0.

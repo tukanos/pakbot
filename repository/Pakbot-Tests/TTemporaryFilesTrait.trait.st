@@ -3,22 +3,24 @@ This trait offers some methods to create temporory files or directories without 
 The trait is useful when you have to subclass a specific class, else, you should use directly `FileTestCase`
 "
 Trait {
-	#name : #TTemporaryFilesTrait,
+	#name : 'TTemporaryFilesTrait',
 	#instVars : [
 		'directories',
 		'files'
 	],
-	#category : #'Pakbot-Tests-Utils'
+	#category : 'Pakbot-Tests-Utils',
+	#package : 'Pakbot-Tests',
+	#tag : 'Utils'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TTemporaryFilesTrait >> initialize [ 
 	
 	directories := OrderedCollection new.
 	files := OrderedCollection new.
 ]
 
-{ #category : #creating }
+{ #category : 'creating' }
 TTemporaryFilesTrait >> newMemoryFileSystem [ 
 	
 	"no need to clean it, it is a memory file system"
@@ -26,7 +28,7 @@ TTemporaryFilesTrait >> newMemoryFileSystem [
 	^ FileSystem memory root
 ]
 
-{ #category : #creating }
+{ #category : 'creating' }
 TTemporaryFilesTrait >> newTempDirectory [
 
 	^ self newTempDirectoryReference 
@@ -34,7 +36,7 @@ TTemporaryFilesTrait >> newTempDirectory [
 		yourself
 ]
 
-{ #category : #creating }
+{ #category : 'creating' }
 TTemporaryFilesTrait >> newTempDirectoryReference [
 
 	| directory |
@@ -44,7 +46,7 @@ TTemporaryFilesTrait >> newTempDirectoryReference [
 	^ directory
 ]
 
-{ #category : #creating }
+{ #category : 'creating' }
 TTemporaryFilesTrait >> newTempFile [
 
 	| file |
@@ -54,7 +56,7 @@ TTemporaryFilesTrait >> newTempFile [
 	^ file
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 TTemporaryFilesTrait >> tearDown [ 
 
 	directories do: [ :dir | dir ensureDeleteAll ].

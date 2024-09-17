@@ -1,10 +1,12 @@
 Class {
-	#name : #PBMetacelloRepositorySpecTest,
-	#superclass : #FileTestCase,
-	#category : #'Pakbot-Tests-Metacello-Support'
+	#name : 'PBMetacelloRepositorySpecTest',
+	#superclass : 'FileTestCase',
+	#category : 'Pakbot-Tests-Metacello-Support',
+	#package : 'Pakbot-Tests',
+	#tag : 'Metacello-Support'
 }
 
-{ #category : #test }
+{ #category : 'test' }
 PBMetacelloRepositorySpecTest >> testAsMetacelloUrl [
 	self
 		assert: (PBMetacelloRepositorySpec url: 'github://marianopeck/FFICHeaderExtractor:master/repository') asMetacelloUrl 
@@ -19,7 +21,7 @@ PBMetacelloRepositorySpecTest >> testAsMetacelloUrl [
 		equals: 'github://marianopeck/FFICHeaderExtractor:master'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloRepositorySpecTest >> testCanBeConvertedToGitUrl [
 	| spec |
 	spec := PBMetacelloRepositorySpec url: 'github://marianopeck/FFICHeaderExtractor:master/repository'.
@@ -29,7 +31,7 @@ PBMetacelloRepositorySpecTest >> testCanBeConvertedToGitUrl [
 		equals: 'git@github.com:marianopeck/FFICHeaderExtractor.git'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloRepositorySpecTest >> testCanBeInitializedFromString [
 	"test we do not return a PBGirUrl when giving a Metacello repository spec"
 	
@@ -38,7 +40,7 @@ PBMetacelloRepositorySpecTest >> testCanBeInitializedFromString [
 		equals: PBMetacelloRepositorySpec.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloRepositorySpecTest >> testCanConvertGitOverSShRepositoryDescription [
 	| spec |
 	spec := 'git@github.com:pharo-contributions/OSSubprocess.git' asMetacelloRepositorySpec.
@@ -55,7 +57,7 @@ PBMetacelloRepositorySpecTest >> testCanConvertGitOverSShRepositoryDescription [
 		equals: 'OSSubprocess'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloRepositorySpecTest >> testCanConvertHttpRepositoryDescription [
 	| spec |
 	spec := 'https://github.com/pharo-contributions/OSSubprocess.git' asMetacelloRepositorySpec.
@@ -72,7 +74,7 @@ PBMetacelloRepositorySpecTest >> testCanConvertHttpRepositoryDescription [
 		equals: 'OSSubprocess'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloRepositorySpecTest >> testCanConvertMetacelloGitHubRepositoryDescription [
 	| spec |
 	spec := 'github://marianopeck/FFICHeaderExtractor:master/repository' asMetacelloRepositorySpec.
@@ -97,7 +99,7 @@ PBMetacelloRepositorySpecTest >> testCanConvertMetacelloGitHubRepositoryDescript
 		equals: 'repository'.	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloRepositorySpecTest >> testCanGetUrlWithoutVersion [
 	| spec |
 	spec := 'github://marianopeck/FFICHeaderExtractor:master/repository' asMetacelloRepositorySpec.
@@ -107,7 +109,7 @@ PBMetacelloRepositorySpecTest >> testCanGetUrlWithoutVersion [
 		equals: 'github://marianopeck/FFICHeaderExtractor/repository'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloRepositorySpecTest >> testCanParseGitHubUrlWithRepositoryPath [
 	| spec |
 	spec := PBMetacelloRepositorySpec url: 'github://pharo-spec/icetray/repo/sitory/path'.
@@ -128,7 +130,7 @@ PBMetacelloRepositorySpecTest >> testCanParseGitHubUrlWithRepositoryPath [
 		equals: 'repo/sitory/path'.	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloRepositorySpecTest >> testCanParseGitHubUrlWithSimpleRepositoryPath [
 	| spec |
 	spec := PBMetacelloRepositorySpec url: 'github://pharo-spec/icetray/src'.
@@ -149,7 +151,7 @@ PBMetacelloRepositorySpecTest >> testCanParseGitHubUrlWithSimpleRepositoryPath [
 		equals: 'src'.	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloRepositorySpecTest >> testCanParseGitHubUrlWithVersion [
 	| spec |
 	spec := PBMetacelloRepositorySpec url: 'github://dalehenrich/sample:configuration'.
@@ -170,7 +172,7 @@ PBMetacelloRepositorySpecTest >> testCanParseGitHubUrlWithVersion [
 		equals: 'configuration'.	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloRepositorySpecTest >> testCanParseGitHubUrlWithVersionAndRepositoryPath [
 	| spec |
 	spec := PBMetacelloRepositorySpec url: 'github://marianopeck/FFICHeaderExtractor:master/repository'.
@@ -195,7 +197,7 @@ PBMetacelloRepositorySpecTest >> testCanParseGitHubUrlWithVersionAndRepositoryPa
 		equals: 'repository'.	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloRepositorySpecTest >> testCanParseGitLocalUrl [
 	| directory spec |
 	directory := self newTempDirectory.
@@ -208,7 +210,7 @@ PBMetacelloRepositorySpecTest >> testCanParseGitLocalUrl [
 	self assert: (spec basicUrl endsWith: directory fullName).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloRepositorySpecTest >> testCanParseSimpleGitHubUrl [
 	| spec |
 	spec := PBMetacelloRepositorySpec url: 'github://pharo-contributions/OSSubprocess'.
@@ -226,7 +228,7 @@ PBMetacelloRepositorySpecTest >> testCanParseSimpleGitHubUrl [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloRepositorySpecTest >> testCanParseSimpleGitHubUrlWithTrailingSlash [
 	| spec |
 	spec := PBMetacelloRepositorySpec url: 'github://pharo-contributions/OSSubprocess/'.

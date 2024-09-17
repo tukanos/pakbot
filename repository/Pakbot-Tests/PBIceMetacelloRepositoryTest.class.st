@@ -2,12 +2,14 @@
 Test extension made on IceMetacelloRepository
 "
 Class {
-	#name : #PBIceMetacelloRepositoryTest,
-	#superclass : #TestCase,
-	#category : #'Pakbot-Tests-Metacello-Support'
+	#name : 'PBIceMetacelloRepositoryTest',
+	#superclass : 'TestCase',
+	#category : 'Pakbot-Tests-Metacello-Support',
+	#package : 'Pakbot-Tests',
+	#tag : 'Metacello-Support'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBIceMetacelloRepositoryTest >> testCanGetHttpsUrlFromAMetacelloGitHubUrl [
 	
 	| urlString |

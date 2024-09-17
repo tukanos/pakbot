@@ -3,48 +3,50 @@ I represent a Metacello project spec, i.e. the declaration of an external projec
 See my superclass for more information.
 "
 Class {
-	#name : #PBMetacelloProjectSpec,
-	#superclass : #PBMetacelloSpec,
+	#name : 'PBMetacelloProjectSpec',
+	#superclass : 'PBMetacelloSpec',
 	#instVars : [
 		'version',
 		'loads',
 		'repository',
 		'definedByBaseline'
 	],
-	#category : #'Pakbot-Minimal-Metacello-Support'
+	#category : 'Pakbot-Minimal-Metacello-Support',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Metacello-Support'
 }
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 PBMetacelloProjectSpec >> beBaseline [
 	
 	definedByBaseline := true
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 PBMetacelloProjectSpec >> beConfiguration [
 	
 	definedByBaseline := false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBMetacelloProjectSpec >> isBaseline [
 	
 	^ definedByBaseline
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBMetacelloProjectSpec >> isPackageSpec [
 
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloProjectSpec >> loads [
 
 	^ loads
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloProjectSpec >> loads: anObject [
 
 	loads := anObject isString
@@ -52,25 +54,25 @@ PBMetacelloProjectSpec >> loads: anObject [
 		ifFalse: [ anObject "a collection of load names" ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloProjectSpec >> repository [
 
 	^ repository
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloProjectSpec >> repository: urlString [
 
 	repository := urlString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloProjectSpec >> version [
 
 	^ version
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloProjectSpec >> version: anObject [
 
 	version := anObject

@@ -1,10 +1,12 @@
 Class {
-	#name : #PBPackageRegistryTest,
-	#superclass : #PBTest,
-	#category : #'Pakbot-Tests-Model'
+	#name : 'PBPackageRegistryTest',
+	#superclass : 'PBTest',
+	#category : 'Pakbot-Tests-Model',
+	#package : 'Pakbot-Tests',
+	#tag : 'Model'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRegistryTest >> testCanDetectAMetacelloBaselineProjectIsAlreadyInstalled [
 	"Pakbot can automatically convert a Metacello baseline to a Pakbot Project.
 	When loading a Metacello baseline, the corresponding PBMetacelloBaselineProject is registered as a Pakbot project.
@@ -19,7 +21,7 @@ PBPackageRegistryTest >> testCanDetectAMetacelloBaselineProjectIsAlreadyInstalle
 		description: 'Cannot detect if a Metacello Baseline Project is already installed!'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRegistryTest >> testPackageIsInstalledWhenPackageUnitIsAdded [
 	| project unit organizer |
 	project := PBProjectVersion example.
@@ -37,7 +39,7 @@ PBPackageRegistryTest >> testPackageIsInstalledWhenPackageUnitIsAdded [
 		equals: 1.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRegistryTest >> testProjectCannotBeRegisteredIfAlreadyRegisteredWithDifferentVersionOrRepository [
 	| project |
 	registry registerProject:  PBProjectVersion example.
@@ -53,7 +55,7 @@ PBPackageRegistryTest >> testProjectCannotBeRegisteredIfAlreadyRegisteredWithDif
 		equals: 1.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRegistryTest >> testProjectRegisteredWhenPackageUnitIsAdded [
 	| project unit |
 	project := PBProjectVersion example.
@@ -66,7 +68,7 @@ PBPackageRegistryTest >> testProjectRegisteredWhenPackageUnitIsAdded [
 		equals: 1.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRegistryTest >> testProjectfAlreadyRegisteredAndFullyLoadedDoesNotRaiseAlreadyRegistered [
 	registry registerProject: PBMetacelloBaselineProject example.
 	
@@ -79,7 +81,7 @@ PBPackageRegistryTest >> testProjectfAlreadyRegisteredAndFullyLoadedDoesNotRaise
 		equals: 1.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRegistryTest >> testProjectfAlreadyRegisteredButNotLoadedDoesNotRaiseAlreadyRegisteredWhenLoading [
 	| project |
 	project := PBProjectVersion example.
@@ -94,7 +96,7 @@ PBPackageRegistryTest >> testProjectfAlreadyRegisteredButNotLoadedDoesNotRaiseAl
 		equals: 1.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRegistryTest >> testProjectfAlreadyRegisteredButNotLoadedMetacelloProjectDoesNotRaiseAlreadyRegisteredWhenLoading [
 	| project |
 	project := PBMetacelloBaselineProject example.
@@ -110,7 +112,7 @@ PBPackageRegistryTest >> testProjectfAlreadyRegisteredButNotLoadedMetacelloProje
 		equals: 1.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRegistryTest >> testProjectfAlreadyRegisteredButPartiallyLoadedDoesNotRaiseAlreadyRegisteredIfHavingNewPackageToLoad [
 	| project |
 	project := PBMetacelloBaselineProject example.

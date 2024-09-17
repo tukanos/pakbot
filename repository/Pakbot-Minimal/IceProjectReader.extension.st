@@ -1,6 +1,6 @@
-Extension { #name : #IceProjectReader }
+Extension { #name : 'IceProjectReader' }
 
-{ #category : #'*Pakbot-Minimal' }
+{ #category : '*Pakbot-Minimal' }
 IceProjectReader class >> availableReaders [
 	^ (self allSubclasses collect: [ :each | each new ])
 			sorted: [ :a :b | a priority < b priority ]

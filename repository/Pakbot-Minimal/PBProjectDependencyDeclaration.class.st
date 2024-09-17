@@ -6,65 +6,67 @@ My subclasses contains external project dependencies on:
 - Metecello configurations.
 "
 Class {
-	#name : #PBProjectDependencyDeclaration,
-	#superclass : #PBAbstractDependency,
+	#name : 'PBProjectDependencyDeclaration',
+	#superclass : 'PBAbstractDependency',
 	#instVars : [
 		'name',
 		'packagesToLoad'
 	],
-	#category : #'Pakbot-Minimal-Dependencies'
+	#category : 'Pakbot-Minimal-Dependencies',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Dependencies'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectDependencyDeclaration >> constraints [
 	
 	^ self subclassResponsibility
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBProjectDependencyDeclaration >> initialize [ 
 	super initialize.
 	packagesToLoad := Set new.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBProjectDependencyDeclaration >> isMetacelloProjectDependency [
 	^ false
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBProjectDependencyDeclaration >> isResolvedBy: aResolution [
 	
 	^ aResolution resolvesDependency: self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBProjectDependencyDeclaration >> isSameProjectAs: anotherProject [ 
 	
 	^ self name = anotherProject name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectDependencyDeclaration >> loads: aListOfNames [ 
 	packagesToLoad addAll: aListOfNames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectDependencyDeclaration >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectDependencyDeclaration >> packagesToLoad [
 	^ packagesToLoad
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PBProjectDependencyDeclaration >> printOn: aStream [
 	aStream << 'a ' << self class name << '(' << name << ')'
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBProjectDependencyDeclaration >> resolveIn: aPBResolvedProject solver: aPBSolver [
 
 	aPBResolvedProject addResolvedDependency: 

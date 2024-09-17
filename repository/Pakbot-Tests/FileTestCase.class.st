@@ -1,11 +1,13 @@
 Class {
-	#name : #FileTestCase,
-	#superclass : #TestCase,
+	#name : 'FileTestCase',
+	#superclass : 'TestCase',
 	#traits : 'TTemporaryFilesTrait',
 	#classTraits : 'TTemporaryFilesTrait classTrait',
 	#instVars : [
 		'directories',
 		'files'
 	],
-	#category : #'Pakbot-Tests-Utils'
+	#category : 'Pakbot-Tests-Utils',
+	#package : 'Pakbot-Tests',
+	#tag : 'Utils'
 }

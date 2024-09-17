@@ -6,44 +6,46 @@ ex:
 - load only on Pharo > 7.0
 "
 Class {
-	#name : #PBPlatformAttributeRequirement,
-	#superclass : #Object,
+	#name : 'PBPlatformAttributeRequirement',
+	#superclass : 'Object',
 	#instVars : [
 		'segments'
 	],
-	#category : #'Pakbot-Minimal-Dependencies'
+	#category : 'Pakbot-Minimal-Dependencies',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Dependencies'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBPlatformAttributeRequirement class >> attributeSegments: aListOfNames [
 	^ self new
 		segments: aListOfNames;
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBPlatformAttributeRequirement class >> fromString: aString [
 
 	^ self attributeSegments: (PBPlatformAttributes separator split: aString)
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBPlatformAttributeRequirement class >> osFamily: aName [
 	
 	^ self attributeSegments: { PBPlatformAttributes OSKey . aName }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPlatformAttributeRequirement >> asLowercaseString [
 	^ (PBPlatformAttributes separator join: segments) asLowercase
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPlatformAttributeRequirement >> firstKey [
 	^ segments first
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPlatformAttributeRequirement >> segments: aListOfNames [
 	segments := aListOfNames asArray
 ]

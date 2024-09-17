@@ -2,22 +2,24 @@
 I represent a dependency to a project managed by Metacello.
 "
 Class {
-	#name : #PBMetacelloProjectDependency,
-	#superclass : #PBProjectDependencyDeclaration,
+	#name : 'PBMetacelloProjectDependency',
+	#superclass : 'PBProjectDependencyDeclaration',
 	#instVars : [
 		'url',
 		'version'
 	],
-	#category : #'Pakbot-Minimal-Dependencies'
+	#category : 'Pakbot-Minimal-Dependencies',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Dependencies'
 }
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PBMetacelloProjectDependency class >> fromMetacelloSpec: aMetacelloMCBaselineOfProjectSpec [ 
 	
 	self subclassResponsibility
 ]
 
-{ #category : #ston }
+{ #category : 'ston' }
 PBMetacelloProjectDependency class >> fromSton: stonReader [
 	| metacelloProject |
 	
@@ -34,7 +36,7 @@ PBMetacelloProjectDependency class >> fromSton: stonReader [
 		version: metacelloProject version
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBMetacelloProjectDependency class >> name: projectName repositoryUrl: repositoryString version: versionString [
 	^ self basicNew
 		initialize;
@@ -42,12 +44,12 @@ PBMetacelloProjectDependency class >> name: projectName repositoryUrl: repositor
 		yourself 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloProjectDependency class >> projectClass [
 	self subclassResponsibility 
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PBMetacelloProjectDependency >> = anotherObject [
 
 	self == anotherObject ifTrue: [ ^ true ].
@@ -56,7 +58,7 @@ PBMetacelloProjectDependency >> = anotherObject [
 	^ self version = anotherObject version and: [ self name = anotherObject name ].
 ]
 
-{ #category : #conflicts }
+{ #category : 'conflicts' }
 PBMetacelloProjectDependency >> additionalConflictingInstalledProjects [
 
 	| metacelloProjectRegistration |
@@ -82,20 +84,20 @@ PBMetacelloProjectDependency >> additionalConflictingInstalledProjects [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloProjectDependency >> constraints [
 
 	^ { PBFixedVersionConstraint with: version }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloProjectDependency >> dependencies [
 	
 	"Metacello dependencies are managed as a black box, we don't care"
 	^ #()
 ]
 
-{ #category : #displaying }
+{ #category : 'displaying' }
 PBMetacelloProjectDependency >> displayStringOn: aStream [
 	
 	aStream
@@ -107,49 +109,49 @@ PBMetacelloProjectDependency >> displayStringOn: aStream [
 		<< ')'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBMetacelloProjectDependency >> fitsPlatformRequirements [
 	
 	^ true "it should be managed by Metecello"
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PBMetacelloProjectDependency >> hash [
 	^ self name hash
 ]
 
-{ #category : #'querying - installed' }
+{ #category : 'querying - installed' }
 PBMetacelloProjectDependency >> isInstalled [
 	
 	^ super isInstalled or: [ self isInstalledInMetacello ]
 ]
 
-{ #category : #'querying - installed' }
+{ #category : 'querying - installed' }
 PBMetacelloProjectDependency >> isInstalledInMetacello [
 	self subclassResponsibility 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBMetacelloProjectDependency >> isMetacelloConfiguration [
 	self subclassResponsibility 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBMetacelloProjectDependency >> isMetacelloProjectDependency [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloProjectDependency >> metacelloProjectRegistry [
 	^ project registry metacelloProjectRegistry
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloProjectDependency >> repositoryUrl [
 	^ url
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBMetacelloProjectDependency >> resolvedDependency [ 
 	
 	"A metacello configuration project is already solved. It has only a single version and no other constraints, and a single url"
@@ -157,7 +159,7 @@ PBMetacelloProjectDependency >> resolvedDependency [
 			registry: project registry
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBMetacelloProjectDependency >> setName: projectName repositoryUrl: urlOrString version: aVersionString [ 
 	name := projectName asSymbol.
 	url := urlOrString.
@@ -166,24 +168,24 @@ PBMetacelloProjectDependency >> setName: projectName repositoryUrl: urlOrString 
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloProjectDependency >> sourceDirectory [
 
 	^ nil
 ]
 
-{ #category : #ston }
+{ #category : 'ston' }
 PBMetacelloProjectDependency >> stonMap [
 
 	self subclassResponsibility 
 ]
 
-{ #category : #ston }
+{ #category : 'ston' }
 PBMetacelloProjectDependency >> stonOn: stonWriter [
 	stonWriter writeMap: self stonMap
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloProjectDependency >> version [
 	^ version
 ]

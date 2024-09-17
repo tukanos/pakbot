@@ -2,12 +2,14 @@
 A PBPlatformAttributesTest is a test class for testing the behavior of PBPlatformAttributes
 "
 Class {
-	#name : #PBPlatformAttributesTest,
-	#superclass : #TestCase,
-	#category : #'Pakbot-Tests-Model'
+	#name : 'PBPlatformAttributesTest',
+	#superclass : 'TestCase',
+	#category : 'Pakbot-Tests-Model',
+	#package : 'Pakbot-Tests',
+	#tag : 'Model'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPlatformAttributesTest >> testCanGetOSAttribute [
 	| attributes |
 	attributes := PBPlatformAttributes new.
@@ -17,7 +19,7 @@ PBPlatformAttributesTest >> testCanGetOSAttribute [
 	self assert: (attributes operatingSystem includesSubstring: OSPlatform current version).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPlatformAttributesTest >> testCanGetSmalltalkAttribute [
 	| attributes |
 	attributes := PBPlatformAttributes new.

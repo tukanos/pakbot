@@ -1,16 +1,18 @@
 Class {
-	#name : #PBPackageTest,
-	#superclass : #PBModelTest,
-	#category : #'Pakbot-Tests-Model'
+	#name : 'PBPackageTest',
+	#superclass : 'PBModelTest',
+	#category : 'Pakbot-Tests-Model',
+	#package : 'Pakbot-Tests',
+	#tag : 'Model'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PBPackageTest >> tearDown [ 
 	self unloadCounterPackages.
 	super tearDown.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageTest >> testCanAddDependencyToAProject [
 	| unit |
 	unit := PBPackage example.
@@ -24,7 +26,7 @@ PBPackageTest >> testCanAddDependencyToAProject [
 		equals: 'pharo-counter'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageTest >> testCanAddDependencyToAnotherPackage [
 	| unit |
 	unit := PBPackage example.
@@ -38,21 +40,21 @@ PBPackageTest >> testCanAddDependencyToAnotherPackage [
 		equals: 'DependentPackage'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageTest >> testCanCreateMinimalPackage [
 	| unit |
 	unit := PBPackage named: #Test.
 	self assert: unit class equals: PBPackage
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageTest >> testCanGetProject [
 	self
 		assert: self unitTestV1 project 
 		equals: ongoingProject
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageTest >> testComparisonWithPackageAssemblyReturnsFalse [
 
 	| unit assembly |
@@ -62,14 +64,14 @@ PBPackageTest >> testComparisonWithPackageAssemblyReturnsFalse [
 	self deny: unit equals: assembly
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageTest >> testComparisonWithSamePackageReturnsTrue [
 	| unit |
 	unit := PBPackage named: #Test.
 	self assert: unit equals: unit copy
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageTest >> testPackageIsInstalledIfSystemPackageWithSameNameExists [
 	| project package |
 	project := registry newProjectNamed: 'PBPackageTest'.
@@ -78,7 +80,7 @@ PBPackageTest >> testPackageIsInstalledIfSystemPackageWithSameNameExists [
 	self assert: package isInstalled
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageTest >> testPackageIsInstalledWhenPackageLoaded [
 	| project package |
 	project := registry newProjectNamed: 'Pharo-Counter-Test'.
@@ -93,7 +95,7 @@ PBPackageTest >> testPackageIsInstalledWhenPackageLoaded [
 	self assert: package isInstalled.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageTest >> testPackageIsNotInstalledIfNoSystemPackageWithSameName [
 	| project package |
 	project := registry newProjectNamed: 'PBPackageTest'.
@@ -102,7 +104,7 @@ PBPackageTest >> testPackageIsNotInstalledIfNoSystemPackageWithSameName [
 	self deny: package isInstalled
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageTest >> testProjectIsUpdatedForDependenciesWhenProjectIsSet [
 
 	| unit |

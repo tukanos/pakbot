@@ -1,10 +1,12 @@
 Class {
-	#name : #PBPakbotProjectDependencyTest,
-	#superclass : #TestCase,
-	#category : #'Pakbot-Tests-Dependencies'
+	#name : 'PBPakbotProjectDependencyTest',
+	#superclass : 'TestCase',
+	#category : 'Pakbot-Tests-Dependencies',
+	#package : 'Pakbot-Tests',
+	#tag : 'Dependencies'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPakbotProjectDependencyTest >> testCanCreateDependency [
 	| dependency |
 	dependency := PBPakbotProjectDependency example.
@@ -20,7 +22,7 @@ PBPakbotProjectDependencyTest >> testCanCreateDependency [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPakbotProjectDependencyTest >> testCanDeserializeDependency [
 
 	| dependency |
@@ -35,7 +37,7 @@ PBPakbotProjectDependencyTest >> testCanDeserializeDependency [
 		equals: 'https://github.com/pharo-pkg/pharo-counter.git'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPakbotProjectDependencyTest >> testCanSerializeDependency [
 
 	| projectDependencyString |
@@ -49,7 +51,7 @@ PBPakbotProjectDependencyTest >> testCanSerializeDependency [
 }'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPakbotProjectDependencyTest >> testFetchRaiseErrorWhenNoRepositoryDefined [
 
 	| dependency |

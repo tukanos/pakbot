@@ -5,8 +5,8 @@ I'm the entry point to deal with project management using code.
 If you prefer a GUI, please use the project view from the system browser.
 "
 Class {
-	#name : #Pakbot,
-	#superclass : #Object,
+	#name : 'Pakbot',
+	#superclass : 'Object',
 	#instVars : [
 		'repository'
 	],
@@ -16,37 +16,38 @@ Class {
 	#classInstVars : [
 		'pakbotAnnouncer'
 	],
-	#category : #'Pakbot-Minimal'
+	#category : 'Pakbot-Minimal',
+	#package : 'Pakbot-Minimal'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Pakbot class >> announcer [
 
 	^ pakbotAnnouncer ifNil: [ pakbotAnnouncer := Announcer new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Pakbot class >> defaultPackageRepository [
 	^ PBPackageRepository default
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 Pakbot class >> platformAttributes [
 	^ PlatformAttributes ifNil: [ PlatformAttributes := Smalltalk image metacelloPlatformAttributes ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 Pakbot class >> platformAttributes: aListOfPlatformAttributes [
 	PlatformAttributes := aListOfPlatformAttributes
 ]
 
-{ #category : #resetting }
+{ #category : 'resetting' }
 Pakbot class >> resetAnnouncer [
 	<script>
 	pakbotAnnouncer := nil.
 ]
 
-{ #category : #'api - loading' }
+{ #category : 'api - loading' }
 Pakbot >> load [
 	
 	(PBProjectVersion fromRepository: repository) 
@@ -54,13 +55,13 @@ Pakbot >> load [
 		load.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Pakbot >> registry [
 	
 	^ PBPackageRegistry default
 ]
 
-{ #category : #'api - git' }
+{ #category : 'api - git' }
 Pakbot >> repository: aString [ 
 	
 	repository := PBSourceRepository fromStringUrl: aString subdirectory: ''.

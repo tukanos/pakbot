@@ -1,10 +1,12 @@
 Class {
-	#name : #PBSolverTest,
-	#superclass : #PBTest,
-	#category : #'Pakbot-Tests-Solver'
+	#name : 'PBSolverTest',
+	#superclass : 'PBTest',
+	#category : 'Pakbot-Tests-Solver',
+	#package : 'Pakbot-Tests',
+	#tag : 'Solver'
 }
 
-{ #category : #'tests - data' }
+{ #category : 'tests - data' }
 PBSolverTest >> noDependenciesProject [
 
 	^ (registry newProjectNamed: #NoDependencies)
@@ -12,13 +14,13 @@ PBSolverTest >> noDependenciesProject [
 		yourself.	
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBSolverTest >> solveProject: aProject [
 
 	^ registry newSolver solveProject: aProject 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBSolverTest >> testNoConflictWhenAskingToInstallAPackageAlreadyInstalled [
 	| noDepProject17 projectToInstall resolvedProject |
 
@@ -33,7 +35,7 @@ PBSolverTest >> testNoConflictWhenAskingToInstallAPackageAlreadyInstalled [
 	self deny: resolvedProject hasConflicts.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBSolverTest >> testShouldGetDependencyConflictErrorWhenAskingToInstallAPackageAlreadyInstalledInADifferentVersion [
 	| noDepProject17 projectToInstall resolvedProject |
 
@@ -48,7 +50,7 @@ PBSolverTest >> testShouldGetDependencyConflictErrorWhenAskingToInstallAPackageA
 	self assert: resolvedProject hasConflicts.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBSolverTest >> testShouldGetEmptyLoadInstructionsWhenAskingToInstallAPackageAlreadyInstalled [
 	| resolution instructions |
 

@@ -3,22 +3,24 @@ I am a project reader that is used to read a Pakbot project.
 I create an IcePakbotProject in case a project metadata file is found.
 "
 Class {
-	#name : #PBIcebergProjectReader,
-	#superclass : #IceProjectReader,
+	#name : 'PBIcebergProjectReader',
+	#superclass : 'IceProjectReader',
 	#instVars : [
 		'properties'
 	],
-	#category : #'Pakbot-Minimal-Iceberg-Integration'
+	#category : 'Pakbot-Minimal-Iceberg-Integration',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Iceberg-Integration'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBIcebergProjectReader >> canReadProjectFromCommitish: aCommitish [
 	 
 	^ (PBIcebergProject onCommitish: aCommitish) projectFileReference exists
 
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 PBIcebergProjectReader >> readProjectFromCommitish: aCommitish [
 	| projectFileReference pakbotProject version |
 	projectFileReference := (PBIcebergProject onCommitish: aCommitish)
@@ -38,7 +40,7 @@ PBIcebergProjectReader >> readProjectFromCommitish: aCommitish [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBIcebergProjectReader >> srcDirectoryFromCommitish: aCommitish [
 	properties at: 'srcDirectory' ifPresent: [ :srcDir | ^ srcDir ].
 	^ (IceBasicProjectReader new canReadProjectFromCommitish: aCommitish) 

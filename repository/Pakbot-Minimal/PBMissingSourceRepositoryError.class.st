@@ -2,7 +2,9 @@
 Error raised when a project has no source repository defined and is needed to perform an action.
 "
 Class {
-	#name : #PBMissingSourceRepositoryError,
-	#superclass : #PBError,
-	#category : #'Pakbot-Minimal-Repository'
+	#name : 'PBMissingSourceRepositoryError',
+	#superclass : 'PBError',
+	#category : 'Pakbot-Minimal-Repository',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Repository'
 }

@@ -1,10 +1,12 @@
 Class {
-	#name : #PBAssemblyTest,
-	#superclass : #PBModelTest,
-	#category : #'Pakbot-Tests-Model'
+	#name : 'PBAssemblyTest',
+	#superclass : 'PBModelTest',
+	#category : 'Pakbot-Tests-Model',
+	#package : 'Pakbot-Tests',
+	#tag : 'Model'
 }
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBAssemblyTest >> assemblyA1 [
 	| dictionary |
 	dictionary := Dictionary
@@ -18,7 +20,7 @@ PBAssemblyTest >> assemblyA1 [
 	^ CGOPackageVersion newFrom: dictionary
 ]
 
-{ #category : #'expected results' }
+{ #category : 'expected results' }
 PBAssemblyTest >> expectedTestStonOnResult [
 	^  '{#version:''1.0''}
 CGOPublishedPackageAssembly {
@@ -35,7 +37,7 @@ CGOPublishedPackageAssembly {
 }'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAssemblyTest >> testAllPackagesListsPackagesRecursively [
 
 	| project package1 package2 package3 package4 package5 assembly1 assembly2 assembly3 |
@@ -66,7 +68,7 @@ PBAssemblyTest >> testAllPackagesListsPackagesRecursively [
 		hasSameElements: { package1 . package2 . package3 . package4 }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAssemblyTest >> testAssemblyCanContainPackageExistingInItsProject [
 	
 	| project package assembly |
@@ -81,7 +83,7 @@ PBAssemblyTest >> testAssemblyCanContainPackageExistingInItsProject [
 	self assert: (assembly packages includes: package)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAssemblyTest >> testCannotCreateDuplicatedAssembly [
 	
 	| project assembly |
@@ -94,7 +96,7 @@ PBAssemblyTest >> testCannotCreateDuplicatedAssembly [
 		raise: PBPackageAlreadyRegistered
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAssemblyTest >> testCreatePackageInAssemblyConflictsWithProjectPackages [
 	
 	| project assembly |
@@ -111,7 +113,7 @@ PBAssemblyTest >> testCreatePackageInAssemblyConflictsWithProjectPackages [
 		raise: PBSystemPackageAlreadyDefined
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAssemblyTest >> testCreatePackageInAssemblyCreatesItInProject [
 	
 	| project package assembly |
@@ -126,7 +128,7 @@ PBAssemblyTest >> testCreatePackageInAssemblyCreatesItInProject [
 	self assert: (project packages includes: package)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAssemblyTest >> testDuplicatedAssemblyIsNotAddedInProject [
 	
 	| project |
@@ -142,7 +144,7 @@ PBAssemblyTest >> testDuplicatedAssemblyIsNotAddedInProject [
 	self assert: project assemblies size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAssemblyTest >> testManyAssembliesCanContainSamePackage [
 	
 	| project package assembly1 assembly2 |
@@ -161,7 +163,7 @@ PBAssemblyTest >> testManyAssembliesCanContainSamePackage [
 	self assert: (assembly2 packages includes: package).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAssemblyTest >> testNewAssemblyIsListed [
 	
 	| project assembly |
@@ -172,7 +174,7 @@ PBAssemblyTest >> testNewAssemblyIsListed [
 	self assert: (project assemblies includes: assembly)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAssemblyTest >> testRemoveAssemblyUnlistsIt [
 	
 	| project assembly |
@@ -183,7 +185,7 @@ PBAssemblyTest >> testRemoveAssemblyUnlistsIt [
 	self deny: (project assemblies includes: assembly)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAssemblyTest >> testRemovePackageFromAssemblyDoesNotTakeItOutFromProject [
 	
 	| project package assembly |
@@ -199,7 +201,7 @@ PBAssemblyTest >> testRemovePackageFromAssemblyDoesNotTakeItOutFromProject [
 	self assert: (project packages includes: package)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAssemblyTest >> testRemovePackageFromAssemblyTakesItOutFromAssembly [
 	
 	| project package assembly |
@@ -215,7 +217,7 @@ PBAssemblyTest >> testRemovePackageFromAssemblyTakesItOutFromAssembly [
 	self deny: (assembly packages includes: package)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAssemblyTest >> testRemovePackageFromProjectRemovesItFromAssembly [
 	
 	| project package assembly |
@@ -231,7 +233,7 @@ PBAssemblyTest >> testRemovePackageFromProjectRemovesItFromAssembly [
 	self deny: (assembly packages includes: package)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAssemblyTest >> testTwoProjectsCanHaveTheSameAssembly [
 	
 	| project1 project2 assembly1 assembly2 |

@@ -2,17 +2,19 @@
 Sort dependencies from leafs to the root.
 "
 Class {
-	#name : #PBLoadInstructionsBuilder,
-	#superclass : #Object,
+	#name : 'PBLoadInstructionsBuilder',
+	#superclass : 'Object',
 	#instVars : [
 		'graph',
 		'resolution',
 		'loadInstructions'
 	],
-	#category : #'Pakbot-Minimal-Loader'
+	#category : 'Pakbot-Minimal-Loader',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Loader'
 }
 
-{ #category : #'loading order' }
+{ #category : 'loading order' }
 PBLoadInstructionsBuilder >> addLoadGroupFor: resolvedDependencies [
 	| resolvedProjects |
 
@@ -21,7 +23,7 @@ PBLoadInstructionsBuilder >> addLoadGroupFor: resolvedDependencies [
 		ifNotEmpty: [ loadInstructions addGroup: (PBLoadGroup newWithAll: resolvedProjects) ]
 ]
 
-{ #category : #'loading order' }
+{ #category : 'loading order' }
 PBLoadInstructionsBuilder >> loadInstructions [
 	loadInstructions := PBLoadInstructions new.
 	self loadOrder do: 
@@ -31,7 +33,7 @@ PBLoadInstructionsBuilder >> loadInstructions [
 	^ loadInstructions
 ]
 
-{ #category : #'loading order' }
+{ #category : 'loading order' }
 PBLoadInstructionsBuilder >> loadOrder [
 	| sortedElements |
 	
@@ -45,7 +47,7 @@ PBLoadInstructionsBuilder >> loadOrder [
 		as: Array
 ]
 
-{ #category : #'loading order' }
+{ #category : 'loading order' }
 PBLoadInstructionsBuilder >> reducedGraph [
 
 	^ AIGraphReducer new
@@ -57,12 +59,12 @@ PBLoadInstructionsBuilder >> reducedGraph [
 		run
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 PBLoadInstructionsBuilder >> resolution: aDependencyResolution [
 	resolution := aDependencyResolution
 ]
 
-{ #category : #errors }
+{ #category : 'errors' }
 PBLoadInstructionsBuilder >> signalConflicts [
 	
 	PBProjectHasConflictsError signalOnResolution: resolution.

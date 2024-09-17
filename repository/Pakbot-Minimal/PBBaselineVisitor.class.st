@@ -9,8 +9,8 @@ Usage:
 ```
 "
 Class {
-	#name : #PBBaselineVisitor,
-	#superclass : #Object,
+	#name : 'PBBaselineVisitor',
+	#superclass : 'Object',
 	#instVars : [
 		'project',
 		'groups',
@@ -18,15 +18,17 @@ Class {
 		'currentElement',
 		'specs'
 	],
-	#category : #'Pakbot-Minimal-Metacello-Support'
+	#category : 'Pakbot-Minimal-Metacello-Support',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Metacello-Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBaselineVisitor class >> attributesConjonctionCharacter [
 	^ $|
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBaselineVisitor class >> projectFor: aBaselineOf [
 	| visitor |
 	visitor := self visitBaseline: aBaselineOf.
@@ -34,7 +36,7 @@ PBBaselineVisitor class >> projectFor: aBaselineOf [
 	^ visitor project
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBBaselineVisitor class >> visitBaseline: aBaseline [
 
 	| visitor pragmas |
@@ -48,12 +50,12 @@ PBBaselineVisitor class >> visitBaseline: aBaseline [
 	^ visitor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBaselineVisitor >> attributesSeparator [
 	^ $:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBaselineVisitor >> attributesStringFor: aNameOrListOfNames [
 
 	^ aNameOrListOfNames isString 
@@ -61,7 +63,7 @@ PBBaselineVisitor >> attributesStringFor: aNameOrListOfNames [
 					ifFalse: [ "many attributes" self class attributesConjonctionCharacter join: aNameOrListOfNames ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBBaselineVisitor >> baseline: aName with: aBlockClosure [
 	| dependency |
 
@@ -72,42 +74,42 @@ PBBaselineVisitor >> baseline: aName with: aBlockClosure [
 	project addExternalProjectRequirement: dependency.
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBBaselineVisitor >> blessing: aString [ 
 	" ignore "
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBBaselineVisitor >> className: aString [
 	"class name of the ConfigurationOf
 	ignored for now."
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBBaselineVisitor >> configuration: aString with: aBlock [ 
 	self project: aString with: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBaselineVisitor >> currentAttributes [
 	^ currentAttributes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBaselineVisitor >> currentAttributesString [
 
 	^ self attributesSeparator join:
 			(self currentAttributes collect: [ :each | self attributesStringFor: each])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBaselineVisitor >> currentSpec [ 
 	^ specs 
 		at: self currentAttributesString
 		ifAbsentPut: [ OrderedCollection new ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBBaselineVisitor >> for: platformAttribute do: aBlockClosure [
 	"(#common = platformAttribute or: [ Smalltalk image metacelloPlatformAttributes includes: platformAttribute ])
 		ifFalse: [ ""spec is not for this platform"" ^ self ]."
@@ -119,19 +121,19 @@ PBBaselineVisitor >> for: platformAttribute do: aBlockClosure [
 	
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 PBBaselineVisitor >> generateAssemblies [
 	self sortedGroups do: [ :group | self generateAssemblyFor: group ]
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 PBBaselineVisitor >> generateAssemblyFor: group [
 	| assembly |
 	assembly := project addAssemblyNamed: group key.
 	group value do: [ :each | assembly addPackage: (project packageOrAssemblyNamed: each) ]
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 PBBaselineVisitor >> generatePackageFor: packageSpecs [
 	
 	packageSpecs size = 1
@@ -142,7 +144,7 @@ PBBaselineVisitor >> generatePackageFor: packageSpecs [
 			packageSpecs do: [ :spec | spec mergeIn: package ] ].
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 PBBaselineVisitor >> generatePackages [
 		
 	self specsByPackage
@@ -150,19 +152,19 @@ PBBaselineVisitor >> generatePackages [
 
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 PBBaselineVisitor >> generateProject [
 	self generatePackages.
 	self generateAssemblies.
 	^ project
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBBaselineVisitor >> group: aName with: aCollection [
 	groups add: aName -> aCollection
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBBaselineVisitor >> initialize [
 	project := PBProjectVersion named: 'BaselineVisitorProject'.
 	groups := OrderedCollection new.
@@ -171,7 +173,7 @@ PBBaselineVisitor >> initialize [
 	specs := Dictionary new.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBBaselineVisitor >> initializeNewProjectDependencyNamed: aName with: aBlockClosure defaulVersion: defaultVersion [
 
 	currentElement := PBMetacelloProjectSpec new 
@@ -182,7 +184,7 @@ PBBaselineVisitor >> initializeNewProjectDependencyNamed: aName with: aBlockClos
 	self currentSpec add: currentElement 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBBaselineVisitor >> initializeOn: aBaselineClass [
 	| projectName |
 	
@@ -191,13 +193,13 @@ PBBaselineVisitor >> initializeOn: aBaselineClass [
 	^ self
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBBaselineVisitor >> loads: parts [
 
 	currentElement loads: parts.
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 PBBaselineVisitor >> metacelloBaselineDependencyFromProjectSpecNamed: aName [
 
 	| repoSpec dependency |
@@ -212,7 +214,7 @@ PBBaselineVisitor >> metacelloBaselineDependencyFromProjectSpecNamed: aName [
 	^ dependency
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 PBBaselineVisitor >> metacelloConfigurationDependencyFromProjectSpecNamed: aName [
 
 	^ PBMetacelloConfigurationProjectDependency
@@ -221,12 +223,12 @@ PBBaselineVisitor >> metacelloConfigurationDependencyFromProjectSpecNamed: aName
 				version: (currentElement version).
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBBaselineVisitor >> package: aName [ 
 	^ self currentSpec add: (PBMetacelloPackageSpec named: aName)
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBBaselineVisitor >> package: aName with: aBlockClosure [ 
 
 	currentElement := self package: aName.
@@ -234,17 +236,17 @@ PBBaselineVisitor >> package: aName with: aBlockClosure [
 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBBaselineVisitor >> postLoadDoIt: aString [ 
 	"ignore for now"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBaselineVisitor >> project [
 	^ project
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBBaselineVisitor >> project: projectName copyFrom: aName with: aBlockClosure [ 
 	"this should be done when resolving within a project is doable"
 	| spec dependency |
@@ -261,7 +263,7 @@ PBBaselineVisitor >> project: projectName copyFrom: aName with: aBlockClosure [
 	project addExternalProjectRequirement: dependency.
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBBaselineVisitor >> project: aName with: aBlockClosure [ 
 	self initializeNewProjectDependencyNamed: aName with: aBlockClosure defaulVersion: 'stable'.
 	currentElement beConfiguration.
@@ -269,18 +271,18 @@ PBBaselineVisitor >> project: aName with: aBlockClosure [
 	project addExternalProjectRequirement: (self metacelloConfigurationDependencyFromProjectSpecNamed: aName).
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBBaselineVisitor >> repository: aRepositoryUrlString [
 
 	currentElement repository: aRepositoryUrlString 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBBaselineVisitor >> requires: aNameOrAListOfNames [
 	currentElement addRequirements: aNameOrAListOfNames
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 PBBaselineVisitor >> sortedGroups [
 	"sort groups so that their parts are already defined in project"
 	| sorter groupNames nodes |
@@ -295,7 +297,7 @@ PBBaselineVisitor >> sortedGroups [
 		 collect: [ :model | groups detect: [ :group | group key = model ] ]) reversed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBaselineVisitor >> specNamed: aName in: attributeString [
 
 	^ specs 
@@ -303,7 +305,7 @@ PBBaselineVisitor >> specNamed: aName in: attributeString [
 		ifPresent: [ :specList | specList detect: [ :spec | spec name = aName ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBaselineVisitor >> specsByPackage [
 	| dict |
 	dict := Dictionary new.
@@ -315,7 +317,7 @@ PBBaselineVisitor >> specsByPackage [
 	^ dict
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBBaselineVisitor >> versionString: aString [
 
 	currentElement version: aString

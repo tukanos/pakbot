@@ -2,24 +2,26 @@
 tests of PBIcebergProject
 "
 Class {
-	#name : #PBIcePakbotProjectTest,
-	#superclass : #TestCase,
+	#name : 'PBIcePakbotProjectTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'iceRepositoryLocation',
 		'repository',
 		'pakbotProject'
 	],
-	#category : #'Pakbot-Tests-Iceberg-Integration'
+	#category : 'Pakbot-Tests-Iceberg-Integration',
+	#package : 'Pakbot-Tests',
+	#tag : 'Iceberg-Integration'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIcePakbotProjectTest >> iceRepositoryLocation [
 	^ iceRepositoryLocation
 		ifNil: [ iceRepositoryLocation := FileLocator temp
 				/ ('pharo-tests-' , DateAndTime now asFileNameCompatibleString) ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBIcePakbotProjectTest >> setUp [
 	repository := IceRepositoryCreator new 
 			addRemote: 'https://github.com/pharo-pkg/pharo-counter.git';
@@ -31,13 +33,13 @@ PBIcePakbotProjectTest >> setUp [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIcePakbotProjectTest >> tearDown [
 	repository ifNotNil: [:repo | repo forget].
 	iceRepositoryLocation ensureDeleteAll
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBIcePakbotProjectTest >> testCanDetectAChangeInPakbotProjectMetatadata [
 	| project diff projectNode |
 
@@ -58,7 +60,7 @@ PBIcePakbotProjectTest >> testCanDetectAChangeInPakbotProjectMetatadata [
 	self assert: projectNode hasChanges
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBIcePakbotProjectTest >> testNoChangeDetectedInPakbotProjectMetatadataWhenMetadataUnchanged [
 	| project |
 

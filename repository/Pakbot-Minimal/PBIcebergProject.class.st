@@ -3,17 +3,19 @@ I reprensent a Pakbot project. I'm able to serialize and provide changes to the 
 I keep a reference to non-pakbot project for compatibility purposes.
 "
 Class {
-	#name : #PBIcebergProject,
-	#superclass : #IceAbstractProject,
+	#name : 'PBIcebergProject',
+	#superclass : 'IceAbstractProject',
 	#instVars : [
 		'pakbotProject',
 		'sourceDirectory',
 		'nonPakbotProject'
 	],
-	#category : #'Pakbot-Minimal-Iceberg-Integration'
+	#category : 'Pakbot-Minimal-Iceberg-Integration',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Iceberg-Integration'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBIcebergProject class >> onCommitish: aCommitish project: aPakbotProject [ 
 	^ self new
 		commitish: aCommitish;
@@ -21,21 +23,21 @@ PBIcebergProject class >> onCommitish: aCommitish project: aPakbotProject [
 		yourself 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBIcebergProject class >> onRepository: aRepository project: aPakbotProject [ 
 	^ (self onCommitish: aRepository workingCopy project: aPakbotProject)
 			nonPakbotProject: aRepository project;
 			yourself.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PBIcebergProject >> = anotherProject [
 
 	^ super = anotherProject 
 		and: [ self contentsString = anotherProject contentsString ]
 ]
 
-{ #category : #changes }
+{ #category : 'changes' }
 PBIcebergProject >> addIcebergProjectFileToChangeBuilder: anIceChangeImporter [ 
 	
 	nonPakbotProject ifNil: [ ^ self ].
@@ -43,7 +45,7 @@ PBIcebergProject >> addIcebergProjectFileToChangeBuilder: anIceChangeImporter [
 	nonPakbotProject addProjectFileToChangeBuilder: anIceChangeImporter 
 ]
 
-{ #category : #changes }
+{ #category : 'changes' }
 PBIcebergProject >> addProjectFileToChangeBuilder: anIceChangeImporter [ 
 
 	anIceChangeImporter
@@ -52,7 +54,7 @@ PBIcebergProject >> addProjectFileToChangeBuilder: anIceChangeImporter [
 		contents: self contentsString.
 ]
 
-{ #category : #changes }
+{ #category : 'changes' }
 PBIcebergProject >> addToChangeBuilder: anIceChangeImporter [ 
 	
 	"compute diff between pakbot model and saved version?"
@@ -61,55 +63,55 @@ PBIcebergProject >> addToChangeBuilder: anIceChangeImporter [
 	self addIcebergProjectFileToChangeBuilder: anIceChangeImporter.
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PBIcebergProject >> contentsString [
 
 	^ (PBPackageVersionWriterV1 toStringPretty: pakbotProject asVcsSerializedCargoProject) withInternetLineEndings utf8Encoded
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBIcebergProject >> initialize [
 
 	super initialize.
 	sourceDirectory := ''
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBIcebergProject >> isPakbotProject [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIcebergProject >> name [
 	
 	^ pakbotProject name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIcebergProject >> nonPakbotProject: anIceProject [ 
 	anIceProject isPakbotProject ifTrue: [ ^ self ].
 	
 	nonPakbotProject := anIceProject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIcebergProject >> pakbotProject [
 	^ pakbotProject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIcebergProject >> pakbotProject: aPakbotProject [ 
 	pakbotProject := aPakbotProject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIcebergProject >> projectFilePath [
 	^ nonPakbotProject 
 		ifNil: [ RelativePath with: 'project-metadata.ston' ]
 		ifNotNil: [ RelativePath withAll: { nonPakbotProject sourceDirectory . 'project-metadata.ston' } ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIcebergProject >> projectFileReference [
 	"We need the iceberg basic project to know the path of Pharo sources in the repository.
 	Maybe sourceDirectory should be handled directly by Pakbot metadata in the future?"
@@ -119,12 +121,12 @@ PBIcebergProject >> projectFileReference [
 	^ commitish fileSystem resolve: self projectFilePath 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIcebergProject >> sourceDirectory [
 	^ nonPakbotProject sourceDirectory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIcebergProject >> sourceDirectory: aString [ 
 	sourceDirectory := aString
 ]

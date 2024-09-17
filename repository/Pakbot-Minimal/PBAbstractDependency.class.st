@@ -4,91 +4,93 @@ API for common package / projet dependencies
 project instance variable holds a reference to the project declaring the dependency.
 "
 Class {
-	#name : #PBAbstractDependency,
-	#superclass : #Object,
+	#name : 'PBAbstractDependency',
+	#superclass : 'Object',
 	#instVars : [
 		'project',
 		'platformRequirements'
 	],
-	#category : #'Pakbot-Minimal-Dependencies'
+	#category : 'Pakbot-Minimal-Dependencies',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Dependencies'
 }
 
-{ #category : #conflicts }
+{ #category : 'conflicts' }
 PBAbstractDependency >> additionalConflictingInstalledProjects [
 
 	^ #()
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBAbstractDependency >> fitsPlatformRequirements [
 	
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractDependency >> fullyQualifiedName [
 	^ self name
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBAbstractDependency >> initialize [ 
 	super initialize.
 	platformRequirements := Set new.
 ]
 
-{ #category : #'querying - installed' }
+{ #category : 'querying - installed' }
 PBAbstractDependency >> isInstalled [
 	
 	"Returns true if the dependency is installed in the image with the same version"
 	^ self project registry isInstalled: self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBAbstractDependency >> isOutOfSync [	
 	"Returns true if there is a version of the project installed but not the correct version"
 	
 	^ project registry isOutOfSync: self.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBAbstractDependency >> isSolved [
 	
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractDependency >> name [
 	self subclassResponsibility 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractDependency >> platformRequirements [ 
 	^ platformRequirements
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractDependency >> platformRequirements: alistOfPlatformRequirement [
 	platformRequirements := alistOfPlatformRequirement asArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractDependency >> project [
 	^ project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractDependency >> project: aCGOOngoingProject [ 
 
 	project := aCGOOngoingProject
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBAbstractDependency >> resolvedDependency [ 
 	
 	self subclassResponsibility
 ]
 
-{ #category : #'conditional loading' }
+{ #category : 'conditional loading' }
 PBAbstractDependency >> satisfyPlatformRequirements: platformAttributes [
 
 	^ self platformRequirements allSatisfy: 

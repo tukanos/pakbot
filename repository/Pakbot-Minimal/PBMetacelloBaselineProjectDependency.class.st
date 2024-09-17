@@ -2,15 +2,17 @@
 I represent a dependency to a project managed by a Metacello BaselineOf.
 "
 Class {
-	#name : #PBMetacelloBaselineProjectDependency,
-	#superclass : #PBMetacelloProjectDependency,
+	#name : 'PBMetacelloBaselineProjectDependency',
+	#superclass : 'PBMetacelloProjectDependency',
 	#instVars : [
 		'sourceDirectory'
 	],
-	#category : #'Pakbot-Minimal-Dependencies'
+	#category : 'Pakbot-Minimal-Dependencies',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Dependencies'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 PBMetacelloBaselineProjectDependency class >> example [
 	^ self
 		name: 'PakbotTestExample'
@@ -18,7 +20,7 @@ PBMetacelloBaselineProjectDependency class >> example [
 		version: '0866472ddded2a8fc36d3bae23f01aecfe947dc7'
 ]
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PBMetacelloBaselineProjectDependency class >> fromMetacelloSpec: aMetacelloSpec [
 
 	| metacelloUrl repoSpec |
@@ -32,22 +34,22 @@ PBMetacelloBaselineProjectDependency class >> fromMetacelloSpec: aMetacelloSpec 
 		version: repoSpec version
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloBaselineProjectDependency class >> iconName [
 	^ #komitterSmalltalkhubRemote
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloBaselineProjectDependency class >> projectClass [
 	^ PBMetacelloBaselineProject 
 ]
 
-{ #category : #'ston-core' }
+{ #category : 'ston-core' }
 PBMetacelloBaselineProjectDependency class >> stonName [
 	^ #MetacelloBaselineProject
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBMetacelloBaselineProjectDependency >> asPakbotProjectDependency [
 
 	^ (PBPakbotProjectDependency
@@ -60,18 +62,18 @@ PBMetacelloBaselineProjectDependency >> asPakbotProjectDependency [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloBaselineProjectDependency >> fullVersionString [
 
 	^ self version, ' (Baseline from ' , self icebergUrl , ')'
 ]
 
-{ #category : #'querying - installed' }
+{ #category : 'querying - installed' }
 PBMetacelloBaselineProjectDependency >> icebergUrl [
 	^ url asGitUrl scpUrl
 ]
 
-{ #category : #'querying - installed' }
+{ #category : 'querying - installed' }
 PBMetacelloBaselineProjectDependency >> isInstalledInMetacello [
 	| baseline |
 	
@@ -86,12 +88,12 @@ PBMetacelloBaselineProjectDependency >> isInstalledInMetacello [
 			and: [ baseline baselineProjectSpec loads isEmptyOrNil ] ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBMetacelloBaselineProjectDependency >> isMetacelloConfiguration [
 	^ false
 ]
 
-{ #category : #'querying - installed' }
+{ #category : 'querying - installed' }
 PBMetacelloBaselineProjectDependency >> isSameVersionAs: aVersionString [
 	| repository |
 	repository := IceRepository registry 
@@ -103,23 +105,23 @@ PBMetacelloBaselineProjectDependency >> isSameVersionAs: aVersionString [
 		  aVersionString = repository head commit id ]
 ]
 
-{ #category : #'querying - installed' }
+{ #category : 'querying - installed' }
 PBMetacelloBaselineProjectDependency >> satisfyConstraints: aVersionString [ 
 	^ self isSameVersionAs: aVersionString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloBaselineProjectDependency >> sourceDirectory [
 	^ sourceDirectory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloBaselineProjectDependency >> sourceDirectory: aRelativePathString [
 	"e.g. src"
 	sourceDirectory := aRelativePathString
 ]
 
-{ #category : #ston }
+{ #category : 'ston' }
 PBMetacelloBaselineProjectDependency >> stonMap [
 	| dict |
 	dict := OrderedDictionary 

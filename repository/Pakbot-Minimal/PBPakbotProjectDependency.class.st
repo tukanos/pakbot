@@ -5,16 +5,18 @@ I represent a dependency to an external Pakbot project.
 
 "
 Class {
-	#name : #PBPakbotProjectDependency,
-	#superclass : #PBProjectDependencyDeclaration,
+	#name : 'PBPakbotProjectDependency',
+	#superclass : 'PBProjectDependencyDeclaration',
 	#instVars : [
 		'repository',
 		'constraints'
 	],
-	#category : #'Pakbot-Minimal-Dependencies'
+	#category : 'Pakbot-Minimal-Dependencies',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Dependencies'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 PBPakbotProjectDependency class >> example [
 
 	^ self
@@ -23,7 +25,7 @@ PBPakbotProjectDependency class >> example [
 		  version: 'master'
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBPakbotProjectDependency class >> fromSton: stonReader [
 
 	| url version projectName |
@@ -35,13 +37,13 @@ PBPakbotProjectDependency class >> fromSton: stonReader [
 	^ self named: projectName repositoryUrl: url version: version
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBPakbotProjectDependency class >> named: aName repositoryUrl: gitUrlString [
 	
 	^ self named: aName repositoryUrl: gitUrlString version: ''
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBPakbotProjectDependency class >> named: aName repositoryUrl: gitUrlString version: aCommitish [
 
 	^ self new 
@@ -51,31 +53,31 @@ PBPakbotProjectDependency class >> named: aName repositoryUrl: gitUrlString vers
 		yourself
 ]
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PBPakbotProjectDependency class >> named: aName version: aVersion [ 
 	
 	^ self named: aName repositoryUrl: nil version: aVersion
 ]
 
-{ #category : #'ston-core' }
+{ #category : 'ston-core' }
 PBPakbotProjectDependency class >> stonName [
 
 	^ #PakbotProject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotProjectDependency >> constraints [
 
 	^ constraints
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotProjectDependency >> constraints: someConstraints [ 
 
 	constraints := someConstraints
 ]
 
-{ #category : #displaying }
+{ #category : 'displaying' }
 PBPakbotProjectDependency >> displayStringOn: aStream [
 	
 	aStream
@@ -87,12 +89,12 @@ PBPakbotProjectDependency >> displayStringOn: aStream [
 		<< ')'
 ]
 
-{ #category : #fetching }
+{ #category : 'fetching' }
 PBPakbotProjectDependency >> fetch [
 	^ self fetchFromScm
 ]
 
-{ #category : #fetching }
+{ #category : 'fetching' }
 PBPakbotProjectDependency >> fetchFromScm [
 	repository ifNil: [ PBMissingSourceRepositoryError signal ].
 
@@ -101,35 +103,35 @@ PBPakbotProjectDependency >> fetchFromScm [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPakbotProjectDependency >> initializeWithRepository: aCGOGitRepository [ 
 	repository := aCGOGitRepository
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotProjectDependency >> name: aName [ 
 
 	name := aName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotProjectDependency >> repository [
 	^ repository
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotProjectDependency >> repository: aRepository [ 
 	repository := aRepository
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotProjectDependency >> repositoryUrl [
 	repository ifNil: [ ^ '' ].
 	
 	^ repository repositoryUrl
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotProjectDependency >> repositoryUrl: aString [ 
 
 	repository := aString isEmptyOrNil 
@@ -138,7 +140,7 @@ PBPakbotProjectDependency >> repositoryUrl: aString [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBPakbotProjectDependency >> resolvedDependency [
 	self isInstalled
 		ifTrue: [ ^ project registry projectNamed: self name ].
@@ -147,12 +149,12 @@ PBPakbotProjectDependency >> resolvedDependency [
 	^ self fetch
 ]
 
-{ #category : #constraints }
+{ #category : 'constraints' }
 PBPakbotProjectDependency >> satisfyConstraints: aSemanticVersion [ 
 	^ constraints allSatisfy: [ :each | each isCompatibleWith: aSemanticVersion ]
 ]
 
-{ #category : #ston }
+{ #category : 'ston' }
 PBPakbotProjectDependency >> stonMap [
 	| dict |
 	
@@ -164,13 +166,13 @@ PBPakbotProjectDependency >> stonMap [
 	^ dict
 ]
 
-{ #category : #ston }
+{ #category : 'ston' }
 PBPakbotProjectDependency >> stonOn: stonWriter [
 
 	stonWriter writeMap: self stonMap
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotProjectDependency >> version [
 	"There is no implementation for more than one constraint"
 	constraints size = 0 ifTrue: [ ^ '' ].
@@ -179,7 +181,7 @@ PBPakbotProjectDependency >> version [
 	^ constraints anyOne version asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotProjectDependency >> version: aString [ 
 
 	aString isEmptyOrNil ifTrue: [ constraints := #(). ^ self].

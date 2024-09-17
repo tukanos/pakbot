@@ -10,33 +10,35 @@ Builder of Pakbot metadata for the PharoLauncher project.
 		buildExternalProjectDependencies.
 "
 Class {
-	#name : #PharoLauncherProject,
-	#superclass : #Object,
+	#name : 'PharoLauncherProject',
+	#superclass : 'Object',
 	#instVars : [
 		'registry',
 		'project'
 	],
-	#category : #'Pakbot-Tests-Integration-Tests'
+	#category : 'Pakbot-Tests-Integration-Tests',
+	#package : 'Pakbot-Tests',
+	#tag : 'Integration-Tests'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PharoLauncherProject class >> buildAndRegisterIn: aCGOPackageRegistry [
 	^ self new buildAndRegisterIn: aCGOPackageRegistry
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PharoLauncherProject class >> buildAndRegisterInDefault [
 
 	self buildAndRegisterIn: PBPackageRegistry default
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PharoLauncherProject class >> buildWithoutPackageDependencyAndRegisterIn: aCGOPackageRegistry [
 	^ self new buildWithoutPackageDependencyAndRegisterIn: aCGOPackageRegistry
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PharoLauncherProject >> buildAndRegisterIn: aCGOPackageRegistry [
 	registry := aCGOPackageRegistry.
 	self
@@ -46,7 +48,7 @@ PharoLauncherProject >> buildAndRegisterIn: aCGOPackageRegistry [
 	^ project
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PharoLauncherProject >> buildExternalProjectDependencies [
 	project addDependency: 
 		(PBMetacelloBaselineProjectDependency  
@@ -66,7 +68,7 @@ PharoLauncherProject >> buildExternalProjectDependencies [
 	^ project
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PharoLauncherProject >> buildPackages [
 	(project newNotLoadedPackage: #'PharoLauncher-Core')
 		description: 'Core package with the model, commands and settings.';
@@ -103,7 +105,7 @@ PharoLauncherProject >> buildPackages [
 	^ project
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PharoLauncherProject >> buildProject [
 	project := (PBProjectVersion named: #PharoLauncher)
 		description:
@@ -122,13 +124,13 @@ PharoLauncherProject >> buildProject [
 	^ project
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PharoLauncherProject >> buildRepository [
 	 project repository: self repository.
 	^ project
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PharoLauncherProject >> buildWithoutPackageDependencyAndRegisterIn: aCGOPackageRegistry [
 	registry := aCGOPackageRegistry.
 	self
@@ -139,19 +141,19 @@ PharoLauncherProject >> buildWithoutPackageDependencyAndRegisterIn: aCGOPackageR
 	^ project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PharoLauncherProject >> registry [ 
 	^ registry ifNil: [ registry := PBPackageRegistry new ]
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PharoLauncherProject >> removePackagesDependencies [
 	project packageUnits do: [ :unit |
 		unit dependencies: OrderedCollection new ].
 	^ project
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PharoLauncherProject >> repository [
 	^ PBGitRepositoryCreator new
 			url: 'https://github.com/pharo-project/pharo-launcher.git';

@@ -1,13 +1,15 @@
 Class {
-	#name : #PBBaselineVisitorTest,
-	#superclass : #TestCase,
+	#name : 'PBBaselineVisitorTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'visitor'
 	],
-	#category : #'Pakbot-Tests-Metacello-Support'
+	#category : 'Pakbot-Tests-Metacello-Support',
+	#package : 'Pakbot-Tests',
+	#tag : 'Metacello-Support'
 }
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBBaselineVisitorTest >> babyMockConfiguration: spec [
 	spec
 		project: 'BabyMock2'
@@ -17,7 +19,7 @@ PBBaselineVisitorTest >> babyMockConfiguration: spec [
 				repository: 'http://smalltalkhub.com/mc/zeroflag/BabyMock2/main/' ]
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBBaselineVisitorTest >> baselineWithCollectionLoadDirective: spec [
 	spec
 		baseline: 'Mustache'
@@ -26,7 +28,7 @@ PBBaselineVisitorTest >> baselineWithCollectionLoadDirective: spec [
 						loads: #('Core' 'Tests') ]
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBBaselineVisitorTest >> baselineWithConditionalPackageDeclaration: spec [
 	<baseline>
 	spec
@@ -38,7 +40,7 @@ PBBaselineVisitorTest >> baselineWithConditionalPackageDeclaration: spec [
 		for: #(unix osx) do: [ spec package: 'PakbotTestExample-UnixLikePackage' ].
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBBaselineVisitorTest >> baselineWithConditionalPackageDependencyDeclaration: spec [
 	<baseline>
 	spec
@@ -51,7 +53,7 @@ PBBaselineVisitorTest >> baselineWithConditionalPackageDependencyDeclaration: sp
 							 spec package: 'PakbotTestExample-PackageA' with: [ spec requires: 'PakbotTestExample-UnixLikePackage' ] ].
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBBaselineVisitorTest >> baselineWithForwardReference: spec [
 	<baseline>
 	spec
@@ -62,12 +64,12 @@ PBBaselineVisitorTest >> baselineWithForwardReference: spec [
 					package: 'PakbotTestExample-PackageB' ]
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBBaselineVisitorTest >> baselineWithGitUrlAndSrcFolderAndVersion: spec [
 	spec baseline: 'Pillar' with: [ spec repository: 'github://pillar-markup/pillar:v8.0.10/src' ]
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBBaselineVisitorTest >> baselineWithGroupForwardReference: spec [
 	<baseline>
 	spec
@@ -81,7 +83,7 @@ PBBaselineVisitorTest >> baselineWithGroupForwardReference: spec [
 					package: 'PakbotTestExample-PackageC' ]
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBBaselineVisitorTest >> baselineWithLoadDirective: spec [
 	spec
 		baseline: 'Mustache'
@@ -90,7 +92,7 @@ PBBaselineVisitorTest >> baselineWithLoadDirective: spec [
 						loads: #('Core' 'Tests') ]
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBBaselineVisitorTest >> baselineWithProjectSpecCopy: spec [
 
 	spec
@@ -105,7 +107,7 @@ PBBaselineVisitorTest >> baselineWithProjectSpecCopy: spec [
 		project: 'XMLWriter Tools' copyFrom: 'XMLWriter' with: [ spec loads: #('Tools') ].
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBBaselineVisitorTest >> baselineWithSingleLoadDirective: spec [
 	spec
 		baseline: 'Mustache'
@@ -114,12 +116,12 @@ PBBaselineVisitorTest >> baselineWithSingleLoadDirective: spec [
 						loads: 'Core' ]
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBBaselineVisitorTest >> parametrizedTestsBaseline: spec [
 	spec baseline: 'ParametrizedTests' with: [ spec repository: 'github://tesonep/ParametrizedTests/src' ]
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBBaselineVisitorTest >> processWrapperConfiguration: spec [
 	spec configuration: 'ProcessWrapper' 
 				with: [ spec
@@ -127,13 +129,13 @@ PBBaselineVisitorTest >> processWrapperConfiguration: spec [
 					repository: 'http://smalltalkhub.com/mc/hernan/ProcessWrapper/main' ].
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBBaselineVisitorTest >> setUp [
 	super setUp.
 	visitor := PBBaselineVisitor new.
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBBaselineVisitorTest >> simpleBaseline: spec [
 	<baseline>
 	spec
@@ -151,7 +153,7 @@ PBBaselineVisitorTest >> simpleBaseline: spec [
 			group: 'Leaves' with: #( 'PakbotTestExample-PackageA' 'PakbotTestExample-PackageC' ) ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testAssembliesOnlyContainPackages [
 
 	self simpleBaseline: visitor.
@@ -163,7 +165,7 @@ PBBaselineVisitorTest >> testAssembliesOnlyContainPackages [
 			description: 'Assembly should only contains package units or assemblies' ].
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testCanCopyProjectSpec [
 
 	| project |
@@ -180,7 +182,7 @@ PBBaselineVisitorTest >> testCanCopyProjectSpec [
 		hasSameElements: { #('Tests') asSet . #('Core') asSet . #('Tools') asSet }.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testCanGetDependenciesWhenDeclaredConditionally [
 	| project packageADependencies |
 	self baselineWithConditionalPackageDependencyDeclaration: visitor.
@@ -210,7 +212,7 @@ PBBaselineVisitorTest >> testCanGetDependenciesWhenDeclaredConditionally [
 		hasSameElements: { PBPlatformAttributes unixOSKey . PBPlatformAttributes macOSKey }.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testCanGetDependencyOnMetacelloBaseline [
 	| dependency |
 	
@@ -233,7 +235,7 @@ PBBaselineVisitorTest >> testCanGetDependencyOnMetacelloBaseline [
 		equals: #master.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testCanGetDependencyOnMetacelloConfigurationDescribedWithConfigurationWith [
 	| dependency |
 	
@@ -256,7 +258,7 @@ PBBaselineVisitorTest >> testCanGetDependencyOnMetacelloConfigurationDescribedWi
 		equals: '1.2'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testCanGetDependencyOnMetacelloConfigurationDescribedWithProjectWith [
 	| dependency |
 	
@@ -279,7 +281,7 @@ PBBaselineVisitorTest >> testCanGetDependencyOnMetacelloConfigurationDescribedWi
 		equals: #stable.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testCanGetDependencySourceDirectory [
 	| project |
 
@@ -299,7 +301,7 @@ PBBaselineVisitorTest >> testCanGetDependencySourceDirectory [
 		equals: 'src'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testCanGetDependencyUrlAndVersion [
 	| dependency |
 	
@@ -322,7 +324,7 @@ PBBaselineVisitorTest >> testCanGetDependencyUrlAndVersion [
 		equals: 'v8.0.10'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testCanGetGroups [
 
 	self simpleBaseline: visitor.
@@ -336,7 +338,7 @@ PBBaselineVisitorTest >> testCanGetGroups [
 		hasSameElements: #('PakbotTestExample-PackageA' 'PakbotTestExample-PackageC')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testCanGetLoadDirectivesWhenCollectionOfLoadNames [
 
 	| baselineDependency |
@@ -349,7 +351,7 @@ PBBaselineVisitorTest >> testCanGetLoadDirectivesWhenCollectionOfLoadNames [
 		hasSameElements: #('Core' 'Tests').
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testCanGetLoadDirectivesWhenSingleLoadName [
 
 	| baselineDependency |
@@ -362,7 +364,7 @@ PBBaselineVisitorTest >> testCanGetLoadDirectivesWhenSingleLoadName [
 		hasSameElements: #('Core').
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testCanGetPackageDependencies [
 
 	| dependencies project |
@@ -378,7 +380,7 @@ PBBaselineVisitorTest >> testCanGetPackageDependencies [
 		equals: #'PakbotTestExample-PackageA'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testCanGetPackages [
 
 	| project |
@@ -389,7 +391,7 @@ PBBaselineVisitorTest >> testCanGetPackages [
 		hasSameElements: #('PakbotTestExample-PackageA' 'PakbotTestExample-PackageB' 'PakbotTestExample-PackageC' 'PakbotTestExample-PackageD')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testCanGetPackagesWhenDeclaredConditionally [
 	"ex: spec for: #windows do: [ ... ]"
 	| project |
@@ -415,7 +417,7 @@ PBBaselineVisitorTest >> testCanGetPackagesWhenDeclaredConditionally [
 		hasSameElements: { PBPlatformAttributes unixOSKey . PBPlatformAttributes macOSKey }.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testCanHandleForwardReferences [
 
 	| assembly |
@@ -428,7 +430,7 @@ PBBaselineVisitorTest >> testCanHandleForwardReferences [
 		hasSameElements: #(#'PakbotTestExample-PackageA' #'PakbotTestExample-PackageB')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBBaselineVisitorTest >> testCanHandleGroupForwardReferences [
 
 	| assembly |

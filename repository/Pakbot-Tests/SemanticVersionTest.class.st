@@ -1,10 +1,12 @@
 Class {
-	#name : #SemanticVersionTest,
-	#superclass : #TestCase,
-	#category : #'Pakbot-Tests-Model'
+	#name : 'SemanticVersionTest',
+	#superclass : 'TestCase',
+	#category : 'Pakbot-Tests-Model',
+	#package : 'Pakbot-Tests',
+	#tag : 'Model'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> assertVersion: aSymbolicVersionString printStringEquals: aString [
 	| version |
 	
@@ -12,7 +14,7 @@ SemanticVersionTest >> assertVersion: aSymbolicVersionString printStringEquals: 
 	self assert: version printString equals: aString.
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> assertVersionFromString: aString major: major minor: minor patch: patch suffix: suffix [
 	| version |
 	
@@ -24,12 +26,12 @@ SemanticVersionTest >> assertVersionFromString: aString major: major minor: mino
 	self assert: version suffix equals: suffix.
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> stonSerializationFor: aString [
 	^ PBPackageVersionWriterV1 toStringPretty: (SemanticVersion fromString: aString)
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 SemanticVersionTest >> testExtractSuffixSuffixedVersionStringShouldReturnSuffix [
 	
 	self 
@@ -37,7 +39,7 @@ SemanticVersionTest >> testExtractSuffixSuffixedVersionStringShouldReturnSuffix 
 		equals: '-RC1'
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 SemanticVersionTest >> testPrintString [
 
 	self assertVersion: '2' printStringEquals: '2'.
@@ -46,7 +48,7 @@ SemanticVersionTest >> testPrintString [
 	self assertVersion: '1.1.3-RC1' printStringEquals: '1.1.3-RC1'
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 SemanticVersionTest >> testRegEx [
 
 	self assert: (SemanticVersion parsingRegex matches: '1').
@@ -59,21 +61,21 @@ SemanticVersionTest >> testRegEx [
 	self assert: (SemanticVersion parsingRegex matches: 'v1.0')
 ]
 
-{ #category : #'tests-comparison' }
+{ #category : 'tests-comparison' }
 SemanticVersionTest >> testV1ShouldBeEqualsToV10 [
 
 	self assert: self v1 equals: self v10.
 	self assert: self v10 equals: self v1.
 ]
 
-{ #category : #'tests-comparison' }
+{ #category : 'tests-comparison' }
 SemanticVersionTest >> testV1ShouldBeEqualsToV100 [
 
 	self assert: self v1 equals: self v100.
 	self assert: self v100 equals: self v1.
 ]
 
-{ #category : #'tests-comparison' }
+{ #category : 'tests-comparison' }
 SemanticVersionTest >> testVersionShouldBeGreaterThanVersionWithEqualMajorAndSmallerMinorNumber [
 
 	self assert: self v11 > self v10.
@@ -82,13 +84,13 @@ SemanticVersionTest >> testVersionShouldBeGreaterThanVersionWithEqualMajorAndSma
 	self assert: self v111 > self v101.
 ]
 
-{ #category : #'tests-comparison' }
+{ #category : 'tests-comparison' }
 SemanticVersionTest >> testVersionShouldBeGreaterThanVersionWithEqualMajorEqualMinorAndSmallerPatchNumber [
 
 	self assert: self v111 > self v100
 ]
 
-{ #category : #'tests-comparison' }
+{ #category : 'tests-comparison' }
 SemanticVersionTest >> testVersionShouldBeGreaterThanVersionWithSmallerMajorNumber [
 
 	self assert: self v2 > self v1.
@@ -103,199 +105,199 @@ SemanticVersionTest >> testVersionShouldBeGreaterThanVersionWithSmallerMajorNumb
 	self assert: self v200 > self v101.
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 SemanticVersionTest >> testVersionStringInvalidShouldFail [
 
 	self assert: (SemanticVersion fromString: 'toto') isInvalid
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 SemanticVersionTest >> testVersionStringWithMajorNumberShouldOnlyHaveMajorVersionNumber [
 
 	self assertVersionFromString: '2' major: 2 minor: nil patch: nil suffix: nil
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 SemanticVersionTest >> testVersionStringWithMinorNumberShouldOnlyHaveMajorAndMinorVersionNumber [
 
 	self assertVersionFromString: '1.2' major: 1 minor: 2 patch: nil suffix: nil
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 SemanticVersionTest >> testVersionStringWithMoreThanThreeComponentsShouldFail [
 
 	self assert: (SemanticVersion fromString: '1.2.3.4') isInvalid
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 SemanticVersionTest >> testVersionStringWithPatchNumberShouldOnlyHaveMajorAndMinorAndPatchVersionNumber [
 
 	self assertVersionFromString: '1.1.3' major: 1 minor: 1 patch: 3 suffix: nil
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 SemanticVersionTest >> testVersionStringWithSuffixButNoMinorNorPatchNumberShouldHaveSuffix [
 
 	self assertVersionFromString: '1-RC1' major: 1 minor: nil patch: nil suffix: 'RC1'
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 SemanticVersionTest >> testVersionStringWithSuffixButNoPatchNumberShouldHaveSuffix [
 
 	self assertVersionFromString: '1.1-RC1' major: 1 minor: 1 patch: nil suffix: 'RC1'
 ]
 
-{ #category : #'tests-parsing' }
+{ #category : 'tests-parsing' }
 SemanticVersionTest >> testVersionStringWithSuffixShouldHaveSuffix [
 
 	self assertVersionFromString: '1.1.3-RC1' major: 1 minor: 1 patch: 3 suffix: 'RC1'
 ]
 
-{ #category : #'tests-development versions' }
+{ #category : 'tests-development versions' }
 SemanticVersionTest >> testVersionWithSuffixDevShouldBeADevelopmentVersion [
 	
 	self assert: (SemanticVersion fromString: '1.0-dev') isDevelopmentVersion
 ]
 
-{ #category : #'tests-development versions' }
+{ #category : 'tests-development versions' }
 SemanticVersionTest >> testVersionWithoutSuffixDevShouldNotBeADevelopmentVersion [
 	
 	self deny: (SemanticVersion fromString: '1.0-devv') isDevelopmentVersion
 ]
 
-{ #category : #'tests-comparison' }
+{ #category : 'tests-comparison' }
 SemanticVersionTest >> testVersionsWithDifferentMajorVersionNumberShouldBeDifferent [
 
 	self deny: self v1 = self v2.
 ]
 
-{ #category : #'tests-comparison' }
+{ #category : 'tests-comparison' }
 SemanticVersionTest >> testVersionsWithDifferentMinorVersionNumberShouldBeDifferent [
 
 	self deny: self v11 = self v12.
 ]
 
-{ #category : #'tests-comparison' }
+{ #category : 'tests-comparison' }
 SemanticVersionTest >> testVersionsWithDifferentPatchVersionNumberShouldBeDifferent [
 
 	self deny: self v111 = self v112.
 ]
 
-{ #category : #'tests-comparison' }
+{ #category : 'tests-comparison' }
 SemanticVersionTest >> testVersionsWithEqualSemanticVersionsShouldBeEqual [
 
 	self assert: self v123 equals: self v123.
 ]
 
-{ #category : #'tests-comparison' }
+{ #category : 'tests-comparison' }
 SemanticVersionTest >> testVersionsWithEqualSemanticVersionsWithNoMinorNumberShouldBeEqual [
 
 	self assert: self v1 equals: self v1.
 ]
 
-{ #category : #'tests-comparison' }
+{ #category : 'tests-comparison' }
 SemanticVersionTest >> testVersionsWithEqualSemanticVersionsWithNoPatchNumberShouldBeEqual [
 
 	self assert: self v12 equals: self v12.
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v1 [
 
 	^ SemanticVersion fromString: '1'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v10 [
 
 	^ SemanticVersion fromString: '1.0'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v100 [
 
 	^ SemanticVersion fromString: '1.0.0'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v101 [
 
 	^ SemanticVersion fromString: '1.0.1'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v11 [
 
 	^ SemanticVersion fromString: '1.1'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v110 [
 
 	^ SemanticVersion fromString: '1.1.0'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v111 [
 
 	^ SemanticVersion fromString: '1.1.1'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v112 [
 
 	^ SemanticVersion fromString: '1.1.2'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v12 [
 
 	^ SemanticVersion fromString: '1.2'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v123 [
 
 	^ SemanticVersion fromString: '1.2.3'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v2 [
 
 	^ SemanticVersion fromString: '2'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v20 [
 
 	^ SemanticVersion fromString: '2.0'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v200 [
 
 	^ SemanticVersion fromString: '2.0.0'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v201 [
 
 	^ SemanticVersion fromString: '2.0.1'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v21 [
 
 	^ SemanticVersion fromString: '2.1'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v210 [
 
 	^ SemanticVersion fromString: '2.1.0'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 SemanticVersionTest >> v211 [
 
 	^ SemanticVersion fromString: '2.1.1'

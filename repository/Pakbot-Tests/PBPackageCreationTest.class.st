@@ -1,14 +1,16 @@
 Class {
-	#name : #PBPackageCreationTest,
-	#superclass : #PBTest,
+	#name : 'PBPackageCreationTest',
+	#superclass : 'PBTest',
 	#instVars : [
 		'project',
 		'systemPackageOrganizer'
 	],
-	#category : #'Pakbot-Tests-Model'
+	#category : 'Pakbot-Tests-Model',
+	#package : 'Pakbot-Tests',
+	#tag : 'Model'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageCreationTest >> setUp [
 
 	super setUp.
@@ -19,7 +21,7 @@ PBPackageCreationTest >> setUp [
 	registry systemPackageOrganizer: systemPackageOrganizer.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageCreationTest >> testCreateAlreadyExistingPackageRaisesException [
 
 	| packageName |
@@ -31,7 +33,7 @@ PBPackageCreationTest >> testCreateAlreadyExistingPackageRaisesException [
 		raise: PBSystemPackageAlreadyDefined
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageCreationTest >> testCreateExistingPackageInSystemRaisesException [
 
 	| packageName |
@@ -43,7 +45,7 @@ PBPackageCreationTest >> testCreateExistingPackageInSystemRaisesException [
 		raise: PBSystemPackageAlreadyDefined
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageCreationTest >> testCreateNonExistingPackageSucceeds [
 
 	| packageName |

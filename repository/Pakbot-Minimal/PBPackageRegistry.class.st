@@ -7,8 +7,8 @@ Registry used to hold description of packages installed in the image.
 - metacelloProjectRegistry is a reference to the metacello project registry. It allows to use a custom registry for tests.
 "
 Class {
-	#name : #PBPackageRegistry,
-	#superclass : #Object,
+	#name : 'PBPackageRegistry',
+	#superclass : 'Object',
 	#instVars : [
 		'registeredProjects',
 		'systemPackageOrganizer',
@@ -18,29 +18,31 @@ Class {
 	#classVars : [
 		'Default'
 	],
-	#category : #'Pakbot-Minimal-Model'
+	#category : 'Pakbot-Minimal-Model',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRegistry class >> default [
 	^ Default
 		ifNil: [ Default := self new registerInSystem; yourself ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRegistry class >> default: aPBPackageRegistry [
 	
 	self reset.
 	Default := aPBPackageRegistry
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRegistry class >> reset [
 	<script>
 	Default ifNotNil: [ Default unregisterFromSystem. Default := nil ]
 ]
 
-{ #category : #helper }
+{ #category : 'helper' }
 PBPackageRegistry class >> useDefaultRegistry: aPBPackageRegistry during: aBlock [
 	| default |
 	default := self default.
@@ -49,7 +51,7 @@ PBPackageRegistry class >> useDefaultRegistry: aPBPackageRegistry during: aBlock
 		ensure: [ self default: default ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBPackageRegistry >> checkProjectRegistrationOf: aPBProjectVersion [
 
 	| installedProject |
@@ -62,12 +64,12 @@ PBPackageRegistry >> checkProjectRegistrationOf: aPBProjectVersion [
 	self signalAlreadyRegistered: aPBProjectVersion
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRegistry >> currentPlatformRequirements [
 	^ platformRequirements ifNil: [ platformRequirements := PBPlatformAttributes new ]
 ]
 
-{ #category : #'API -dependencies' }
+{ #category : 'API -dependencies' }
 PBPackageRegistry >> dependantProjectsOf: aPBProjectVersion [
 
 	^ (registeredProjects
@@ -75,7 +77,7 @@ PBPackageRegistry >> dependantProjectsOf: aPBProjectVersion [
 		asOrderedCollection
 ]
 
-{ #category : #'compatibility-repository' }
+{ #category : 'compatibility-repository' }
 PBPackageRegistry >> fetch: aPackageName version: aVersion [
 	
 	| package |
@@ -85,25 +87,25 @@ PBPackageRegistry >> fetch: aPackageName version: aVersion [
 	^ package
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBPackageRegistry >> hasInstalledPackageNamed: fullyQualifiedName [
 
 	^ self installedPackages anySatisfy: [ :each | each fullyQualifiedName = fullyQualifiedName]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPackageRegistry >> initialize [
 	super initialize.
 	registeredProjects := Set new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRegistry >> installedPackages [
 
 	^ self registeredProjects flatCollect: [ :project | project installedPackages ] 
 ]
 
-{ #category : #quering }
+{ #category : 'quering' }
 PBPackageRegistry >> isInstalled: aDependency [ 
 	
 	| found |
@@ -114,7 +116,7 @@ PBPackageRegistry >> isInstalled: aDependency [
 	^ aDependency satisfyConstraints: found version 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBPackageRegistry >> isOutOfSync: anUnit [ 
 
 	| found |
@@ -122,29 +124,29 @@ PBPackageRegistry >> isOutOfSync: anUnit [
 	^ (anUnit satisfyConstraints: found version) not
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBPackageRegistry >> isProjectRegistered: aPBProjectVersion [
 	
 	^ registeredProjects anySatisfy: [ :project | project name = aPBProjectVersion name ]
 ]
 
-{ #category : #'compatibility-repository' }
+{ #category : 'compatibility-repository' }
 PBPackageRegistry >> isVirtual: aString [ 
 	
 	^ (self packageNamed: aString) isVirtual
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRegistry >> metacelloProjectRegistry [
 	^ metacelloProjectRegistry ifNil: [ MetacelloProjectRegistration registry ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRegistry >> metacelloProjectRegistry: aMetacelloProjectRegistry [
 	metacelloProjectRegistry := aMetacelloProjectRegistry
 ]
 
-{ #category : #projects }
+{ #category : 'projects' }
 PBPackageRegistry >> newProjectNamed: aString [ 
 	
 	| project |
@@ -154,7 +156,7 @@ PBPackageRegistry >> newProjectNamed: aString [
 	^ project
 ]
 
-{ #category : #factory }
+{ #category : 'factory' }
 PBPackageRegistry >> newSolver [
 	
 	^ PBSolver new
@@ -162,21 +164,21 @@ PBPackageRegistry >> newSolver [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRegistry >> packageNamed: aName [
 	^ self 
 		packageNamed: aName 
 		ifAbsent: [ PBPackageNotFoundError signal: aName asString ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRegistry >> packageNamed: aName ifAbsent: absentBlock [
 	^ self installedPackages 
 		detect: [ :package | package fullyQualifiedName = aName ]
 		ifNone: absentBlock
 ]
 
-{ #category : #'system-events' }
+{ #category : 'system-events' }
 PBPackageRegistry >> packageRenamed: aRPackageRenamed [ 
 
 	| packages |
@@ -186,7 +188,7 @@ PBPackageRegistry >> packageRenamed: aRPackageRenamed [
 
 ]
 
-{ #category : #'system-events' }
+{ #category : 'system-events' }
 PBPackageRegistry >> packageUnregistered: aRPackageUnregistered [ 
 
 	self installedPackages 
@@ -194,35 +196,35 @@ PBPackageRegistry >> packageUnregistered: aRPackageUnregistered [
 		thenDo: [ :each | each project announceChanged ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRegistry >> projectNamed: aName [
 	^ self 
 		projectNamed: aName 
 		ifAbsent: [ PBPackageNotFoundError signal: aName asString ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRegistry >> projectNamed: aName ifAbsent: absentBlock [
 	^ registeredProjects 
 		detect: [ :project | project name = aName asSymbol ]
 		ifNone: absentBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRegistry >> projectPackages [
 	"Get all project packages, even packages that are not installed"
 
 	^ self registeredProjects flatCollect: [ :project | project packages ] 
 ]
 
-{ #category : #registering }
+{ #category : 'registering' }
 PBPackageRegistry >> register: aLoadableUnit [
 
 	self registerProject: aLoadableUnit project.
 	^ aLoadableUnit
 ]
 
-{ #category : #'system-announcements' }
+{ #category : 'system-announcements' }
 PBPackageRegistry >> registerInSystem [
 	SystemAnnouncer uniqueInstance
 		when: RPackageUnregistered
@@ -234,7 +236,7 @@ PBPackageRegistry >> registerInSystem [
 		to: self
 ]
 
-{ #category : #registering }
+{ #category : 'registering' }
 PBPackageRegistry >> registerProject: aPBProjectVersion [
 	| registeredProject |
 	
@@ -258,41 +260,41 @@ PBPackageRegistry >> registerProject: aPBProjectVersion [
 	^ registeredProject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRegistry >> registeredProjects [
 	^ registeredProjects
 ]
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 PBPackageRegistry >> reset [
 	self initialize
 ]
 
-{ #category : #registering }
+{ #category : 'registering' }
 PBPackageRegistry >> signalAlreadyRegistered: aPBProjectVersion [
 
 	PBPackageAlreadyRegistered 
 		signal: aPBProjectVersion name , ' is already a registered project in the registry!'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRegistry >> systemPackageOrganizer [
 
 	^ systemPackageOrganizer ifNil: [ RPackage organizer ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRegistry >> systemPackageOrganizer: aRPackageOrganizer [ 
 	systemPackageOrganizer := aRPackageOrganizer
 ]
 
-{ #category : #'system-announcements' }
+{ #category : 'system-announcements' }
 PBPackageRegistry >> unregisterFromSystem [
 
 	SystemAnnouncer uniqueInstance unsubscribe: self
 ]
 
-{ #category : #registering }
+{ #category : 'registering' }
 PBPackageRegistry >> unregisterProject: aProject [
 
 	registeredProjects remove: aProject.

@@ -12,16 +12,18 @@ You can ask me to be converted to an http, an scp URL or a metacello repository 
 I can be use by Iceberg to specify a repository location.
 "
 Class {
-	#name : #PBGitUrl,
-	#superclass : #Object,
+	#name : 'PBGitUrl',
+	#superclass : 'Object',
 	#instVars : [
 		'originUrlString',
 		'url'
 	],
-	#category : #'Pakbot-Minimal-Model'
+	#category : 'Pakbot-Minimal-Model',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBGitUrl class >> canHandleUrl: aString [ 
 	| url |
 	url := aString asUrl.
@@ -29,19 +31,19 @@ PBGitUrl class >> canHandleUrl: aString [
 	^ url hasScheme not or: [ url isHttp or: [url isHttps or: [ url scheme = 'git' ] ] ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBGitUrl class >> url: aString [ 
 	^ self new
 		url: aString;
 		yourself
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBGitUrl >> asGitUrl [ 
 	^ self
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBGitUrl >> asMetacelloUrl [
 
 	^ '{scheme}://{owner}/{project}{version}{repositoryPath}' format: 
@@ -54,7 +56,7 @@ PBGitUrl >> asMetacelloUrl [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitUrl >> ensureScheme [
 	url scheme ifNotNil: [ ^ self ].
 	
@@ -63,12 +65,12 @@ PBGitUrl >> ensureScheme [
 		do: [ url := ('ssh://' , (originUrlString copy replaceAll: $: with: $/)) asZnUrl ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitUrl >> host [
 	^ url host
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitUrl >> httpUrl [
 	^ 'https://{host}/{owner}/{project}.git' format: 
 		( Dictionary 
@@ -77,27 +79,27 @@ PBGitUrl >> httpUrl [
 			with: 'project' -> self project)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitUrl >> owner [
 	^ url segments first
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitUrl >> port [
 	^ ''
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitUrl >> project [
 	^ url segments second withoutSuffix: '.git'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitUrl >> scheme [
 	^ url scheme
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitUrl >> scpUrl [
 	^ '{user}@{host}:{owner}/{project}.git' format: 
 		( Dictionary 
@@ -107,14 +109,14 @@ PBGitUrl >> scpUrl [
 			with: 'project' -> self project)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGitUrl >> url: aString [ 
 	originUrlString := aString.
 	url := originUrlString asZnUrl.
 	self ensureScheme.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitUrl >> user [
 	^ url username
 ]

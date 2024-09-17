@@ -2,23 +2,25 @@
 Class used to set up test data for Cargo projects, units and assemblies
 "
 Class {
-	#name : #PBModelTest,
-	#superclass : #PBTest,
+	#name : 'PBModelTest',
+	#superclass : 'PBTest',
 	#instVars : [
 		'ongoingProject',
 		'unitTestV1',
 		'unitTestV2'
 	],
-	#category : #'Pakbot-Tests-Model'
+	#category : 'Pakbot-Tests-Model',
+	#package : 'Pakbot-Tests',
+	#tag : 'Model'
 }
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 PBModelTest >> removePackageIfExists: aPackageName [
 
 	(aPackageName asPackageIfAbsent: [ nil ]) ifNotNil: #removeFromSystem
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBModelTest >> setUp [
 	super setUp.
 	ongoingProject := registry newProjectNamed: #'MyProject'.
@@ -31,17 +33,17 @@ PBModelTest >> setUp [
 
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBModelTest >> unitTestV1 [
 	^ unitTestV1 ifNil: [ unitTestV1 := ongoingProject newNotLoadedPackage: #Package1 ]
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 PBModelTest >> unitTestV2 [
 	^ unitTestV2 ifNil: [ unitTestV2 := ongoingProject newNotLoadedPackage: #Package2]
 ]
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 PBModelTest >> unloadCounterPackages [
 
 	#(#'Counter-Core' #'Counter-Tests') 

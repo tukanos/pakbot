@@ -16,18 +16,20 @@ Additional labels for pre-release and build metadata are available as extensions
 See http://semver.org/ for more details.
 "
 Class {
-	#name : #SemanticVersion,
-	#superclass : #Object,
+	#name : 'SemanticVersion',
+	#superclass : 'Object',
 	#instVars : [
 		'major',
 		'minor',
 		'patch',
 		'suffix'
 	],
-	#category : #'Pakbot-Minimal-Model'
+	#category : 'Pakbot-Minimal-Model',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SemanticVersion class >> fromString: aString [
 	"Answer the parts of aString, expected in short format <major>.<minor>.<patch>"
 	
@@ -46,12 +48,12 @@ SemanticVersion class >> fromString: aString [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SemanticVersion class >> parsingRegex [
 	^ 'v?(\d+)(\.(\d+)(\.(\d+))?)?(-(.+))?' asRegex
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SemanticVersion class >> suffixFrom: aString [
 	"discard all numbers until another character is found."
 	| regex |
@@ -61,7 +63,7 @@ SemanticVersion class >> suffixFrom: aString [
 	^ (regex subexpression: 3) ifEmpty: [ nil ]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 SemanticVersion >> = other [
 	self == other ifTrue: [ ^ true ].
 	self species = other species ifFalse: [ ^ false ].
@@ -73,7 +75,7 @@ SemanticVersion >> = other [
 	^ true
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 SemanticVersion >> > other [ 
 	(self major > other major) ifTrue: [ ^ true ].
 	(self major < other major) ifTrue: [ ^ false ].
@@ -88,7 +90,7 @@ SemanticVersion >> > other [
 					ifNotNil: [ self suffix > other suffix ]  ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 SemanticVersion >> areEquals: a and: b [
 	"1.0 equals 1.0.0"
 
@@ -99,24 +101,24 @@ SemanticVersion >> areEquals: a and: b [
 	^ false
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 SemanticVersion >> asSemanticVersion [
 	^ self
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 SemanticVersion >> hash [
 	^ self printString hash
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SemanticVersion >> initialize [
 	super initialize.
 	minor := 0.
 	patch := 0
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SemanticVersion >> initializeWithMajor: majorNumber minor: minorNumber patch: patchNumber suffix: suffixString [
 	super initialize.
 	major := majorNumber.
@@ -125,7 +127,7 @@ SemanticVersion >> initializeWithMajor: majorNumber minor: minorNumber patch: pa
 	suffix := suffixString
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SemanticVersion >> isDevelopmentVersion [
 	self flag:#todo.
 	"The list of possibles suffix for dev should be bigger, also maybe case insensitive."
@@ -134,27 +136,27 @@ SemanticVersion >> isDevelopmentVersion [
 		ifNotNil: [ suffix endsWith: 'dev' ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SemanticVersion >> isInvalid [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SemanticVersion >> major [
 	^ major
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SemanticVersion >> minor [
 	^ minor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SemanticVersion >> patch [
 	^ patch
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 SemanticVersion >> printOn: aStream [
 	aStream << major asString.
 	minor ifNil: [ ^self ].
@@ -164,12 +166,12 @@ SemanticVersion >> printOn: aStream [
 	suffix ifNotNil: [ aStream << '-' << suffix ]
 ]
 
-{ #category : #ston }
+{ #category : 'ston' }
 SemanticVersion >> stonOn: stonWriter [
 	stonWriter writeString: self asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SemanticVersion >> suffix [
 	^ suffix
 ]

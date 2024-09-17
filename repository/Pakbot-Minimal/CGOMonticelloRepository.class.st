@@ -4,46 +4,48 @@ I represent a repository containing source code hosted on a Monticello SCM.
 	self example inspect
 "
 Class {
-	#name : #CGOMonticelloRepository,
-	#superclass : #PBSourceRepository,
-	#category : #'Pakbot-Minimal-Repository'
+	#name : 'CGOMonticelloRepository',
+	#superclass : 'PBSourceRepository',
+	#category : 'Pakbot-Minimal-Repository',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Repository'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 CGOMonticelloRepository class >> example [
 	^ self
 			repositoryUrl: 'http://smalltalkhub.com/mc/demarey/CargoPackageManager/main'
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CGOMonticelloRepository class >> repositoryUrl: aStringOrUrl [
 	^ self basicNew 
 		initializeWithRepositoryUrl: aStringOrUrl;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOMonticelloRepository class >> type [ 
 	^ #monticello
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOMonticelloRepository >> initializeWithRepositoryUrl: aStringOrUrl [
 	repositoryUrl := aStringOrUrl
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOMonticelloRepository >> mcRepository [
 	^ MCRepository fromUrl: repositoryUrl
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 CGOMonticelloRepository >> mcVersionFor: anMCVersionReferenceString [
 	^ self mcRepository
 		versionFrom: anMCVersionReferenceString
 ]
 
-{ #category : #querying }
+{ #category : 'querying' }
 CGOMonticelloRepository >> sourcePackageVersionClass [
 	^ CGOMonticelloHostedPackageVersion 
 ]

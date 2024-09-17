@@ -3,15 +3,17 @@ I act as a fake project declaring dependencies for one or many project that have
 It allows to use the same dependency conflict mechanism for top level project conflicts.
 "
 Class {
-	#name : #PBProjectToInstall,
-	#superclass : #Object,
+	#name : 'PBProjectToInstall',
+	#superclass : 'Object',
 	#instVars : [
 		'dependencies'
 	],
-	#category : #'Pakbot-Minimal-Model'
+	#category : 'Pakbot-Minimal-Model',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBProjectToInstall class >> withProjects: aListOfProjects [ 
 	
 	^ self new
@@ -19,13 +21,13 @@ PBProjectToInstall class >> withProjects: aListOfProjects [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectToInstall >> dependencies [
 	
 	^ dependencies
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBProjectToInstall >> projects: aListOfProjects [
  
 	dependencies := aListOfProjects collect: [ :project | 

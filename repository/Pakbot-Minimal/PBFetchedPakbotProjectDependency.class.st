@@ -3,15 +3,17 @@ I am a dependency on a project that has already been fetched.
 By so, wehn trying to resolve me, I just return the already fetched project.
 "
 Class {
-	#name : #PBFetchedPakbotProjectDependency,
-	#superclass : #PBPakbotProjectDependency,
+	#name : 'PBFetchedPakbotProjectDependency',
+	#superclass : 'PBPakbotProjectDependency',
 	#instVars : [
 		'dependencyProject'
 	],
-	#category : #'Pakbot-Minimal-Dependencies'
+	#category : 'Pakbot-Minimal-Dependencies',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Dependencies'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBFetchedPakbotProjectDependency class >> for: aPBProjectVersion fetchedDependency: fetchedProject [
 
 	^ self new
@@ -20,26 +22,26 @@ PBFetchedPakbotProjectDependency class >> for: aPBProjectVersion fetchedDependen
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBFetchedPakbotProjectDependency >> dependencyProject [
 
 	^ dependencyProject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBFetchedPakbotProjectDependency >> dependencyProject: aPBProjectVersion [ 
 
 	dependencyProject := aPBProjectVersion.
 	name := dependencyProject name.
 ]
 
-{ #category : #displaying }
+{ #category : 'displaying' }
 PBFetchedPakbotProjectDependency >> displayStringOn: aStream [
 	
 	aStream << self printString
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBFetchedPakbotProjectDependency >> resolveIn: aPBResolvedProject solver: aPBSolver [
 
 	^ aPBResolvedProject addResolvedDependency: 
@@ -48,7 +50,7 @@ PBFetchedPakbotProjectDependency >> resolveIn: aPBResolvedProject solver: aPBSol
 			 resolution: (self resolvedProjectWithSolver: aPBSolver))
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBFetchedPakbotProjectDependency >> resolvedProjectWithSolver: aPBSolver [
 	
 	^ aPBSolver solveProject: dependencyProject loads: self packagesToLoad

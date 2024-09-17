@@ -5,45 +5,47 @@ I have a default instance initialized at image startup coming with predefined va
 - the Smalltalk family and  version
 "
 Class {
-	#name : #PBPlatformAttributes,
-	#superclass : #Object,
+	#name : 'PBPlatformAttributes',
+	#superclass : 'Object',
 	#instVars : [
 		'attributes'
 	],
-	#category : #'Pakbot-Minimal-Dependencies'
+	#category : 'Pakbot-Minimal-Dependencies',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Dependencies'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPlatformAttributes class >> OSKey [
 	^ 'OperatingSystem'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPlatformAttributes class >> SmalltalkKey [
 	^ 'Smalltalk'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPlatformAttributes class >> macOSKey [
 	^ self OSKey , self separator , 'mac OS'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPlatformAttributes class >> separator [
 	^ '::'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPlatformAttributes class >> unixOSKey [
 	^ self OSKey , self separator , 'Unix'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPlatformAttributes class >> windowsOSKey [
 	^ self OSKey , self separator , 'Windows'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPlatformAttributes >> computeOperatingSystemValue [
 	| osPlatform |
 	osPlatform := OSPlatform current.
@@ -58,7 +60,7 @@ PBPlatformAttributes >> computeOperatingSystemValue [
 			<< osPlatform version ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPlatformAttributes >> computeSmalltalkValue [
 	^ String streamContents: [ :stream |
 		stream 
@@ -69,19 +71,19 @@ PBPlatformAttributes >> computeSmalltalkValue [
 			<< SystemVersion current dottedMajorMinor ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPlatformAttributes >> initialize [ 
 	attributes := Dictionary 
 		with: self class OSKey -> self computeOperatingSystemValue
 		with: self class SmalltalkKey -> self computeSmalltalkValue.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPlatformAttributes >> operatingSystem [
 	^ attributes at: self class OSKey
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBPlatformAttributes >> satisfies: aPBPlatformAttributeRequirement [ 
 
 	^ attributes 
@@ -92,7 +94,7 @@ PBPlatformAttributes >> satisfies: aPBPlatformAttributeRequirement [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPlatformAttributes >> smalltalk [
 	^ attributes at: self class SmalltalkKey 
 ]

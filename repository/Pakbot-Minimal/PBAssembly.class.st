@@ -2,15 +2,17 @@
 Current version of the package assembly metadata. As a PackageVersion is not editable, it is the only way  to update it.
 "
 Class {
-	#name : #PBAssembly,
-	#superclass : #PBProjectElement,
+	#name : 'PBAssembly',
+	#superclass : 'PBProjectElement',
 	#instVars : [
 		'packages'
 	],
-	#category : #'Pakbot-Minimal-Model'
+	#category : 'Pakbot-Minimal-Model',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 PBAssembly class >> example [
 	| project |
 	
@@ -27,7 +29,7 @@ PBAssembly class >> example [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBAssembly class >> named: aString inProject: aProject [
 
 	^ self basicNew
@@ -36,14 +38,14 @@ PBAssembly class >> named: aString inProject: aProject [
 		
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PBAssembly >> = anAssembly [
 
 	self species = anAssembly species ifFalse: [ ^ false ].
 	^ self name = anAssembly name
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PBAssembly >> addPackage: aPackage [
 	
 	self doAddPackage: aPackage.
@@ -51,14 +53,14 @@ PBAssembly >> addPackage: aPackage [
 	^ aPackage
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PBAssembly >> addPackages: aCollection [
 	
 	aCollection do: [ :each | self doAddPackage: each ].
 	self project announceChanged.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssembly >> allPackageNames [
 
 	"returns the list of package unit names of the assembly recursively, flattening package assemblies"
@@ -66,7 +68,7 @@ PBAssembly >> allPackageNames [
 	^ self allPackages collect: [ :each | each name ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssembly >> allPackageUnits [
 	" returns the list of package units part of the assembly recursively, flattening package assemblies"
 	
@@ -77,7 +79,7 @@ PBAssembly >> allPackageUnits [
 	^ units
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssembly >> allPackages [
 
 	" returns the list of package units of the assembly recursively, flattening package assemblies"
@@ -85,19 +87,19 @@ PBAssembly >> allPackages [
 	^ self packages flatCollect: #allPackages as: Set
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBAssembly >> asSerializedAssembly [
 	"VCS version of the unit metadata (i.e. minimum metadata)"
 	^ PBSerializedAssembly from: self
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBAssembly >> asSerializedPackage [
 	"Package repository version of the assembly metadata (i.e. full metadata)"
 	^ PBSerializedAssembly from: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssembly >> assemblies [
 
 	self deprecated: 'should be removed'.
@@ -105,13 +107,13 @@ PBAssembly >> assemblies [
 	^ self partsFromRegistry: [ :each | each notNil and: [ each isAssembly ] ]
 ]
 
-{ #category : #packages }
+{ #category : 'packages' }
 PBAssembly >> createPackageNamed: aString [ 
 	
 	^ self addPackage: (self project createPackageNamed: aString)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssembly >> dependencies [
 	"for polymorphism with Package Unit"
 	^ (self allPackages collect: #asPackageDependency as: Array)
@@ -119,7 +121,7 @@ PBAssembly >> dependencies [
 		yourself
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PBAssembly >> doAddPackage: aPackage [
 	
 	"Low level. Modifies the assembly without announcing changes.
@@ -130,27 +132,27 @@ PBAssembly >> doAddPackage: aPackage [
 	^ packages add: aPackage
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PBAssembly >> hash [
 
 	^ self name hash
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBAssembly >> initializeFromPackageVersion: aCGOPackageVersion [
 	self initialize.
 	packages := aCGOPackageVersion dependencies collect: #copy as: OrderedCollection.
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBAssembly >> initializeFromVcsSerializedPackage: aCGOVcsSerializedPackageAssembly [ 
 	"The project will be set later by CGOVcsSerializedProject>>#flushIn:"
 	super initializeWithPackageName: aCGOVcsSerializedPackageAssembly name andProject: nil.
 	packages := self deserializedDependencies: aCGOVcsSerializedPackageAssembly parts.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBAssembly >> initializeWithPackageName: aPackageName andProject: aCargoProject [
 	
 	name := aPackageName.
@@ -158,23 +160,23 @@ PBAssembly >> initializeWithPackageName: aPackageName andProject: aCargoProject 
 	packages := OrderedCollection new.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBAssembly >> isAssembly [
 	^ true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBAssembly >> isEmpty [
 	^ self parts isEmpty
 ]
 
-{ #category : #'querying - installed' }
+{ #category : 'querying - installed' }
 PBAssembly >> isInstalled [
 	
 	^ self packages allSatisfy: #isInstalled
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBAssembly >> isLoadable [
 	"We do not load assemblies because assembly parts and dependencies
 	 are already part of the resolution."
@@ -182,7 +184,7 @@ PBAssembly >> isLoadable [
 	^ false
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBAssembly >> load [
 	"Only loads packages part of the assembly"
 	
@@ -191,49 +193,49 @@ PBAssembly >> load [
 		load 
 ]
 
-{ #category : #'support-ui' }
+{ #category : 'support-ui' }
 PBAssembly >> packageCandidates [
 	
 	"Return the possible packages that can be added to this assembly"
 	^ self project packages difference: self packages
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssembly >> packageNames [
 	^ self packages collect: #name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssembly >> packageUnits [
 	self deprecated: 'should be removed'.
 	^ self partsFromRegistry: [ :each | each notNil and: [ each isUnit ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssembly >> packages [
 
 	^ packages
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBAssembly >> packages: aListOfPackagesOrAssemblies [
 
 	packages := aListOfPackagesOrAssemblies
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssembly >> parts [
 	self deprecated: 'use #packages instead'.
 	^ packages
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBAssembly >> parts: aListOfCGOPackageDependency [
 	self deprecated: 'use #packages instead'.
 	packages := aListOfCGOPackageDependency
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBAssembly >> partsFromRegistry: filterBlock [
 	^ packages
 		collect: [ :each | 
@@ -243,30 +245,30 @@ PBAssembly >> partsFromRegistry: filterBlock [
 		thenSelect: filterBlock
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PBAssembly >> remove [
 	
 	project removeAssembly: self
 ]
 
-{ #category : #packages }
+{ #category : 'packages' }
 PBAssembly >> removePackage: aPBPackage [ 
 	
 	packages remove: aPBPackage
 ]
 
-{ #category : #package }
+{ #category : 'package' }
 PBAssembly >> removePackage: aPBPackage ifAbsent: aBlockClosure [
 	
 	packages remove: aPBPackage ifAbsent: aBlockClosure
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBAssembly >> removePart: aCGOPackageDependency [ 
 	packages remove: aCGOPackageDependency
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBAssembly >> resolve [
 	
 	^ self project registry newSolver solvePackage: self

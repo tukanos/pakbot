@@ -2,16 +2,18 @@
 This class contains test set up and tear down to use git credentials to interact with predefined github project.
 "
 Class {
-	#name : #PBTestCaseWithGitCredentials,
-	#superclass : #TestCase,
+	#name : 'PBTestCaseWithGitCredentials',
+	#superclass : 'TestCase',
 	#instVars : [
 		'oldRemoteTypeSelector',
 		'iceCredentialsProviderBackup'
 	],
-	#category : #'Pakbot-Tests-Repository'
+	#category : 'Pakbot-Tests-Repository',
+	#package : 'Pakbot-Tests',
+	#tag : 'Repository'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PBTestCaseWithGitCredentials >> setUp [
 	super setUp.
 	
@@ -31,7 +33,7 @@ PBTestCaseWithGitCredentials >> setUp [
 	IceCredentialsProvider providerType: IceNonInteractiveCredentialsProvider.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBTestCaseWithGitCredentials >> tearDown [
 	IceCredentialsProvider providerType: iceCredentialsProviderBackup.
 	Iceberg remoteTypeSelector: oldRemoteTypeSelector.

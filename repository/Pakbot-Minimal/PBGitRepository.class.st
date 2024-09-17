@@ -10,23 +10,25 @@ I hold a reference to an Iceberg repository to use it for some git operations.
 	self example inspect
 "
 Class {
-	#name : #PBGitRepository,
-	#superclass : #PBSourceRepository,
+	#name : 'PBGitRepository',
+	#superclass : 'PBSourceRepository',
 	#instVars : [
 		'iceRepositoryCreator',
 		'iceRepository',
 		'version',
 		'subdirectory'
 	],
-	#category : #'Pakbot-Minimal-Repository'
+	#category : 'Pakbot-Minimal-Repository',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Repository'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 PBGitRepository class >> example [
 	^ PBGitRepositoryCreator example
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBGitRepository class >> fromDictionary: aDictionary [
 	^ PBGitRepositoryCreator new
 		url: (aDictionary at: #repositoryUrl);
@@ -34,7 +36,7 @@ PBGitRepository class >> fromDictionary: aDictionary [
 		create.
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBGitRepository class >> newLocalRepositoryIn: aFileReference [
 
 	^ PBGitRepositoryCreator new
@@ -43,7 +45,7 @@ PBGitRepository class >> newLocalRepositoryIn: aFileReference [
 		createAndClone
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBGitRepository class >> repository: anIceLibgitRepository [ 
 	
 	^ self new
@@ -51,43 +53,43 @@ PBGitRepository class >> repository: anIceLibgitRepository [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitRepository class >> type [ 
 	^ #git
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBGitRepository class >> url: anUrlOrString repository: anIceRepository [
 	^ self url: anUrlOrString repository: anIceRepository version: nil
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBGitRepository class >> url: anUrlOrString repository: anIceRepository version: aCommitishString [
 	^ self basicNew 
 		initializeWithUrl: anUrlOrString repository: anIceRepository andVersion: aCommitishString;
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBGitRepository class >> url: anUrlOrString repositoryCreator: anIceRepositoryCreator version: aCommitishString [
 	^ self basicNew 
 		initializeWithUrl: anUrlOrString repositoryCreator: anIceRepositoryCreator andVersion: aCommitishString;
 		yourself
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBGitRepository >> addPackageNamed: aPackageName [
 	^ self workingCopy addPackageNamed: aPackageName
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 PBGitRepository >> baselines [
 	^ (self workingCopy packages
 		select: [ :each | each name beginsWith: 'BaselineOf' ])
 		sorted: [ :a :b | a name < b name ].
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBGitRepository >> checkoutVersionIfSpecified [
 	| commit |
 	version isEmptyOrNil ifTrue: [ ^ self ].
@@ -99,22 +101,22 @@ PBGitRepository >> checkoutVersionIfSpecified [
 	commit checkout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitRepository >> codeDirectoryRelativePath [
 	^ self subdirectory ifNotEmpty: [ :subdirectoryName | subdirectoryName , '/' ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PBGitRepository >> createTag: aString [ 
 	self iceRepository createTag: aString.
 ]
 
-{ #category : #querying }
+{ #category : 'querying' }
 PBGitRepository >> currentCommitId [
 	^ self iceRepository headCommit id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitRepository >> description [
 	
 	iceRepositoryCreator ifNotNil: [ ^ iceRepositoryCreator remote url ].
@@ -124,7 +126,7 @@ PBGitRepository >> description [
 		ifNotEmpty: [ :remotes | remotes anyOne url ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PBGitRepository >> ensureCloned [
 	self isCloned
 		ifFalse: [ iceRepository := iceRepositoryCreator createRepository.
@@ -139,14 +141,14 @@ PBGitRepository >> ensureCloned [
 	^ self
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBGitRepository >> ensureIcePackageNamed: aPackageName [
 	^ [ self iceRepository packageNamed: aPackageName ]
 		on: NotFound 
 		do: [ self iceRepository addPackageNamed: aPackageName ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBGitRepository >> ensureProject: aPBProjectVersion [ 
 	
 	iceRepository ifNil: [ ^ self ]. "No iceberg repository yet."
@@ -156,13 +158,13 @@ PBGitRepository >> ensureProject: aPBProjectVersion [
 	on: PBProjectMetadataNotFound do: [ "ignore. No pakbot metadata" ].
 ]
 
-{ #category : #fetching }
+{ #category : 'fetching' }
 PBGitRepository >> fetchHeadVersion [
 	
 	^ self fetchVersion: ''
 ]
 
-{ #category : #fetching }
+{ #category : 'fetching' }
 PBGitRepository >> fetchVersion: aString [
 	| commitish project |
 	commitish := aString
@@ -174,12 +176,12 @@ PBGitRepository >> fetchVersion: aString [
 	^ project
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 PBGitRepository >> hasBaseline [
 	^ self baselines size > 0
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBGitRepository >> hasTag: aSemanticVersion [
 
 	| versionString |
@@ -188,70 +190,70 @@ PBGitRepository >> hasTag: aSemanticVersion [
 		or: [ self iceRepository hasTagNamed: 'v', versionString ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBGitRepository >> hasTagNamed: aString [ 
 	^ self iceRepository hasTagNamed: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitRepository >> headCommit [
 	^ self iceRepository headCommit
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitRepository >> iceRepository [
 	^ iceRepository ifNil: [ self ensureCloned. iceRepository ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PBGitRepository >> iceRepositoryCreator [ 
 	^ iceRepositoryCreator
 ]
 
-{ #category : #querying }
+{ #category : 'querying' }
 PBGitRepository >> iceSavedPackageVersionFor: packageName [
 	
 	^ self workingCopy versionFor: (self workingCopy packageNamed: packageName)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGitRepository >> initialize [
 	version := nil
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGitRepository >> initializeWithUrl: anUrlOrString repository: anIceRepository [
 	self initialize.
 	repositoryUrl := anUrlOrString.
 	iceRepository := anIceRepository
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGitRepository >> initializeWithUrl: anUrlOrString repository: anIceRepository andVersion: aCommitishString [
 	self initializeWithUrl: anUrlOrString repository: anIceRepository.
 	version := aCommitishString
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGitRepository >> initializeWithUrl: anUrlOrString repositoryCreator: anIceRepositoryCreator [
 	self initialize.
 	repositoryUrl := anUrlOrString.
 	iceRepositoryCreator := anIceRepositoryCreator
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGitRepository >> initializeWithUrl: anUrlOrString repositoryCreator: anIceRepositoryCreator andVersion: aCommitishString [
 	self initializeWithUrl: anUrlOrString repositoryCreator: anIceRepositoryCreator.
 	version := aCommitishString
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBGitRepository >> isBranch: commitish [
 	^ self iceRepository allBranches
 		anySatisfy: [ :branch | branch name = commitish or: [ branch name endsWith: '/' , commitish ] ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBGitRepository >> isCloned [
 	self isIceRepositoryValid
 		ifTrue: [ ^ true ].
@@ -261,52 +263,52 @@ PBGitRepository >> isCloned [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBGitRepository >> isIceRepositoryValid [
 	^ iceRepository isNotNil	and: [ iceRepository isValid ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBGitRepository >> isMarried [
 	^ iceRepository project isPakbotProject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBGitRepository >> isRepositoryAlreadyCloned [
 	^ iceRepositoryCreator location isNotNil
 		and: [ iceRepositoryCreator location exists
 				and: [ iceRepositoryCreator location hasChildren ] ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBGitRepository >> isRepositoryAlreadyClonedInDefaultLocation [
 	^ iceRepositoryCreator location isNil
 		and: [ iceRepositoryCreator defaultLocation exists
 				and: [ iceRepositoryCreator defaultLocation hasChildren ] ]
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBGitRepository >> loadPackageNamed: aPackageName [
 	self workingCopy loadPackageNamed: aPackageName
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBGitRepository >> loadPackagesNamed: aListOfPackageName [
 	self workingCopy loadPackagesNamed: aListOfPackageName
 ]
 
-{ #category : #querying }
+{ #category : 'querying' }
 PBGitRepository >> mcVersionFor: aPBPackage [
 	^ (self iceSavedPackageVersionFor: aPBPackage name) mcVersion
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBGitRepository >> metadataStringFor: aPackageUnit [
 	^ (PBPackageVersionWriterV1 toStringPretty: aPackageUnit asPackageVersion asSerializablePackageVersion) withInternetLineEndings
 
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBGitRepository >> pakbotProjectFromMetacelloBaseline [
 
 	| baselinePackage baseline project |
@@ -320,7 +322,7 @@ PBGitRepository >> pakbotProjectFromMetacelloBaseline [
 	^ project
 ]
 
-{ #category : #fetching }
+{ #category : 'fetching' }
 PBGitRepository >> project [
 	| iceProject |
 	iceProject := self iceRepository project.
@@ -331,7 +333,7 @@ PBGitRepository >> project [
 						do: [ self pakbotProjectFromMetacelloBaseline ifNil: [ PBProjectMetadataNotFound signal ] ] ]
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 PBGitRepository >> project: aPBIcebergProject [
 	"Used to set the Pakbot Project when creating a new project."
 	self workingCopy basicSetProject: aPBIcebergProject.
@@ -339,24 +341,24 @@ PBGitRepository >> project: aPBIcebergProject [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitRepository >> projectMetadataPath [
 	^ self codeDirectoryRelativePath , self projectMetadataFileName
 ]
 
-{ #category : #fetching }
+{ #category : 'fetching' }
 PBGitRepository >> projectMetadataStonString [
 	
 	^ (self iceRepository headCommit fileSystem / self projectMetadataPath) contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitRepository >> repository: anIceLibgitRepository [ 
 	
 	iceRepository := anIceLibgitRepository
 ]
 
-{ #category : #saving }
+{ #category : 'saving' }
 PBGitRepository >> savePackageUnit: packageUnit withMessage: commitMessage [
 	| iceSavedPackage newMcVersion |
 	iceSavedPackage := self ensureIcePackageNamed: packageUnit name.
@@ -369,25 +371,25 @@ PBGitRepository >> savePackageUnit: packageUnit withMessage: commitMessage [
 	^ newMcVersion
 ]
 
-{ #category : #saving }
+{ #category : 'saving' }
 PBGitRepository >> savePackageUnits: packageUnits withMessage: commitMessage [
 	packageUnits 
 		do: [ :unit |
 				self savePackageUnit: unit withMessage: commitMessage ]
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBGitRepository >> setIcebergProject: anIceAbstractProject [
 	
 	self workingCopy basicSetProject: anIceAbstractProject
 ]
 
-{ #category : #querying }
+{ #category : 'querying' }
 PBGitRepository >> sourcePackageVersionClass [
 	^ CGOGitHostedPackageVersion
 ]
 
-{ #category : #serialization }
+{ #category : 'serialization' }
 PBGitRepository >> stonOn: stonWriter [
 	| url  dict |
 	url := PBGitRepositoryCreator urlWithScheme: repositoryUrl.
@@ -398,29 +400,29 @@ PBGitRepository >> stonOn: stonWriter [
 	stonWriter writeMap: dict
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitRepository >> subdirectory [
 	^ self iceRepository subdirectory
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitRepository >> version [
 	^ version
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitRepository >> version: aString [ 
 	version := aString
 ]
 
-{ #category : #notifying }
+{ #category : 'notifying' }
 PBGitRepository >> versionLoaded: packageName [
 	self flag: 'TODO: check if I need to notify Iceberg that a package has been loaded. See IceWorkingCopy>>loadPackagesNamed: aCollection fromCommit: aCommit'
 	"iceRepository versionLoaded: 
 		(self iceSavedPackageVersionFor: packageName)"
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBGitRepository >> workingCopy [
 
 	^ self iceRepository workingCopy

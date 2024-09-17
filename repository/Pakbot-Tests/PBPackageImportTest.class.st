@@ -1,14 +1,16 @@
 Class {
-	#name : #PBPackageImportTest,
-	#superclass : #PBTest,
+	#name : 'PBPackageImportTest',
+	#superclass : 'PBTest',
 	#instVars : [
 		'project',
 		'systemPackageOrganizer'
 	],
-	#category : #'Pakbot-Tests-Model'
+	#category : 'Pakbot-Tests-Model',
+	#package : 'Pakbot-Tests',
+	#tag : 'Model'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageImportTest >> setUp [
 
 	super setUp.
@@ -19,7 +21,7 @@ PBPackageImportTest >> setUp [
 	registry systemPackageOrganizer: systemPackageOrganizer.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageImportTest >> testImportAlreadyImportedPackageDoesNotImportItTwice [
 
 	| packageName |
@@ -36,7 +38,7 @@ PBPackageImportTest >> testImportAlreadyImportedPackageDoesNotImportItTwice [
 	self assert: project packageUnits size equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageImportTest >> testImportAlreadyImportedPackageRaisesException [
 
 	| packageName |
@@ -49,7 +51,7 @@ PBPackageImportTest >> testImportAlreadyImportedPackageRaisesException [
 		raise: PBPackageAlreadyRegistered
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageImportTest >> testImportExistingPackageInSystemSucceeds [
 
 	| packageName |
@@ -60,7 +62,7 @@ PBPackageImportTest >> testImportExistingPackageInSystemSucceeds [
 	self assert: (project hasPackageNamed: packageName)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageImportTest >> testImportNonExistingPackageInSystemRaisesException [
 
 	| packageName |

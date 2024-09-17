@@ -2,12 +2,14 @@
 I represent a dependency to a project managed by a Metacello ConfigurationOf.
 "
 Class {
-	#name : #PBMetacelloConfigurationProjectDependency,
-	#superclass : #PBMetacelloProjectDependency,
-	#category : #'Pakbot-Minimal-Dependencies'
+	#name : 'PBMetacelloConfigurationProjectDependency',
+	#superclass : 'PBMetacelloProjectDependency',
+	#category : 'Pakbot-Minimal-Dependencies',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Dependencies'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 PBMetacelloConfigurationProjectDependency class >> example [
 	^ self
 		name: 'JSON'
@@ -15,7 +17,7 @@ PBMetacelloConfigurationProjectDependency class >> example [
 		version: #stable
 ]
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PBMetacelloConfigurationProjectDependency class >> fromMetacelloSpec: aMetacelloSpec [ 
 	^ self
 		name: aMetacelloSpec name
@@ -23,22 +25,22 @@ PBMetacelloConfigurationProjectDependency class >> fromMetacelloSpec: aMetacello
 		version: aMetacelloSpec versionString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloConfigurationProjectDependency class >> iconName [
 	^ #komitterSqueakSourceRemote
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloConfigurationProjectDependency class >> projectClass [
 	^ PBMetacelloConfigurationProject 
 ]
 
-{ #category : #'ston-core' }
+{ #category : 'ston-core' }
 PBMetacelloConfigurationProjectDependency class >> stonName [
 	^ #MetacelloConfigurationProject
 ]
 
-{ #category : #'querying - installed' }
+{ #category : 'querying - installed' }
 PBMetacelloConfigurationProjectDependency >> isInstalledInMetacello [
 
 	| conf |
@@ -56,22 +58,22 @@ PBMetacelloConfigurationProjectDependency >> isInstalledInMetacello [
 					and: [ conf configurationProjectSpec loads isEmpty ] ] ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBMetacelloConfigurationProjectDependency >> isInstalledSymbolicVersion: aMetacelloProjectRegistration [
 	^ (aMetacelloProjectRegistration configurationProjectSpec projectClass project version: version) versionString = aMetacelloProjectRegistration version
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBMetacelloConfigurationProjectDependency >> isMetacelloConfiguration [
 	^ true
 ]
 
-{ #category : #'querying - installed' }
+{ #category : 'querying - installed' }
 PBMetacelloConfigurationProjectDependency >> satisfyConstraints: aString [ 
 	^ version = aString
 ]
 
-{ #category : #ston }
+{ #category : 'ston' }
 PBMetacelloConfigurationProjectDependency >> stonMap [
 	^ OrderedDictionary 
 		with: 	#configuration -> name

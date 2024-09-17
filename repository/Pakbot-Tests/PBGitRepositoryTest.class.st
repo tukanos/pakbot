@@ -1,15 +1,17 @@
 Class {
-	#name : #PBGitRepositoryTest,
-	#superclass : #PBGitCreationTest,
-	#category : #'Pakbot-Tests-Repository'
+	#name : 'PBGitRepositoryTest',
+	#superclass : 'PBGitCreationTest',
+	#category : 'Pakbot-Tests-Repository',
+	#package : 'Pakbot-Tests',
+	#tag : 'Repository'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitRepositoryTest class >> defaultTimeLimit [ 
 	^10 minutes
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 PBGitRepositoryTest >> assertSrcPackageVersion: srcPackageVersion hasSameUrlAs: anotherPackageVersion [
 	| repoUrl expectedUrl |
 	repoUrl := ((srcPackageVersion instVarNamed: 'repository')
@@ -20,7 +22,7 @@ PBGitRepositoryTest >> assertSrcPackageVersion: srcPackageVersion hasSameUrlAs: 
 	self assert: repoUrl	equals: expectedUrl
 ]
 
-{ #category : #'tests - test data' }
+{ #category : 'tests - test data' }
 PBGitRepositoryTest >> pakbotTestExampleMasterCloned [
 	^ PBGitRepositoryCreator new
 		url: 'https://github.com/pharo-pkg/PakbotTestExample.git';
@@ -29,7 +31,7 @@ PBGitRepositoryTest >> pakbotTestExampleMasterCloned [
 		createAndClone
 ]
 
-{ #category : #'tests - test data' }
+{ #category : 'tests - test data' }
 PBGitRepositoryTest >> pharoCounterMaster [
 	^ PBGitRepositoryCreator new
 		url: 'https://github.com/demarey/pharo-counter.git';
@@ -39,14 +41,14 @@ PBGitRepositoryTest >> pharoCounterMaster [
 		
 ]
 
-{ #category : #'tests - test data' }
+{ #category : 'tests - test data' }
 PBGitRepositoryTest >> pharoCounterMasterCloned [
 	^ self pharoCounterMaster 
 		ensureCloned;
 		yourself
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryTest >> testCanBeDeserialized [
 	| repositoryStonString deserializedRepository dict |
 	repository := self pharoCounterMasterCloned.
@@ -64,7 +66,7 @@ PBGitRepositoryTest >> testCanBeDeserialized [
 		equals: repository version.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryTest >> testCanBeSerializedInSton [
 	| repositoryStonString |
 	repository := self pharoCounterMasterCloned.
@@ -79,7 +81,7 @@ PBGitRepositoryTest >> testCanBeSerializedInSton [
 }'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryTest >> testCanDetectBaselines [
 	
 	| baselines |
@@ -96,7 +98,7 @@ PBGitRepositoryTest >> testCanDetectBaselines [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryTest >> testCanDetectGitRepositoryCloned [
 	| location |
 	location := self iceRepositoryLocation.
@@ -114,7 +116,7 @@ PBGitRepositoryTest >> testCanDetectGitRepositoryCloned [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryTest >> testCanDetectGitRepositoryNotClonedWhenMissingLocation [
 
 	repository := self pharoCounterMaster.
@@ -122,7 +124,7 @@ PBGitRepositoryTest >> testCanDetectGitRepositoryNotClonedWhenMissingLocation [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryTest >> testCanEnsureRepositoryClonedAtBranchOriginHeadWhenRepositoryClonedInSameBranchAndDetachedHead [
 	| iceRepository location |
 	<expectedFailure>
@@ -149,7 +151,7 @@ PBGitRepositoryTest >> testCanEnsureRepositoryClonedAtBranchOriginHeadWhenReposi
 		equals: 'cfa408b472bc054a3a6e5deca7fde122d81ca125'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryTest >> testCanEnsureRepositoryClonedAtGivenBranch [
 	| location |
 
@@ -166,7 +168,7 @@ PBGitRepositoryTest >> testCanEnsureRepositoryClonedAtGivenBranch [
 		equals: '26c4d6e2b755891e7bacdb3e0df0c8df4e09c22e'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryTest >> testCanEnsureRepositoryClonedWhenRepositoryNotYetCloned [
 
 	repository := PBGitRepositoryCreator new
@@ -184,7 +186,7 @@ PBGitRepositoryTest >> testCanEnsureRepositoryClonedWhenRepositoryNotYetCloned [
 		equals: 'master'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryTest >> testCanGetMCVersionWhenAPackageProvided [
 	| result |
 
@@ -193,7 +195,7 @@ PBGitRepositoryTest >> testCanGetMCVersionWhenAPackageProvided [
 	self assert: (result isKindOf: MCVersion)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryTest >> testCanGetMetadataFromGitRepository [
 	| project |
 	repository := self pharoCounterMasterCloned.
@@ -220,7 +222,7 @@ PBGitRepositoryTest >> testCanGetMetadataFromGitRepository [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryTest >> testCanGetMetadataFromGitRepositoryWhenSourcesNotInRootFolder [
 	| project |
 	repository := PBGitRepositoryCreator new
@@ -242,7 +244,7 @@ PBGitRepositoryTest >> testCanGetMetadataFromGitRepositoryWhenSourcesNotInRootFo
 		hasSameElements: #('Counter-Core' 'Counter-Tests').
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryTest >> testErrorRaisedWhenRepositoryUrlIsWrong [
 	self 
 		should: [ IceRepositoryCreator new 
@@ -253,7 +255,7 @@ PBGitRepositoryTest >> testErrorRaisedWhenRepositoryUrlIsWrong [
 		raise: IceError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitRepositoryTest >> testGetPackageMetadataNotFoundErrorWhenMetadataFileAbsent [
 
 	repository := PBGitRepositoryCreator new

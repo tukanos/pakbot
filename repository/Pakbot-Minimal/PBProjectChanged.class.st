@@ -3,7 +3,9 @@ I am an announcement that is announced when a project has changed.
 It could be a package addition, removal, a new dependecy, etc.
 "
 Class {
-	#name : #PBProjectChanged,
-	#superclass : #PBProjectAnnouncement,
-	#category : #'Pakbot-Minimal-Announcements'
+	#name : 'PBProjectChanged',
+	#superclass : 'PBProjectAnnouncement',
+	#category : 'Pakbot-Minimal-Announcements',
+	#package : 'Pakbot-Minimal',
+	#tag : 'Announcements'
 }
