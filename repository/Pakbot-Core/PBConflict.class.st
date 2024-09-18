@@ -8,16 +8,18 @@ You can see confliciting objects with #dependencies.
 The conflict can be solved by using selectedResolution: and provide one of the possible resolutions.
 "
 Class {
-	#name : #PBConflict,
-	#superclass : #Object,
+	#name : 'PBConflict',
+	#superclass : 'Object',
 	#instVars : [
 		'dependencies',
 		'selectedResolution'
 	],
-	#category : #'Pakbot-Core-Solver'
+	#category : 'Pakbot-Core-Solver',
+	#package : 'Pakbot-Core',
+	#tag : 'Solver'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBConflict class >> onConflictingDependencies: aCollection [ 
 	
 	^ self new
@@ -25,59 +27,59 @@ PBConflict class >> onConflictingDependencies: aCollection [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflict >> conflictingDependencies [
 	^ dependencies 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflict >> conflictingDependencies: aCollection [ 
 	dependencies := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflict >> dependencies [
 	^ dependencies
 ]
 
-{ #category : #finding }
+{ #category : 'finding' }
 PBConflict >> findResolution: aSemanticVersion [
 
 	^ self possibleResolutions detect: [ :each | each version = aSemanticVersion ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBConflict >> isResolved [
 	
 	^ selectedResolution isNotNil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflict >> possibleResolutions [
 
 	^ (dependencies collect: [ :dependency | 
 		   dependency originalResolution ]) asOrderedCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflict >> possibleVersions [
 
 	^ self possibleResolutions 
 		collect: [ :each | each version ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflict >> projectName [
 	^ dependencies anyOne projectName
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBConflict >> resolutionFor: aDependency [ 
 	
 	^ (dependencies detect: [ :each | each dependency = aDependency ]) resolution
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 PBConflict >> resolveWithAlreadyInstalled [
 	| dependency |
 	dependency := dependencies detect: #isInstalledDependency.
@@ -86,13 +88,13 @@ PBConflict >> resolveWithAlreadyInstalled [
 
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 PBConflict >> resolveWithSelected [
 	selectedResolution
 		ifNotNil: [ dependencies do: [ :each | each resolveWith: selectedResolution ] ]
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 PBConflict >> selectResolution: aResolvedProject [
 	aResolvedProject ifNil: [ ^ self ].
 
@@ -100,13 +102,13 @@ PBConflict >> selectResolution: aResolvedProject [
 	self resolveWithSelected.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflict >> selectedResolution [
 
 	^ selectedResolution
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 PBConflict >> selectedResolution: aPBResolvedProject [ 
 	selectedResolution := aPBResolvedProject
 ]

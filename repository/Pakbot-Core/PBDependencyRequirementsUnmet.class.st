@@ -2,7 +2,9 @@
 Error raised when a package does not fit platform requirements.
 "
 Class {
-	#name : #PBDependencyRequirementsUnmet,
-	#superclass : #PBError,
-	#category : #'Pakbot-Core-Solver'
+	#name : 'PBDependencyRequirementsUnmet',
+	#superclass : 'PBError',
+	#category : 'Pakbot-Core-Solver',
+	#package : 'Pakbot-Core',
+	#tag : 'Solver'
 }

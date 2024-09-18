@@ -3,16 +3,18 @@ This solver is in charge of the dependencies resolution.
 It goes through all transitive dependencies and tries to find a solution matching all specifications / requirements. If a package is alaready present in the installed package list, then the package is skipped for the resolution.
 "
 Class {
-	#name : #PBSolver,
-	#superclass : #Object,
+	#name : 'PBSolver',
+	#superclass : 'Object',
 	#instVars : [
 		'registry',
 		'platformAttributes'
 	],
-	#category : #'Pakbot-Core-Solver'
+	#category : 'Pakbot-Core-Solver',
+	#package : 'Pakbot-Core',
+	#tag : 'Solver'
 }
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBSolver >> checkConflictsOf: resolvedProject [
 	| dependencies |
 	dependencies := resolvedProject allResolvedDependencies.
@@ -23,23 +25,23 @@ PBSolver >> checkConflictsOf: resolvedProject [
 				checkConflictsWithRegistry: self registry ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSolver >> platformAttributes [
 	^ platformAttributes ifNil: [ PBPlatformAttributes new ]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBSolver >> registry [
 
 	^ registry
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSolver >> registry: aRegistry [ 
 	registry := aRegistry
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBSolver >> solveDependenciesOf: aPBLoadableElement in: aPBResolvedProject [
 
 	aPBLoadableElement dependencies
@@ -50,7 +52,7 @@ PBSolver >> solveDependenciesOf: aPBLoadableElement in: aPBResolvedProject [
 	^ aPBResolvedProject
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBSolver >> solvePackage: aPBPackage [ 
 	| resolvedProject |
 
@@ -60,13 +62,13 @@ PBSolver >> solvePackage: aPBPackage [
 	^ self solveDependenciesOf: aPBPackage in: resolvedProject
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBSolver >> solveProject: aProject [
 
 	^ self solveProject: aProject loads: #()
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBSolver >> solveProject: aProject loads: aListOfPackageNameToLoad [
 
 	| resolvedProject |

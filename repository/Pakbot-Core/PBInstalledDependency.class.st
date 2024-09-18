@@ -4,44 +4,46 @@ I  am polymorphic with PBResolvedDependency. I  am used by the resolution of con
 See PBConflict
 "
 Class {
-	#name : #PBInstalledDependency,
-	#superclass : #Object,
+	#name : 'PBInstalledDependency',
+	#superclass : 'Object',
 	#instVars : [
 		'resolved'
 	],
-	#category : #'Pakbot-Core-Solver'
+	#category : 'Pakbot-Core-Solver',
+	#package : 'Pakbot-Core',
+	#tag : 'Solver'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBInstalledDependency class >> onResolved: aProject [
 	^ self new
 		resolved: aProject;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBInstalledDependency >> dependency [
 	^ resolved resolvedProjectVersion 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBInstalledDependency >> fullVersionString [
 
 		^ self originalResolution fullVersionString , ', Installed'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBInstalledDependency >> isInstalledDependency [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBInstalledDependency >> originalResolution [
 	^ self resolution
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PBInstalledDependency >> printOn: aStream [
 
 	aStream
@@ -51,23 +53,23 @@ PBInstalledDependency >> printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBInstalledDependency >> projectName [
 	^ resolved name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBInstalledDependency >> resolution [
 	^ resolved
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 PBInstalledDependency >> resolveWith: aResolved [ 
 	
 	"Nothing to do"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBInstalledDependency >> resolved: aResolvedProject [ 
 	resolved := aResolvedProject.
 	aResolvedProject beInstalledInImage.

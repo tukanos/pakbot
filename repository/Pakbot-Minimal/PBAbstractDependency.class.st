@@ -52,12 +52,6 @@ PBAbstractDependency >> isOutOfSync [
 	^ project registry isOutOfSync: self.
 ]
 
-{ #category : 'testing' }
-PBAbstractDependency >> isSolved [
-	
-	self subclassResponsibility
-]
-
 { #category : 'accessing' }
 PBAbstractDependency >> name [
 	self subclassResponsibility 

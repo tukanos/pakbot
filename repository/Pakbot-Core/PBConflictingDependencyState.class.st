@@ -2,15 +2,17 @@
 I represent a dependency conflicting with another project installation or dependency
 "
 Class {
-	#name : #PBConflictingDependencyState,
-	#superclass : #PBAbstractDependencyState,
+	#name : 'PBConflictingDependencyState',
+	#superclass : 'PBAbstractDependencyState',
 	#instVars : [
 		'conflictingDependencies'
 	],
-	#category : #'Pakbot-Core-Solver-Conflicts'
+	#category : 'Pakbot-Core-Solver-Conflicts',
+	#package : 'Pakbot-Core',
+	#tag : 'Solver-Conflicts'
 }
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PBConflictingDependencyState class >> withConflicts: aCollection onDependency: dependency [
 	
 	^ (self onDependency: dependency)
@@ -18,35 +20,35 @@ PBConflictingDependencyState class >> withConflicts: aCollection onDependency: d
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflictingDependencyState >> conflictingDependencies [
 	^ conflictingDependencies
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflictingDependencyState >> conflictingDependencies: aCollection [ 
 	conflictingDependencies := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflictingDependencyState >> conflictingDependenciesFor: aResolvedDependency [
 
 	^ { aResolvedDependency } , conflictingDependencies asOrderedCollection
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBConflictingDependencyState >> isConflictingDependency [
 	
 	^ true
 ]
 
-{ #category : #resolution }
+{ #category : 'resolution' }
 PBConflictingDependencyState >> resolutionFor: aPBResolvedDependency [ 
 	
 	^ aPBResolvedDependency originalResolution
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 PBConflictingDependencyState >> resolveWith: aCGOResolvedProject [ 
 	
 	^ (PBResolvedConflictDependencyState onDependency: dependency)
@@ -55,7 +57,7 @@ PBConflictingDependencyState >> resolveWith: aCGOResolvedProject [
 		yourself.
 ]
 
-{ #category : #transitioning }
+{ #category : 'transitioning' }
 PBConflictingDependencyState >> withConflicts: aCollection [ 
 	
 	^ self class withConflicts: conflictingDependencies , aCollection onDependency: dependency

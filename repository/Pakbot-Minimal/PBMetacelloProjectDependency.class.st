@@ -112,7 +112,7 @@ PBMetacelloProjectDependency >> displayStringOn: aStream [
 { #category : 'testing' }
 PBMetacelloProjectDependency >> fitsPlatformRequirements [
 	
-	^ true "it should be managed by Metecello"
+	^ true "it should be managed by Metacello"
 ]
 
 { #category : 'comparing' }

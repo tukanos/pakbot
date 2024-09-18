@@ -2,37 +2,39 @@
 Error thrown when a dependency is not resolved to a specific package version at the call time.
 "
 Class {
-	#name : #PBUnresolvedDependency,
-	#superclass : #PBError,
+	#name : 'PBUnresolvedDependency',
+	#superclass : 'PBError',
 	#instVars : [
 		'candidates'
 	],
-	#category : #'Pakbot-Core-Solver'
+	#category : 'Pakbot-Core-Solver',
+	#package : 'Pakbot-Core',
+	#tag : 'Solver'
 }
 
-{ #category : #signaling }
+{ #category : 'signaling' }
 PBUnresolvedDependency class >> package: aPackageName [
 	^ self new 
 		package: aPackageName
 ]
 
-{ #category : #signaling }
+{ #category : 'signaling' }
 PBUnresolvedDependency class >> package: aPackageName candidates: aPackageVersionReferenceList [
 	^ self new 
 		package: aPackageName candidates: aPackageVersionReferenceList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBUnresolvedDependency >> candidates [
 	^ candidates
 ]
 
-{ #category : #signaling }
+{ #category : 'signaling' }
 PBUnresolvedDependency >> package: aPackageName [
 	^ self signal: 'Unresolved dependency: ' , aPackageName
 ]
 
-{ #category : #signaling }
+{ #category : 'signaling' }
 PBUnresolvedDependency >> package: aPackageName candidates: aPackageVersionReferenceList [
 	candidates := aPackageVersionReferenceList.
 	^ self signal: 'Unresolved dependency: ' , aPackageName , ' has ' , aPackageVersionReferenceList size asString , ' candidates!'

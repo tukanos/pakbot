@@ -73,14 +73,6 @@ PBMetacelloProject >> addAllLoadedPackages: aListOfNames [
 	loadedPackages addAll: aListOfNames
 ]
 
-{ #category : 'converting' }
-PBMetacelloProject >> asPackageVersionReference [
-
-	^ PBPackageVersionReference 
-		packageName: self packageName 
-		version: (SemanticVersion fromString: version)
-]
-
 { #category : 'compatibility - PBProjectVersion' }
 PBMetacelloProject >> assemblies [
 	^ #()

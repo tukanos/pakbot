@@ -2,8 +2,8 @@
 Class used to represent a project whose dependencies have been resolved. It means that we know the specific version of a package to load. To be able to understand the solving afterwards, a link to origin dependencies is kept.
 "
 Class {
-	#name : #PBResolvedProject,
-	#superclass : #Object,
+	#name : 'PBResolvedProject',
+	#superclass : 'Object',
 	#instVars : [
 		'originDependencies',
 		'resolvedProjectVersion',
@@ -11,10 +11,12 @@ Class {
 		'isInstalledInImage',
 		'packagesToLoad'
 	],
-	#category : #'Pakbot-Core-Solver'
+	#category : 'Pakbot-Core-Solver',
+	#package : 'Pakbot-Core',
+	#tag : 'Solver'
 }
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PBResolvedProject class >> onProject: aProject [
 	
 	^ self new
@@ -22,7 +24,7 @@ PBResolvedProject class >> onProject: aProject [
 		yourself
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PBResolvedProject >> = anotherProject [
 
 	self species = anotherProject species
@@ -32,23 +34,23 @@ PBResolvedProject >> = anotherProject [
 		and: [ self packagesToLoad = anotherProject packagesToLoad ]
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PBResolvedProject >> addAllToLoadList: aPackageName [
 	packagesToLoad addAll: aPackageName
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PBResolvedProject >> addResolvedDependency: aResolvedDependency [
 
 	resolvedDependencies add: aResolvedDependency 
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PBResolvedProject >> addToLoadList: aPackageName [
 	packagesToLoad add: aPackageName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> allResolvedDependencies [
 	
 	| indirectDependencies |
@@ -57,39 +59,39 @@ PBResolvedProject >> allResolvedDependencies [
 	^ self resolvedDependencies, indirectDependencies
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> allSubResolutions [
 	
 	^ self subresolutions asArray , (self subresolutions asArray flatCollect: [ :each | each allSubResolutions asArray ])
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBResolvedProject >> basicLoad [
 	packagesToLoad 
 		ifEmpty: [ self resolvedProjectVersion basicLoad ]
 		ifNotEmpty: [ self resolvedProjectVersion basicLoad: self packagesNotAlreadyInstalledToLoad ] 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> beInstalledInImage [
 	"tells that this project is already installed into the image, no need to load it.
 	It is used for Metacello projects not loaded through Cargo but installed and registered in Metacello registry"
 	isInstalledInImage := true.
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 PBResolvedProject >> conflictStatusIconName [
 	"We do not display a conflict icon for a resolved project (done on dependencies)"
 	^ nil
 ]
 
-{ #category : #conflicts }
+{ #category : 'conflicts' }
 PBResolvedProject >> conflictingDependencies [
 	
 	^ self resolvedDependencies select: [ :e | e hasConflicts ]
 ]
 
-{ #category : #conflicts }
+{ #category : 'conflicts' }
 PBResolvedProject >> conflicts [
 
 	| allConflicting |
@@ -100,42 +102,42 @@ PBResolvedProject >> conflicts [
 		associations collect: [ :assoc | PBConflict onConflictingDependencies: assoc value ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> dependencyTargetedPackages [
 
 	^ resolvedProjectVersion dependencies collect: [ :each | each name ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBResolvedProject >> fitsPlatformRequirements [
 	^ resolvedProjectVersion fitsPlatformRequirements
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> fullVersionString [
 	
 	^ resolvedProjectVersion fullVersionString
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBResolvedProject >> hasConflicts [
 	
 	^ self resolvedDependencies anySatisfy: [ :any | any hasConflicts ]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PBResolvedProject >> hash [
 
 	^ self resolution hash
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> iconName [
 
 	^ #glamorousBookmark
 ]
 
-{ #category : #lookup }
+{ #category : 'lookup' }
 PBResolvedProject >> includesResolvedTarget: aResolutionTarget [
 
 	(self resolvesTarget: aResolutionTarget)
@@ -145,7 +147,7 @@ PBResolvedProject >> includesResolvedTarget: aResolutionTarget [
 		any resolvesTarget: aResolutionTarget ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolvedProject >> initialize [
 	super initialize.
 	originDependencies := Set new.
@@ -154,13 +156,13 @@ PBResolvedProject >> initialize [
 	packagesToLoad := Set new.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PBResolvedProject >> isEquivalentTo: aCGOResolvedProject [ 
 	
 	^ self resolution isEquivalentTo: aCGOResolvedProject resolution
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBResolvedProject >> isInstalled [
 	"tells if the project is already installed AND registered in Pakbot registry. A project is already installed if ALL the project packages are installed in the system."
 	
@@ -170,25 +172,25 @@ PBResolvedProject >> isInstalled [
 	^ resolvedProjectVersion isRegistered and: [ resolvedProjectVersion hasPackagesLoaded: packagesToCheck ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBResolvedProject >> isInstalledInImage [
 	"tells if this project is already installed into the image (no need to load it).
 	It is used for Metacello projects not loaded through Pakbot but installed and registered in Metacello registry"
 	^ isInstalledInImage 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBResolvedProject >> isSolved [
 	^ resolvedProjectVersion isNotNil
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBResolvedProject >> load [
 	
 	self loadInstructions load
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBResolvedProject >> loadInstructions [
 	
 	^ PBLoadInstructionsBuilder new
@@ -196,32 +198,32 @@ PBResolvedProject >> loadInstructions [
 		loadInstructions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> name [
 	^ resolvedProjectVersion name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> nameWithVersion [
 	^ self name , ' ', self projectVersion asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> originDependencies [
 	^ originDependencies
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBResolvedProject >> packagesNotAlreadyInstalledToLoad [
 	^ packagesToLoad reject: [ :name | (self resolvedProjectVersion packageOrAssemblyNamed: name) isInstalled ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> packagesToLoad [
 	^ packagesToLoad
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PBResolvedProject >> printOn: aStream [
 	aStream
 		<< self class name
@@ -230,18 +232,18 @@ PBResolvedProject >> printOn: aStream [
 		<< ')'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> projectVersion [
 	^ resolvedProjectVersion version
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> resolution [
 	
 	^ resolvedProjectVersion
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBResolvedProject >> resolution: aPackageVersionReference [
 	| pkgVersion |
 	pkgVersion := aPackageVersionReference.
@@ -250,7 +252,7 @@ PBResolvedProject >> resolution: aPackageVersionReference [
 			ifFalse: [ PBDependencyRequirementsUnmet signal ]
 ]
 
-{ #category : #lookup }
+{ #category : 'lookup' }
 PBResolvedProject >> resolutionFor: aResolutionTarget [
 	
 	(aResolutionTarget isResolvedBy: self)
@@ -259,58 +261,58 @@ PBResolvedProject >> resolutionFor: aResolutionTarget [
 	^ self allSubResolutions detect: [ :any | aResolutionTarget isResolvedBy: any ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> resolvedDependencies [
 	
 	^ resolvedDependencies
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> resolvedProjectVersion [
 	^ resolvedProjectVersion
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> resolvedProjectVersion: aPBProject [
 	resolvedProjectVersion := aPBProject.
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBResolvedProject >> resolvesDependency: aDependency [
 	
 	^ false
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBResolvedProject >> resolvesProject: aProject [ 
 	
 	^ resolvedProjectVersion = aProject
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBResolvedProject >> resolvesTarget: aResolutionTarget [ 
 	
 	^ resolvedProjectVersion = aResolutionTarget
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 PBResolvedProject >> rootProject: aDependency [
 	originDependencies add: aDependency
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> subresolutions [
 	
 	^ self resolvedDependencies
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedProject >> version [
 	
 	^ resolvedProjectVersion version
 ]
 
-{ #category : #loading }
+{ #category : 'loading' }
 PBResolvedProject >> versionLoaded [
 	"for now, do nothing.
 	Maybe we should call versionLoaded on each loaded package?"

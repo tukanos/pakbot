@@ -13,6 +13,24 @@ Class {
 }
 
 { #category : 'instance creation' }
+PBFixedVersionDependencyConstraint class >> fromString: aString [
+	| constraintString |
+	"It only supports fixed versions"
+	constraintString := aString trim.
+	(constraintString first = $=)
+		ifTrue: [ constraintString := constraintString allButFirst ].
+		
+	^ self with: (SemanticVersion fromString: constraintString )
+]
+
+{ #category : 'instance creation' }
+PBFixedVersionDependencyConstraint class >> fromVersion: aStringOrVersion [
+
+	aStringOrVersion isString ifTrue: [ ^ self fromString: aStringOrVersion ].
+	^ self with: aStringOrVersion
+]
+
+{ #category : 'instance creation' }
 PBFixedVersionDependencyConstraint class >> with: aStringOrSemanticVersion [ 
 	^ self new
 		initializeWith: aStringOrSemanticVersion asSemanticVersion;
@@ -46,6 +64,12 @@ PBFixedVersionDependencyConstraint >> isCompatibleWith: aSemanticVersion [
 PBFixedVersionDependencyConstraint >> isFixed [
 
 	^ true
+]
+
+{ #category : 'printing' }
+PBFixedVersionDependencyConstraint >> printOn: aStream [
+
+	version printOn: aStream
 ]
 
 { #category : 'accessing' }

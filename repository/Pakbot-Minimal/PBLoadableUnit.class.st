@@ -90,14 +90,6 @@ PBLoadableUnit >> asOngoingPackageVersion [
 	^ self
 ]
 
-{ #category : 'converting' }
-PBLoadableUnit >> asPackageVersionReference [
-	" version 0.0.0 means that the package has no version and comes from a VCS."
-	^ PBPackageVersionReference 
-		packageName: self packageName 
-		version: self version
-]
-
 { #category : 'accessing' }
 PBLoadableUnit >> constraints [
 	

@@ -5,15 +5,17 @@ I represent the state of a dependency regarding the currently installed project 
 - was the dependency conflicting and then manually resolved by the user?
 "
 Class {
-	#name : #PBAbstractDependencyState,
-	#superclass : #Object,
+	#name : 'PBAbstractDependencyState',
+	#superclass : 'Object',
 	#instVars : [
 		'dependency'
 	],
-	#category : #'Pakbot-Core-Solver-Conflicts'
+	#category : 'Pakbot-Core-Solver-Conflicts',
+	#package : 'Pakbot-Core',
+	#tag : 'Solver-Conflicts'
 }
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PBAbstractDependencyState class >> onDependency: aDependency [
 
 	^ self new
@@ -21,18 +23,18 @@ PBAbstractDependencyState class >> onDependency: aDependency [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractDependencyState >> dependency: aCGOResolvedDependency [ 
 	dependency := aCGOResolvedDependency
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractDependencyState >> isConflictingDependency [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractDependencyState >> resolutionFor: aPBResolvedDependency [
  
 	^ self subclassResponsibility

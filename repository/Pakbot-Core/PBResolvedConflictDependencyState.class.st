@@ -3,38 +3,40 @@ I represent a dependency that had conflicts and that has been manually resolved 
 
 "
 Class {
-	#name : #PBResolvedConflictDependencyState,
-	#superclass : #PBAbstractDependencyState,
+	#name : 'PBResolvedConflictDependencyState',
+	#superclass : 'PBAbstractDependencyState',
 	#instVars : [
 		'conflictingDependencies',
 		'resolution'
 	],
-	#category : #'Pakbot-Core-Solver-Conflicts'
+	#category : 'Pakbot-Core-Solver-Conflicts',
+	#package : 'Pakbot-Core',
+	#tag : 'Solver-Conflicts'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedConflictDependencyState >> conflictingDependencies: aCollection [ 
 	conflictingDependencies := aCollection
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBResolvedConflictDependencyState >> isConflictingDependency [
 	
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedConflictDependencyState >> resolution: aCGOResolvedProject [ 
 	resolution := aCGOResolvedProject
 ]
 
-{ #category : #resolution }
+{ #category : 'resolution' }
 PBResolvedConflictDependencyState >> resolutionFor: aPBResolvedDependency [ 
 	
 	^ resolution
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 PBResolvedConflictDependencyState >> resolveWith: aCGOResolvedProject [ 
 	resolution := aCGOResolvedProject.
 	^ self

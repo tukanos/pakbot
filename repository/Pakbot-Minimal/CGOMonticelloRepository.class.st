@@ -44,8 +44,3 @@ CGOMonticelloRepository >> mcVersionFor: anMCVersionReferenceString [
 	^ self mcRepository
 		versionFrom: anMCVersionReferenceString
 ]
-
-{ #category : 'querying' }
-CGOMonticelloRepository >> sourcePackageVersionClass [
-	^ CGOMonticelloHostedPackageVersion 
-]

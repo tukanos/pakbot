@@ -6,11 +6,12 @@ Platform requirements allow conditional loading of the dependency (ex: only on W
 "
 Class {
 	#name : 'PBPackageDependency',
-	#superclass : 'PBAbstractPackageDependency',
+	#superclass : 'PBAbstractDependency',
 	#instVars : [
 		'dependent',
 		'constraints',
-		'scope'
+		'scope',
+		'targetedPackage'
 	],
 	#category : 'Pakbot-Minimal-Dependencies',
 	#package : 'Pakbot-Minimal',
@@ -199,4 +200,9 @@ PBPackageDependency >> satisfyConstraints: aSemanticVersion [
 { #category : 'accessing' }
 PBPackageDependency >> scope [
 	^ scope
+]
+
+{ #category : 'accessing' }
+PBPackageDependency >> targetedPackage [
+	^ targetedPackage
 ]

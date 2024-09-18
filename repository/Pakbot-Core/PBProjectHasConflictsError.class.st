@@ -2,15 +2,17 @@
 This error is signaled when a project with conflicts is tried to be loaded or published.
 "
 Class {
-	#name : #PBProjectHasConflictsError,
-	#superclass : #PBError,
+	#name : 'PBProjectHasConflictsError',
+	#superclass : 'PBError',
 	#instVars : [
 		'resolution'
 	],
-	#category : #'Pakbot-Core-Solver'
+	#category : 'Pakbot-Core-Solver',
+	#package : 'Pakbot-Core',
+	#tag : 'Solver'
 }
 
-{ #category : #signaling }
+{ #category : 'signaling' }
 PBProjectHasConflictsError class >> signalOnResolution: aResolution [
 
 	^ self new
@@ -18,34 +20,34 @@ PBProjectHasConflictsError class >> signalOnResolution: aResolution [
 		signal
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBProjectHasConflictsError >> acceptVisitor: aVisitor [
 
 	^ aVisitor visitProjectWithConflictsError: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectHasConflictsError >> conflicts [
 	^ resolution conflicts
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBProjectHasConflictsError >> isResumable [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectHasConflictsError >> messageText [
 	^ 'There are conflicts in the resolution of ' , resolution resolvedProjectVersion name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectHasConflictsError >> resolution [
 	^ resolution
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectHasConflictsError >> resolution: aCGOResolvedProject [ 
 	resolution := aCGOResolvedProject
 ]

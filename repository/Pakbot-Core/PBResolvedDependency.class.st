@@ -3,29 +3,31 @@ Class used to represent a dependency that has been resolved. It means that we kn
 originalDependency instance variable keeps a reference to the dependency that is now solved.
 "
 Class {
-	#name : #PBResolvedDependency,
-	#superclass : #Object,
+	#name : 'PBResolvedDependency',
+	#superclass : 'Object',
 	#instVars : [
 		'dependency',
 		'dependencyState',
 		'originalResolution'
 	],
-	#category : #'Pakbot-Core-Solver'
+	#category : 'Pakbot-Core-Solver',
+	#package : 'Pakbot-Core',
+	#tag : 'Solver'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedDependency class >> conflictIconName [
 
 	^ #error
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedDependency class >> noConflictIconName [
 
 	^ #forward 
 ]
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PBResolvedDependency class >> onDependency: aDependency resolution: aResolution [
 	
 	^ self new
@@ -34,13 +36,13 @@ PBResolvedDependency class >> onDependency: aDependency resolution: aResolution 
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedDependency >> allSubResolutions [
 	
 	^ { self resolution }, self resolution allSubResolutions asArray
 ]
 
-{ #category : #conflicts }
+{ #category : 'conflicts' }
 PBResolvedDependency >> checkConflictsWithDependencies: aDependencyCollection [
 	
 	| conflicts |
@@ -48,7 +50,7 @@ PBResolvedDependency >> checkConflictsWithDependencies: aDependencyCollection [
 	dependencyState := dependencyState withConflicts: conflicts.
 ]
 
-{ #category : #conflicts }
+{ #category : 'conflicts' }
 PBResolvedDependency >> checkConflictsWithRegistry: aPBPackageRegistry [
 
 	| conflicts |
@@ -56,7 +58,7 @@ PBResolvedDependency >> checkConflictsWithRegistry: aPBPackageRegistry [
 	dependencyState := dependencyState withConflicts: conflicts.
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 PBResolvedDependency >> conflictStatusIconName [
 
 	^ self hasConflicts
@@ -64,13 +66,13 @@ PBResolvedDependency >> conflictStatusIconName [
 		  ifFalse: [ self class noConflictIconName ]
 ]
 
-{ #category : #conflicts }
+{ #category : 'conflicts' }
 PBResolvedDependency >> conflictingDependencies [
 	
 	^ dependencyState conflictingDependenciesFor: self
 ]
 
-{ #category : #'conflict testing' }
+{ #category : 'conflict testing' }
 PBResolvedDependency >> conflictingInstalledProjects: aPBPackageRegistry [
 	| conflicts |
 	conflicts := (aPBPackageRegistry registeredProjects select: [ :each | each isConflictingWith: self ]), 
@@ -78,78 +80,78 @@ PBResolvedDependency >> conflictingInstalledProjects: aPBPackageRegistry [
 	^ conflicts collect: [ :each | PBInstalledDependency onResolved: (PBResolvedProject onProject: each)]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedDependency >> dependency [
 	^ dependency
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedDependency >> dependency: aDependency [ 
 	dependency := aDependency
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedDependency >> fullVersionString [
 	
 	^ self originalResolution fullVersionString
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBResolvedDependency >> hasConflicts [
 	
 	^ dependencyState isConflictingDependency or: [ self resolution hasConflicts ]
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 PBResolvedDependency >> iconName [
 
 	^ dependency iconName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedDependency >> initialize [
 
 	super initialize.
 	dependencyState := PBNonConflictingDependencyState onDependency: self
 ]
 
-{ #category : #conflicts }
+{ #category : 'conflicts' }
 PBResolvedDependency >> isConflictingWith: aPBResolvedDependency [ 
 	
 	^ (self dependency isSameProjectAs: aPBResolvedDependency dependency)
 		and: [ (self resolution isEquivalentTo: aPBResolvedDependency resolution) not ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBResolvedDependency >> isInstalledDependency [
 	
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedDependency >> name [
 	
 	^ dependency name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedDependency >> nameWithVersion [
 	
 	^ dependency name , ' ', dependency version
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedDependency >> originalResolution [
 	^ originalResolution
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedDependency >> originalResolution: aProject [
 	
 	originalResolution := aProject
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PBResolvedDependency >> printOn: aStream [
 
 	aStream
@@ -161,43 +163,43 @@ PBResolvedDependency >> printOn: aStream [
 		<< ')'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedDependency >> projectName [
 	^ self resolution name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedDependency >> resolution [
 	
 	^ dependencyState resolutionFor: self
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 PBResolvedDependency >> resolveWith: aPBResolvedProject [ 
 
 	dependencyState := dependencyState resolveWith: aPBResolvedProject
 
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 PBResolvedDependency >> resolvesDependency: aDependency [ 
 	
 	^ dependency = aDependency
 ]
 
-{ #category : #resolution }
+{ #category : 'resolution' }
 PBResolvedDependency >> resolvesProject: aProject [
 	
 	^ false
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 PBResolvedDependency >> resolvesTarget: aResolutionTarget [ 
 	
 	^ self resolution resolvedProjectVersion = aResolutionTarget
 ]
 
-{ #category : #ston }
+{ #category : 'ston' }
 PBResolvedDependency >> stonOn: stonWriter [
 	| resolvedVersion map |
 	self originalResolution hasConflicts 
@@ -209,7 +211,7 @@ PBResolvedDependency >> stonOn: stonWriter [
 	stonWriter writeMap: map.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedDependency >> subresolutions [
 	
 	^ { self resolution }

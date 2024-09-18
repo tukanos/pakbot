@@ -2,36 +2,38 @@
 I represent a dependency that has no conflict with anything
 "
 Class {
-	#name : #PBNonConflictingDependencyState,
-	#superclass : #PBAbstractDependencyState,
-	#category : #'Pakbot-Core-Solver-Conflicts'
+	#name : 'PBNonConflictingDependencyState',
+	#superclass : 'PBAbstractDependencyState',
+	#category : 'Pakbot-Core-Solver-Conflicts',
+	#package : 'Pakbot-Core',
+	#tag : 'Solver-Conflicts'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBNonConflictingDependencyState >> conflictingDependencies [
 	
 	^ #()
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBNonConflictingDependencyState >> conflictingDependenciesFor: aResolvedDependency [
 
 	^ #()
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBNonConflictingDependencyState >> isConflictingDependency [
 	
 	^ false
 ]
 
-{ #category : #resolution }
+{ #category : 'resolution' }
 PBNonConflictingDependencyState >> resolutionFor: aPBResolvedDependency [ 
 	
 	^ aPBResolvedDependency originalResolution
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBNonConflictingDependencyState >> withConflicts: aCollection [ 
 	
 	aCollection ifEmpty: [ ^ self ].
