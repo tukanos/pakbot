@@ -26,16 +26,6 @@ BaselineOfPakbot >> baseline: spec [
 ]
 
 { #category : 'dependencies' }
-BaselineOfPakbot >> iceberg: spec [
-	
-	spec
-		baseline: 'Iceberg'
-		with: [ spec
-				repository: (self class environment at: #BaselineOfPharo) icebergRepository;
-				loads: #('Iceberg-Memory') ]
-]
-
-{ #category : 'dependencies' }
 BaselineOfPakbot >> pakbotUI: spec [
 
 	spec
