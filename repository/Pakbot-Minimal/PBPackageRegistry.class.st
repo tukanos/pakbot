@@ -280,7 +280,7 @@ PBPackageRegistry >> signalAlreadyRegistered: aPBProjectVersion [
 { #category : 'accessing' }
 PBPackageRegistry >> systemPackageOrganizer [
 
-	^ systemPackageOrganizer ifNil: [ RPackage organizer ]
+	^ systemPackageOrganizer ifNil: [ self packageOrganizer ]
 ]
 
 { #category : 'accessing' }
