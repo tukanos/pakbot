@@ -339,12 +339,6 @@ PBProjectVersion >> hash [
 	^ self name hash
 ]
 
-{ #category : 'private' }
-PBProjectVersion >> ifNotMarried: aBlock [
-	repository isMarried
-		ifFalse: [ aBlock value ]
-]
-
 { #category : 'packages' }
 PBProjectVersion >> importPackageNamed: aString [
 	| package |
