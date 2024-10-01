@@ -58,14 +58,6 @@ PBResolvedDependency >> checkConflictsWithRegistry: aPBPackageRegistry [
 	dependencyState := dependencyState withConflicts: conflicts.
 ]
 
-{ #category : 'icons' }
-PBResolvedDependency >> conflictStatusIconName [
-
-	^ self hasConflicts
-		  ifTrue: [ self class conflictIconName ]
-		  ifFalse: [ self class noConflictIconName ]
-]
-
 { #category : 'conflicts' }
 PBResolvedDependency >> conflictingDependencies [
 	
@@ -102,13 +94,7 @@ PBResolvedDependency >> hasConflicts [
 	^ dependencyState isConflictingDependency or: [ self resolution hasConflicts ]
 ]
 
-{ #category : 'icons' }
-PBResolvedDependency >> iconName [
-
-	^ dependency iconName
-]
-
-{ #category : 'accessing' }
+{ #category : 'initialization' }
 PBResolvedDependency >> initialize [
 
 	super initialize.
@@ -174,20 +160,20 @@ PBResolvedDependency >> resolution [
 	^ dependencyState resolutionFor: self
 ]
 
-{ #category : 'resolving' }
+{ #category : 'solving' }
 PBResolvedDependency >> resolveWith: aPBResolvedProject [ 
 
 	dependencyState := dependencyState resolveWith: aPBResolvedProject
 
 ]
 
-{ #category : 'resolving' }
+{ #category : 'solving' }
 PBResolvedDependency >> resolvesDependency: aDependency [ 
 	
 	^ dependency = aDependency
 ]
 
-{ #category : 'resolution' }
+{ #category : 'solving' }
 PBResolvedDependency >> resolvesProject: aProject [
 	
 	^ false

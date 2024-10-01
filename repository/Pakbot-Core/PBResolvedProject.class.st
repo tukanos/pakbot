@@ -61,8 +61,10 @@ PBResolvedProject >> allResolvedDependencies [
 
 { #category : 'accessing' }
 PBResolvedProject >> allSubResolutions [
-	
-	^ self subresolutions asArray , (self subresolutions asArray flatCollect: [ :each | each allSubResolutions asArray ])
+
+	^ self resolvedDependencies asArray, 
+			(self resolvedDependencies asArray 
+				flatCollect: [ :each | each allSubResolutions asArray ])
 ]
 
 { #category : 'loading' }
@@ -102,12 +104,6 @@ PBResolvedProject >> conflicts [
 		associations collect: [ :assoc | PBConflict onConflictingDependencies: assoc value ]
 ]
 
-{ #category : 'accessing' }
-PBResolvedProject >> dependencyTargetedPackages [
-
-	^ resolvedProjectVersion dependencies collect: [ :each | each name ]
-]
-
 { #category : 'testing' }
 PBResolvedProject >> fitsPlatformRequirements [
 	^ resolvedProjectVersion fitsPlatformRequirements
@@ -129,12 +125,6 @@ PBResolvedProject >> hasConflicts [
 PBResolvedProject >> hash [
 
 	^ self resolution hash
-]
-
-{ #category : 'accessing' }
-PBResolvedProject >> iconName [
-
-	^ #glamorousBookmark
 ]
 
 { #category : 'lookup' }
@@ -298,12 +288,6 @@ PBResolvedProject >> resolvesTarget: aResolutionTarget [
 { #category : 'adding' }
 PBResolvedProject >> rootProject: aDependency [
 	originDependencies add: aDependency
-]
-
-{ #category : 'accessing' }
-PBResolvedProject >> subresolutions [
-	
-	^ self resolvedDependencies
 ]
 
 { #category : 'accessing' }
