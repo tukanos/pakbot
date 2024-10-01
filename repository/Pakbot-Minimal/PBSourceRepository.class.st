@@ -31,7 +31,7 @@ PBSourceRepository class >> fromStringUrl: url subdirectory: subdirectoryName [
 			url: url;
 			subdirectory: subdirectoryName;
 			create ]
-		ifFalse: [ CGOMonticelloRepository repositoryUrl: url ]
+		ifFalse: [ PBInvalidRepositoryUrlError signal: url ]
 ]
 
 { #category : 'testing' }
