@@ -233,18 +233,16 @@ PBProjectVersion >> children [
 ]
 
 { #category : 'packages' }
-PBProjectVersion >> createPackageNamed: aString [ 
-	
+PBProjectVersion >> createPackageNamed: aString [
 	"We delegate to the system the creation of a package first.
 	This will fail if a package with that name already exists.
 	If that succeeds, we register that new package in this project."
-	[ RPackage
-			withOrganizer: self systemPackageOrganizer 
-			do: [ :organizer | organizer createPackageNamed: aString] ]
-		on: RPackageConflictError
+
+	[ self systemPackageOrganizer addPackage: aString ]
+		on: PackageConflictError
 		do: [ :error | PBSystemPackageAlreadyDefined signal: aString ].
 
-	^ self importPackageNamed: aString.
+	^ self importPackageNamed: aString
 ]
 
 { #category : 'accessing' }

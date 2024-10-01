@@ -227,11 +227,11 @@ PBPackageRegistry >> register: aLoadableUnit [
 { #category : 'system-announcements' }
 PBPackageRegistry >> registerInSystem [
 	SystemAnnouncer uniqueInstance
-		when: RPackageUnregistered
+		when: PackageRemoved 
 		send: #packageUnregistered:
 		to: self.
 	SystemAnnouncer uniqueInstance
-		when: RPackageRenamed
+		when: PackageRenamed
 		send: #packageRenamed:
 		to: self
 ]

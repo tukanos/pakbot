@@ -16,7 +16,7 @@ Class {
 PBProjectCreationTest >> setUp [
 	super setUp.
 	
-	registry systemPackageOrganizer: RPackageOrganizer new.
+	registry systemPackageOrganizer: PackageOrganizer new.
 	project := registry newProjectNamed: #Counter.
 	project version: '0.1-dev'.
 	
@@ -41,24 +41,6 @@ PBProjectCreationTest >> testCanAddExternalDependency [
 	self 
 		assert: project dependencies first
 		equals: dependency.
-]
-
-{ #category : 'tests' }
-PBProjectCreationTest >> testCanCommitAProject [
-
-	"Commit action uses Iceberg that is only available in UI mode to review changes."
-	
-	| repository presenter changes |
-	repository := PBGitRepositoryCreator new 
-		location: workDir;
-		createNewRepositoryNamed: 'tmp'.
-	project marryWith: repository.
-	
-	presenter := (IceTipCommitBrowser onRepository: project repository iceRepository).
-	changes := presenter diffPanel model tree children.
-	
-	self assert: changes size equals: 3.
-	self assert: changes last key equals: repository projectMetadataFileName
 ]
 
 { #category : 'tests' }

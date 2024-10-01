@@ -41,7 +41,7 @@ TTemporaryFilesTrait >> newTempDirectoryReference [
 
 	| directory |
 	
-	directory := (FileLocator temp / (self class name,  '-' , UUIDGenerator next asString)) resolve.
+	directory := (FileLocator temp / (self class name,  '-' , UUID new asString)) resolve.
 	directories add: directory.
 	^ directory
 ]
