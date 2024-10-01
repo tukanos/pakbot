@@ -24,19 +24,13 @@ PBProjectVersionTest >> tearDown [
 
 { #category : 'tests' }
 PBProjectVersionTest >> testAddingDependencyPerformAnnouncement [
-	| announced subscription |
 
-	[ 
-		announced := false.
-		subscription := Pakbot announcer
-			when: PBDependenciesChanged
-			do: [ :ann | 
-				ann project = ongoingProject
-					ifTrue: [ announced := true ] ].
-		ongoingProject
-			addDependency: (PBPakbotProjectDependency named: 'AnotherProject' version: '=1.0.0').
-		self assert: announced 
-	] ensure: [ Pakbot announcer removeSubscription: subscription ]
+	| announced subscription |
+	[
+	announced := false.
+	subscription := Pakbot announcer when: PBDependenciesChanged do: [ :ann | ann project = ongoingProject ifTrue: [ announced := true ] ] for: self.
+	ongoingProject addDependency: (PBPakbotProjectDependency named: 'AnotherProject' version: '=1.0.0').
+	self assert: announced ] ensure: [ Pakbot announcer removeSubscription: subscription ]
 ]
 
 { #category : 'tests' }
@@ -107,19 +101,16 @@ PBProjectVersionTest >> testIcebergRepositoryHavingPakbotProjectReferencingADiff
 
 { #category : 'tests' }
 PBProjectVersionTest >> testRemovingDependencyPerformAnnouncement [
-	| announced subscription dep |
 
-	dep := (PBPakbotProjectDependency named: 'AnotherProject' version: '=1.0.0').
+	| announced subscription dep |
+	dep := PBPakbotProjectDependency named: 'AnotherProject' version: '=1.0.0'.
 	ongoingProject addDependency: dep.
 
-	[ 
-		announced := false.
-		subscription := Pakbot announcer
-			when: PBDependenciesChanged
-			do: [ :ann | ann project = ongoingProject ifTrue: [ announced := true ] ].
+	[
+	announced := false.
+	subscription := Pakbot announcer when: PBDependenciesChanged do: [ :ann | ann project = ongoingProject ifTrue: [ announced := true ] ] for: self.
 
-		ongoingProject removeDependency: dep.		
+	ongoingProject removeDependency: dep.
 
-		self assert: announced 
-	] ensure: [ Pakbot announcer removeSubscription: subscription ]
+	self assert: announced ] ensure: [ Pakbot announcer removeSubscription: subscription ]
 ]

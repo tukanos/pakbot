@@ -16,9 +16,9 @@ PBPackageImportTest >> setUp [
 	super setUp.
 	project := registry newProjectNamed: 'test'.
 	project repository: PBGitMemoryRepository new.
-	
-	systemPackageOrganizer := RPackageOrganizer new.
-	registry systemPackageOrganizer: systemPackageOrganizer.
+
+	systemPackageOrganizer := PackageOrganizer new.
+	registry systemPackageOrganizer: systemPackageOrganizer
 ]
 
 { #category : 'tests' }
@@ -26,7 +26,7 @@ PBPackageImportTest >> testImportAlreadyImportedPackageDoesNotImportItTwice [
 
 	| packageName |
 	packageName := 'NewPackage'.
-	systemPackageOrganizer createPackageNamed: packageName.
+	systemPackageOrganizer ensurePackage: packageName.
 	
 	project importPackageNamed: packageName.
 	
@@ -43,7 +43,7 @@ PBPackageImportTest >> testImportAlreadyImportedPackageRaisesException [
 
 	| packageName |
 	packageName := 'NewPackage'.
-	systemPackageOrganizer createPackageNamed: packageName.
+	systemPackageOrganizer ensurePackage: packageName.
 	
 	project importPackageNamed: packageName.
 	self
@@ -56,7 +56,7 @@ PBPackageImportTest >> testImportExistingPackageInSystemSucceeds [
 
 	| packageName |
 	packageName := 'NewPackage'.
-	systemPackageOrganizer createPackageNamed: packageName.
+	systemPackageOrganizer ensurePackage: packageName.
 	project importPackageNamed: packageName.
 	
 	self assert: (project hasPackageNamed: packageName)

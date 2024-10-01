@@ -17,7 +17,7 @@ PBPackageCreationTest >> setUp [
 	project := registry newProjectNamed: 'test'.
 	project repository: PBGitMemoryRepository new.
 	
-	systemPackageOrganizer := RPackageOrganizer new.
+	systemPackageOrganizer := PackageOrganizer new.
 	registry systemPackageOrganizer: systemPackageOrganizer.
 ]
 
@@ -38,11 +38,9 @@ PBPackageCreationTest >> testCreateExistingPackageInSystemRaisesException [
 
 	| packageName |
 	packageName := 'NewPackage'.
-	systemPackageOrganizer createPackageNamed: packageName.
-	
-	self
-		should: [project createPackageNamed: packageName]
-		raise: PBSystemPackageAlreadyDefined
+	systemPackageOrganizer ensurePackage: packageName.
+
+	self should: [ project createPackageNamed: packageName ] raise: PBSystemPackageAlreadyDefined
 ]
 
 { #category : 'tests' }

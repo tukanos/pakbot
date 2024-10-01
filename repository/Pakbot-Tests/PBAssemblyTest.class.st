@@ -41,8 +41,8 @@ CGOPublishedPackageAssembly {
 PBAssemblyTest >> testAllPackagesListsPackagesRecursively [
 
 	| project package1 package2 package3 package4 package5 assembly1 assembly2 assembly3 |
-	registry systemPackageOrganizer: RPackageOrganizer new.
-	
+	registry systemPackageOrganizer: PackageOrganizer new.
+
 	project := registry newProjectNamed: 'TestProject'.
 	project repository: PBGitMemoryRepository new.
 	package1 := project createPackageNamed: 'Package1'.
@@ -55,31 +55,33 @@ PBAssemblyTest >> testAllPackagesListsPackagesRecursively [
 		addPackage: package2;
 		addPackage: package3.
 	assembly2 := project addAssemblyNamed: 'A2-P1+A1P2P3'.
-	assembly2 
+	assembly2
 		addPackage: package1;
 		addPackage: assembly1.
 	assembly3 := project addAssemblyNamed: 'A3-P4+A2-P1+A1P2P3'.
 	assembly3
 		addPackage: package4;
 		addPackage: assembly2.
-	
-	self 
-		assertCollection: assembly3 allPackages
-		hasSameElements: { package1 . package2 . package3 . package4 }
+
+	self assertCollection: assembly3 allPackages hasSameElements: {
+			package1.
+			package2.
+			package3.
+			package4 }
 ]
 
 { #category : 'tests' }
 PBAssemblyTest >> testAssemblyCanContainPackageExistingInItsProject [
-	
+
 	| project package assembly |
-	registry systemPackageOrganizer: RPackageOrganizer new.
-	
+	registry systemPackageOrganizer: PackageOrganizer new.
+
 	project := registry newProjectNamed: 'TestProject'.
 	project repository: PBGitMemoryRepository new.
 	package := project createPackageNamed: 'TestPackage'.
 	assembly := project addAssemblyNamed: 'Ass1'.
 	assembly addPackage: package.
-	
+
 	self assert: (assembly packages includes: package)
 ]
 
@@ -98,33 +100,31 @@ PBAssemblyTest >> testCannotCreateDuplicatedAssembly [
 
 { #category : 'tests' }
 PBAssemblyTest >> testCreatePackageInAssemblyConflictsWithProjectPackages [
-	
+
 	| project assembly |
-	registry systemPackageOrganizer: RPackageOrganizer new.
-	
+	registry systemPackageOrganizer: PackageOrganizer new.
+
 	project := registry newProjectNamed: 'TestProject'.
 	project repository: PBGitMemoryRepository new.
 	project createPackageNamed: 'NewPackage'.
-	
+
 	assembly := project addAssemblyNamed: 'Ass1'.
 
-	self
-		should: [ assembly createPackageNamed: 'NewPackage' ]
-		raise: PBSystemPackageAlreadyDefined
+	self should: [ assembly createPackageNamed: 'NewPackage' ] raise: PBSystemPackageAlreadyDefined
 ]
 
 { #category : 'tests' }
 PBAssemblyTest >> testCreatePackageInAssemblyCreatesItInProject [
-	
+
 	| project package assembly |
-	registry systemPackageOrganizer: RPackageOrganizer new.
-	
+	registry systemPackageOrganizer: PackageOrganizer new.
+
 	project := registry newProjectNamed: 'TestProject'.
 	project repository: PBGitMemoryRepository new.
 	assembly := project addAssemblyNamed: 'Ass1'.
 
 	package := assembly createPackageNamed: 'NewPackage'.
-	
+
 	self assert: (project packages includes: package)
 ]
 
@@ -146,21 +146,21 @@ PBAssemblyTest >> testDuplicatedAssemblyIsNotAddedInProject [
 
 { #category : 'tests' }
 PBAssemblyTest >> testManyAssembliesCanContainSamePackage [
-	
+
 	| project package assembly1 assembly2 |
-	registry systemPackageOrganizer: RPackageOrganizer new.
-	
+	registry systemPackageOrganizer: PackageOrganizer new.
+
 	project := registry newProjectNamed: 'TestProject'.
 	project repository: PBGitMemoryRepository new.
 	package := project createPackageNamed: 'TestPackage'.
 	assembly1 := project addAssemblyNamed: 'Ass1'.
 	assembly2 := project addAssemblyNamed: 'Ass2'.
-	
+
 	assembly1 addPackage: package.
 	assembly2 addPackage: package.
-	
+
 	self assert: (assembly1 packages includes: package).
-	self assert: (assembly2 packages includes: package).
+	self assert: (assembly2 packages includes: package)
 ]
 
 { #category : 'tests' }
@@ -187,48 +187,48 @@ PBAssemblyTest >> testRemoveAssemblyUnlistsIt [
 
 { #category : 'tests' }
 PBAssemblyTest >> testRemovePackageFromAssemblyDoesNotTakeItOutFromProject [
-	
+
 	| project package assembly |
-	registry systemPackageOrganizer: RPackageOrganizer new.
-	
+	registry systemPackageOrganizer: PackageOrganizer new.
+
 	project := registry newProjectNamed: 'TestProject'.
 	project repository: PBGitMemoryRepository new.
 	package := project createPackageNamed: 'TestPackage'.
 	assembly := project addAssemblyNamed: 'Ass1'.
 	assembly addPackage: package.
-	
+
 	assembly removePackage: package.
 	self assert: (project packages includes: package)
 ]
 
 { #category : 'tests' }
 PBAssemblyTest >> testRemovePackageFromAssemblyTakesItOutFromAssembly [
-	
+
 	| project package assembly |
-	registry systemPackageOrganizer: RPackageOrganizer new.
-	
+	registry systemPackageOrganizer: PackageOrganizer new.
+
 	project := registry newProjectNamed: 'TestProject'.
 	project repository: PBGitMemoryRepository new.
 	package := project createPackageNamed: 'TestPackage'.
 	assembly := project addAssemblyNamed: 'Ass1'.
 	assembly addPackage: package.
-	
+
 	assembly removePackage: package.
 	self deny: (assembly packages includes: package)
 ]
 
 { #category : 'tests' }
 PBAssemblyTest >> testRemovePackageFromProjectRemovesItFromAssembly [
-	
+
 	| project package assembly |
-	registry systemPackageOrganizer: RPackageOrganizer new.
-	
+	registry systemPackageOrganizer: PackageOrganizer new.
+
 	project := registry newProjectNamed: 'TestProject'.
 	project repository: PBGitMemoryRepository new.
 	package := project createPackageNamed: 'TestPackage'.
 	assembly := project addAssemblyNamed: 'Ass1'.
 	assembly addPackage: package.
-	
+
 	project removePackage: package.
 	self deny: (assembly packages includes: package)
 ]

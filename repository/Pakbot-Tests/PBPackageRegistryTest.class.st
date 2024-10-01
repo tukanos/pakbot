@@ -23,20 +23,18 @@ PBPackageRegistryTest >> testCanDetectAMetacelloBaselineProjectIsAlreadyInstalle
 
 { #category : 'tests' }
 PBPackageRegistryTest >> testPackageIsInstalledWhenPackageUnitIsAdded [
+
 	| project unit organizer |
 	project := PBProjectVersion example.
 	unit := project packageUnits anyOne.
-	
-	organizer := RPackageOrganizer new.
-	RPackage 
-		withOrganizer: organizer do: [ organizer registerPackageNamed: unit name ].
+
+	organizer := PackageOrganizer new.
+	organizer ensurePackage: unit name.
 	registry systemPackageOrganizer: organizer.
-	
+
 	registry register: unit.
-	
-	self 
-		assert: registry installedPackages size
-		equals: 1.
+
+	self assert: registry installedPackages size equals: 1
 ]
 
 { #category : 'tests' }
