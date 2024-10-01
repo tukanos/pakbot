@@ -1,6 +1,6 @@
-Extension { #name : #PackageManifest }
+Extension { #name : 'PackageManifest' }
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PackageManifest class >> gtInspectorDependenciesIn: composite [
 	<gtInspectorPresentationOrder: 35>  
 	 composite table
@@ -32,7 +32,7 @@ PackageManifest class >> gtInspectorDependenciesIn: composite [
 		noSelection
 ]
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PackageManifest class >> gtInspectorDescriptionIn: composite [
 	<gtInspectorPresentationOrder: 30>  
 	 composite text
@@ -46,7 +46,7 @@ PackageManifest class >> gtInspectorDescriptionIn: composite [
 		entitled: 'Save'
 ]
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PackageManifest class >> gtInspectorVersionIn: composite [
 	<gtInspectorPresentationOrder: 40>
 	(composite custom: CGOVersionBrowser new)

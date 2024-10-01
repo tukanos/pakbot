@@ -2,28 +2,30 @@
 Abstract class for all the commands that works on projects.
 "
 Class {
-	#name : #PBProjectCommand,
-	#superclass : #PBCommand,
+	#name : 'PBProjectCommand',
+	#superclass : 'PBCommand',
 	#instVars : [
 		'project'
 	],
-	#category : #'Pakbot-Browser-Commands'
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBProjectCommand >> canBeExecuted [
 
 	^ self project notNil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectCommand >> project [
 
 	^ project ifNil: [ 
 		  self context selectedItem ifNotNil: [ :item | item project ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectCommand >> project: anObject [
 
 	project := anObject

@@ -1,6 +1,6 @@
-Extension { #name : #PBGitRepository }
+Extension { #name : 'PBGitRepository' }
 
-{ #category : #'*Pakbot-Browser' }
+{ #category : '*Pakbot-Browser' }
 PBGitRepository >> iconName [
 	
 	^ #git

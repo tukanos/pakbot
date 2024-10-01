@@ -10,29 +10,30 @@ example:
 	self updateTransitiveDependenciesOf:  (AssemblyManifest packageNamed: 'Pharo-Kernel')
 "
 Class {
-	#name : #CGOPackageDependencyUpdater,
-	#superclass : #Object,
+	#name : 'CGOPackageDependencyUpdater',
+	#superclass : 'Object',
 	#instVars : [
 		'manifests',
 		'visited'
 	],
-	#category : #'CargoPackageManager-Utils'
+	#category : 'CargoPackageManager-Utils',
+	#package : 'CargoPackageManager-Utils'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageDependencyUpdater class >> allCurrentDependenciesOf: aPackageName [
 	"List dependencies and transitive dependencies of the given package name"
 	^ self allCurrentDependenciesOfManifest: aPackageName packageManifest
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageDependencyUpdater class >> allCurrentDependenciesOfManifest: aManifest [
 	"List dependencies and transitive dependencies of the given manifest by using the information  present in the manifest #dependencies method (could be outdated)."
 	^ (self manifestsForAllCurrentDependenciesOfManifest: aManifest)
 			collect: #packageName
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOPackageDependencyUpdater class >> manifestsForAllCurrentDependenciesOfManifest: aManifest [
 	"List dependencies and transitive dependencies of the given manifest by using the information  present in the manifest #dependencies method (could be outdated)."
 	| iterator deps |
@@ -51,7 +52,7 @@ CGOPackageDependencyUpdater class >> manifestsForAllCurrentDependenciesOfManifes
 		asArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageDependencyUpdater class >> packageUnitsOf: anAssembly [
 	"List package units of the given assembly"
 	^ (anAssembly asOngoingPackageVersion packageUnits collect: #packageManifest) 
@@ -59,32 +60,32 @@ CGOPackageDependencyUpdater class >> packageUnitsOf: anAssembly [
 			as: Array
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 CGOPackageDependencyUpdater class >> updateDependenciesOf: aListOfPackageManifest [
 	^ self basicNew 
 		initializeWith: aListOfPackageManifest;
 		updateDependencies
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 CGOPackageDependencyUpdater class >> updateTransitiveDependenciesOf: anAssemblyManifest [
 	self updateDependenciesOf: 
 		(self manifestsForAllCurrentDependenciesOfManifest: anAssemblyManifest)
 ]
 
-{ #category : #computing }
+{ #category : 'computing' }
 CGOPackageDependencyUpdater >> dependenciesOf: manifest [
 	^ ((Set withAll: (self staticDependenciesOf: manifest)) , manifest manuallyResolvedDependencies)
 			reject: [ :each | manifest ignoredDependencies includes: each ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackageDependencyUpdater >> initializeWith: aListOfPackageManifest [ 
 	manifests := aListOfPackageManifest.
 	visited := SharedQueue new.
 ]
 
-{ #category : #computing }
+{ #category : 'computing' }
 CGOPackageDependencyUpdater >> staticAnalysisFor: packageName [
 	"return the resul of the static analysis (package dependencies) on packageName."
 	
@@ -93,17 +94,17 @@ CGOPackageDependencyUpdater >> staticAnalysisFor: packageName [
 		do: [:ex | ex resume ]
 ]
 
-{ #category : #computing }
+{ #category : 'computing' }
 CGOPackageDependencyUpdater >> staticDependenciesOf: manifest [
 	^ (self staticAnalysisFor: manifest packageName) packageStaticDependencies
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 CGOPackageDependencyUpdater >> updateDependencies [
 	manifests do: [ :manifest | self updateDependenciesOf: manifest ]
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 CGOPackageDependencyUpdater >> updateDependenciesOf: manifest [
 	| currentDependencies manifestDependencies extraDependencies |
 

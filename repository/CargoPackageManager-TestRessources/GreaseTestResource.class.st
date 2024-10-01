@@ -2,18 +2,20 @@
 I hold load instructions and source packages for Grease.
 "
 Class {
-	#name : #GreaseTestResource,
-	#superclass : #TestResource,
+	#name : 'GreaseTestResource',
+	#superclass : 'TestResource',
 	#instVars : [
 		'fs',
 		'mcRepository',
 		'versionReferences',
 		'cargoRepository'
 	],
-	#category : #'CargoPackageManager-TestRessources-Resources'
+	#category : 'CargoPackageManager-TestRessources-Resources',
+	#package : 'CargoPackageManager-TestRessources',
+	#tag : 'Resources'
 }
 
-{ #category : #'data - cargo package versions' }
+{ #category : 'data - cargo package versions' }
 GreaseTestResource >> cargoFakePackageVersions [
 	"fake package versions"
 	^ #( 'GoferBar@1-branch-lr'
@@ -28,25 +30,25 @@ GreaseTestResource >> cargoFakePackageVersions [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GreaseTestResource >> cargoLocalRepository [
 	^ cargoRepository 
 ]
 
-{ #category : #'data - cargo package versions' }
+{ #category : 'data - cargo package versions' }
 GreaseTestResource >> cargoPackageVersions [
 	^ self class methods 
 		select: [ :each | each hasPragmaNamed: #cargoPackageVersion ]
 		thenCollect: [ :method | self withArgs: #() executeMethod: method ]
 ]
 
-{ #category : #'data - cargo package versions' }
+{ #category : 'data - cargo package versions' }
 GreaseTestResource >> cargoVirtualPackageVersions [
 	^ #('Grease-Core-Platform@1' 'Grease-Slime@0.1' 'Grease-Slime@1')
 		collect: [ :provision | CGOVirtualPackageVersion fromString: provision ]
 ]
 
-{ #category : #'data - cargo package versions' }
+{ #category : 'data - cargo package versions' }
 GreaseTestResource >> greasecore1_1_13 [
 	<cargoPackageVersion>
 	^ STON fromString: 
@@ -66,7 +68,7 @@ GreaseTestResource >> greasecore1_1_13 [
 }'
 ]
 
-{ #category : #'data - cargo package versions' }
+{ #category : 'data - cargo package versions' }
 GreaseTestResource >> greasecore1_1_13devWithDescription: aDescription [
 	^ STON fromString: 
 ('CGOPackageUnit {
@@ -85,7 +87,7 @@ GreaseTestResource >> greasecore1_1_13devWithDescription: aDescription [
 }') 
 ]
 
-{ #category : #'data - cargo package versions' }
+{ #category : 'data - cargo package versions' }
 GreaseTestResource >> greasepharo30core1_1_13 [
 	<cargoPackageVersion>
 	^ STON fromString: 
@@ -113,7 +115,7 @@ GreaseTestResource >> greasepharo30core1_1_13 [
 }'
 ]
 
-{ #category : #'data - cargo package versions' }
+{ #category : 'data - cargo package versions' }
 GreaseTestResource >> greasepharo30slime1_1_13 [
 	<cargoPackageVersion>
 	^ STON fromString: 
@@ -141,7 +143,7 @@ GreaseTestResource >> greasepharo30slime1_1_13 [
 }'
 ]
 
-{ #category : #'data - cargo package versions' }
+{ #category : 'data - cargo package versions' }
 GreaseTestResource >> greasepharo40slime1_1_13 [
 	<cargoPackageVersion>
 	^ STON fromString: 
@@ -169,14 +171,14 @@ GreaseTestResource >> greasepharo40slime1_1_13 [
 }'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GreaseTestResource >> initialize [
 	super initialize.
 	fs := FileSystem memory.
 	self initializeCargoRepository
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GreaseTestResource >> initializeCargoRepository [
 	| cargoDirectory |
 	cargoDirectory := fs / 'cargo-repo'.
@@ -194,18 +196,18 @@ GreaseTestResource >> initializeCargoRepository [
 	self initializeCargoRepositoryVirtualIndex.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GreaseTestResource >> initializeCargoRepositoryVirtualIndex [
 	self cargoPackageVersions
 		do: [ :pkgVersion | cargoRepository updateVirtualPackagesIndexWith: pkgVersion ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GreaseTestResource >> loadInstructions [
 	^ STON fromString: self loadInstructionsStonString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GreaseTestResource >> loadInstructionsFile [
 	| file|
 	file := fs / 'grease-load-instructions.ston'.
@@ -213,7 +215,7 @@ GreaseTestResource >> loadInstructionsFile [
 	^ file
 ]
 
-{ #category : #data }
+{ #category : 'data' }
 GreaseTestResource >> loadInstructionsStonString [
 	"Cargo new
 		package: 'Grease-Slime';
@@ -302,7 +304,7 @@ GreaseTestResource >> loadInstructionsStonString [
 }'
 ]
 
-{ #category : #data }
+{ #category : 'data' }
 GreaseTestResource >> loadInstructionsStonStringNew [
 	"Cargo new
 		package: 'Grease-Slime';
@@ -326,7 +328,7 @@ GreaseTestResource >> loadInstructionsStonStringNew [
 }'
 ]
 
-{ #category : #data }
+{ #category : 'data' }
 GreaseTestResource >> loadInstructionsStonStringOld [
 	"Cargo new
 		package: 'Grease-Slime';
@@ -409,12 +411,12 @@ GreaseTestResource >> loadInstructionsStonStringOld [
 }'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GreaseTestResource >> mcRepository [
 	^ mcRepository
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 GreaseTestResource >> mcSnapshotMockFor: aPackageName [
 	^ MCSnapshot
 		fromDefinitions:
@@ -429,7 +431,7 @@ GreaseTestResource >> mcSnapshotMockFor: aPackageName [
 						comment: ''))
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 GreaseTestResource >> mcVersionFor: reference packages: packages [
 	^ MCVersion new
 		setPackage: 
@@ -441,7 +443,7 @@ GreaseTestResource >> mcVersionFor: reference packages: packages [
 		dependencies: #()
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 GreaseTestResource >> mcVersionInfoMockFor: reference [
 	^ MCVersionInfo
 		name: reference printString
@@ -453,7 +455,7 @@ GreaseTestResource >> mcVersionInfoMockFor: reference [
 		ancestors: #()
 ]
 
-{ #category : #data }
+{ #category : 'data' }
 GreaseTestResource >> packageVersions [
 	"create Cargo package version for theses packages using a MCDictionary repository"
 
@@ -474,7 +476,7 @@ GreaseTestResource >> packageVersions [
 		collect: [ :each |	CGOVersionReference named: each ]
 ]
 
-{ #category : #'set-up' }
+{ #category : 'set-up' }
 GreaseTestResource >> setUp [
 	"This method builds a fake repository with the version references from #setUpVersionReferences."
 	| packages |
@@ -485,7 +487,7 @@ GreaseTestResource >> setUp [
 		do: [ :reference | mcRepository basicStoreVersion: (self mcVersionFor: reference packages: packages) ]
 ]
 
-{ #category : #data }
+{ #category : 'data' }
 GreaseTestResource >> versionReferences [
 	"This method answers a collection of unique references in the order they should be sorted. It includes two different packages (Gofer-Foo, Gofer-Bar), linear series of packages (Gofer-Foo-lr.1, Gofer-Foo-lr.2, Gofer-Foo-lr.4), packages with a branch (Gofer-Bar.branch-lr.1,Gofer.branch-Bar-lr.2), and packages with the same version but different authors (Gofer-Bar-jf.1, Gofer-Bar-lr.1)."
 
@@ -506,7 +508,7 @@ GreaseTestResource >> versionReferences [
 		collect: [ :each |	CGOVersionReference named: each ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 GreaseTestResource >> writePackageVersions: aListOfPackageVersions to: aFolder [
 	aListOfPackageVersions
 		do: [ :pkgVersion |

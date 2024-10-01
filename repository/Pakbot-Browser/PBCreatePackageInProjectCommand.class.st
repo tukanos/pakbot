@@ -2,16 +2,18 @@
 Command used to create a new (empty) Pakbot package unit
 "
 Class {
-	#name : #PBCreatePackageInProjectCommand,
-	#superclass : #PBProjectCommand,
+	#name : 'PBCreatePackageInProjectCommand',
+	#superclass : 'PBProjectCommand',
 	#instVars : [
 		'usePakbot',
 		'unitName'
 	],
-	#category : #'Pakbot-Browser-Commands'
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBCreatePackageInProjectCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #smallAdd;
@@ -20,7 +22,7 @@ PBCreatePackageInProjectCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBCreatePackageInProjectCommand >> execute [
 	unitName := self application newRequest
 		title: 'New package name';

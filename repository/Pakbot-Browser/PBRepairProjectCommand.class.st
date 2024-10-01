@@ -2,12 +2,14 @@
 This command allows to repair a Pakbot project, e.g. solve its dependencies to load the project.
 "
 Class {
-	#name : #PBRepairProjectCommand,
-	#superclass : #PBProjectCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBRepairProjectCommand',
+	#superclass : 'PBProjectCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBRepairProjectCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #repair;
@@ -16,13 +18,13 @@ PBRepairProjectCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBRepairProjectCommand >> canBeExecuted [
 
 	^ super canBeExecuted and: [ self project hasProblems ]
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBRepairProjectCommand >> execute [
 	self project ifNil: [ ^ self ].
 

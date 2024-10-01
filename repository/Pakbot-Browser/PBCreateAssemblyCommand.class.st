@@ -2,12 +2,14 @@
 Command to create a new (empty) assembly into a project
 "
 Class {
-	#name : #PBCreateAssemblyCommand,
-	#superclass : #PBProjectCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBCreateAssemblyCommand',
+	#superclass : 'PBProjectCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBCreateAssemblyCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #newerPackagesAvailable;
@@ -16,7 +18,7 @@ PBCreateAssemblyCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 PBCreateAssemblyCommand >> execute [
 	| assemblyName |
 	assemblyName := self application newRequest

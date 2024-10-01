@@ -2,12 +2,14 @@
 A PMPackageDescriptionCacheTest is a test class for testing the behavior of PMPackageDescriptionCache
 "
 Class {
-	#name : #CGOPackageVersionCacheTest,
-	#superclass : #CGOTest,
-	#category : #'CargoPackageManager-FailingTests-Model'
+	#name : 'CGOPackageVersionCacheTest',
+	#superclass : 'CGOTest',
+	#category : 'CargoPackageManager-FailingTests-Model',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'Model'
 }
 
-{ #category : #'tests-decoding' }
+{ #category : 'tests-decoding' }
 CGOPackageVersionCacheTest >> testDecode [
 	| fileRef |
 	
@@ -20,7 +22,7 @@ CGOPackageVersionCacheTest >> testDecode [
 	fileRef delete.
 ]
 
-{ #category : #'tests-decoding' }
+{ #category : 'tests-decoding' }
 CGOPackageVersionCacheTest >> testDecodeNonStonData [
 	| fileRef |
 	
@@ -33,7 +35,7 @@ CGOPackageVersionCacheTest >> testDecodeNonStonData [
 	fileRef delete.
 ]
 
-{ #category : #'tests-fetching' }
+{ #category : 'tests-fetching' }
 CGOPackageVersionCacheTest >> testFetchDescription [
 	| pkgVersionString pkgVersion stonDescription fileRef |
 	
@@ -51,7 +53,7 @@ CGOPackageVersionCacheTest >> testFetchDescription [
 	fileRef delete
 ]
 
-{ #category : #'tests-fetching' }
+{ #category : 'tests-fetching' }
 CGOPackageVersionCacheTest >> testFetchMissingDescription [
 	self
 		assert:	(CGOPackageVersionCache new fetchDescription: 'Seaside-Core@3.1.0')
@@ -59,13 +61,13 @@ CGOPackageVersionCacheTest >> testFetchMissingDescription [
 
 ]
 
-{ #category : #'tests-defaults' }
+{ #category : 'tests-defaults' }
 CGOPackageVersionCacheTest >> testPackageDescriptionCache [
 	self
 		assert: CGOPackageVersionCache packageDescriptionCache exists
 ]
 
-{ #category : #'tests-saving' }
+{ #category : 'tests-saving' }
 CGOPackageVersionCacheTest >> testSaveDescription [
 	| pkgVersionString pkgVersion fileRef |
 	

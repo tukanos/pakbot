@@ -2,15 +2,17 @@
 I'm a form you can use to create a new project.
 "
 Class {
-	#name : #PBNewProjectPresenter,
-	#superclass : #SpOptionPresenter,
+	#name : 'PBNewProjectPresenter',
+	#superclass : 'SpOptionPresenter',
 	#instVars : [
 		'projectPanel'
 	],
-	#category : #'Pakbot-Browser-Presenters-NewProject'
+	#category : 'Pakbot-Browser-Presenters-NewProject',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters-NewProject'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBNewProjectPresenter class >> example [
 	| panel editionPanel |
 	
@@ -24,7 +26,7 @@ PBNewProjectPresenter class >> example [
 	panel open
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBNewProjectPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom  
@@ -32,7 +34,7 @@ PBNewProjectPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #accepting }
+{ #category : 'accepting' }
 PBNewProjectPresenter >> doAccept [
 
 	self flag: 'TO DO: validations (call super doAccept)'.
@@ -44,31 +46,31 @@ PBNewProjectPresenter >> doAccept [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBNewProjectPresenter >> initializePresenters [
 	
 	projectPanel := self instantiate: PBLoadableUnitOverviewPresenter on: (PBProjectVersion named: '').
 	projectPanel version: ''.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBNewProjectPresenter >> optionIcon [
 
 	^ self iconNamed: #dirtyPackage
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBNewProjectPresenter >> optionTitle [
 
 	^ 'New Project'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBNewProjectPresenter >> projectPanel [
 	^ projectPanel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBNewProjectPresenter >> registry [
 	
 	^ self application registry

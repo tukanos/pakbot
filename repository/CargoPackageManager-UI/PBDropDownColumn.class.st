@@ -1,19 +1,21 @@
 Class {
-	#name : #PBDropDownColumn,
-	#superclass : #PBConflictsColumn,
+	#name : 'PBDropDownColumn',
+	#superclass : 'PBConflictsColumn',
 	#instVars : [
 		'dialog'
 	],
-	#category : #'CargoPackageManager-UI-Conflicts'
+	#category : 'CargoPackageManager-UI-Conflicts',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Conflicts'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBDropDownColumn >> dialog: aPBResolveConflictsDialog [ 
 	
 	dialog := aPBResolveConflictsDialog
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 PBDropDownColumn >> read: aPBConflict [
 
 	^	PBConflictDropListMorph new
@@ -28,7 +30,7 @@ PBDropDownColumn >> read: aPBConflict [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBDropDownColumn >> width [
 	^ 100
 ]

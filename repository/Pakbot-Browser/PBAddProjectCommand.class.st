@@ -2,18 +2,20 @@
 A command to create a new (empty) Pakbot project
 "
 Class {
-	#name : #PBAddProjectCommand,
-	#superclass : #PBCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBAddProjectCommand',
+	#superclass : 'PBCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBAddProjectCommand class >> open [
 	<script>
 	self new execute.
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBAddProjectCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #smallAdd;
@@ -21,7 +23,7 @@ PBAddProjectCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBAddProjectCommand >> execute [
 	
 	(PBAddProjectPresenter newApplication: self context application)

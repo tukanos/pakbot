@@ -1,10 +1,12 @@
 Class {
-	#name : #SeasideTestsFunctionalSpec,
-	#superclass : #Seaside31PackageSpec,
-	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Common'
+	#name : 'SeasideTestsFunctionalSpec',
+	#superclass : 'Seaside31PackageSpec',
+	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Common',
+	#package : 'CargoPackageManager-TestRessources',
+	#tag : 'SeasideDesc-Common'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsFunctionalSpec >> dependencies [
 	^ { #'Seaside-Environment' -> #('=3.1') .
 		#'Seaside-Tests-Core' -> #('=3.1') .
@@ -16,17 +18,17 @@ SeasideTestsFunctionalSpec >> dependencies [
 		yourself."
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsFunctionalSpec >> name [
 	^ 'Seaside-Tests-Functional'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsFunctionalSpec >> repositories [
 	^ #('http://smalltalkhub.com/mc/Seaside/Seaside31/main')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsFunctionalSpec >> sourcePackageVersion [
 	^ { #backend -> #monticello .
 		#repositoryUrl -> 'http://smalltalkhub.com/mc/Seaside/Seaside31/main' .
@@ -34,7 +36,7 @@ SeasideTestsFunctionalSpec >> sourcePackageVersion [
 		#versionString -> 'JohnDoe.0' } asDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsFunctionalSpec >> version [
 	^  '3.1.0'
 ]

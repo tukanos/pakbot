@@ -13,15 +13,17 @@ Directory repositories store versions as follows:
  - versions are represented as files containing the serialized version information, and stored inside the corresponding package subdirectory.
 "
 Class {
-	#name : #CGODirectoryPackageRepository,
-	#superclass : #CGOPackageRepository,
+	#name : 'CGODirectoryPackageRepository',
+	#superclass : 'CGOPackageRepository',
 	#instVars : [
 		'rootDirectory'
 	],
-	#category : #'CargoPackageManager-Minimal-Model'
+	#category : 'CargoPackageManager-Minimal-Model',
+	#package : 'CargoPackageManager-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CGODirectoryPackageRepository class >> newInDirectory: aPathOrFileReference [
 	
 	^ self basicNew
@@ -30,26 +32,26 @@ CGODirectoryPackageRepository class >> newInDirectory: aPathOrFileReference [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CGODirectoryPackageRepository class >> newWithFileName: aFileName [
 	"ensure we can handle relative pathes"
 	^ self newWithUrl: aFileName asFileReference fullName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGODirectoryPackageRepository >> directory: aFileReference [ 
 	
 	rootDirectory := aFileReference
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGODirectoryPackageRepository >> directoryFor: aPackageVersion [
 	^ (aPackageVersion isVirtual
 		ifTrue: [ self virtualDirectory ]
 		ifFalse: [ self rootDirectory ]) / aPackageVersion packageName asLowercase
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGODirectoryPackageRepository >> fetch: aPackageName version: aVersion [
 	| packageFolder packageVersionString |
 	packageFolder := self rootDirectory / aPackageName asLowercase.
@@ -62,7 +64,7 @@ CGODirectoryPackageRepository >> fetch: aPackageName version: aVersion [
 
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGODirectoryPackageRepository >> fetchVirtual: aVirtualPackageName version: aVersion [
 	| packageFolder packageVersionString |
 	packageFolder := self virtualDirectory / aVirtualPackageName asLowercase.
@@ -75,26 +77,26 @@ CGODirectoryPackageRepository >> fetchVirtual: aVirtualPackageName version: aVer
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGODirectoryPackageRepository >> initialize [
 	self rootDirectory ensureCreateDirectory.
 	self virtualDirectory ensureCreateDirectory.
 	self virtualIndexesDirectory ensureCreateDirectory.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGODirectoryPackageRepository >> initializeWithUrl: aUrlString [
 	super initializeWithUrl: (ZnUrl fromString: aUrlString defaultScheme: #file).
 	self initialize
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGODirectoryPackageRepository >> latestVersionOfConcretePackage: aPackageName suitableForEnvironment: platformAttributes [
 	^ ((self versionStringsOf: aPackageName) collect: #asPackageVersionReference)
 			detectMax: [ :pkgVersion | pkgVersion versionNumber ]
 ]
 
-{ #category : #fetching }
+{ #category : 'fetching' }
 CGODirectoryPackageRepository >> package: aPackageName [
 	^ (self rootDirectory / aPackageName asLowercase) exists
 		ifTrue: [ CGOPackageProvider default packageNamed: aPackageName ]
@@ -103,7 +105,7 @@ CGODirectoryPackageRepository >> package: aPackageName [
 			ifFalse: [ PBPackageNotFoundError signal: aPackageName ] ]
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGODirectoryPackageRepository >> packageNames [
 	"list name of all packages available in the repository"
 
@@ -111,7 +113,7 @@ CGODirectoryPackageRepository >> packageNames [
 		reject: [ :each | each = 'virtual' or: [ each = 'virtual-indexes' ] ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGODirectoryPackageRepository >> packageVersionNamesProviding: aVirtualPackageName version: aSemanticVersion [
 	| packages virtualPackageVersionIndex |
 	packages := OrderedCollection new.
@@ -121,7 +123,7 @@ CGODirectoryPackageRepository >> packageVersionNamesProviding: aVirtualPackageNa
 		ifTrue: [ virtualPackageVersionIndex contents lines ]
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGODirectoryPackageRepository >> packagesProviding: aVirtualPackageName version: aSemanticVersion forEnvironment: platformAttributes [
 	^ (self packageVersionNamesProviding: aVirtualPackageName version: aSemanticVersion)
 		collect: [ :packageVersionName | | pkgVersionRef |
@@ -133,12 +135,12 @@ CGODirectoryPackageRepository >> packagesProviding: aVirtualPackageName version:
 			self does: unit fitPlatformRequirements: platformAttributes ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGODirectoryPackageRepository >> rootDirectory [
 	^ rootDirectory ifNil: [ rootDirectory := baseUrl pathPrintString asFileReference ]
 ]
 
-{ #category : #'versions posting' }
+{ #category : 'versions posting' }
 CGODirectoryPackageRepository >> savePackageVersion: aPackageVersion [
 	| existingPackageVersion directory |
 	existingPackageVersion := self checkPreviousRegistrationOf: aPackageVersion.
@@ -149,7 +151,7 @@ CGODirectoryPackageRepository >> savePackageVersion: aPackageVersion [
 	self updateVirtualPackagesIndexWith: aPackageVersion
 ]
 
-{ #category : #'versions posting' }
+{ #category : 'versions posting' }
 CGODirectoryPackageRepository >> updateVirtualPackagesIndexWith: aPackageVersion [
 	aPackageVersion isAssembly ifTrue: [ ^ self ].
 	aPackageVersion provisions
@@ -167,7 +169,7 @@ CGODirectoryPackageRepository >> updateVirtualPackagesIndexWith: aPackageVersion
 								cr ] ] ]
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGODirectoryPackageRepository >> versionStringsOf: aPackageName [
 	"Returns the list of versions available in the repository for the given package name"
 
@@ -179,7 +181,7 @@ CGODirectoryPackageRepository >> versionStringsOf: aPackageName [
 		do: [ #() ]
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGODirectoryPackageRepository >> versionStringsOfVirtual: aVirtualPackageName [
 	"Returns the list of versions available in the repository for the given package name"
 
@@ -188,12 +190,12 @@ CGODirectoryPackageRepository >> versionStringsOfVirtual: aVirtualPackageName [
 		do: [ #() ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGODirectoryPackageRepository >> virtualDirectory [
 	^ self rootDirectory / 'virtual'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGODirectoryPackageRepository >> virtualIndexesDirectory [
 	^ self rootDirectory / 'virtual-indexes'
 ]

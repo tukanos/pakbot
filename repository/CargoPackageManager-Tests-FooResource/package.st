@@ -1,1 +1,1 @@
-Package { #name : #'CargoPackageManager-Tests-FooResource' }
+Package { #name : 'CargoPackageManager-Tests-FooResource' }

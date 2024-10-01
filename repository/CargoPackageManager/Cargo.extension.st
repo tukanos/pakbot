@@ -1,11 +1,11 @@
-Extension { #name : #Cargo }
+Extension { #name : 'Cargo' }
 
-{ #category : #'*CargoPackageManager' }
+{ #category : '*CargoPackageManager' }
 Cargo >> fetch [
 	self loadInstructions	fetch
 ]
 
-{ #category : #'*CargoPackageManager' }
+{ #category : '*CargoPackageManager' }
 Cargo >> fetchInto: aDirectoryReference [
 	"aDirectoryReference could be 
 		- either a string path to a folder,
@@ -19,12 +19,12 @@ Cargo >> fetchInto: aDirectoryReference [
 
 ]
 
-{ #category : #'*CargoPackageManager' }
+{ #category : '*CargoPackageManager' }
 Cargo >> install [
 	self installFrom: self loadInstructions
 ]
 
-{ #category : #'*CargoPackageManager' }
+{ #category : '*CargoPackageManager' }
 Cargo >> loadInstructions [
 	| resolution |
 	resolution := PBSolver new
@@ -35,7 +35,7 @@ Cargo >> loadInstructions [
 		loadInstructions
 ]
 
-{ #category : #'*CargoPackageManager' }
+{ #category : '*CargoPackageManager' }
 Cargo >> mcVersions [
 	^ self loadInstructions mcVersions
 ]

@@ -1,14 +1,16 @@
 Class {
-	#name : #CGOPackageVersionReferenceTest,
-	#superclass : #CGOTest,
+	#name : 'CGOPackageVersionReferenceTest',
+	#superclass : 'CGOTest',
 	#instVars : [
 		'pkgVersionReference',
 		'pkgVersionString'
 	],
-	#category : #'CargoPackageManager-FailingTests-Model'
+	#category : 'CargoPackageManager-FailingTests-Model',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'Model'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageVersionReferenceTest >> assertIsExpectedPackageVersion: packageVersion [
 	self assert: packageVersion notNil.
 	self assert: (packageVersion isKindOf: CGOPackageVersion).
@@ -16,17 +18,17 @@ CGOPackageVersionReferenceTest >> assertIsExpectedPackageVersion: packageVersion
 	self assert: packageVersion version equals: pkgVersionReference versionNumber
 ]
 
-{ #category : #input }
+{ #category : 'input' }
 CGOPackageVersionReferenceTest >> packageVersionDescription [
 	^ PBPackageVersionWriterV1 toStringPretty: self resolvedProjectVersion
 ]
 
-{ #category : #input }
+{ #category : 'input' }
 CGOPackageVersionReferenceTest >> resolvedProjectVersion [
 	^ self packageVersions detect: [ :each | each packageName = pkgVersionReference packageName ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 CGOPackageVersionReferenceTest >> setUp [ 
 	| remoteRepositoryMock |
 	pkgVersionReference := PBPackageVersionReference newOn: 'Seaside-Core@3.1.0'.
@@ -37,12 +39,12 @@ CGOPackageVersionReferenceTest >> setUp [
 	pkgVersionReference packageRepositories: { remoteRepositoryMock }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageVersionReferenceTest >> testAsPackageVersion [
 	self assertIsExpectedPackageVersion: pkgVersionReference asPackageVersion
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageVersionReferenceTest >> testCanCreateFromPackageName [
 	| ref |
 	ref := 'SomePackage' asPackageVersionReference.
@@ -57,7 +59,7 @@ CGOPackageVersionReferenceTest >> testCanCreateFromPackageName [
 		equals: nil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageVersionReferenceTest >> testCanCreateFromString [
 	| ref |
 	ref := 'SomePackage@1.2' asPackageVersionReference.
@@ -72,7 +74,7 @@ CGOPackageVersionReferenceTest >> testCanCreateFromString [
 		equals: '1.2.0' asSemanticVersion
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageVersionReferenceTest >> testFetchFromCache [
 	| fileRef packageVersion |
 	fileRef := CGOPackageVersionCache packageDescriptionCache / pkgVersionReference asString asLowercase.
@@ -82,28 +84,28 @@ CGOPackageVersionReferenceTest >> testFetchFromCache [
 	self assertIsExpectedPackageVersion: packageVersion
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageVersionReferenceTest >> testFetchFromRepositories [
 	| packageVersion |
 	packageVersion := pkgVersionReference fetchFromRepositories.
 	self assertIsExpectedPackageVersion: packageVersion
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageVersionReferenceTest >> testPackageName [
 	self 
 		assert: pkgVersionReference packageName
 		equals: 'Seaside-Core'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageVersionReferenceTest >> testVersionNumber [
 	self 
 		assert: pkgVersionReference versionNumber
 		equals: '3.1.0' asSemanticVersion
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageVersionReferenceTest >> testVersionString [
 	self 
 		assert: pkgVersionReference versionString

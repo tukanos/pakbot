@@ -1,6 +1,6 @@
-Extension { #name : #PBPackageRepository }
+Extension { #name : 'PBPackageRepository' }
 
-{ #category : #'*Pakbot-Catalog-Tests' }
+{ #category : '*Pakbot-Catalog-Tests' }
 PBPackageRepository >> registerFakePackage: aPackageName version: aVersionString [
 
 	| file |

@@ -3,24 +3,26 @@ I am a component to be used to show the project status.
 With an icon, a button for an action and a short and long description.
 "
 Class {
-	#name : #PBProjectStatusPresenter,
-	#superclass : #SpPresenterWithModel,
+	#name : 'PBProjectStatusPresenter',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'statusLabel',
 		'statusIcon',
 		'actionButton'
 	],
-	#category : #'Pakbot-Browser-Presenters'
+	#category : 'Pakbot-Browser-Presenters',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBProjectStatusPresenter class >> example [
 
 	<example>
 	^ (self on: PBProjectVersion example) open
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBProjectStatusPresenter >> connectPresenters [
 	
 	Pakbot announcer weak
@@ -31,7 +33,7 @@ PBProjectStatusPresenter >> connectPresenters [
 	actionButton action: [ (PBRepairProjectCommand forSpecContext: self mainPresenter) execute ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBProjectStatusPresenter >> defaultLayout [
 	<spec>
 
@@ -41,13 +43,13 @@ PBProjectStatusPresenter >> defaultLayout [
 			add: actionButton expand: false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBProjectStatusPresenter >> delete [
 	super delete.
 	self unsubscribe
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBProjectStatusPresenter >> handleAnnouncement: ann [
 
 	ann project = self project ifFalse: [ ^ self ].
@@ -55,7 +57,7 @@ PBProjectStatusPresenter >> handleAnnouncement: ann [
 	owner refreshUI
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBProjectStatusPresenter >> initializePresenters [
 	
 	statusLabel := self newLabel.
@@ -72,18 +74,18 @@ PBProjectStatusPresenter >> initializePresenters [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectStatusPresenter >> mainPresenter [
 	"Main presenter -> Project presenter -> Status presenter"
 	^ self owner owner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectStatusPresenter >> project [
 	^ self model
 ]
 
-{ #category : #announcements }
+{ #category : 'announcements' }
 PBProjectStatusPresenter >> unsubscribe [
 	
 	Pakbot announcer unsubscribe: self

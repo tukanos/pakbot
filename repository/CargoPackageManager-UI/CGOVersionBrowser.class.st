@@ -2,12 +2,13 @@
 GTBrowser used to display a semantic version.
 "
 Class {
-	#name : #CGOVersionBrowser,
-	#superclass : #GTObjectVariablesBrowser,
-	#category : 'CargoPackageManager-UI'
+	#name : 'CGOVersionBrowser',
+	#superclass : 'GTObjectVariablesBrowser',
+	#category : 'CargoPackageManager-UI',
+	#package : 'CargoPackageManager-UI'
 }
 
-{ #category : #building }
+{ #category : 'building' }
 CGOVersionBrowser >> compose [
 	self title: 'Version'.
 	self tabulator with: 

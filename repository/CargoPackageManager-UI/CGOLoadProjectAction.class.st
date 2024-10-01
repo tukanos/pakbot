@@ -1,39 +1,41 @@
 Class {
-	#name : #CGOLoadProjectAction,
-	#superclass : #CGORepairProjectAction,
-	#category : 'CargoPackageManager-UI-Repair'
+	#name : 'CGOLoadProjectAction',
+	#superclass : 'CGORepairProjectAction',
+	#category : 'CargoPackageManager-UI-Repair',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Repair'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOLoadProjectAction class >> isAvailableFor: aProject [
 
 	^ aProject isUpToDate not
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOLoadProjectAction >> description [
 	^ 'Loads the missing dependencies of the project. 
 If there is a conflict it should be fixed before being able to load the dependencies.'
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 CGOLoadProjectAction >> doExecute [
 
 	^ (PBLoadPreviewDialog on: project resolve) openDialogWithSpec
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOLoadProjectAction >> iconName [
 	^ #smallLoadProject
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGOLoadProjectAction >> isLoadProjectAction [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOLoadProjectAction >> name [
 	^ 'Load Dependencies of the Project'
 ]

@@ -1,10 +1,12 @@
 Class {
-	#name : #SeasideGroupCoreSpec,
-	#superclass : #Seaside31PackageSpec,
-	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Common'
+	#name : 'SeasideGroupCoreSpec',
+	#superclass : 'Seaside31PackageSpec',
+	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Common',
+	#package : 'CargoPackageManager-TestRessources',
+	#tag : 'SeasideDesc-Common'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideGroupCoreSpec >> dependencies [
 	^ { #'Seaside-Core' -> #('=3.1') .
 		#'Seaside-Canvas' -> #('=3.1') .
@@ -18,17 +20,17 @@ SeasideGroupCoreSpec >> dependencies [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideGroupCoreSpec >> name [
 	^ 'Seaside-Group-Core'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideGroupCoreSpec >> repositories [
 	^ #('http://smalltalkhub.com/mc/Seaside/Seaside31/main')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideGroupCoreSpec >> sourcePackageVersion [
 	^ { #backend -> #monticello .
 		#repositoryUrl -> 'http://smalltalkhub.com/mc/Seaside/Seaside31/main' .
@@ -36,7 +38,7 @@ SeasideGroupCoreSpec >> sourcePackageVersion [
 		#versionString -> 'JohnDoe.0' } asDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideGroupCoreSpec >> version [
 	^  '3.1'
 ]

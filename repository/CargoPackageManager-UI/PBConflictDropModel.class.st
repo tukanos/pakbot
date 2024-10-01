@@ -1,15 +1,17 @@
 Class {
-	#name : #PBConflictDropModel,
-	#superclass : #Object,
+	#name : 'PBConflictDropModel',
+	#superclass : 'Object',
 	#instVars : [
 		'conflict',
 		'list',
 		'dialog'
 	],
-	#category : #'CargoPackageManager-UI-Conflicts'
+	#category : 'CargoPackageManager-UI-Conflicts',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Conflicts'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBConflictDropModel class >> on: aPBConflict dialog: dialog [
 	^ self new
 		conflict: aPBConflict;
@@ -17,18 +19,18 @@ PBConflictDropModel class >> on: aPBConflict dialog: dialog [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflictDropModel >> conflict: aPBConflict [ 
 	
 	conflict := aPBConflict
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflictDropModel >> dialog: aPBResolveConflictsDialog [ 
 	dialog := aPBResolveConflictsDialog
 ]
 
-{ #category : #accesing }
+{ #category : 'accesing' }
 PBConflictDropModel >> list [
 	
 	list ifNil: [ list := conflict possibleResolutions ].
@@ -37,13 +39,13 @@ PBConflictDropModel >> list [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflictDropModel >> selected [
 	
 	^ conflict selectedResolution ifNotNil: #version
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflictDropModel >> selected: aString [ 
 	
 	conflict selectedResolution: (list detect: [ :each | each version = aString ]).

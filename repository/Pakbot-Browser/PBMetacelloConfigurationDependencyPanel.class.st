@@ -2,24 +2,26 @@
 Presenter to edit a Metacello Configuration dependency.
 "
 Class {
-	#name : #PBMetacelloConfigurationDependencyPanel,
-	#superclass : #PBAbstractDependencyPresenter,
+	#name : 'PBMetacelloConfigurationDependencyPanel',
+	#superclass : 'PBAbstractDependencyPresenter',
 	#instVars : [
 		'name',
 		'repositoryUrl',
 		'version',
 		'group'
 	],
-	#category : #'Pakbot-Browser-Presenters-Dependencies'
+	#category : 'Pakbot-Browser-Presenters-Dependencies',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters-Dependencies'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBMetacelloConfigurationDependencyPanel class >> example [
 
 	(self on: PBMetacelloConfigurationProjectDependency example) open
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PBMetacelloConfigurationDependencyPanel >> buildDependency [
 
 	^ PBMetacelloConfigurationProjectDependency
@@ -28,7 +30,7 @@ PBMetacelloConfigurationDependencyPanel >> buildDependency [
 		version: version text
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBMetacelloConfigurationDependencyPanel >> defaultLayout [ 
 
 	^ SpGridLayout build: [ :builder |
@@ -41,13 +43,13 @@ PBMetacelloConfigurationDependencyPanel >> defaultLayout [
 			add: 'Group' ; add: group ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloConfigurationDependencyPanel >> icon [
 	
 	^ self iconNamed: PBMetacelloConfigurationProjectDependency iconName
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBMetacelloConfigurationDependencyPanel >> initializePresenters [
 
 	name := (self instantiate: SpTextInputFieldWithValidationPresenter)
@@ -73,7 +75,7 @@ PBMetacelloConfigurationDependencyPanel >> initializePresenters [
 		
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBMetacelloConfigurationDependencyPanel >> setInitialValues [
 
 	name text: self dependency name.
@@ -82,13 +84,13 @@ PBMetacelloConfigurationDependencyPanel >> setInitialValues [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloConfigurationDependencyPanel >> title [
 
 	^ 'Metacello Configuration'
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PBMetacelloConfigurationDependencyPanel >> updateDependency [
 
 	self dependency ifNil: [ dependency := self buildDependency. ^ self ].

@@ -1,6 +1,6 @@
-Extension { #name : #TreePresenter }
+Extension { #name : 'TreePresenter' }
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 TreePresenter >> whenSelectedNodesChanged: aBlock [
 	"Set a block to perform when a new node is selected"
 

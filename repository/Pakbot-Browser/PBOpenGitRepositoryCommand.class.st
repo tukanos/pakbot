@@ -3,12 +3,14 @@ A command to open the project repository.
 Useful to add remotes for example.
 "
 Class {
-	#name : #PBOpenGitRepositoryCommand,
-	#superclass : #PBProjectCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBOpenGitRepositoryCommand',
+	#superclass : 'PBProjectCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBOpenGitRepositoryCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #komitterSmalltalkhubRemote;
@@ -16,7 +18,7 @@ PBOpenGitRepositoryCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBOpenGitRepositoryCommand >> execute [
 
 	self project ifNil: [ ^ self ].

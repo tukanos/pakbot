@@ -4,15 +4,17 @@ A cargo package repository provides access to a concrete package storage. It lis
 This class is an abstract class exposing the repository main API. See subclasses for concrete implementations.
 "
 Class {
-	#name : #CGOPackageRepository,
-	#superclass : #Object,
+	#name : 'CGOPackageRepository',
+	#superclass : 'Object',
 	#instVars : [
 		'baseUrl'
 	],
-	#category : #'CargoPackageManager-Minimal-Model'
+	#category : 'CargoPackageManager-Minimal-Model',
+	#package : 'CargoPackageManager-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CGOPackageRepository class >> newWithUrl: anURL [
 	^ self basicNew	
 		initializeWithUrl: anURL;
@@ -20,7 +22,7 @@ CGOPackageRepository class >> newWithUrl: anURL [
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOPackageRepository >> checkPreviousRegistrationOf: aPackageVersion [
 	| existingPackageVersion |
 	
@@ -37,14 +39,14 @@ CGOPackageRepository >> checkPreviousRegistrationOf: aPackageVersion [
 	^ existingPackageVersion
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOPackageRepository >> does: aPackageVersion fitPlatformRequirements: requirements [
 	^ aPackageVersion platformRequirements 
 			ifEmpty: [ true ]
 			ifNotEmpty: [ :pkgRequirements | (requirements asSet intersection: pkgRequirements asSet) notEmpty ]
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGOPackageRepository >> fetch: aPackageVersionString [
 	| pkgVersionRef |
 
@@ -54,40 +56,40 @@ CGOPackageRepository >> fetch: aPackageVersionString [
 		version: pkgVersionRef versionString.
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGOPackageRepository >> fetch: aPackageName version: aVersion [
 	self subclassResponsibility
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGOPackageRepository >> fetchVirtual: aVirtualPackageName version: aVersion [
 	self subclassResponsibility
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackageRepository >> initializeWithUrl: aUrlString [
 	baseUrl := aUrlString.
 	self initialize
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGOPackageRepository >> isVirtual: aPackageName [
 	^ (self package: aPackageName) isVirtual
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOPackageRepository >> latestVersionOfConcretePackage: aPackageName suitableForEnvironment: platformAttributes [
 	self subclassResponsibility
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGOPackageRepository >> latestVersionOfPackage: aPackageName suitableForEnvironment: platformAttributes [
 	^ (self isVirtual: aPackageName)
 		ifTrue: [ self latestVersionOfVirtualPackage: aPackageName suitableForEnvironment: platformAttributes ]
 		ifFalse: [ self latestVersionOfConcretePackage: aPackageName suitableForEnvironment: platformAttributes ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOPackageRepository >> latestVersionOfVirtualPackage: aVirtualPackageName suitableForEnvironment: platformAttributes [
 	"Virtual packages DO NOT support platform attributes at this time. So, platformAttributes argument is just ignored"
 	| pkgVersionRef |
@@ -96,35 +98,35 @@ CGOPackageRepository >> latestVersionOfVirtualPackage: aVirtualPackageName suita
 	^ self fetchVirtual: pkgVersionRef packageName version: pkgVersionRef versionString
 ]
 
-{ #category : #fetching }
+{ #category : 'fetching' }
 CGOPackageRepository >> package: aPackageName [
 	self subclassResponsibility
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGOPackageRepository >> packageNames [
 	"list name of all packages available in the repository"
 	self subclassResponsibility
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGOPackageRepository >> packagesProviding: aName version: aSemanticVersion forEnvironment: platformAttributes [
 	self subclassResponsibility
 ]
 
-{ #category : #'versions posting' }
+{ #category : 'versions posting' }
 CGOPackageRepository >> savePackageVersion: aPackageVersion [
 	"Save the given package version in the repository"
 	self subclassResponsibility
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGOPackageRepository >> versionStringsOf: aPackageName [
 	"Returns the list of versions available in the repository for the given package name"
 	self subclassResponsibility
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGOPackageRepository >> versionStringsOfVirtual: aPackageName [
 	"Returns the list of versions available in the repository for the given virtual package name"
 	self subclassResponsibility

@@ -1,20 +1,21 @@
 Class {
-	#name : #PBCatalogIntegrationTest,
-	#superclass : #PBAbstractTest,
+	#name : 'PBCatalogIntegrationTest',
+	#superclass : 'PBAbstractTest',
 	#instVars : [
 		'packageRepository'
 	],
-	#category : #'Pakbot-Catalog-Tests'
+	#category : 'Pakbot-Catalog-Tests',
+	#package : 'Pakbot-Catalog-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBCatalogIntegrationTest >> setUp [
 	super setUp.
 	packageRepository := PBPackageRepository newLocalRepositoryIn: FileSystem memory root.
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBCatalogIntegrationTest >> testCanLoadProjectFromProjectPublishedInPackageRepository [
 	| publishedProject |
 	packageRepository := self testCanLoadProjectFromScmAndPublishItToPackageRepository.
@@ -27,7 +28,7 @@ PBCatalogIntegrationTest >> testCanLoadProjectFromProjectPublishedInPackageRepos
 	self assert: publishedProject isInstalled.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBCatalogIntegrationTest >> testCanLoadProjectFromScmAndPublishItToPackageRepository [
 	| repository project publishedProject |
 	repository := PBGitRepositoryCreator new
@@ -50,7 +51,7 @@ PBCatalogIntegrationTest >> testCanLoadProjectFromScmAndPublishItToPackageReposi
 	^ packageRepository 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBCatalogIntegrationTest >> testGetSameResolutionWhenSolvingAProjectFromPackageRepositoryOrInImageProject [
 	| project resolution fetchedproject resolution2 |
 	

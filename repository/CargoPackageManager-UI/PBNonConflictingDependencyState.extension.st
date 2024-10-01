@@ -1,6 +1,6 @@
-Extension { #name : #PBNonConflictingDependencyState }
+Extension { #name : 'PBNonConflictingDependencyState' }
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PBNonConflictingDependencyState >> hasToBeExpanded [
 	
 	^ false

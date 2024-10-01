@@ -1,21 +1,23 @@
 Class {
-	#name : #CGODirectoryPackageRepositoryTest,
-	#superclass : #TestCase,
+	#name : 'CGODirectoryPackageRepositoryTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'packageNames',
 		'temporaryPath',
 		'emptyRepository',
 		'greaseRepository'
 	],
-	#category : #'CargoPackageManager-FailingTests-PackageRepository'
+	#category : 'CargoPackageManager-FailingTests-PackageRepository',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'PackageRepository'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGODirectoryPackageRepositoryTest class >> resources [
 	^ { GreaseTestResource }
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 CGODirectoryPackageRepositoryTest >> setUp [
 	super setUp.
 	greaseRepository := GreaseTestResource current cargoLocalRepository.
@@ -24,13 +26,13 @@ CGODirectoryPackageRepositoryTest >> setUp [
 	temporaryPath := '/tmp/cargo-repo-test' asFileReference.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 CGODirectoryPackageRepositoryTest >> tearDown [
 	super tearDown.
 	temporaryPath ensureDeleteAll.
 ]
 
-{ #category : #'tests - saving' }
+{ #category : 'tests - saving' }
 CGODirectoryPackageRepositoryTest >> testCanGetLatestVersionOfVirtualPackage [
 	| package |
 	package := greaseRepository latestVersionOfPackage: 'Grease-Slime' suitableForEnvironment: #('pharo5.x').
@@ -39,7 +41,7 @@ CGODirectoryPackageRepositoryTest >> testCanGetLatestVersionOfVirtualPackage [
 		equals: 'Grease-Slime@1.0.0'
 ]
 
-{ #category : #'repository-specific' }
+{ #category : 'repository-specific' }
 CGODirectoryPackageRepositoryTest >> testCreateRepositoryShouldCreateDirectoryFromFileName [
 
 	self deny: temporaryPath asFileReference isDirectory.
@@ -47,7 +49,7 @@ CGODirectoryPackageRepositoryTest >> testCreateRepositoryShouldCreateDirectoryFr
 	self assert: temporaryPath asFileReference isDirectory
 ]
 
-{ #category : #'repository-specific' }
+{ #category : 'repository-specific' }
 CGODirectoryPackageRepositoryTest >> testCreateRepositoryShouldCreateDirectoryFromFileReference [	
 
 	self deny: temporaryPath asFileReference isDirectory.
@@ -55,7 +57,7 @@ CGODirectoryPackageRepositoryTest >> testCreateRepositoryShouldCreateDirectoryFr
 	self assert: temporaryPath asFileReference isDirectory
 ]
 
-{ #category : #'repository-specific' }
+{ #category : 'repository-specific' }
 CGODirectoryPackageRepositoryTest >> testCreateRepositoryShouldFailIfDirectoryIsFile [
 
 	self deny: temporaryPath asFileReference isDirectory.
@@ -64,7 +66,7 @@ CGODirectoryPackageRepositoryTest >> testCreateRepositoryShouldFailIfDirectoryIs
 	self should: [CGODirectoryPackageRepository newInDirectory: temporaryPath fullName] raise: FileExists
 ]
 
-{ #category : #'repository-specific' }
+{ #category : 'repository-specific' }
 CGODirectoryPackageRepositoryTest >> testCreateRepositoryShouldWorkOkIfDirectoryAlreadyExists [
 
 	temporaryPath asFileReference ensureCreateDirectory.
@@ -73,7 +75,7 @@ CGODirectoryPackageRepositoryTest >> testCreateRepositoryShouldWorkOkIfDirectory
 	self assert: temporaryPath asFileReference isDirectory
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGODirectoryPackageRepositoryTest >> testFetchExactPackageVersionShouldFailIfAbsentPackageName [
 	| packageName version |
 	
@@ -83,7 +85,7 @@ CGODirectoryPackageRepositoryTest >> testFetchExactPackageVersionShouldFailIfAbs
 	self should: [ greaseRepository fetch: packageName version: version ] raise: PBPackageNotFoundError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGODirectoryPackageRepositoryTest >> testFetchExactPackageVersionShouldFailIfAbsentVersion [
 	| packageName version |
 	
@@ -93,7 +95,7 @@ CGODirectoryPackageRepositoryTest >> testFetchExactPackageVersionShouldFailIfAbs
 	self should: [ greaseRepository fetch: packageName version: version ] raise: CGOPackageVersionNotFoundError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGODirectoryPackageRepositoryTest >> testFetchExactPackageVersionShouldReturnPackageVersionIfPresent [
 	| packageName version pkgVersion |
 	
@@ -108,7 +110,7 @@ CGODirectoryPackageRepositoryTest >> testFetchExactPackageVersionShouldReturnPac
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGODirectoryPackageRepositoryTest >> testFetchExactVirtualPackageVersionShouldFailIfAbsentVersion [
 	| packageName version |
 	
@@ -120,7 +122,7 @@ CGODirectoryPackageRepositoryTest >> testFetchExactVirtualPackageVersionShouldFa
 		raise: CGOPackageVersionNotFoundError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGODirectoryPackageRepositoryTest >> testFetchExactVirtualPackageVersionShouldFailIfAbsentVirtualPackageName [
 	| packageName version |
 	
@@ -132,7 +134,7 @@ CGODirectoryPackageRepositoryTest >> testFetchExactVirtualPackageVersionShouldFa
 		raise: PBPackageNotFoundError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGODirectoryPackageRepositoryTest >> testFetchExactVirtualPackageVersionShouldReturnVirtualPackageVersionIfPresent [
 	| packageName version pkgVersion |
 	
@@ -147,26 +149,26 @@ CGODirectoryPackageRepositoryTest >> testFetchExactVirtualPackageVersionShouldRe
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGODirectoryPackageRepositoryTest >> testFetchVersionsShouldReturnAllVersionsIfPackageExists [
 	self 
 		assertCollection: (greaseRepository versionStringsOf: 'grease-core')
 		hasSameElements:  #('grease-core@1.1.12' 'grease-core@1.1.13')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGODirectoryPackageRepositoryTest >> testFetchVersionsShouldReturnEmptyListIfPackageDoesNotExist [
 
 	self assert: (greaseRepository versionStringsOf: 'Unexistent') equals: #()
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGODirectoryPackageRepositoryTest >> testFetchVersionsShouldReturnsEmptyListIfPackageIsVirtual [
 	
 	self assert: (greaseRepository versionStringsOf: 'Grease-Slime') isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGODirectoryPackageRepositoryTest >> testGetPackagesShouldReturnAllPackageNamesInRepository [
 	
 	self 
@@ -174,19 +176,19 @@ CGODirectoryPackageRepositoryTest >> testGetPackagesShouldReturnAllPackageNamesI
 		hasSameElements: #(#myproject #goferbar #'grease-core' #'grease-pharo30-core' #'grease-pharo30-slime' #'grease-pharo40-slime')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGODirectoryPackageRepositoryTest >> testGetPackagesShouldReturnEmptyListFromEmptyRepository [
 	
 	self assert: emptyRepository packageNames isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGODirectoryPackageRepositoryTest >> testPackagesProvidingAFeatureForNoPlatformAttributesShouldBeEmpty [
 
 	self assert: (greaseRepository packagesProviding: 'Grease-Slime' version: '1.0' forEnvironment: "No platform atributes" #()) isEmpty.
 ]
 
-{ #category : #'tests - saving' }
+{ #category : 'tests - saving' }
 CGODirectoryPackageRepositoryTest >> testSaveDevelopmentVersionShouldOverrideOldVersion [
 
 	emptyRepository savePackageVersion: (GreaseTestResource current greasecore1_1_13devWithDescription: 'old').
@@ -195,7 +197,7 @@ CGODirectoryPackageRepositoryTest >> testSaveDevelopmentVersionShouldOverrideOld
 	self assert: (emptyRepository fetch: 'grease-core' version: '1.1.13-dev') description equals: 'new'
 ]
 
-{ #category : #'tests - saving' }
+{ #category : 'tests - saving' }
 CGODirectoryPackageRepositoryTest >> testSavePackageVersionCanSaveCargoProject [
 	| project |
 
@@ -206,7 +208,7 @@ CGODirectoryPackageRepositoryTest >> testSavePackageVersionCanSaveCargoProject [
 	self assert: (emptyRepository rootDirectory / project packageName asLowercase / project name asLowercase) isFile.
 ]
 
-{ #category : #'repository-specific' }
+{ #category : 'repository-specific' }
 CGODirectoryPackageRepositoryTest >> testSavePackageVersionShouldCreateDirectoryPerPackage [
 	| pkgVersion |
 	
@@ -216,7 +218,7 @@ CGODirectoryPackageRepositoryTest >> testSavePackageVersionShouldCreateDirectory
 	self assert: (emptyRepository rootDirectory / pkgVersion packageName asLowercase) isDirectory
 ]
 
-{ #category : #'repository-specific' }
+{ #category : 'repository-specific' }
 CGODirectoryPackageRepositoryTest >> testSavePackageVersionShouldCreateVersionFile [
 	| pkgVersion |
 
@@ -227,7 +229,7 @@ CGODirectoryPackageRepositoryTest >> testSavePackageVersionShouldCreateVersionFi
 
 ]
 
-{ #category : #'tests - saving' }
+{ #category : 'tests - saving' }
 CGODirectoryPackageRepositoryTest >> testSavePackageVersionShouldFailIfVersionAlreadyExists [
 	| pkgVersion |
 
@@ -237,7 +239,7 @@ CGODirectoryPackageRepositoryTest >> testSavePackageVersionShouldFailIfVersionAl
 	self should: [emptyRepository savePackageVersion: pkgVersion] raise: PBPackageVersionAlreadyExistsError.
 ]
 
-{ #category : #'tests - saving' }
+{ #category : 'tests - saving' }
 CGODirectoryPackageRepositoryTest >> testSavePackageVersionShouldNotFailIfPackageAlreadyExistsButVersionDoesNot [
 	| pkgVersion |
 
@@ -247,7 +249,7 @@ CGODirectoryPackageRepositoryTest >> testSavePackageVersionShouldNotFailIfPackag
 	emptyRepository savePackageVersion: GreaseTestResource current greasepharo30core1_1_13
 ]
 
-{ #category : #'tests - saving' }
+{ #category : 'tests - saving' }
 CGODirectoryPackageRepositoryTest >> testSavePackageVersionShouldSaveIfPackageVersionNotPresent [
 	| pkgVersion |
 
@@ -257,7 +259,7 @@ CGODirectoryPackageRepositoryTest >> testSavePackageVersionShouldSaveIfPackageVe
 
 ]
 
-{ #category : #'tests - saving' }
+{ #category : 'tests - saving' }
 CGODirectoryPackageRepositoryTest >> testSavePackageVersionWhenPackageProvidesVirtualPackageShouldUpdateVirtualPackageIndex [
 	| pkgVersion index |
 
@@ -268,7 +270,7 @@ CGODirectoryPackageRepositoryTest >> testSavePackageVersionWhenPackageProvidesVi
 	self assert: index isFile.
 ]
 
-{ #category : #'tests - saving' }
+{ #category : 'tests - saving' }
 CGODirectoryPackageRepositoryTest >> testSavePackageVersionWhenPackageVersionIsAVirtualPackage [
 	| pkgVersion |
 
@@ -277,7 +279,7 @@ CGODirectoryPackageRepositoryTest >> testSavePackageVersionWhenPackageVersionIsA
 	self assert: (emptyRepository virtualDirectory / pkgVersion packageName asLowercase / pkgVersion name asLowercase) isFile.
 ]
 
-{ #category : #'tests - saving' }
+{ #category : 'tests - saving' }
 CGODirectoryPackageRepositoryTest >> testShouldGetLatestPackageAvalaibleWhenAskingLatestVersion [
 	| package |
 	package := greaseRepository latestVersionOfConcretePackage: 'grease-core' suitableForEnvironment: #().
@@ -287,7 +289,7 @@ CGODirectoryPackageRepositoryTest >> testShouldGetLatestPackageAvalaibleWhenAski
 		equals: 'grease-core@1.1.13'
 ]
 
-{ #category : #'tests - saving' }
+{ #category : 'tests - saving' }
 CGODirectoryPackageRepositoryTest >> testShouldGetSpecificPackagesProvidingAVirtualPackageWhenPlatformAttributeSpecified [
 	| packages |
 	packages := greaseRepository packagesProviding: 'Grease-Slime' version: '1.0' asSemanticVersion forEnvironment: #('pharo5.x').

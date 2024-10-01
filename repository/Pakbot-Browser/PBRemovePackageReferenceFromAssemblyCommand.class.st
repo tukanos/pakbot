@@ -3,12 +3,14 @@ Command to remove a package from an assembly.
 The package will still be present in the project.
 "
 Class {
-	#name : #PBRemovePackageReferenceFromAssemblyCommand,
-	#superclass : #PBPackageCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBRemovePackageReferenceFromAssemblyCommand',
+	#superclass : 'PBPackageCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBRemovePackageReferenceFromAssemblyCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #delete;
@@ -17,13 +19,13 @@ PBRemovePackageReferenceFromAssemblyCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBRemovePackageReferenceFromAssemblyCommand >> execute [
 
 	self packageRefUIItem removeFromAssembly
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBRemovePackageReferenceFromAssemblyCommand >> packageRefUIItem [
 
 	^ context selectedItem

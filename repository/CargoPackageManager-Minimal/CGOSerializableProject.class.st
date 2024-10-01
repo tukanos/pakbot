@@ -3,8 +3,8 @@ I represent a Cargo project ready to be serialized.
 I map some instance variables  to an easily serialized form.
 "
 Class {
-	#name : #CGOSerializableProject,
-	#superclass : #CGOSerializedArtefact,
+	#name : 'CGOSerializableProject',
+	#superclass : 'CGOSerializedArtefact',
 	#instVars : [
 		'name',
 		'repository',
@@ -14,22 +14,24 @@ Class {
 		'authors',
 		'contributors'
 	],
-	#category : 'CargoPackageManager-Minimal-Model-Serialization'
+	#category : 'CargoPackageManager-Minimal-Model-Serialization',
+	#package : 'CargoPackageManager-Minimal',
+	#tag : 'Model-Serialization'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CGOSerializableProject class >> from: aCGOProject [
 	^ self basicNew
 		initializeWithProject: aCGOProject;
 		yourself
 ]
 
-{ #category : #'ston-core' }
+{ #category : 'ston-core' }
 CGOSerializableProject class >> stonName [
 	^ #CGOPublishedProject
 ]
 
-{ #category : #deserialization }
+{ #category : 'deserialization' }
 CGOSerializableProject >> flushIn: aCGOProject [
 	"Flush information from this SerializableProject into the provided CGOProject.
 	All instance variables will be set with values from the SerializableProject"
@@ -50,7 +52,7 @@ CGOSerializableProject >> flushIn: aCGOProject [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOSerializableProject >> initializeWithProject: aCGOProject [
 	name := aCGOProject packageName.
 	description := aCGOProject description.

@@ -1,10 +1,12 @@
 Class {
-	#name : #SeasideToolsCoreSpec,
-	#superclass : #Seaside31PackageSpec,
-	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Common'
+	#name : 'SeasideToolsCoreSpec',
+	#superclass : 'Seaside31PackageSpec',
+	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Common',
+	#package : 'CargoPackageManager-TestRessources',
+	#tag : 'SeasideDesc-Common'
 }
 
-{ #category : #spec }
+{ #category : 'spec' }
 SeasideToolsCoreSpec >> dependencies [
 	^ { #'Seaside-Core' -> #('=3.1') .
 		#'Seaside-Component' -> #('=3.1') .
@@ -20,17 +22,17 @@ SeasideToolsCoreSpec >> dependencies [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideToolsCoreSpec >> name [
 	^ 'Seaside-Tools-Core'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideToolsCoreSpec >> repositories [
 	^ #('http://smalltalkhub.com/mc/Seaside/Seaside31/main')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideToolsCoreSpec >> sourcePackageVersion [
 	^ { #backend -> #monticello .
 		#repositoryUrl -> 'http://smalltalkhub.com/mc/Seaside/Seaside31/main' .
@@ -38,12 +40,12 @@ SeasideToolsCoreSpec >> sourcePackageVersion [
 		#versionString -> 'pmm.23' } asDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideToolsCoreSpec >> srcArtifact [
 	^ 'Seaside-Tools-Core-pmm.23'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideToolsCoreSpec >> version [
 	^  '3.1'
 ]

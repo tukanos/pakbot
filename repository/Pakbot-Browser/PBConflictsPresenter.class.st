@@ -2,33 +2,35 @@
 I list all conflicts for a resolution and propose a way to choose how to solve these conflicts.
 "
 Class {
-	#name : #PBConflictsPresenter,
-	#superclass : #SpPresenterWithModel,
+	#name : 'PBConflictsPresenter',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'conflictsList'
 	],
-	#category : #'Pakbot-Browser-Presenters'
+	#category : 'Pakbot-Browser-Presenters',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBConflictsPresenter class >> example [
 	<example>
 
 	(self on: PBResolutionPresenter conflictingResolutionExample) open
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBConflictsPresenter >> accept [
 
 	self conflicts do: [:aConflict | aConflict resolveWithSelected].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflictsPresenter >> conflicts [
 	^ self resolution conflicts
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBConflictsPresenter >> defaultLayout [ 
 	
 	^ SpBoxLayout newTopToBottom
@@ -36,13 +38,13 @@ PBConflictsPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBConflictsPresenter >> hasConflicts [
 
 	^ self conflicts anySatisfy: [ :each | each isResolved not ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBConflictsPresenter >> initializePresenters [ 
 	conflictsList := self newTable
 		addColumn: (SpStringTableColumn title: 'Project Name' evaluated: #projectName);
@@ -61,13 +63,13 @@ PBConflictsPresenter >> initializePresenters [
 		yourself.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflictsPresenter >> resolution [
 	
 	^ self model
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBConflictsPresenter >> updateOkButtonAndResolution [
 
 	self owner ifNotNil: [ 

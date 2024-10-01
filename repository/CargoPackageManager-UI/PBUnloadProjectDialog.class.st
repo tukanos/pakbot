@@ -1,6 +1,6 @@
 Class {
-	#name : #PBUnloadProjectDialog,
-	#superclass : #ComposablePresenter,
+	#name : 'PBUnloadProjectDialog',
+	#superclass : 'ComposablePresenter',
 	#instVars : [
 		'project',
 		'iconPanel',
@@ -9,10 +9,12 @@ Class {
 		'dependentsPanel',
 		'dependentsLabel'
 	],
-	#category : #'CargoPackageManager-UI-Unloading'
+	#category : 'CargoPackageManager-UI-Unloading',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Unloading'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBUnloadProjectDialog class >> onProject: aProject [ 
 	^ self basicNew
 		project: aProject;
@@ -20,7 +22,7 @@ PBUnloadProjectDialog class >> onProject: aProject [
 		yourself.
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PBUnloadProjectDialog >> accept [
 
 	removePackagesCheckBox state
@@ -28,7 +30,7 @@ PBUnloadProjectDialog >> accept [
 		ifFalse: [ project unload ]
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBUnloadProjectDialog >> defaultSpec [
 	<spec: #default>
 	
@@ -39,33 +41,33 @@ PBUnloadProjectDialog >> defaultSpec [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBUnloadProjectDialog >> dependentsLabel [
 	^ dependentsLabel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBUnloadProjectDialog >> dependentsPanel [
 	^ dependentsPanel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBUnloadProjectDialog >> hasDependents [
 
 	^ project dependantProjects isEmpty not
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBUnloadProjectDialog >> iconPanel [
 	^ iconPanel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBUnloadProjectDialog >> initialExtent [
 	^ self hasDependents ifTrue: [ 500@300 ] ifFalse: [ 500@170 ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBUnloadProjectDialog >> initializeDependentPanel [
 	
 	| dataSource |
@@ -84,7 +86,7 @@ PBUnloadProjectDialog >> initializeDependentPanel [
 	dependentsPanel widget dataSource: dataSource.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBUnloadProjectDialog >> initializeWidgets [
 	
 	iconPanel := self newPanel.
@@ -101,36 +103,36 @@ PBUnloadProjectDialog >> initializeWidgets [
 	self initializeDependentPanel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBUnloadProjectDialog >> message [
 	
 	^ 'Do you want to remove project ' , project name ,' ?'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBUnloadProjectDialog >> messageLabel [
 	^ messageLabel
 ]
 
-{ #category : #opening }
+{ #category : 'opening' }
 PBUnloadProjectDialog >> openDialogWithSpec [
 	^ super openDialogWithSpec
 		okAction: [ self accept ];
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBUnloadProjectDialog >> project: aPBProjectVersion [ 
 	project := aPBProjectVersion
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBUnloadProjectDialog >> removePackagesCheckBox [
 
 	^ removePackagesCheckBox
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 PBUnloadProjectDialog >> retrieveSpec: aSelector [
 	| layout |
 	
@@ -139,12 +141,12 @@ PBUnloadProjectDialog >> retrieveSpec: aSelector [
 	^ layout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBUnloadProjectDialog >> title [
 	^ 'Remove Project'
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBUnloadProjectDialog >> withDependentsSpec [
 
 	^ SpecLayout composed 
@@ -162,7 +164,7 @@ PBUnloadProjectDialog >> withDependentsSpec [
 				newRow: [ :row | ] height: 1]
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBUnloadProjectDialog >> withoutDependentsSpec [
 
 	^ SpecLayout composed 

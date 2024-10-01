@@ -1,10 +1,11 @@
 Class {
-	#name : #Pharo30Spec,
-	#superclass : #CGOPackageSpec,
-	#category : 'CargoPackageManager-Spec'
+	#name : 'Pharo30Spec',
+	#superclass : 'CGOPackageSpec',
+	#category : 'CargoPackageManager-Spec',
+	#package : 'CargoPackageManager-Spec'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 Pharo30Spec >> name [
 	^ 'Pharo30'
 ]

@@ -2,16 +2,18 @@
 Error raised ... when a version is not found!
 "
 Class {
-	#name : #CGOPackageVersionNotFoundError,
-	#superclass : #PBError,
+	#name : 'CGOPackageVersionNotFoundError',
+	#superclass : 'PBError',
 	#instVars : [
 		'packageName',
 		'versionNumber'
 	],
-	#category : #'CargoPackageManager-Minimal-Model'
+	#category : 'CargoPackageManager-Minimal-Model',
+	#package : 'CargoPackageManager-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 CGOPackageVersionNotFoundError class >> package: packageName version: versionNumber [
 
 	^ self new
@@ -20,13 +22,13 @@ CGOPackageVersionNotFoundError class >> package: packageName version: versionNum
 		signal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageVersionNotFoundError >> package: aPackageName [
 
 	packageName := aPackageName
 ]
 
-{ #category : #signaling }
+{ #category : 'signaling' }
 CGOPackageVersionNotFoundError >> signal [
 
 	versionNumber ifNotNil: [ 
@@ -37,7 +39,7 @@ CGOPackageVersionNotFoundError >> signal [
 	super signal.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageVersionNotFoundError >> version: aVersionNumber [
 
 	versionNumber := aVersionNumber

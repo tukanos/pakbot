@@ -1,10 +1,12 @@
 Class {
-	#name : #PBConflictDetectionTest,
-	#superclass : #PBAbstractTest,
-	#category : #'Pakbot-IntegrationTests-Conflicts'
+	#name : 'PBConflictDetectionTest',
+	#superclass : 'PBAbstractTest',
+	#category : 'Pakbot-IntegrationTests-Conflicts',
+	#package : 'Pakbot-IntegrationTests',
+	#tag : 'Conflicts'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testConflictingIndirectMetacelloDependenciesHasConflicts [
 
 	| projectOne projectTwo |
@@ -29,7 +31,7 @@ PBConflictDetectionTest >> testConflictingIndirectMetacelloDependenciesHasConfli
 	self assert: projectOne resolve hasConflicts
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testConflictingMetacelloAndCargoDependenciesThenResolvedDependenciesHaveEachOtherConflict [
 
 	| project resolution configurationProjectV1 configurationProjectV2 resolutionOfV1 resolutionOfV2 |
@@ -57,7 +59,7 @@ PBConflictDetectionTest >> testConflictingMetacelloAndCargoDependenciesThenResol
 	self assert: (resolutionOfV2 conflictingDependencies includes: resolutionOfV1)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testConflictingMetacelloAndPakbotDependenciesHasConflicts [
 
 	| project resolution configurationProjectV1 configurationProjectV2 |
@@ -81,7 +83,7 @@ PBConflictDetectionTest >> testConflictingMetacelloAndPakbotDependenciesHasConfl
 	self assert: resolution hasConflicts
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testConflictingMetacelloDependenciesHasConflicts [
 
 	| project resolution configurationProjectV1 configurationProjectV2 |
@@ -105,7 +107,7 @@ PBConflictDetectionTest >> testConflictingMetacelloDependenciesHasConflicts [
 	self assert: resolution hasConflicts
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testConflictingMetacelloDependenciesResolutionsKnowTheirConflictingPairs [
 
 	| project resolution configurationProjectV1 configurationProjectV2 v1Resolution v2Resolution |
@@ -133,7 +135,7 @@ PBConflictDetectionTest >> testConflictingMetacelloDependenciesResolutionsKnowTh
 	self assert: v1Resolution conflictingDependencies size equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testConflictingMetacelloDependencyAndInstalledMetacelloProjectHasConflict [
 
 	| project resolution configurationProjectV1 project2 configurationProjectV2 |
@@ -157,7 +159,7 @@ PBConflictDetectionTest >> testConflictingMetacelloDependencyAndInstalledMetacel
 	self assert: resolution hasConflicts
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testConflictingMetacelloDependencyAndInstalledPakbotProjectHasConflict [
 
 	| project resolution configurationProjectV1 |
@@ -176,7 +178,7 @@ PBConflictDetectionTest >> testConflictingMetacelloDependencyAndInstalledPakbotP
 	self assert: resolution hasConflicts
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testConflictingMetacelloDependencyWithInstalledUsingDifferentVersionInstalledIsConflict [
 
 	| project resolution configurationProjectV1 |
@@ -200,7 +202,7 @@ PBConflictDetectionTest >> testConflictingMetacelloDependencyWithInstalledUsingD
 	self assert: resolution hasConflicts
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testConflictingMetacelloDependencyWithInstalledUsingSameVersionInstalledIsNotConflict [
 
 	| project resolution configurationProjectV1 |
@@ -224,7 +226,7 @@ PBConflictDetectionTest >> testConflictingMetacelloDependencyWithInstalledUsingS
 	self deny: resolution hasConflicts
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testConflictingMetacelloDependencyWithInstalledUsingStableAndDifferentVersionInstalledIsConflict [
 
 	| project resolution configurationProjectV1 |
@@ -248,7 +250,7 @@ PBConflictDetectionTest >> testConflictingMetacelloDependencyWithInstalledUsingS
 	self assert: resolution hasConflicts
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testConflictingMetacelloDependencyWithInstalledUsingStableAndSameVersionInstalledIsNotConflict [
 
 	| project resolution configurationProjectV1 |
@@ -272,7 +274,7 @@ PBConflictDetectionTest >> testConflictingMetacelloDependencyWithInstalledUsingS
 	self deny: resolution hasConflicts
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testConflictingPakbotDependencyAndInstalledMetacelloProjectHasConflict [
 
 	<expectedFailure>
@@ -296,7 +298,7 @@ PBConflictDetectionTest >> testConflictingPakbotDependencyAndInstalledMetacelloP
 	self assert: resolution hasConflicts
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testEqualMetacelloDependenciesHasNoConflicts [
 
 	| project resolution configurationProjectV1 configurationProjectV2 |
@@ -320,7 +322,7 @@ PBConflictDetectionTest >> testEqualMetacelloDependenciesHasNoConflicts [
 	self deny: resolution hasConflicts
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testNonConflictingDependencyResolutionsHaveNoConflictingDependencies [
 
 	| project resolution configurationProjectV1 |
@@ -338,7 +340,7 @@ PBConflictDetectionTest >> testNonConflictingDependencyResolutionsHaveNoConflict
 	self deny: (resolution resolutionFor: configurationProjectV1) hasConflicts.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testNonConflictingIndirectMetacelloDependenciesHasNoConflicts [
 
 	| projectOne projectTwo |
@@ -363,7 +365,7 @@ PBConflictDetectionTest >> testNonConflictingIndirectMetacelloDependenciesHasNoC
 	self deny: projectOne resolve hasConflicts
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictDetectionTest >> testNonConflictingMetacelloDependenciesHasNoConflicts [
 
 	| project resolution configurationProjectV1 |

@@ -1,39 +1,41 @@
 Class {
-	#name : #PBDependencyStatusTest,
-	#superclass : #PBAbstractTest,
+	#name : 'PBDependencyStatusTest',
+	#superclass : 'PBAbstractTest',
 	#instVars : [
 		'project',
 		'dependencyToProject',
 		'dependencyToPackage'
 	],
-	#category : #'Pakbot-IntegrationTests-DependencyStatus'
+	#category : 'Pakbot-IntegrationTests-DependencyStatus',
+	#package : 'Pakbot-IntegrationTests',
+	#tag : 'DependencyStatus'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBDependencyStatusTest class >> isAbstract [
 	^ self = PBDependencyStatusTest 
 ]
 
-{ #category : #utils }
+{ #category : 'utils' }
 PBDependencyStatusTest >> createProjectDependency [
 	
 	^ self subclassResponsibility
 ]
 
-{ #category : #utils }
+{ #category : 'utils' }
 PBDependencyStatusTest >> installProject [
 	
 	self subclassResponsibility 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBDependencyStatusTest >> performTest [ 
 	PBPackageRegistry 
 		useDefaultRegistry: testRegistry
 		during: [ self perform: testSelector asSymbol ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBDependencyStatusTest >> setUp [
 	super setUp.
 
@@ -48,27 +50,27 @@ PBDependencyStatusTest >> setUp [
 		addDependency: dependencyToProject
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBDependencyStatusTest >> testProjectDependencyIsNotSatisfied [
 
 	self deny: dependencyToProject isInstalled.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBDependencyStatusTest >> testProjectDependencyIsSatisfied [
 
 	self installProject.
 	self assert: dependencyToProject isInstalled.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBDependencyStatusTest >> testProjectIsNotUpToDate [
 
 	self deny: project isUpToDate.
 	self assert: project hasProblems.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBDependencyStatusTest >> testProjectIsUpToDate [
 
 	self installProject.

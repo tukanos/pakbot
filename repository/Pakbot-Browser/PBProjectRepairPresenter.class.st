@@ -3,15 +3,17 @@ Presenter showing available options to repair the project.
 You can select an option and then proceed with the selected action.
 "
 Class {
-	#name : #PBProjectRepairPresenter,
-	#superclass : #PBProjectOptionPresenter,
+	#name : 'PBProjectRepairPresenter',
+	#superclass : 'PBProjectOptionPresenter',
 	#instVars : [
 		'reasonPanel'
 	],
-	#category : #'Pakbot-Browser-Presenters'
+	#category : 'Pakbot-Browser-Presenters',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBProjectRepairPresenter class >> example [
 	
 	(self on: PBProjectVersion exampleWithDependency) 
@@ -19,13 +21,13 @@ PBProjectRepairPresenter class >> example [
 		openDialog
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectRepairPresenter >> availableOptions [
 	
 	^ PBRepairProjectAction allAvailableFor: self project
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBProjectRepairPresenter >> defaultLayout [ 
 	^ SpBoxLayout newTopToBottom 
 		add: reasonPanel height: 70;
@@ -34,7 +36,7 @@ PBProjectRepairPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBProjectRepairPresenter >> initializePresenters [ 
 	super initializePresenters.
 	
@@ -46,7 +48,7 @@ PBProjectRepairPresenter >> initializePresenters [
 		yourself.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBProjectRepairPresenter >> initializeWindow: aWindowPresenter [
 
 	super initializeWindow: aWindowPresenter.

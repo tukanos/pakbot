@@ -12,12 +12,14 @@ example: Mongo@1.0
 	* #queryOne:
 "
 Class {
-	#name : #CGOVirtualPackageVersion,
-	#superclass : #CGOPackageVersion,
-	#category : 'CargoPackageManager-Minimal-Model'
+	#name : 'CGOVirtualPackageVersion',
+	#superclass : 'CGOPackageVersion',
+	#category : 'CargoPackageManager-Minimal-Model',
+	#package : 'CargoPackageManager-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 CGOVirtualPackageVersion class >> example [
 	^ self newFrom:
 	 	( Dictionary new
@@ -28,41 +30,41 @@ CGOVirtualPackageVersion class >> example [
 			yourself ).
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CGOVirtualPackageVersion class >> newFrom: aDictionary [
 	^ self new
 		initializeFrom: aDictionary;
 		yourself
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 CGOVirtualPackageVersion >> asOngoingPackage [
 	^ PBVirtualPackage fromPackageVersion: self
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 CGOVirtualPackageVersion >> asSerializablePackageVersion [
 	^ CGOSerializedVirtualPackageVersion from: self
 ]
 
-{ #category : #ston }
+{ #category : 'ston' }
 CGOVirtualPackageVersion >> fromSton: stonReader [
 	super fromSton: stonReader.
 	package := CGOPackageProvider default virtualPackageNamed: package.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOVirtualPackageVersion >> initializeFrom: aDictionary [
 	super initializeFrom: aDictionary.
 	package := self packageFrom: aDictionary.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGOVirtualPackageVersion >> isVirtual [
 	^ true
 ]
 
-{ #category : #'initialization - private' }
+{ #category : 'initialization - private' }
 CGOVirtualPackageVersion >> packageFrom: aDictionary [
 	| aSymbol |
 	aSymbol := self mandatoryKey: #package from: aDictionary.
@@ -71,12 +73,12 @@ CGOVirtualPackageVersion >> packageFrom: aDictionary [
 	^ CGOPackageProvider default virtualPackageNamed: aSymbol
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 CGOVirtualPackageVersion >> printOn: aStream [
 	aStream << self packageName << '@' << (self version asString) << ' (virtual)'
 ]
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 CGOVirtualPackageVersion >> provisions [
 	^ #()
 ]

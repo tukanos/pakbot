@@ -1,10 +1,12 @@
 Class {
-	#name : #BleedingEdgeResolutionStrategyTest,
-	#superclass : #RepositoryBasedTest,
-	#category : 'CargoPackageManager-FailingTests-Solver'
+	#name : 'BleedingEdgeResolutionStrategyTest',
+	#superclass : 'RepositoryBasedTest',
+	#category : 'CargoPackageManager-FailingTests-Solver',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'Solver'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 BleedingEdgeResolutionStrategyTest >> testVersionForIn [
 	| strategy packageVersionRef |
 	

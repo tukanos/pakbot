@@ -1,10 +1,11 @@
 Class {
-	#name : #PBProjectLoadingInstructionsTest,
-	#superclass : #PBAbstractTest,
-	#category : #'Pakbot-IntegrationTests'
+	#name : 'PBProjectLoadingInstructionsTest',
+	#superclass : 'PBAbstractTest',
+	#category : 'Pakbot-IntegrationTests',
+	#package : 'Pakbot-IntegrationTests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> tearDown [
 
 	| configuration metacelloRegistration |
@@ -22,7 +23,7 @@ PBProjectLoadingInstructionsTest >> tearDown [
 	configuration package removeFromSystem.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testAssemblyLoading [
 
 	| resolution loadInstructions packageA packageB project assembly |
@@ -44,7 +45,7 @@ PBProjectLoadingInstructionsTest >> testAssemblyLoading [
 			and: [ loadableUnit packagesToLoad includes: 'PackageA' ] ]).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testPackageLoadingWithBothProjectAndPackageDependencyOnlyLoadsPackageDependencies [
 
 	| resolution projectOne loadInstructions packageA |
@@ -68,7 +69,7 @@ PBProjectLoadingInstructionsTest >> testPackageLoadingWithBothProjectAndPackageD
 	"Counter is a project dependency, should not be loaded if not expressed in the package dependencies"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testPackageLoadingWithConditionalPackage [
 		
 	"See tests in PBProjectLoading test"
@@ -76,7 +77,7 @@ PBProjectLoadingInstructionsTest >> testPackageLoadingWithConditionalPackage [
 	self skip.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testPackageLoadingWithPackageDependency [
 
 	| resolution projectOne packageA loadInstructions |
@@ -94,7 +95,7 @@ PBProjectLoadingInstructionsTest >> testPackageLoadingWithPackageDependency [
 			and: [ loadableUnit packagesToLoad includes: 'PackageA' ] ]).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testProjectLoadingDoesNotIncludeInstalledDependencies [
 	| resolution projectOne projectTwoName projectTwoRegistration |
 	
@@ -128,7 +129,7 @@ PBProjectLoadingInstructionsTest >> testProjectLoadingDoesNotIncludeInstalledDep
 	self assert: resolution loadInstructions isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testProjectLoadingWithBothProjectAndPackageDependencyOnlyLoadsProjectDependencies [
 
 	| resolution projectOne loadInstructions packageA |
@@ -153,7 +154,7 @@ PBProjectLoadingInstructionsTest >> testProjectLoadingWithBothProjectAndPackageD
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testProjectLoadingWithCargoOngoingProjectHasEmptyLoadingInstructions [
 
 	| resolution projectOne |
@@ -171,7 +172,7 @@ PBProjectLoadingInstructionsTest >> testProjectLoadingWithCargoOngoingProjectHas
 	self assert: resolution loadInstructions isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testProjectLoadingWithCargoProjectDependencyHasCargoLoadingInstruction [
 
 	| resolution projectOne dependency |
@@ -187,7 +188,7 @@ PBProjectLoadingInstructionsTest >> testProjectLoadingWithCargoProjectDependency
 	self assert: (resolution loadInstructions includes: self expectedPakbotResolvedProject)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testProjectLoadingWithConditionalPackage [
 
 	"Cannot be tested here.
@@ -198,7 +199,7 @@ PBProjectLoadingInstructionsTest >> testProjectLoadingWithConditionalPackage [
 	self skip.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testProjectLoadingWithConditionalPackageDependencyDoesNotLoadDependencyWhenConditionUnmet [
 	| resolution projectOne loadInstructions packageA dependency |
 	projectOne := testRegistry newProjectNamed: 'Test'.
@@ -217,7 +218,7 @@ PBProjectLoadingInstructionsTest >> testProjectLoadingWithConditionalPackageDepe
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testProjectLoadingWithConditionalPackageDependencyLoadsDependencyWhenConditionMet [
 	| resolution projectOne loadInstructions packageA dependency |
 	projectOne := testRegistry newProjectNamed: 'Test'.
@@ -236,7 +237,7 @@ PBProjectLoadingInstructionsTest >> testProjectLoadingWithConditionalPackageDepe
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testProjectLoadingWithConditionalProjectDependencyDoesNotLoadDependencyWhenConditionUnmet [
 	| resolution projectOne loadInstructions dependency |
 	projectOne := testRegistry newProjectNamed: 'Test'.
@@ -253,7 +254,7 @@ PBProjectLoadingInstructionsTest >> testProjectLoadingWithConditionalProjectDepe
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testProjectLoadingWithConditionalProjectDependencyLoadsDependencyWhenConditionMet [
 
 	| resolution projectOne dependency loadInstructions |
@@ -271,7 +272,7 @@ PBProjectLoadingInstructionsTest >> testProjectLoadingWithConditionalProjectDepe
 	self assert: (resolution loadInstructions includes: self expectedPakbotResolvedProject)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testProjectLoadingWithMetacelloBaselineProjectDependencyHasMetacelloLoadingInstruction [
 
 	| resolution projectOne baselineDependency |
@@ -290,7 +291,7 @@ PBProjectLoadingInstructionsTest >> testProjectLoadingWithMetacelloBaselineProje
 	self assert: (resolution loadInstructions includes: (PBMetacelloConfigurationProject fromProjectDependency: baselineDependency))
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testProjectLoadingWithMetacelloConfigurationProjectDependencyHasMetacelloLoadingInstruction [
 
 	| resolution projectOne configurationProject |
@@ -309,7 +310,7 @@ PBProjectLoadingInstructionsTest >> testProjectLoadingWithMetacelloConfiguration
 	self assert: (resolution loadInstructions includes: (PBMetacelloConfigurationProject fromProjectDependency: configurationProject))
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectLoadingInstructionsTest >> testProjectLoadingWithPackageDependency [
 
 	| resolution projectOne packageA loadInstructions |

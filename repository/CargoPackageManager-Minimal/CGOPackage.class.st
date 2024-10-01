@@ -4,56 +4,58 @@ It has a name to identify it.
 All other attributes may evolve with the time, and so, are handled by a PackageVersion.
 "
 Class {
-	#name : #CGOPackage,
-	#superclass : #Object,
+	#name : 'CGOPackage',
+	#superclass : 'Object',
 	#instVars : [
 		'name'
 	],
-	#category : #'CargoPackageManager-Minimal-Model'
+	#category : 'CargoPackageManager-Minimal-Model',
+	#package : 'CargoPackageManager-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CGOPackage class >> newNamed: aName [
 	^ self new
 		initializeWithName: aName asSymbol;
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CGOPackage class >> stonName [
 
 	^ #'Package'
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 CGOPackage >> dependentPackages [
 	^ PBPackageRegistry default installedPackages
 		collect: [ :aPackage | aPackage dependencies
 								select: [ : aDependency | aDependency targetedPackage = self ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackage >> initializeWithName: aName [
 	super initialize.
 	name := aName
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGOPackage >> isVirtual [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackage >> name [
 	^ name
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 CGOPackage >> printOn: aStream [
 	aStream << name
 ]
 
-{ #category : #ston }
+{ #category : 'ston' }
 CGOPackage >> stonOn: stonWriter [
 	stonWriter writeString: name
 ]

@@ -1,22 +1,23 @@
 Class {
-	#name : #CGOUpdateProjectRepairActionTest,
-	#superclass : #PBAbstractTest,
+	#name : 'CGOUpdateProjectRepairActionTest',
+	#superclass : 'PBAbstractTest',
 	#instVars : [
 		'registry',
 		'project',
 		'dependencyToProject'
 	],
-	#category : #'CargoPackageManager-UI-Tests'
+	#category : 'CargoPackageManager-UI-Tests',
+	#package : 'CargoPackageManager-UI-Tests'
 }
 
-{ #category : #'mocking RPackageOrganizer' }
+{ #category : 'mocking RPackageOrganizer' }
 CGOUpdateProjectRepairActionTest >> packageNamed: aString ifAbsent: aBlock [
 	^ (project packageNames includes: aString)
 		ifTrue: [ RPackage named: aString ] 
 		ifFalse: [ aBlock value ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 CGOUpdateProjectRepairActionTest >> setUp [
 	super setUp.
 	registry := PBPackageRegistry new.
@@ -34,7 +35,7 @@ CGOUpdateProjectRepairActionTest >> setUp [
 	project addDependency: dependencyToProject
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOUpdateProjectRepairActionTest >> testNotUpToDateProjectOfferUpdateProjectRepairAction [
 	
 	| repairActions |
@@ -46,7 +47,7 @@ CGOUpdateProjectRepairActionTest >> testNotUpToDateProjectOfferUpdateProjectRepa
 	self assert: (repairActions anySatisfy: [ :anAction | anAction isLoadProjectAction ])
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOUpdateProjectRepairActionTest >> testNotUpToDateProjectOfferUpdateProjectRepairActionAndExecutingUpdateProject [
 	
 	| repairActions action dialog |

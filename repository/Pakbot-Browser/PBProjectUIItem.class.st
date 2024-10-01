@@ -2,15 +2,17 @@
 I'm an UI representation of a Packbot project.
 "
 Class {
-	#name : #PBProjectUIItem,
-	#superclass : #PBAbstractUIItem,
+	#name : 'PBProjectUIItem',
+	#superclass : 'PBAbstractUIItem',
 	#instVars : [
 		'project'
 	],
-	#category : #'Pakbot-Browser-Items'
+	#category : 'Pakbot-Browser-Items',
+	#package : 'Pakbot-Browser',
+	#tag : 'Items'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBProjectUIItem class >> forProject: aPBProjectVersion presenter: aSpPresenter [
 	^ self new
 		project: aPBProjectVersion;
@@ -18,14 +20,14 @@ PBProjectUIItem class >> forProject: aPBProjectVersion presenter: aSpPresenter [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectUIItem >> assemblyItems [
 	^ (project assemblies 
 		collect: [ :assembly | PBAssemblyUIItem forAssembly: assembly presenter: presenter ])
 			sorted: [ :a :b | a displayName < b displayName ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectUIItem >> commands [
 	^ { 
 		PBLoadFullProjectCommand .
@@ -39,24 +41,24 @@ PBProjectUIItem >> commands [
 	} collect: [ :cmd | cmd forSpecContext: presenter ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectUIItem >> displayName [
 	^ project name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectUIItem >> iconName [
 	self flag: 'TODO: handle not loaded projects, projects in error (#error)'.
 	
 	^ #configLoaded
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBProjectUIItem >> isProject [ 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectUIItem >> items [
 	^ OrderedCollection new
 		addAll: self packageItems;
@@ -64,25 +66,25 @@ PBProjectUIItem >> items [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectUIItem >> packageItems [
 	^ (project packages 
 		collect: [ :package | PBPackageUIItem forPackage: package presenter: presenter ])
 			sort: [ :a :b | a displayName < b displayName ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectUIItem >> pakbotItem [
 	
 	^ project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectUIItem >> project [
 	^ project
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBProjectUIItem >> project: aPBProjectVersion [ 
 	project := aPBProjectVersion
 ]

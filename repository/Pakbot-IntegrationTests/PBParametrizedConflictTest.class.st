@@ -1,6 +1,6 @@
 Class {
-	#name : #PBParametrizedConflictTest,
-	#superclass : #PBAbstractTest,
+	#name : 'PBParametrizedConflictTest',
+	#superclass : 'PBAbstractTest',
 	#instVars : [
 		'project',
 		'dependencyOne',
@@ -8,20 +8,22 @@ Class {
 		'registry',
 		'expectedConflicts'
 	],
-	#category : #'Pakbot-IntegrationTests-Conflicts'
+	#category : 'Pakbot-IntegrationTests-Conflicts',
+	#package : 'Pakbot-IntegrationTests',
+	#tag : 'Conflicts'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PBParametrizedConflictTest class >> isAbstract [
 	^ self name = #PBParametrizedConflictTest 
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 PBParametrizedConflictTest >> addDependency: aDependency [
 	aDependency ifNotNil: [ project addDependency: aDependency ]
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 PBParametrizedConflictTest >> createBaseline: aVersion [
 	^ PBMetacelloBaselineProjectDependency  
 		name: 'PakbotTestExample'
@@ -29,7 +31,7 @@ PBParametrizedConflictTest >> createBaseline: aVersion [
 		version: aVersion
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 PBParametrizedConflictTest >> createConfiguration: aVersion [
 	^ PBMetacelloConfigurationProjectDependency 
 		name: 'CargoTestExample' 
@@ -37,7 +39,7 @@ PBParametrizedConflictTest >> createConfiguration: aVersion [
 		version: aVersion
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 PBParametrizedConflictTest >> createInstalledBaseline: aString [
 
 	| baseline |
@@ -46,7 +48,7 @@ PBParametrizedConflictTest >> createInstalledBaseline: aString [
 	^ baseline
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 PBParametrizedConflictTest >> createInstalledConfiguration: aString [
 
 	| conf |
@@ -55,57 +57,57 @@ PBParametrizedConflictTest >> createInstalledConfiguration: aString [
 	^ conf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBParametrizedConflictTest >> dependencyOne [
 	^ dependencyOne
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBParametrizedConflictTest >> dependencyOne: anObject [
 	dependencyOne := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBParametrizedConflictTest >> dependencyTwo [
 	^ dependencyTwo
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBParametrizedConflictTest >> dependencyTwo: anObject [
 	dependencyTwo := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBParametrizedConflictTest >> expectedConflicts [
 	^ expectedConflicts
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBParametrizedConflictTest >> expectedConflicts: anObject [
 	expectedConflicts := anObject
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 PBParametrizedConflictTest >> installBaseline: aString [
 
 	^ self createInstalledBaseline: aString
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 PBParametrizedConflictTest >> installConfiguration: aString [
 
 	self createInstalledConfiguration: aString.
 	^ nil
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBParametrizedConflictTest >> setUp [
 	super setUp.
 	registry := PBPackageRegistry new.	
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBParametrizedConflictTest >> testShouldHaveConflicts [
 
 	project := registry newProjectNamed: 'Test'.
@@ -115,7 +117,7 @@ PBParametrizedConflictTest >> testShouldHaveConflicts [
 	self assert: project resolve hasConflicts equals: expectedConflicts
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBParametrizedConflictTest >> testWithConflictsIsResolvedWithTheFirstOne [
 
 	"I only run, when there is conflicts"
@@ -138,7 +140,7 @@ PBParametrizedConflictTest >> testWithConflictsIsResolvedWithTheFirstOne [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBParametrizedConflictTest >> testWithConflictsIsResolvedWithTheSecondOne [
 
 	"I only run, when there is conflicts"

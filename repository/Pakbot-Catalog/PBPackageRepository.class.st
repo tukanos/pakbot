@@ -7,37 +7,38 @@ In a project folder, you will get a STON file named <project-name>-<version-numb
 Pakbot will then use this metadatafile to find dependencies and know from where to load this project.
 "
 Class {
-	#name : #PBPackageRepository,
-	#superclass : #Object,
+	#name : 'PBPackageRepository',
+	#superclass : 'Object',
 	#instVars : [
 		'root'
 	],
 	#classVars : [
 		'Default'
 	],
-	#category : #'Pakbot-Catalog'
+	#category : 'Pakbot-Catalog',
+	#package : 'Pakbot-Catalog'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRepository class >> default [
 
 	^ Default ifNil: [ self newLocalRepositoryIn: FileLocator home / 'dev/rmod/test-pkg-repo' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRepository class >> default: aPBPackageRepository [
 
 	Default := aPBPackageRepository.
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBPackageRepository class >> newLocalRepositoryIn: aFileReference [ 
 	^ self new 
 		root: aFileReference;
 		yourself
 ]
 
-{ #category : #fetching }
+{ #category : 'fetching' }
 PBPackageRepository >> fetch: aPackageName version: aVersion [
 	| file |
 	file := self fileForPackageNamed: aPackageName version: aVersion asString.
@@ -47,29 +48,29 @@ PBPackageRepository >> fetch: aPackageName version: aVersion [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBPackageRepository >> fileForPackage: aPackage [
 	^ self fileForPackageNamed: aPackage name version: aPackage version asString
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBPackageRepository >> fileForPackageNamed: aPackageName version: aVersionString [
 	^ root / aPackageName / (aPackageName , '-', aVersionString , '.ston')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRepository >> packages [
 
 	^ root directoryNames reject: [ :each | each beginsWith: '.' ]
 ]
 
-{ #category : #initializing }
+{ #category : 'initializing' }
 PBPackageRepository >> root: aFileReference [ 
 	"The root folder containing the package repository"
 	root := aFileReference asFileReference
 ]
 
-{ #category : #saving }
+{ #category : 'saving' }
 PBPackageRepository >> saveProject: aPBProjectVersion [ 
 	| file fileContent |
 	file := self fileForPackage: aPBProjectVersion.
@@ -86,13 +87,13 @@ PBPackageRepository >> saveProject: aPBProjectVersion [
 	file writeStreamDo: [ :stream | stream nextPutAll: fileContent].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRepository >> url [
 	
 	^ root fullName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRepository >> versionsOf: aPackageName [
 	| prefixSize |
 	prefixSize := aPackageName size + 1.

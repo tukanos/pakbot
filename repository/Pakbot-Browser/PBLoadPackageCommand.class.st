@@ -4,12 +4,14 @@ Command to load a package defined as a Pakbot package unit.
 It will load the package from its repository and register it in the registry. 
 "
 Class {
-	#name : #PBLoadPackageCommand,
-	#superclass : #PBPackageCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBLoadPackageCommand',
+	#superclass : 'PBPackageCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBLoadPackageCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #glamorousUp;
@@ -18,7 +20,7 @@ PBLoadPackageCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBLoadPackageCommand >> execute [
 
 	self package load

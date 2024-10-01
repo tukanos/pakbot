@@ -5,18 +5,19 @@ I open myself onthe list of PackageManifest available in the image.
 self open
 "
 Class {
-	#name : #CGOPackageBrowser,
-	#superclass : #GLMCompositePresentation,
-	#category : 'CargoPackageManager-UI'
+	#name : 'CGOPackageBrowser',
+	#superclass : 'GLMCompositePresentation',
+	#category : 'CargoPackageManager-UI',
+	#package : 'CargoPackageManager-UI'
 }
 
-{ #category : #opening }
+{ #category : 'opening' }
 CGOPackageBrowser class >> open [
 	<script>
 	self openOn: (PackageManifest allSubclasses	 , AssemblyManifest allSubclasses)
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 CGOPackageBrowser >> compose [
 	self
 		title: 'Package Browser';
@@ -29,12 +30,12 @@ CGOPackageBrowser >> compose [
 				yourself)
 ]
 
-{ #category : #constants }
+{ #category : 'constants' }
 CGOPackageBrowser >> manifestClassPrefix [
 	^ 'Manifest'
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 CGOPackageBrowser >> newPackageAssembly [
 	| name rpackage assemblyClass |
 	name := UIManager default 
@@ -54,7 +55,7 @@ CGOPackageBrowser >> newPackageAssembly [
 	^ assemblyClass
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 CGOPackageBrowser >> newPackageUnit [
 	| package |
 	package := SearchFacade rPackageSearch chooseFromOwner: World.
@@ -67,7 +68,7 @@ CGOPackageBrowser >> newPackageUnit [
 				manifest  ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 CGOPackageBrowser >> newPackageVersion [
 	| choice |
 	choice := UIManager default 
@@ -81,7 +82,7 @@ CGOPackageBrowser >> newPackageVersion [
 					yourself ) ] ]
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 CGOPackageBrowser >> packageListIn: aPresentation [
 	^ aPresentation tree
 		title: 'Package Manifest List';

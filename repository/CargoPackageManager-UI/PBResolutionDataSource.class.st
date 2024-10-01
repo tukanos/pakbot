@@ -2,12 +2,14 @@
 Datasource to present data of a Pakbot resolution in a FastTree
 "
 Class {
-	#name : #PBResolutionDataSource,
-	#superclass : #FTTreeDataSource,
-	#category : #'CargoPackageManager-UI-Resolution'
+	#name : 'PBResolutionDataSource',
+	#superclass : 'FTTreeDataSource',
+	#category : 'CargoPackageManager-UI-Resolution',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Resolution'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolutionDataSource >> cellColumn: column row: rowIndex [
 	| item |
 	
@@ -15,12 +17,12 @@ PBResolutionDataSource >> cellColumn: column row: rowIndex [
 	^ self newCellFor: item
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolutionDataSource >> iconsFor: item [
 	^ item icons
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolutionDataSource >> newCellFor: item [
 	| cell |
 	cell := FTIndentedCellMorph new.
@@ -35,7 +37,7 @@ PBResolutionDataSource >> newCellFor: item [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolutionDataSource >> toString: aResolvedObject [
 	^ aResolvedObject nameWithVersion
 ]

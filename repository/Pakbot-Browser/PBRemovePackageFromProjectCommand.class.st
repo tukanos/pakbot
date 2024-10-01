@@ -3,12 +3,14 @@ Command to remove a part of  a Pakbot project (i.e. a package unit or a package 
 It does not actually remove the RPackage associated to a package unit if the later is removed with this command.
 "
 Class {
-	#name : #PBRemovePackageFromProjectCommand,
-	#superclass : #PBPackageCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBRemovePackageFromProjectCommand',
+	#superclass : 'PBPackageCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBRemovePackageFromProjectCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #delete;
@@ -17,7 +19,7 @@ PBRemovePackageFromProjectCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBRemovePackageFromProjectCommand >> execute [
 
 	self package project removePackage: self package.

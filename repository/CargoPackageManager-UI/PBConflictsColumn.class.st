@@ -1,13 +1,15 @@
 Class {
-	#name : #PBConflictsColumn,
-	#superclass : #FTColumn,
+	#name : 'PBConflictsColumn',
+	#superclass : 'FTColumn',
 	#instVars : [
 		'selector'
 	],
-	#category : #'CargoPackageManager-UI-Conflicts'
+	#category : 'CargoPackageManager-UI-Conflicts',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Conflicts'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBConflictsColumn class >> header: aHeaderString selector: anAccessorSelector [
 
 	^ (self id: aHeaderString)
@@ -15,7 +17,7 @@ PBConflictsColumn class >> header: aHeaderString selector: anAccessorSelector [
 		yourself
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 PBConflictsColumn >> header [
 	^ SimpleButtonMorph new
 		layoutPolicy: RowLayout new;
@@ -29,12 +31,12 @@ PBConflictsColumn >> header [
 		yourself
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 PBConflictsColumn >> read: aPBConflict [
 	^ (selector value: aPBConflict) asString asMorph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflictsColumn >> selector: aString [ 
 	selector := aString
 ]

@@ -1,6 +1,6 @@
-Extension { #name : #PBAssembly }
+Extension { #name : 'PBAssembly' }
 
-{ #category : #'*Pakbot-Browser' }
+{ #category : '*Pakbot-Browser' }
 PBAssembly >> uiItemIn: anAssembly presenter: aPresenter [
 	^ PBAssemblyUIItem forAssembly: self presenter: aPresenter
 ]

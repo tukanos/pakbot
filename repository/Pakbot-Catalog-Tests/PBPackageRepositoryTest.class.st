@@ -1,13 +1,14 @@
 Class {
-	#name : #PBPackageRepositoryTest,
-	#superclass : #TestCase,
+	#name : 'PBPackageRepositoryTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'repository'
 	],
-	#category : #'Pakbot-Catalog-Tests'
+	#category : 'Pakbot-Catalog-Tests',
+	#package : 'Pakbot-Catalog-Tests'
 }
 
-{ #category : #helper }
+{ #category : 'helper' }
 PBPackageRepositoryTest >> publishProjects: aListOfProjects [
 
 	| registry |
@@ -17,7 +18,7 @@ PBPackageRepositoryTest >> publishProjects: aListOfProjects [
 		association value do: [ :version | repository registerFakePackage: association key version: version ] ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBPackageRepositoryTest >> setUp [
 	super setUp.
 	
@@ -25,7 +26,7 @@ PBPackageRepositoryTest >> setUp [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRepositoryTest >> tempIceRepository [
 	"| fs |
 	fs := FileSystem memory root.
@@ -37,7 +38,7 @@ PBPackageRepositoryTest >> tempIceRepository [
 	^ PBGitRepository example
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRepositoryTest >> testCanCreateALocalRepository [
 
 	repository := PBPackageRepository newLocalRepositoryIn: FileSystem memory root.
@@ -47,7 +48,7 @@ PBPackageRepositoryTest >> testCanCreateALocalRepository [
 		equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRepositoryTest >> testCanFetchAProject [
 	| project published |
 
@@ -68,7 +69,7 @@ PBPackageRepositoryTest >> testCanFetchAProject [
 		equals: project version.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRepositoryTest >> testCanListPackageVersions [
 
 	| versions |
@@ -84,7 +85,7 @@ PBPackageRepositoryTest >> testCanListPackageVersions [
 		hasSameElements: versions
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRepositoryTest >> testCanListPackages [
 
 	self publishProjects: 
@@ -98,7 +99,7 @@ PBPackageRepositoryTest >> testCanListPackages [
 		
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRepositoryTest >> testCanListUnknownPackageThrowsPackageNotFoundError [
 
 	| versions |
@@ -114,7 +115,7 @@ PBPackageRepositoryTest >> testCanListUnknownPackageThrowsPackageNotFoundError [
 		raise: PBPackageNotFoundError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRepositoryTest >> testCanPublishAProject [ 
 	| project published |
 
@@ -146,7 +147,7 @@ PBPackageRepositoryTest >> testCanPublishAProject [
 		hasSameElements: #(#UnitTest)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRepositoryTest >> testCannotPublishAProjectHavingNonFixedVersion [
 	| project |
 
@@ -164,14 +165,14 @@ PBPackageRepositoryTest >> testCannotPublishAProjectHavingNonFixedVersion [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRepositoryTest >> testCannotPublishAProjectWhenHavingDependencyOnNonFixedVersion [
 	self flag: 'TODO'.
 	self skip
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRepositoryTest >> testCannotPublishAProjectWhenVersionAlreadyPublished [
 	| project |
 
@@ -191,7 +192,7 @@ PBPackageRepositoryTest >> testCannotPublishAProjectWhenVersionAlreadyPublished 
 		raise: PBPublicationError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRepositoryTest >> testCannotPublishAProjectWithNoRepository [ 
 	| project |
 
@@ -208,7 +209,7 @@ PBPackageRepositoryTest >> testCannotPublishAProjectWithNoRepository [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRepositoryTest >> testProjectNotPublishedWhenAnErrorOccursDuringPublication [
 	| project |
 
@@ -228,7 +229,7 @@ PBPackageRepositoryTest >> testProjectNotPublishedWhenAnErrorOccursDuringPublica
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageRepositoryTest >> testPublishedProjectHasASourceRepository [
 	| project fetchedProject |
 

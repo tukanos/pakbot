@@ -1,6 +1,6 @@
-Extension { #name : #PBGitMemoryRepository }
+Extension { #name : 'PBGitMemoryRepository' }
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PBGitMemoryRepository >> description [
 	'Git memory repository used for testing'
 ]

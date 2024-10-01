@@ -1,1 +1,1 @@
-Package { #name : #'CargoPackageManager-Minimal' }
+Package { #name : 'CargoPackageManager-Minimal' }

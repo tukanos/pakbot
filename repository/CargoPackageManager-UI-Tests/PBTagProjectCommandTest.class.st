@@ -1,6 +1,6 @@
 Class {
-	#name : #PBTagProjectCommandTest,
-	#superclass : #PBTestCaseWithGitCredentials,
+	#name : 'PBTagProjectCommandTest',
+	#superclass : 'PBTestCaseWithGitCredentials',
 	#instVars : [
 		'location',
 		'projectName',
@@ -9,10 +9,11 @@ Class {
 		'repositoryLocation',
 		'presenterToDelete'
 	],
-	#category : #'CargoPackageManager-UI-Tests'
+	#category : 'CargoPackageManager-UI-Tests',
+	#package : 'CargoPackageManager-UI-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PBTagProjectCommandTest >> setUp [
 	super setUp.
 	repositoryLocation := FileLocator temp / ('pharo-' , self class name , '-', DateAndTime now asFileNameCompatibleString).
@@ -22,14 +23,14 @@ PBTagProjectCommandTest >> setUp [
 		create.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBTagProjectCommandTest >> tearDown [ 
 	super tearDown.
 	repository iceRepository forget.
 	presenterToDelete ifNotNil: [ presenterToDelete delete ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBTagProjectCommandTest >> testCanTagAProject [ 
 	| command tagPanel tagName currentCommit tagCommit |
 	
@@ -55,7 +56,7 @@ PBTagProjectCommandTest >> testCanTagAProject [
 		equals: currentCommit id
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBTagProjectCommandTest >> testCanTagAProjectWhoseRepositoryIsOnlyDeclared [
 	"test when the repository is not yet cloned"
 	| command tagPanel tagName tagCommit |

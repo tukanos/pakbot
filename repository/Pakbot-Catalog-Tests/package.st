@@ -1,1 +1,1 @@
-Package { #name : #'Pakbot-Catalog-Tests' }
+Package { #name : 'Pakbot-Catalog-Tests' }

@@ -5,17 +5,19 @@ A PPMRemoteRepositoryProxy is a simply proxy to a remote PPM repository exposing
 - znClient holds an already configured Zinc client to perform requests.
 "
 Class {
-	#name : #CGORemoteRepositoryProxy,
-	#superclass : #CGOPackageRepository,
+	#name : 'CGORemoteRepositoryProxy',
+	#superclass : 'CGOPackageRepository',
 	#instVars : [
 		'endpoint',
 		'znClient',
 		'packageVersionCache'
 	],
-	#category : #'CargoPackageManager-Model'
+	#category : 'CargoPackageManager-Model',
+	#package : 'CargoPackageManager',
+	#tag : 'Model'
 }
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGORemoteRepositoryProxy >> fetch: aPackageName version: aVersion [
 	| pkgVersion |
 	[ pkgVersion := znClient
@@ -33,7 +35,7 @@ CGORemoteRepositoryProxy >> fetch: aPackageName version: aVersion [
 	^ pkgVersion
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGORemoteRepositoryProxy >> initialize [
 	super initialize.
 	znClient := ZnClient new
@@ -44,7 +46,7 @@ CGORemoteRepositoryProxy >> initialize [
 		yourself
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGORemoteRepositoryProxy >> latestVersionOfPackage: aPackageName suitableForEnvironment: platformAttributes [
 	[ ^ znClient
 		url: baseUrl;
@@ -60,7 +62,7 @@ CGORemoteRepositoryProxy >> latestVersionOfPackage: aPackageName suitableForEnvi
 			ifFalse: [ error signal ] ]
 ]
 
-{ #category : #fetching }
+{ #category : 'fetching' }
 CGORemoteRepositoryProxy >> package: aPackageName [
 	[ ^ znClient
 		url: baseUrl;
@@ -74,7 +76,7 @@ CGORemoteRepositoryProxy >> package: aPackageName [
 			ifFalse: [ error signal ] ]
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGORemoteRepositoryProxy >> packageNames [
 	^ znClient
 		url: baseUrl;
@@ -82,12 +84,12 @@ CGORemoteRepositoryProxy >> packageNames [
 		get
 ]
 
-{ #category : #fetching }
+{ #category : 'fetching' }
 CGORemoteRepositoryProxy >> packageVersionCache [
 	^ packageVersionCache ifNil: [ packageVersionCache := CGOPackageVersionCache new ]
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGORemoteRepositoryProxy >> packagesProviding: aName version: aSemanticVersion forEnvironment: platformAttributes [
 	[ ^ znClient
 		url: baseUrl;
@@ -104,7 +106,7 @@ CGORemoteRepositoryProxy >> packagesProviding: aName version: aSemanticVersion f
 			ifFalse: [ error signal ] ]
 ]
 
-{ #category : #'versions posting' }
+{ #category : 'versions posting' }
 CGORemoteRepositoryProxy >> savePackageVersion: aPackageVersion [
 	[ znClient
 		url: baseUrl;
@@ -121,7 +123,7 @@ CGORemoteRepositoryProxy >> savePackageVersion: aPackageVersion [
 			ifFalse: [ Error signal: error messageText ] ]
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGORemoteRepositoryProxy >> versionStringsOf: aPackageName [
 	[ ^ znClient
 		url: baseUrl;

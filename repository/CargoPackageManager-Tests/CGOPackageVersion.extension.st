@@ -1,14 +1,14 @@
-Extension { #name : #CGOPackageVersion }
+Extension { #name : 'CGOPackageVersion' }
 
-{ #category : #'*CargoPackageManager-Tests' }
-CGOPackageVersion class >> fromString: aString [
+{ #category : '*CargoPackageManager-Tests' }
+CGOPackageVersion classSide >> fromString: aString [
 	"Utility method for tests"
 	"self fromString: 'Foo@1.2' "	
 	^ self fromString: aString project: CGOProject example
 ]
 
-{ #category : #'*CargoPackageManager-Tests' }
-CGOPackageVersion class >> fromString: aString project: aCGOProject [
+{ #category : '*CargoPackageManager-Tests' }
+CGOPackageVersion classSide >> fromString: aString project: aCGOProject [
 	"Utility method for tests"
 	"self fromString: #Foo project: CGOProject example "	
 	| pkgVersionReference |

@@ -1,6 +1,6 @@
-Extension { #name : #PBMetacelloConfigurationProjectDependency }
+Extension { #name : 'PBMetacelloConfigurationProjectDependency' }
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PBMetacelloConfigurationProjectDependency >> newEditPanel [
 	
 	^ PBMetacelloConfigurationDependencyPanel on: self

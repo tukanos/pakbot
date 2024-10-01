@@ -1,10 +1,12 @@
 Class {
-	#name : #CGOVirtualPackageVersionTest,
-	#superclass : #PBModelTest,
-	#category : #'CargoPackageManager-FailingTests-Model'
+	#name : 'CGOVirtualPackageVersionTest',
+	#superclass : 'PBModelTest',
+	#category : 'CargoPackageManager-FailingTests-Model',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'Model'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOVirtualPackageVersionTest >> mailVirtualPackage [
 	| virtualPkgVersion |
 	virtualPkgVersion := CGOVirtualPackageVersion example.
@@ -14,7 +16,7 @@ CGOVirtualPackageVersionTest >> mailVirtualPackage [
 	^ virtualPkgVersion
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOVirtualPackageVersionTest >> testAsPackageVersionReference [
 	| pkgVersion pkgVersionReference |
 	pkgVersion := CGOVirtualPackageVersion fromString: 'V@1.0'.
@@ -23,7 +25,7 @@ CGOVirtualPackageVersionTest >> testAsPackageVersionReference [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOVirtualPackageVersionTest >> testCanDeserialize [
 	| stonString virtualPkgVersion |
 	stonString := PBPackageVersionWriterV1
@@ -39,7 +41,7 @@ CGOVirtualPackageVersionTest >> testCanDeserialize [
 		equals: CGOVirtualPackage 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOVirtualPackageVersionTest >> testCanSerializeInSTON [
 	| stonString |
 	stonString := PBPackageVersionWriterV1 toStringPretty: self mailVirtualPackage.

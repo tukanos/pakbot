@@ -1,10 +1,12 @@
 Class {
-	#name : #CGOSolverTest,
-	#superclass : #CGOTest,
-	#category : #'CargoPackageManager-FailingTests-Solver'
+	#name : 'CGOSolverTest',
+	#superclass : 'CGOTest',
+	#category : 'CargoPackageManager-FailingTests-Solver',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'Solver'
 }
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 CGOSolverTest >> defaultSourcePackageVersion [
 	^ CGOMonticelloHostedPackageVersion 
 		repositoryUrl: 'http://smalltalkhub.com/mc/Foo/Bar/main'
@@ -12,7 +14,7 @@ CGOSolverTest >> defaultSourcePackageVersion [
 		versionString: 'JohnDoe.0'
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 CGOSolverTest >> noDependenciesPackage [
 	
 	^ CGOPackageVersion newFrom: 
@@ -28,7 +30,7 @@ CGOSolverTest >> noDependenciesPackage [
 			yourself )
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 CGOSolverTest >> noDependenciesPackageBiggerVersion [
 	
 	^ CGOPackageVersion newFrom: 
@@ -44,7 +46,7 @@ CGOSolverTest >> noDependenciesPackageBiggerVersion [
 			yourself )
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 CGOSolverTest >> oneDependencyPackage [
 	
 	^ CGOPackageVersion newFrom: 
@@ -60,7 +62,7 @@ CGOSolverTest >> oneDependencyPackage [
 			yourself )
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 CGOSolverTest >> oneDependencyPackageBiggerVersion [
 	
 	^ CGOPackageVersion newFrom: 
@@ -76,7 +78,7 @@ CGOSolverTest >> oneDependencyPackageBiggerVersion [
 			yourself )
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 CGOSolverTest >> packageWithManyDependencies [
 	
 	^ CGOPackageVersion newFrom: 
@@ -92,7 +94,7 @@ CGOSolverTest >> packageWithManyDependencies [
 			yourself )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSolverTest >> testResolutionOfConflictShouldFail [
 
 	| solver repository |
@@ -107,7 +109,7 @@ CGOSolverTest >> testResolutionOfConflictShouldFail [
 	self should: [solver solvePackageNamed: #'ManyDependencies' version: '1.0'] raise: CGODependencyConflictError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSolverTest >> testResolutionOfPackageWithManyDependenciesShouldShieldManyLoadInstructions [
 
 	| solver resolution repository instructions |
@@ -133,7 +135,7 @@ CGOSolverTest >> testResolutionOfPackageWithManyDependenciesShouldShieldManyLoad
 	self assert: instructions third packageVersions first equals: self packageWithManyDependencies.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSolverTest >> testResolutionOfPackageWithManyDependenciesShouldShieldNotEmptyResolution [
 
 	| solver resolution repository |
@@ -149,7 +151,7 @@ CGOSolverTest >> testResolutionOfPackageWithManyDependenciesShouldShieldNotEmpty
 	self deny: resolution isEmpty.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSolverTest >> testResolutionOfPackageWithNoDependenciesShouldShieldLoadInstructionsWithSingleInstruction [
 
 	| solver resolution repository instructions |
@@ -166,7 +168,7 @@ CGOSolverTest >> testResolutionOfPackageWithNoDependenciesShouldShieldLoadInstru
 	self assert: instructions first packageVersions first equals: self noDependenciesPackage.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSolverTest >> testResolutionOfPackageWithNoDependenciesShouldShieldNotEmptyResolution [
 
 	| solver resolution repository |
@@ -180,7 +182,7 @@ CGOSolverTest >> testResolutionOfPackageWithNoDependenciesShouldShieldNotEmptyRe
 	self deny: resolution isEmpty.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSolverTest >> testResolutionOfPackageWithOneDependencyShouldShieldLoadInstructionsWithTwoInstructions [
 
 	| solver resolution repository instructions |
@@ -202,7 +204,7 @@ CGOSolverTest >> testResolutionOfPackageWithOneDependencyShouldShieldLoadInstruc
 	self assert: instructions second packageVersions first equals: self oneDependencyPackage.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSolverTest >> testResolutionOfPackageWithOneDependencyShouldShieldNotEmptyResolution [
 
 	| solver resolution repository |
@@ -217,7 +219,7 @@ CGOSolverTest >> testResolutionOfPackageWithOneDependencyShouldShieldNotEmptyRes
 	self deny: resolution isEmpty.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSolverTest >> testResolutionOfUnexistentPackageVersionShouldFail [
 
 	| solver |
@@ -225,7 +227,7 @@ CGOSolverTest >> testResolutionOfUnexistentPackageVersionShouldFail [
 	self should: [ solver solvePackageNamed: #'Unexistent' version: '1.0' ] raise: PBPackageNotFoundError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSolverTest >> testShouldGetDependencyConflictErrorWhenAskingToInstallAPackageAlreadyInstalledInADifferentVersion [
 	| solver repository installedPackage |
 	repository := CGODirectoryPackageRepository newInDirectory: FileSystem memory root.
@@ -244,7 +246,7 @@ CGOSolverTest >> testShouldGetDependencyConflictErrorWhenAskingToInstallAPackage
 		raise: CGODependencyConflictError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSolverTest >> testShouldGetEmptyLoadInstructionsWhenAskingToInstallAPackageAlreadyInstalled [
 	| solver resolution repository instructions |
 	repository := CGODirectoryPackageRepository newInDirectory: FileSystem memory root.
@@ -260,7 +262,7 @@ CGOSolverTest >> testShouldGetEmptyLoadInstructionsWhenAskingToInstallAPackageAl
 	self assert: instructions size equals: 0.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSolverTest >> testShouldNotGetAlreadyInstalledPackagesInLoadInstructionsWhenResolutionInvolvesManyPackages [
 	| solver resolution repository instructions |
 	repository := CGODirectoryPackageRepository newInDirectory: FileSystem memory root.

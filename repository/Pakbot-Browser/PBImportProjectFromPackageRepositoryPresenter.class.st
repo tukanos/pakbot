@@ -3,17 +3,19 @@ I allow to import a Pakbot Project from a Pakbot package repository.
 I will fetch the metadata of the project from the package repository but will not load the project.
 "
 Class {
-	#name : #PBImportProjectFromPackageRepositoryPresenter,
-	#superclass : #SpOptionPresenter,
+	#name : 'PBImportProjectFromPackageRepositoryPresenter',
+	#superclass : 'SpOptionPresenter',
 	#instVars : [
 		'repositoryUrlInputText',
 		'packageList',
 		'versionList'
 	],
-	#category : #'Pakbot-Browser-Presenters-NewProject'
+	#category : 'Pakbot-Browser-Presenters-NewProject',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters-NewProject'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBImportProjectFromPackageRepositoryPresenter >> connectPresenters [
 
 	packageList
@@ -21,7 +23,7 @@ PBImportProjectFromPackageRepositoryPresenter >> connectPresenters [
 		transform: [ :projectName | self packageRepository versionsOf: projectName ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBImportProjectFromPackageRepositoryPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom 
@@ -42,7 +44,7 @@ PBImportProjectFromPackageRepositoryPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PBImportProjectFromPackageRepositoryPresenter >> doAccept [
 
 	| project |
@@ -56,7 +58,7 @@ PBImportProjectFromPackageRepositoryPresenter >> doAccept [
 	^ project
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PBImportProjectFromPackageRepositoryPresenter >> fetchSelectedProject [
 
 	packageList selectedItem ifNil: [ ^ nil ].
@@ -67,7 +69,7 @@ PBImportProjectFromPackageRepositoryPresenter >> fetchSelectedProject [
 		  version: versionList selectedItem
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBImportProjectFromPackageRepositoryPresenter >> initializePresenters [ 
 	
 	repositoryUrlInputText := self newTextInput 
@@ -82,19 +84,19 @@ PBImportProjectFromPackageRepositoryPresenter >> initializePresenters [
 	versionList := self newList.
 ]
 
-{ #category : #'option list presenter' }
+{ #category : 'option list presenter' }
 PBImportProjectFromPackageRepositoryPresenter >> optionIcon [
 
 	^ self iconNamed: #catalog
 ]
 
-{ #category : #'option list presenter' }
+{ #category : 'option list presenter' }
 PBImportProjectFromPackageRepositoryPresenter >> optionTitle [
 
 	^ 'Import from Repository'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBImportProjectFromPackageRepositoryPresenter >> packageRepository [
 	
 	^ self application packageRepository

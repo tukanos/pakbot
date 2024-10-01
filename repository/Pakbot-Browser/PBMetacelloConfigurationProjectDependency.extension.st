@@ -1,6 +1,6 @@
-Extension { #name : #PBMetacelloConfigurationProjectDependency }
+Extension { #name : 'PBMetacelloConfigurationProjectDependency' }
 
-{ #category : #'*Pakbot-Browser' }
+{ #category : '*Pakbot-Browser' }
 PBMetacelloConfigurationProjectDependency >> iconName [
 
 	^ #komitterSqueakSourceRemote

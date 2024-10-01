@@ -1,15 +1,17 @@
 Class {
-	#name : #OngoingPackageResolutionTest,
-	#superclass : #CGOTest,
-	#category : #'CargoPackageManager-FailingTests-Solver'
+	#name : 'OngoingPackageResolutionTest',
+	#superclass : 'CGOTest',
+	#category : 'CargoPackageManager-FailingTests-Solver',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'Solver'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OngoingPackageResolutionTest class >> resources [
 	^ #()
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 OngoingPackageResolutionTest >> testEquals [
 	| resolvedDep1 resolvedDep2 pkgA pkgB dep1 dep2 |
 	

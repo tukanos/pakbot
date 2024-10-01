@@ -1,16 +1,18 @@
 Class {
-	#name : #PBPakbotProjectDependencyStatusTest,
-	#superclass : #PBDependencyStatusTest,
-	#category : #'Pakbot-IntegrationTests-DependencyStatus'
+	#name : 'PBPakbotProjectDependencyStatusTest',
+	#superclass : 'PBDependencyStatusTest',
+	#category : 'Pakbot-IntegrationTests-DependencyStatus',
+	#package : 'Pakbot-IntegrationTests',
+	#tag : 'DependencyStatus'
 }
 
-{ #category : #utils }
+{ #category : 'utils' }
 PBPakbotProjectDependencyStatusTest >> createProjectDependency [
 	^ PBPakbotProjectDependency named: 'AnotherProject' version: '=0.1'
 		
 ]
 
-{ #category : #utils }
+{ #category : 'utils' }
 PBPakbotProjectDependencyStatusTest >> installProject [
 	
 	| newProject |

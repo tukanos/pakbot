@@ -3,12 +3,14 @@ I represent all the repair actions that can be executed on a project with proble
 I have a class message #allAvailableFor: that returns all the applicable repair actions for the status of a given project.
 "
 Class {
-	#name : #CGORepairProjectAction,
-	#superclass : #PBAbstractAction,
-	#category : #'CargoPackageManager-UI-Repair'
+	#name : 'CGORepairProjectAction',
+	#superclass : 'PBAbstractAction',
+	#category : 'CargoPackageManager-UI-Repair',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Repair'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGORepairProjectAction class >> allAvailableFor: aProject [
 
 	^ self allSubclasses 
@@ -16,7 +18,7 @@ CGORepairProjectAction class >> allAvailableFor: aProject [
 		thenCollect: [ :aClass | aClass forProject: aProject ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGORepairProjectAction class >> forProject: aProject [
 
 	^ self new
@@ -24,35 +26,35 @@ CGORepairProjectAction class >> forProject: aProject [
 		yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGORepairProjectAction class >> isAbstract [
 	
 	^ self = CGORepairProjectAction
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGORepairProjectAction class >> isAvailableFor: aProject [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGORepairProjectAction >> description [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGORepairProjectAction >> iconName [
 	^ self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGORepairProjectAction >> isLoadProjectAction [
 	
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGORepairProjectAction >> name [
 	^ self subclassResponsibility 
 ]

@@ -1,6 +1,6 @@
-Extension { #name : #PBConflict }
+Extension { #name : 'PBConflict' }
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PBConflict >> resolutionDetailText [
 
 	selectedResolution ifNil: [ ^ 'Please select a version to use' ].

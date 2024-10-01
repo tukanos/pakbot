@@ -8,30 +8,32 @@ ex:
 - package Bar may have a foo (git folder) src artifact
 "
 Class {
-	#name : #CGOPackageVersion,
-	#superclass : #Object,
+	#name : 'CGOPackageVersion',
+	#superclass : 'Object',
 	#instVars : [
 		'package',
 		'description',
 		'project',
 		'timestamp'
 	],
-	#category : #'CargoPackageManager-Minimal-Model'
+	#category : 'CargoPackageManager-Minimal-Model',
+	#package : 'CargoPackageManager-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CGOPackageVersion class >> fromOngoing: aCGOOngoingPackage project: aCGOProject [
 	^ self basicNew 
 		initializeFromOngoing: aCGOOngoingPackage project: aCGOProject;
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CGOPackageVersion class >> fromStonString: aStonString [
 	^ STON fromString: aStonString
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CGOPackageVersion class >> newFrom: aDictionary [
 	^ (aDictionary
 			at: #parts
@@ -41,7 +43,7 @@ CGOPackageVersion class >> newFrom: aDictionary [
 				initializeFrom: aDictionary
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 CGOPackageVersion >> = other [
 	(self class = other class) ifFalse: [ ^false ].
 	(self name = other name) ifFalse: [ ^false ].
@@ -49,39 +51,39 @@ CGOPackageVersion >> = other [
 	^true
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 CGOPackageVersion >> asOngoingPackage [
 	^ PBLoadableUnit fromPackageVersion: self
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 CGOPackageVersion >> asPackageVersionReference [
 	^ PBPackageVersionReference 
 		packageName: self name 
 		version: self version asString
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 CGOPackageVersion >> asSerializablePackageVersion [
 	self shouldBeImplemented
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageVersion >> dependencies [
 	self shouldBeImplemented
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageVersion >> description [
 	^ description
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 CGOPackageVersion >> hash [
 	^ (self packageName , self version printString) hash
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackageVersion >> initializeFrom: aDictionary [
 	super initialize.
 	package := self packageFrom: aDictionary.
@@ -90,7 +92,7 @@ CGOPackageVersion >> initializeFrom: aDictionary [
 	project := aDictionary at: #project ifAbsent: [ CGOPackageVersionInitializationError signal: 'No  project found for this package version'].
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackageVersion >> initializeFromOngoing: aCGOOngoingPackage project: aCGOProject [
 	description := aCGOOngoingPackage description copy.
 	timestamp := DateAndTime now.
@@ -102,32 +104,32 @@ CGOPackageVersion >> initializeFromOngoing: aCGOOngoingPackage project: aCGOProj
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGOPackageVersion >> isAssembly [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGOPackageVersion >> isDevelopmentVersion [
 	^ self version isDevelopmentVersion
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGOPackageVersion >> isProject [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGOPackageVersion >> isUnit [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGOPackageVersion >> isVirtual [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOPackageVersion >> mandatoryKey: aKey from: aDictionary [
 	^ aDictionary
 		at: aKey
@@ -136,17 +138,17 @@ CGOPackageVersion >> mandatoryKey: aKey from: aDictionary [
 		ifAbsent: [ CGOPackageVersionInitializationError signal: 'Cannot find the ', aKey printString , ' key!' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageVersion >> name [
 	^ package
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageVersion >> package [
 	^ package 
 ]
 
-{ #category : #'initialization - private' }
+{ #category : 'initialization - private' }
 CGOPackageVersion >> packageFrom: aDictionary [
 	| aSymbol |
 	aSymbol := self mandatoryKey: #package from: aDictionary.
@@ -155,43 +157,43 @@ CGOPackageVersion >> packageFrom: aDictionary [
 	^ CGOPackageProvider default packageNamed: aSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageVersion >> packageName [
 	^ package name
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 CGOPackageVersion >> printOn: aStream [
 	aStream << self packageName << '@' << (self version asString)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageVersion >> project [
 	^ project
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOPackageVersion >> projectFromSCM [
 	self subclassResponsibility
 ]
 
-{ #category : #publishing }
+{ #category : 'publishing' }
 CGOPackageVersion >> publish [
 	Cargo defaultPackageRepository
 		savePackageVersion: self asPackageVersion
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageVersion >> registry [
 	^ project registry
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageVersion >> timestamp [
 	^ timestamp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageVersion >> version [
 	^ project version
 ]

@@ -1,10 +1,12 @@
 Class {
-	#name : #SeasidePharoEnvironmentSpec,
-	#superclass : #Seaside31PackageSpec,
-	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Pharo'
+	#name : 'SeasidePharoEnvironmentSpec',
+	#superclass : 'Seaside31PackageSpec',
+	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Pharo',
+	#package : 'CargoPackageManager-TestRessources',
+	#tag : 'SeasideDesc-Pharo'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasidePharoEnvironmentSpec >> dependencies [
 	"(package addDependency: 'Seaside-Environment')
 		addFixedVersionConstraint: package version;
@@ -18,27 +20,27 @@ SeasidePharoEnvironmentSpec >> dependencies [
 	^ #()
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasidePharoEnvironmentSpec >> name [
 	^ 'Seaside-Pharo-Environment'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasidePharoEnvironmentSpec >> platformRequirements [
 	^ #(#squeakCommon)
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 SeasidePharoEnvironmentSpec >> provisions [
 	^ #(#'Seaside-Environment-Platform@1.0')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasidePharoEnvironmentSpec >> repositories [
 	^ #('http://smalltalkhub.com/mc/Seaside/Seaside31/main')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasidePharoEnvironmentSpec >> sourcePackageVersion [
 	^ { #backend -> #monticello .
 		#repositoryUrl -> 'http://smalltalkhub.com/mc/Seaside/Seaside31/main' .
@@ -46,12 +48,12 @@ SeasidePharoEnvironmentSpec >> sourcePackageVersion [
 		#versionString -> 'lr.6' } asDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasidePharoEnvironmentSpec >> srcArtifact [
 	^ 'Seaside-Pharo-Environment-lr.6'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasidePharoEnvironmentSpec >> version [
 	^  '3.1'
 ]

@@ -2,15 +2,16 @@
 A command to create a new (empty) Pakbot project
 "
 Class {
-	#name : #PBCreateProjectCommand,
-	#superclass : #PBProjectCommand,
+	#name : 'PBCreateProjectCommand',
+	#superclass : 'PBProjectCommand',
 	#instVars : [
 		'projectName'
 	],
-	#category : #'Pakbot-Browser-Commands'
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser-Commands'
 }
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBCreateProjectCommand >> execute [
 	
 	PBCreateProjectDialog new

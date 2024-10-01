@@ -2,12 +2,14 @@
 A simple visitor to handle Pakbot errors.
 "
 Class {
-	#name : #PBErrorVisitor,
-	#superclass : #Object,
-	#category : #'Pakbot-Browser-ErrorHandling'
+	#name : 'PBErrorVisitor',
+	#superclass : 'Object',
+	#category : 'Pakbot-Browser-ErrorHandling',
+	#package : 'Pakbot-Browser',
+	#tag : 'ErrorHandling'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBErrorVisitor class >> default [
 	
 	(self allSubclasses sorted: [ :a :b | a priority > b priority ])
@@ -17,25 +19,25 @@ PBErrorVisitor class >> default [
 	self error: 'There is no Error visitor.... we should not be here'.
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBErrorVisitor class >> isActive [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBErrorVisitor class >> priority [ 
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBErrorVisitor >> visitGenericError: anError [
 
 	self subclassResponsibility
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBErrorVisitor >> visitProjectWithConflictsError: anError [
 	
 	self subclassResponsibility 

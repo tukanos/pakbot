@@ -2,12 +2,14 @@
 Command to add items into a Package Assembly.
 "
 Class {
-	#name : #PBAddPackageToAssemblyCommand,
-	#superclass : #PBAssemblyCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBAddPackageToAssemblyCommand',
+	#superclass : 'PBAssemblyCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBAddPackageToAssemblyCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #smallAdd;
@@ -16,13 +18,13 @@ PBAddPackageToAssemblyCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBAddPackageToAssemblyCommand >> execute [
 	
 	self assembly addPackages: self packagesToAdd
 ]
 
-{ #category : #interaction }
+{ #category : 'interaction' }
 PBAddPackageToAssemblyCommand >> packagesToAdd [
 
 	| chooser |

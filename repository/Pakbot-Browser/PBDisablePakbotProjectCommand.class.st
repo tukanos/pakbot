@@ -6,31 +6,33 @@ It allows to use an Iceberg repository having Pakbot metadata as a ""classical""
 I collaborate with IceProjectReader and IceRepository.
 "
 Class {
-	#name : #PBDisablePakbotProjectCommand,
-	#superclass : #IceTipCommand,
-	#category : #'Pakbot-Browser-Iceberg-Integration'
+	#name : 'PBDisablePakbotProjectCommand',
+	#superclass : 'IceTipCommand',
+	#category : 'Pakbot-Browser-Iceberg-Integration',
+	#package : 'Pakbot-Browser',
+	#tag : 'Iceberg-Integration'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBDisablePakbotProjectCommand class >> defaultIconName [
 
 	^ #smallCancel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBDisablePakbotProjectCommand class >> defaultName [
 
 	^ 'Disable Packbot project integration'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBDisablePakbotProjectCommand >> canBeExecuted [
 	
 	^ self isRepositoryOperational
 		and: [ self repositoryModel entity project isKindOf: PBIcebergProject ]
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 PBDisablePakbotProjectCommand >> execute [
 	| workingCopy iceProject |
 	workingCopy := self repositoryModel entity workingCopy.

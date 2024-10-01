@@ -1,6 +1,6 @@
-Extension { #name : #PBResolvedProject }
+Extension { #name : 'PBResolvedProject' }
 
-{ #category : #'*Pakbot-Browser' }
+{ #category : '*Pakbot-Browser' }
 PBResolvedProject >> nodesInResolutionTree [
 	
 	^ self subresolutions 

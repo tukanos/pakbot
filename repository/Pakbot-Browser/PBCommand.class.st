@@ -3,30 +3,32 @@ I'm an abstract Pakbot command.
 I allow to access the presenter and its application I got from the context.
 "
 Class {
-	#name : #PBCommand,
-	#superclass : #CmCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBCommand',
+	#superclass : 'CmCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBCommand >> application [
 	
 	^ self presenter application
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBCommand >> presenter [
 
 	^ context
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 PBCommand >> refreshPresenter [
 
 	self presenter refresh
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 PBCommand >> refreshPresenterKeepingSelection [
 
 	self presenter refreshKeepingSelection

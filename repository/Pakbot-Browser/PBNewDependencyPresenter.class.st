@@ -6,18 +6,20 @@ I use an option list presenter with 3 options:
 - pakbot dependency
 "
 Class {
-	#name : #PBNewDependencyPresenter,
-	#superclass : #SpOptionListPresenter,
-	#category : #'Pakbot-Browser-Presenters-Dependencies'
+	#name : 'PBNewDependencyPresenter',
+	#superclass : 'SpOptionListPresenter',
+	#category : 'Pakbot-Browser-Presenters-Dependencies',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters-Dependencies'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBNewDependencyPresenter class >> example [
 	<example>
 	self new openDialog
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBNewDependencyPresenter >> allOptions [
 
 	^	{ PBPakbotDependencyPresenter .
@@ -26,7 +28,7 @@ PBNewDependencyPresenter >> allOptions [
 		collect: [ :class | class newApplication: self application ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBNewDependencyPresenter >> initialize [
 	super initialize.
 	
@@ -34,7 +36,7 @@ PBNewDependencyPresenter >> initialize [
 	"panels do: [ :aPanel | aPanel whenChangedDo: [ :p | self okEnabled: p isValid  ]]"
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBNewDependencyPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 
 	super initializeDialogWindow: aDialogWindowPresenter.		
@@ -42,7 +44,7 @@ PBNewDependencyPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBNewDependencyPresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
@@ -50,7 +52,7 @@ PBNewDependencyPresenter >> initializeWindow: aWindowPresenter [
 		initialExtent: 800@500.
 ]
 
-{ #category : #opening }
+{ #category : 'opening' }
 PBNewDependencyPresenter >> openDialogOnAccept: acceptBlock onCancel: cancelBlock [
 	
 	^ self openDialog

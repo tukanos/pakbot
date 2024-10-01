@@ -3,16 +3,18 @@ I represent the item when there is a resolved dependency.
 It shows the original resolved dependency and the manually selected.
 "
 Class {
-	#name : #PBResolvedConflictTreeItem,
-	#superclass : #Object,
+	#name : 'PBResolvedConflictTreeItem',
+	#superclass : 'Object',
 	#instVars : [
 		'resolvedDependency',
 		'isOriginal'
 	],
-	#category : #'Pakbot-Browser-Items'
+	#category : 'Pakbot-Browser-Items',
+	#package : 'Pakbot-Browser',
+	#tag : 'Items'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBResolvedConflictTreeItem class >> forOriginal: aPBResolvedProject [ 
 	
 	^ self new
@@ -21,7 +23,7 @@ PBResolvedConflictTreeItem class >> forOriginal: aPBResolvedProject [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBResolvedConflictTreeItem class >> forResolution: aPBResolvedProject [ 
 	
 	^ self new
@@ -30,62 +32,62 @@ PBResolvedConflictTreeItem class >> forResolution: aPBResolvedProject [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolvedConflictTreeItem >> beOriginal [
 	
 	isOriginal := true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolvedConflictTreeItem >> beResolution [
 	
 	isOriginal := false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedConflictTreeItem >> comment [
 	^ isOriginal
 		ifTrue: [ 'Calculated Resolution: ' ]
 		ifFalse: [ 'Selected Resolution: ' ]
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 PBResolvedConflictTreeItem >> conflictStatusIconName [
 
 	^ resolvedDependency conflictStatusIconName
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBResolvedConflictTreeItem >> hasToBeExpanded [
 	
 	isOriginal ifTrue: [ ^ false ].
 	^ resolvedDependency hasToBeExpanded
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 PBResolvedConflictTreeItem >> iconName [
 
 	^ resolvedDependency iconName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedConflictTreeItem >> name [
 	^ self comment , resolvedDependency name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedConflictTreeItem >> nameWithVersion [
 	
 	^ self comment , resolvedDependency nameWithVersion 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolvedConflictTreeItem >> nodesInResolutionTree [
 	
 	^ resolvedDependency nodesInResolutionTree
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolvedConflictTreeItem >> resolvedDependency: aPBResolvedProject [ 
 
 	resolvedDependency := aPBResolvedProject

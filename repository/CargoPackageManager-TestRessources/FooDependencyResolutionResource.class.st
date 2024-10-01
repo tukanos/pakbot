@@ -3,17 +3,19 @@ Test ressource to get an installation request solving.
 This example is based on Fame.
 "
 Class {
-	#name : #FooDependencyResolutionResource,
-	#superclass : #TestResource,
+	#name : 'FooDependencyResolutionResource',
+	#superclass : 'TestResource',
 	#instVars : [
 		'packages',
 		'packageProviderStrategyBackup',
 		'resolution'
 	],
-	#category : #'CargoPackageManager-TestRessources-Resources'
+	#category : 'CargoPackageManager-TestRessources-Resources',
+	#package : 'CargoPackageManager-TestRessources',
+	#tag : 'Resources'
 }
 
-{ #category : #packages }
+{ #category : 'packages' }
 FooDependencyResolutionResource >> aPackage [
 	^ CGOPackageUnit newFrom: { 
 		#package -> #A .
@@ -22,7 +24,7 @@ FooDependencyResolutionResource >> aPackage [
 	} asDictionary
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 FooDependencyResolutionResource >> addResolvedPackage: aSelector [
 	| packageVersion |
 	packageVersion := self perform: aSelector.
@@ -30,7 +32,7 @@ FooDependencyResolutionResource >> addResolvedPackage: aSelector [
 		resolvedProjectVersion: packageVersion
 ]
 
-{ #category : #packages }
+{ #category : 'packages' }
 FooDependencyResolutionResource >> bPackage [
 	^ CGOPackageUnit newFrom: { 
 		#package -> #B .
@@ -39,7 +41,7 @@ FooDependencyResolutionResource >> bPackage [
 	} asDictionary
 ]
 
-{ #category : #packages }
+{ #category : 'packages' }
 FooDependencyResolutionResource >> cPackage [
 	^ CGOPackageUnit newFrom: { 
 		#package -> #C .
@@ -47,7 +49,7 @@ FooDependencyResolutionResource >> cPackage [
 	} asDictionary
 ]
 
-{ #category : #packages }
+{ #category : 'packages' }
 FooDependencyResolutionResource >> dPackage [
 	^ CGOPackageUnit newFrom: { 
 		#package -> #D .
@@ -56,7 +58,7 @@ FooDependencyResolutionResource >> dPackage [
 	} asDictionary
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 FooDependencyResolutionResource >> dependencyResolution [
 	resolution := CGODependencyResolution new.
 	resolution rootProject: self rootDependency.
@@ -65,7 +67,7 @@ FooDependencyResolutionResource >> dependencyResolution [
 	^ resolution
 ]
 
-{ #category : #packages }
+{ #category : 'packages' }
 FooDependencyResolutionResource >> ePackage [
 	^ CGOPackageUnit newFrom: { 
 		#package -> #E .
@@ -73,7 +75,7 @@ FooDependencyResolutionResource >> ePackage [
 	} asDictionary
 ]
 
-{ #category : #packages }
+{ #category : 'packages' }
 FooDependencyResolutionResource >> fooPackage [
 	^ CGOPackageUnit newFrom: { 
 		#package -> #Foo .
@@ -82,7 +84,7 @@ FooDependencyResolutionResource >> fooPackage [
 	} asDictionary
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 FooDependencyResolutionResource >> rootDependency [
 	^ PBPackageDependency 
 		on: self fooPackage packageName

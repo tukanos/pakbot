@@ -4,7 +4,9 @@ See subclasses for available strategies.
 
 "
 Class {
-	#name : #CGOPackageVersionResolutionStrategy,
-	#superclass : #Object,
-	#category : 'CargoPackageManager-SolverStrategies'
+	#name : 'CGOPackageVersionResolutionStrategy',
+	#superclass : 'Object',
+	#category : 'CargoPackageManager-SolverStrategies',
+	#package : 'CargoPackageManager',
+	#tag : 'SolverStrategies'
 }

@@ -6,43 +6,45 @@ The source code can be hosted on different backends: git, monticello.
 - packageName is the name of the source code package (in most cases, will be the same as the Cargo package name)
 "
 Class {
-	#name : #CGOSourcePackageVersion,
-	#superclass : #Object,
+	#name : 'CGOSourcePackageVersion',
+	#superclass : 'Object',
 	#instVars : [
 		'repository',
 		'packageName'
 	],
-	#category : 'CargoPackageManager-Loading'
+	#category : 'CargoPackageManager-Loading',
+	#package : 'CargoPackageManager',
+	#tag : 'Loading'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 CGOSourcePackageVersion class >> classFor: aCGOSourceRepository [ 
 	^ aCGOSourceRepository sourcePackageVersionClass
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CGOSourcePackageVersion class >> repository: aCGOSourceRepository packageName: aPackageName [
 	^ (self classFor: aCGOSourceRepository) basicNew 
 		repository: aCGOSourceRepository packageName: aPackageName;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOSourcePackageVersion >> mcVersion [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOSourcePackageVersion >> packageName [
 	^ packageName
 ]
 
-{ #category : #fetching }
+{ #category : 'fetching' }
 CGOSourcePackageVersion >> projectMetadataStonString [
 	^ repository projectMetadataStonString
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOSourcePackageVersion >> repository: aCGOGitRepository packageName: aPackageName [ 
 	repository := aCGOGitRepository.
 	packageName := aPackageName

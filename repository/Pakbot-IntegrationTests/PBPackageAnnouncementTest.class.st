@@ -1,20 +1,21 @@
 Class {
-	#name : #PBPackageAnnouncementTest,
-	#superclass : #PBAbstractTest,
+	#name : 'PBPackageAnnouncementTest',
+	#superclass : 'PBAbstractTest',
 	#instVars : [
 		'project'
 	],
-	#category : #'Pakbot-IntegrationTests'
+	#category : 'Pakbot-IntegrationTests',
+	#package : 'Pakbot-IntegrationTests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageAnnouncementTest >> setUp [
 
 	super setUp.
 	testRegistry registerInSystem
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageAnnouncementTest >> tearDown [
 
 	self removePackageIfExists: 'Test-APackage'.
@@ -23,7 +24,7 @@ PBPackageAnnouncementTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageAnnouncementTest >> testPackageRemovedFromSystemKeptThePackageInTheProjectButNotInstalled [
 
 	project := testRegistry newProjectNamed: 'Test'.
@@ -37,7 +38,7 @@ PBPackageAnnouncementTest >> testPackageRemovedFromSystemKeptThePackageInTheProj
 	self deny: (project packageNamed: 'Test-APackage') isInstalled
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageAnnouncementTest >> testPackageRemovedFromSystemUpdateRegistry [
 
 	project := testRegistry newProjectNamed: 'Test'.
@@ -50,7 +51,7 @@ PBPackageAnnouncementTest >> testPackageRemovedFromSystemUpdateRegistry [
 	self deny: (testRegistry hasInstalledPackageNamed: 'Test::Test-APackage')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageAnnouncementTest >> testPackageRenamedUpdateProject [
 
 	project := testRegistry newProjectNamed: 'Test'.
@@ -64,7 +65,7 @@ PBPackageAnnouncementTest >> testPackageRenamedUpdateProject [
 	self deny: (project hasPackageNamed: 'Test-APackage').	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageAnnouncementTest >> testPackageRenamedUpdateRegistry [
 
 	project := testRegistry newProjectNamed: 'Test'.

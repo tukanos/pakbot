@@ -1,22 +1,23 @@
 Class {
-	#name : #PBCommitProjectCommandTest,
-	#superclass : #FileTestCase,
+	#name : 'PBCommitProjectCommandTest',
+	#superclass : 'FileTestCase',
 	#instVars : [
 		'repository',
 		'project',
 		'repositoryLocation',
 		'presenterToDelete'
 	],
-	#category : #'Pakbot-Browser-Tests'
+	#category : 'Pakbot-Browser-Tests',
+	#package : 'Pakbot-Browser-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PBCommitProjectCommandTest >> setUp [
 	super setUp.
 	repositoryLocation := self newTempDirectoryReference.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBCommitProjectCommandTest >> setUpExistingRepository [
 	repository := PBGitRepositoryCreator new
 		location: repositoryLocation;
@@ -29,7 +30,7 @@ PBCommitProjectCommandTest >> setUpExistingRepository [
 				project: project)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBCommitProjectCommandTest >> setUpExistingRepositoryWithoutPakbotMetadata [
 	repository := (PBGitRepositoryCreator new
 		location: repositoryLocation;
@@ -38,7 +39,7 @@ PBCommitProjectCommandTest >> setUpExistingRepositoryWithoutPakbotMetadata [
 		yourself) createAndClone.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBCommitProjectCommandTest >> setUpNewRepository [
 	project := PBProjectVersion named: 'test-project'.
 	project registry: PBPackageRegistry new.
@@ -51,7 +52,7 @@ PBCommitProjectCommandTest >> setUpNewRepository [
 	project repository: repository.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBCommitProjectCommandTest >> tearDown [ 
 	repository ifNotNil: [ :repo | repo iceRepository forget ].
 	presenterToDelete ifNotNil: [ presenterToDelete delete ].
@@ -59,7 +60,7 @@ PBCommitProjectCommandTest >> tearDown [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBCommitProjectCommandTest >> testGivenAProjectWhenDeletingPackageInMetadataThenPackageIsNotRemovedFromRepository [
 	| command commitBrowser visitor packageName packageModifications |
 	
@@ -84,7 +85,7 @@ PBCommitProjectCommandTest >> testGivenAProjectWhenDeletingPackageInMetadataThen
 		equals: PBSourceRepository new projectMetadataFileName
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBCommitProjectCommandTest >> testGivenAProjectWhenNoPackbotMetadataThenCanCommitPackbotMetadataToRepository [
 	| command commitBrowser visitor packageAdditions |
 	
@@ -111,7 +112,7 @@ PBCommitProjectCommandTest >> testGivenAProjectWhenNoPackbotMetadataThenCanCommi
 		equals: PBSourceRepository new projectMetadataFileName.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBCommitProjectCommandTest >> testGivenAProjectWhenNoPackbotMetadataThenCanCommitWithoutPackbotMetadataToRepository [
 	| command commitBrowser visitor |
 	
@@ -134,7 +135,7 @@ PBCommitProjectCommandTest >> testGivenAProjectWhenNoPackbotMetadataThenCanCommi
 	self assert: visitor additions isEmpty.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBCommitProjectCommandTest >> testGivenNewProjectAndFreshlyCreatedRepositoryThenIcebergWillCommitProjectMetadataAndPropertiesFile [
 	| command commitBrowser visitor |
 	self setUpNewRepository.
@@ -156,7 +157,7 @@ PBCommitProjectCommandTest >> testGivenNewProjectAndFreshlyCreatedRepositoryThen
 		hasSameElements: { PBSourceRepository new projectMetadataFileName . IceRepositoryProperties propertiesFileName . IceBasicProject new projectFilePath basename }.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBCommitProjectCommandTest >> testGivenNewProjectAndRepositoryWhenAddingNewPackageThenIcebergWillCommitTheNewPackage [
 	| command commitBrowser visitor packageName packageAdditions |
 	

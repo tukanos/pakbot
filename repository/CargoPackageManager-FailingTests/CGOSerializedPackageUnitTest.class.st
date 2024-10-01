@@ -2,12 +2,14 @@
 A SerializedPackageVersionTest is a test class for testing the behavior of SerializedPackageVersion
 "
 Class {
-	#name : #CGOSerializedPackageUnitTest,
-	#superclass : #TestCase,
-	#category : #'CargoPackageManager-FailingTests-Model-Serialization'
+	#name : 'CGOSerializedPackageUnitTest',
+	#superclass : 'TestCase',
+	#category : 'CargoPackageManager-FailingTests-Model-Serialization',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'Model-Serialization'
 }
 
-{ #category : #'expected results' }
+{ #category : 'expected results' }
 CGOSerializedPackageUnitTest >> a100With2EmptyDependency [
 	^ 'CGOPackageUnit {
 	#description : ''A test package version.'',
@@ -28,7 +30,7 @@ CGOSerializedPackageUnitTest >> a100With2EmptyDependency [
 }'
 ]
 
-{ #category : #'expected results' }
+{ #category : 'expected results' }
 CGOSerializedPackageUnitTest >> a100WithDependencies [
 	^ 'CGOPackageUnit {
 	#description : ''A test package version.'',
@@ -54,7 +56,7 @@ CGOSerializedPackageUnitTest >> a100WithDependencies [
 }'
 ]
 
-{ #category : #'expected results' }
+{ #category : 'expected results' }
 CGOSerializedPackageUnitTest >> a100WithoutDependencies [
 	^ 'CGOPackageUnit {
 	#description : ''A test package version.'',
@@ -72,7 +74,7 @@ CGOSerializedPackageUnitTest >> a100WithoutDependencies [
 }'
 ]
 
-{ #category : #'expected results' }
+{ #category : 'expected results' }
 CGOSerializedPackageUnitTest >> aWithDependencyWithNoConstraint [
 	^ 'CGOPackageUnit {
 	#description : ''A test package version.'',
@@ -92,7 +94,7 @@ CGOSerializedPackageUnitTest >> aWithDependencyWithNoConstraint [
 }'
 ]
 
-{ #category : #'expected results' }
+{ #category : 'expected results' }
 CGOSerializedPackageUnitTest >> seasideCore310StonString [
 	^ 'CGOPackageUnit {
 	#description : ''No description'',
@@ -117,7 +119,7 @@ CGOSerializedPackageUnitTest >> seasideCore310StonString [
 }'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSerializedPackageUnitTest >> testDeserializeDependenciesIn [
 	| serializedPkgVersion pkgVersion |
 	serializedPkgVersion := CGOSerializedPackageUnit new
@@ -136,7 +138,7 @@ CGOSerializedPackageUnitTest >> testDeserializeDependenciesIn [
 		equals: 'Seaside-Core-Platform (=3.1.0)'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSerializedPackageUnitTest >> testFromSton [
 	| seasideCore ston |
 	seasideCore := self packageVersions detect: [ :each | each packageName = 'Seaside-Core' ].
@@ -146,7 +148,7 @@ CGOSerializedPackageUnitTest >> testFromSton [
 		equals: seasideCore
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSerializedPackageUnitTest >> testFromStonTargetClass [
 	| ston |
 	ston := PBPackageVersionWriterV1 toStringPretty: 
@@ -159,7 +161,7 @@ CGOSerializedPackageUnitTest >> testFromStonTargetClass [
 		equals: CGOPackageUnit
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSerializedPackageUnitTest >> testFromStonWithApkg [
 	| pkgVersion constraints |
 	
@@ -179,7 +181,7 @@ CGOSerializedPackageUnitTest >> testFromStonWithApkg [
 	self assert: constraints first asString equals: '=1.0.0'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSerializedPackageUnitTest >> testStonOn [
 	| seasideCore |
 	seasideCore := self packageVersions detect: [ :each | each packageName = 'Seaside-Core' ].
@@ -192,7 +194,7 @@ CGOSerializedPackageUnitTest >> testStonOn [
 		equals: self seasideCore310StonString
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSerializedPackageUnitTest >> testStonOnWith2EmptyDependency [
 	| pkgUnit ston |
 	pkgUnit := STON fromString: self a100With2EmptyDependency.
@@ -202,7 +204,7 @@ CGOSerializedPackageUnitTest >> testStonOnWith2EmptyDependency [
 		equals: self a100With2EmptyDependency
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSerializedPackageUnitTest >> testStonOnWithApkg [
 	| dictionary pkgVersion result |
 	
@@ -228,7 +230,7 @@ CGOSerializedPackageUnitTest >> testStonOnWithApkg [
 	self assert: result equals: self a100WithDependencies
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSerializedPackageUnitTest >> testStonOnWithApkgWithDependencyWithNoConstraint [
 	| dictionary pkgVersion result |
 	
@@ -254,7 +256,7 @@ CGOSerializedPackageUnitTest >> testStonOnWithApkgWithDependencyWithNoConstraint
 	self assert: result equals: self aWithDependencyWithNoConstraint
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSerializedPackageUnitTest >> testStonOnWithApkgWithoutDependencies [
 	| dictionary pkgVersion result |
 	

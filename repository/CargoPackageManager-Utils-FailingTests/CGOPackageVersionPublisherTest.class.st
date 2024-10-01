@@ -1,14 +1,15 @@
 Class {
-	#name : #CGOPackageVersionPublisherTest,
-	#superclass : #Object,
+	#name : 'CGOPackageVersionPublisherTest',
+	#superclass : 'Object',
 	#instVars : [
 		'fs',
 		'pkgRepository'
 	],
-	#category : 'CargoPackageManager-Utils-FailingTests'
+	#category : 'CargoPackageManager-Utils-FailingTests',
+	#package : 'CargoPackageManager-Utils-FailingTests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 CGOPackageVersionPublisherTest >> setUp [
 	fs := FileSystem memory.
 	pkgRepository := CGODirectoryPackageRepository basicNew
@@ -16,12 +17,12 @@ CGOPackageVersionPublisherTest >> setUp [
 		yourself
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 CGOPackageVersionPublisherTest >> tearDown [
 	ManifestFoo class removeSelector: #repositories.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageVersionPublisherTest >> testCanPublishOnePackageVersion [
 	[ (CGOPackageVersionPublisher on: pkgRepository) 
 		manifests: { ManifestOneDependency };
@@ -33,7 +34,7 @@ CGOPackageVersionPublisherTest >> testCanPublishOnePackageVersion [
 	self assert: (fs / 'onedependency' / ('onedependency@' , ManifestFoo version asSemanticVersion asString)) isFile.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageVersionPublisherTest >> testCanPublishOnePackageVersionProvidingRepository [
 	| repos |
 	
@@ -53,7 +54,7 @@ CGOPackageVersionPublisherTest >> testCanPublishOnePackageVersionProvidingReposi
 		equals: repos
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageVersionPublisherTest >> testCanPublishOnePackageVersionProvidingVersion [
 	| version |
 	
@@ -73,7 +74,7 @@ CGOPackageVersionPublisherTest >> testCanPublishOnePackageVersionProvidingVersio
 		equals: version
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageVersionPublisherTest >> testCanPublishPackageVersionAndItsDependencies [
 	[ (CGOPackageVersionPublisher on: pkgRepository)
 		publishDependencies;
@@ -87,7 +88,7 @@ CGOPackageVersionPublisherTest >> testCanPublishPackageVersionAndItsDependencies
 	self assert: (fs / 'nodependency' / ('nodependency@' , ManifestWithNoDependenciesForTest version asSemanticVersion asString)) isFile.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageVersionPublisherTest >> testShouldPackageBeUpToDateAndCleanAfterPublishing [
 	| pkgName wc manifest |
 	

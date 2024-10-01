@@ -3,28 +3,29 @@ I'm in charge of displaying meta-information on Cargo projects.
 I also allow to edit these meta-data.
 "
 Class {
-	#name : #PBProjectPanel,
-	#superclass : #PBLoadableUnitPanel,
+	#name : 'PBProjectPanel',
+	#superclass : 'PBLoadableUnitPanel',
 	#instVars : [
 		'overview',
 		'dependencies',
 		'projectStatus'
 	],
-	#category : #'CargoPackageManager-UI'
+	#category : 'CargoPackageManager-UI',
+	#package : 'CargoPackageManager-UI'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBProjectPanel class >> buildOnOngoing: aProjectVersion [
 	^ (self on: aProjectVersion) buildWithSpec
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 PBProjectPanel class >> example [
 	^ (self on: PBProjectVersion example)
 		openWithSpec
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBProjectPanel >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom 
@@ -36,7 +37,7 @@ PBProjectPanel >> defaultLayout [
 		yourself.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBProjectPanel >> initializeWidgets [
 
 	overview := self instantiate: PBLoadableUnitOverviewPanel on: self projectVersion.
@@ -46,12 +47,12 @@ PBProjectPanel >> initializeWidgets [
 	self layout: self defaultLayout.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectPanel >> projectVersion [ 
 	^ self model
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBProjectPanel >> refreshUI [
 	self needRebuild: false.
 	self buildWithSpecLayout: self defaultLayout.

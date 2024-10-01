@@ -1,21 +1,22 @@
 Class {
-	#name : #AssemblyOrganizer,
-	#superclass : #Object,
-	#category : 'CargoPackageManager-Utils'
+	#name : 'AssemblyOrganizer',
+	#superclass : 'Object',
+	#category : 'CargoPackageManager-Utils',
+	#package : 'CargoPackageManager-Utils'
 }
 
-{ #category : #checking }
+{ #category : 'checking' }
 AssemblyOrganizer class >> check: aPackageName [
 	self new
 		check: aPackageName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AssemblyOrganizer >> assemblies [
 	^ AssemblyManifest allSubclasses
 ]
 
-{ #category : #checking }
+{ #category : 'checking' }
 AssemblyOrganizer >> check: aPackageName [
 	| ongoing assemblies |
 	ongoing := PBPackage on: (RPackage named: aPackageName) packageManifest.
@@ -24,7 +25,7 @@ AssemblyOrganizer >> check: aPackageName [
 		thenDo: [ :assembly | self updateDependenciesOf: ongoing with: assembly ]
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 AssemblyOrganizer >> updateDependenciesOf: ongoingPackageUnit with: anAssemblyManifest [ 
 	| dependenciesToRemove message |
 	dependenciesToRemove := ongoingPackageUnit dependencies

@@ -2,26 +2,28 @@
 TestRessources to get all packages description of Seaside 3.1
 "
 Class {
-	#name : #Seaside31TestResource,
-	#superclass : #TestResource,
+	#name : 'Seaside31TestResource',
+	#superclass : 'TestResource',
 	#instVars : [
 		'packageProviderStrategyBackup',
 		'packageVersions'
 	],
-	#category : 'CargoPackageManager-TestRessources-Resources'
+	#category : 'CargoPackageManager-TestRessources-Resources',
+	#package : 'CargoPackageManager-TestRessources',
+	#tag : 'Resources'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Seaside31TestResource >> seaside31PackageVersions [
 	^ packageVersions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Seaside31TestResource >> seaside31Packages [
 	^ packageVersions collect: #package
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 Seaside31TestResource >> setUp [
 	super setUp.
 	packageProviderStrategyBackup := CGOPackageProvider default providerStrategy.
@@ -32,7 +34,7 @@ Seaside31TestResource >> setUp [
 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 Seaside31TestResource >> tearDown [
 	super tearDown.
 	CGOPackageProvider default providerStrategy: packageProviderStrategyBackup

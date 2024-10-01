@@ -1,6 +1,6 @@
 Class {
-	#name : #PBImportProjectFromGitTest,
-	#superclass : #PBAbstractTest,
+	#name : 'PBImportProjectFromGitTest',
+	#superclass : 'PBAbstractTest',
 	#instVars : [
 		'project',
 		'panel',
@@ -12,10 +12,11 @@ Class {
 		'defaultRegistry',
 		'gitCredentials'
 	],
-	#category : #'CargoPackageManager-UI-Tests'
+	#category : 'CargoPackageManager-UI-Tests',
+	#package : 'CargoPackageManager-UI-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBImportProjectFromGitTest >> setUp [
 	super setUp.
 	
@@ -34,7 +35,7 @@ PBImportProjectFromGitTest >> setUp [
 	gitCredentials setUp.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBImportProjectFromGitTest >> tearDown [ 
 	super tearDown.
 	
@@ -42,7 +43,7 @@ PBImportProjectFromGitTest >> tearDown [
 	gitCredentials tearDown.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBImportProjectFromGitTest >> testCanImportProjectWhenNoMetadataFound [
 	version := '1.0'.
 	url := 'https://github.com/pharo-pkg/PakbotTestExample.git'.
@@ -60,7 +61,7 @@ PBImportProjectFromGitTest >> testCanImportProjectWhenNoMetadataFound [
 	self assert: project description equals: ''. "no description"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBImportProjectFromGitTest >> testCloneErrorIsCaptured [
 
 	url := 'https://github.com/pharo-pkg/unexisting-repo.git'.
@@ -73,7 +74,7 @@ PBImportProjectFromGitTest >> testCloneErrorIsCaptured [
 	self assert: project isNil description: 'Expected nil project'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBImportProjectFromGitTest >> testGetRequiredProjectVersionAfterAccept [
 	self skip.
 	self flag: 'first need tag support'.
@@ -92,7 +93,7 @@ PBImportProjectFromGitTest >> testGetRequiredProjectVersionAfterAccept [
 	self assert: project description equals: description.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBImportProjectFromGitTest >> testProjectIsFilledAfterAccept [
 
 	version := ''.

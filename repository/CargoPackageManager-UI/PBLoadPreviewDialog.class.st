@@ -3,8 +3,8 @@ Dialog box displaying both current resolution and potential conflits.
 After conflicts are solved, proceed to the load action.
 "
 Class {
-	#name : #PBLoadPreviewDialog,
-	#superclass : #ComposablePresenter,
+	#name : 'PBLoadPreviewDialog',
+	#superclass : 'ComposablePresenter',
 	#instVars : [
 		'resolutionPanel',
 		'conflictsPanel',
@@ -12,10 +12,12 @@ Class {
 		'conflictsLabel',
 		'resolutionLabel'
 	],
-	#category : #'CargoPackageManager-UI-Loading'
+	#category : 'CargoPackageManager-UI-Loading',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Loading'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBLoadPreviewDialog class >> defaultSpec [
 	^ SpecLayout composed
 		newColumn: [ :col | 
@@ -33,7 +35,7 @@ PBLoadPreviewDialog class >> defaultSpec [
 						yourself ] ]
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBLoadPreviewDialog class >> example [
 	<example>
 
@@ -43,29 +45,29 @@ PBLoadPreviewDialog class >> example [
 	(self on: resolution) openDialogWithSpec
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PBLoadPreviewDialog >> accept [
 	conflictsPanel accept.
 	resolution load
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadPreviewDialog >> conflictsLabel [
 	^ conflictsLabel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadPreviewDialog >> conflictsPanel [
 	^ conflictsPanel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBLoadPreviewDialog >> initialExtent [
 	^ (750@450)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBLoadPreviewDialog >> initializeWidgets [
 	
 	conflictsLabel := self newLabel label: 'Conflicts to solve'.
@@ -76,7 +78,7 @@ PBLoadPreviewDialog >> initializeWidgets [
 	self whenWindowChanged: [ self updateOkButton ].
 ]
 
-{ #category : #opening }
+{ #category : 'opening' }
 PBLoadPreviewDialog >> openDialogWithSpec [
 
 	^ super openDialogWithSpec
@@ -84,35 +86,35 @@ PBLoadPreviewDialog >> openDialogWithSpec [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadPreviewDialog >> resolutionLabel [
 	^ resolutionLabel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadPreviewDialog >> resolutionPanel [
 	^ resolutionPanel
 ]
 
-{ #category : #'model access' }
+{ #category : 'model access' }
 PBLoadPreviewDialog >> setModelBeforeInitialization: aModel [
 
 	resolution := aModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadPreviewDialog >> title [
 	^ 'Load Preview'
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBLoadPreviewDialog >> updateOkButton [
 	^ conflictsPanel hasConflicts
 		ifTrue: [ self window toolbar okButton disable ]
 		ifFalse: [ self window toolbar okButton enable ]
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBLoadPreviewDialog >> updateResolutionTable [
 	resolutionPanel updateResolutionTree
 ]

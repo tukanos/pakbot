@@ -1,10 +1,12 @@
 Class {
-	#name : #PBConfigurationConflictTest,
-	#superclass : #PBParametrizedConflictTest,
-	#category : #'Pakbot-IntegrationTests-Conflicts'
+	#name : 'PBConfigurationConflictTest',
+	#superclass : 'PBParametrizedConflictTest',
+	#category : 'Pakbot-IntegrationTests-Conflicts',
+	#package : 'Pakbot-IntegrationTests',
+	#tag : 'Conflicts'
 }
 
-{ #category : #'building suites' }
+{ #category : 'building suites' }
 PBConfigurationConflictTest class >> testParameters [
 
 	^ ParametrizedTestMatrix new

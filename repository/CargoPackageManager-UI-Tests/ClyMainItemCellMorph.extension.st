@@ -1,6 +1,6 @@
-Extension { #name : #ClyMainItemCellMorph }
+Extension { #name : 'ClyMainItemCellMorph' }
 
-{ #category : #'*CargoPackageManager-UI-Tests' }
+{ #category : '*CargoPackageManager-UI-Tests' }
 ClyMainItemCellMorph >> definitionMorph [
 	^ definitionMorph
 ]

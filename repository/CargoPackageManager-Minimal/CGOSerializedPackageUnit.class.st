@@ -3,37 +3,39 @@ I represent a Package unit ready to be serialized.
 I map some instance variables of PackageVersion to an easily serialized form (e.g. String, Array)
 "
 Class {
-	#name : #CGOSerializedPackageUnit,
-	#superclass : #CGOSerializedPackageVersion,
+	#name : 'CGOSerializedPackageUnit',
+	#superclass : 'CGOSerializedPackageVersion',
 	#instVars : [
 		'src',
 		'dependencies',
 		'platformRequirements',
 		'provisions'
 	],
-	#category : 'CargoPackageManager-Minimal-Model-Serialization'
+	#category : 'CargoPackageManager-Minimal-Model-Serialization',
+	#package : 'CargoPackageManager-Minimal',
+	#tag : 'Model-Serialization'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CGOSerializedPackageUnit class >> from: aPackageUnit [
 	^ self basicNew
 		initializeWith: aPackageUnit;
 		yourself
 ]
 
-{ #category : #ston }
+{ #category : 'ston' }
 CGOSerializedPackageUnit class >> stonName [
 	^ #CGOPublishedPackageUnit
 ]
 
-{ #category : #deserialization }
+{ #category : 'deserialization' }
 CGOSerializedPackageUnit >> deserializeDependenciesIn: aPackageVersion [
 	self 
 		deserialize: 'dependencies'
 		in: aPackageVersion
 ]
 
-{ #category : #deserialization }
+{ #category : 'deserialization' }
 CGOSerializedPackageUnit >> flushIn: aPackageUnit [
 	super flushIn: aPackageUnit.
 	aPackageUnit 
@@ -43,7 +45,7 @@ CGOSerializedPackageUnit >> flushIn: aPackageUnit [
 	self deserializeDependenciesIn: aPackageUnit
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOSerializedPackageUnit >> initializeDependenciesWith: aPackageUnit [
 	dependencies := self toArray:
 			(aPackageUnit dependencies collect: 
@@ -53,7 +55,7 @@ CGOSerializedPackageUnit >> initializeDependenciesWith: aPackageUnit [
 				value: (self dependencyConstraintsMapping: dependency) ])
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOSerializedPackageUnit >> initializeWith: aPackageUnit [
 	super initializeWith: aPackageUnit.
 	src := aPackageUnit sourcePackageVersion.

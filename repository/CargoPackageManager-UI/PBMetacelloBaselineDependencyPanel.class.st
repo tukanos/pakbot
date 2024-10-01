@@ -1,10 +1,12 @@
 Class {
-	#name : #PBMetacelloBaselineDependencyPanel,
-	#superclass : #PBAbstractDependencyPanel,
-	#category : #'CargoPackageManager-UI-NewDependency'
+	#name : 'PBMetacelloBaselineDependencyPanel',
+	#superclass : 'PBAbstractDependencyPanel',
+	#category : 'CargoPackageManager-UI-NewDependency',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'NewDependency'
 }
 
-{ #category : #building }
+{ #category : 'building' }
 PBMetacelloBaselineDependencyPanel >> buildDependency [
 
 	^ PBMetacelloBaselineProjectDependency
@@ -13,13 +15,13 @@ PBMetacelloBaselineDependencyPanel >> buildDependency [
 		version: (form valueNamed: #version)	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloBaselineDependencyPanel >> icon [
 
 	^ self iconNamed: PBMetacelloBaselineProjectDependency iconName
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBMetacelloBaselineDependencyPanel >> initializeForm [
 	form := ITForm owner: self.
 	form
@@ -48,7 +50,7 @@ PBMetacelloBaselineDependencyPanel >> initializeForm [
 		
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBMetacelloBaselineDependencyPanel >> setInitialValues [
 
 	form valueNamed: #name set: self dependency name.
@@ -57,13 +59,13 @@ PBMetacelloBaselineDependencyPanel >> setInitialValues [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloBaselineDependencyPanel >> title [
 
 	^ 'Metacello Baseline'
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PBMetacelloBaselineDependencyPanel >> updateDependency [
 	
 	self dependency

@@ -1,12 +1,12 @@
-Extension { #name : #PBResolvedProject }
+Extension { #name : 'PBResolvedProject' }
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PBResolvedProject >> hasToBeExpanded [
 	
 	^ resolvedDependencies anySatisfy: [ :each | each hasToBeExpanded ]
 ]
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PBResolvedProject >> nodesInResolutionTree [
 	
 	^ self subresolutions 

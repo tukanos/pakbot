@@ -1,6 +1,6 @@
-Extension { #name : #PBPackage }
+Extension { #name : 'PBPackage' }
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PBPackage >> iconName [
 	^ #package
 ]

@@ -2,64 +2,65 @@
 An extension of IceMemoryRepository to test Pakbot repositories withour having to clone code.
 "
 Class {
-	#name : #PBIceMemoryRepository,
-	#superclass : #IceMemoryRepository,
+	#name : 'PBIceMemoryRepository',
+	#superclass : 'IceMemoryRepository',
 	#instVars : [
 		'location',
 		'fs'
 	],
-	#category : #'CargoPackageManager-UI-Tests'
+	#category : 'CargoPackageManager-UI-Tests',
+	#package : 'CargoPackageManager-UI-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIceMemoryRepository >> fileSystem [
 	^ fs
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBIceMemoryRepository >> initialize [
 	fs := FileSystem memory.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBIceMemoryRepository >> isCodeMissing [
 	^ self subdirectory isEmptyOrNil 
 		ifTrue: [ self isMissing ]
 		ifFalse: [ (self repositoryDirectory / self subdirectory) exists not  ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBIceMemoryRepository >> isMissing [
 	^ self repositoryDirectory isNil 
 		or: [ self repositoryDirectory exists not ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBIceMemoryRepository >> isValidRepository [
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PBIceMemoryRepository >> location [
 	^ location
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIceMemoryRepository >> location: aPathString [ 
 	location := fs referenceTo: aPathString.
 ]
 
-{ #category : #'API-project' }
+{ #category : 'API-project' }
 PBIceMemoryRepository >> project [
 	^ self workingCopy project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIceMemoryRepository >> remotes [
 	^ #()
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIceMemoryRepository >> repositoryDirectory [
 	^ location
 ]

@@ -3,12 +3,14 @@ Presenter showing available options to load the project.
 You can select an option and then proceed with the selected action.
 "
 Class {
-	#name : #PBLoadProjectPresenter,
-	#superclass : #PBProjectOptionPresenter,
-	#category : #'Pakbot-Browser-Presenters'
+	#name : 'PBLoadProjectPresenter',
+	#superclass : 'PBProjectOptionPresenter',
+	#category : 'Pakbot-Browser-Presenters',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBLoadProjectPresenter class >> example [
 	
 	(self on: PBProjectVersion exampleWithDependency) 
@@ -16,13 +18,13 @@ PBLoadProjectPresenter class >> example [
 		openDialog
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadProjectPresenter >> availableOptions [
 	
 	^ PBLoadProjectCommand allAvailableFor: self project
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBLoadProjectPresenter >> defaultLayout [ 
 	^ SpBoxLayout newTopToBottom 
 		add: optionList;
@@ -30,7 +32,7 @@ PBLoadProjectPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBLoadProjectPresenter >> initializeWindow: aWindowPresenter [
 
 	super initializeWindow: aWindowPresenter.

@@ -1,6 +1,6 @@
-Extension { #name : #STONWriter }
+Extension { #name : 'STONWriter' }
 
-{ #category : #'*CargoPackageManager' }
+{ #category : '*CargoPackageManager' }
 STONWriter >> writeShortList: collection [
 	self with: collection do: [ 
 		self encodeList: collection ]

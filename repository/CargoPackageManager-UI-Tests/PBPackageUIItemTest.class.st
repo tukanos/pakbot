@@ -1,19 +1,20 @@
 Class {
-	#name : #PBPackageUIItemTest,
-	#superclass : #PBAbstractCalypsoTest,
+	#name : 'PBPackageUIItemTest',
+	#superclass : 'PBAbstractCalypsoTest',
 	#instVars : [
 		'loadedPackage',
 		'notLoadedPackage'
 	],
-	#category : #'CargoPackageManager-UI-Tests'
+	#category : 'CargoPackageManager-UI-Tests',
+	#package : 'CargoPackageManager-UI-Tests'
 }
 
-{ #category : #utils }
+{ #category : 'utils' }
 PBPackageUIItemTest >> contextClass [
 	^ PBPackageContextOfFullBrowser 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBPackageUIItemTest >> setUp [
 	super setUp.
 
@@ -23,7 +24,7 @@ PBPackageUIItemTest >> setUp [
 	notLoadedPackage := project newNotLoadedPackage: 'TestProject-NotLoaded'.	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageUIItemTest >> testAProjectShowsBothLoadedAndNotLoadedPackages [
 
 	| projectUI loadedUI notLoadedUI |
@@ -39,7 +40,7 @@ PBPackageUIItemTest >> testAProjectShowsBothLoadedAndNotLoadedPackages [
 	self assert: notLoadedUI isNotNil.	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageUIItemTest >> testAProjectShowsCorrectStatusIcon [
 
 	| loadedUI notLoadedUI |
@@ -58,7 +59,7 @@ PBPackageUIItemTest >> testAProjectShowsCorrectStatusIcon [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageUIItemTest >> testLoadedPackageHasCorrectCommands [
 
 	| packageUI commands |
@@ -72,7 +73,7 @@ PBPackageUIItemTest >> testLoadedPackageHasCorrectCommands [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageUIItemTest >> testNotLoadedPackageHasCorrectCommands [
 
 	| packageUI commands |
@@ -86,7 +87,7 @@ PBPackageUIItemTest >> testNotLoadedPackageHasCorrectCommands [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageUIItemTest >> testPackagesKnowsIfTheyAreInstalled [
 
 	| loadedUI notLoadedUI |
@@ -98,7 +99,7 @@ PBPackageUIItemTest >> testPackagesKnowsIfTheyAreInstalled [
 	self assert: loadedUI isInstalled.	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPackageUIItemTest >> testRemovePackageFromProjectCommand [
 
 	| pkg |

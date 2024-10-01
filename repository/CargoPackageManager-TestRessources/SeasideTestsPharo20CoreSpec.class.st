@@ -1,10 +1,12 @@
 Class {
-	#name : #SeasideTestsPharo20CoreSpec,
-	#superclass : #Seaside31PackageSpec,
-	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Pharo'
+	#name : 'SeasideTestsPharo20CoreSpec',
+	#superclass : 'Seaside31PackageSpec',
+	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Pharo',
+	#package : 'CargoPackageManager-TestRessources',
+	#tag : 'SeasideDesc-Pharo'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsPharo20CoreSpec >> dependencies [
 	"(package addDependency: 'Seaside-Pharo20-Core')
 		version: '';
@@ -15,27 +17,27 @@ SeasideTestsPharo20CoreSpec >> dependencies [
 	^ #()
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsPharo20CoreSpec >> name [
 	^ 'Seaside-Tests-Pharo20-Core'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsPharo20CoreSpec >> platformRequirements [
 	^ #(#'pharo4.x')
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 SeasideTestsPharo20CoreSpec >> provisions [
 	^ #(#'Seaside-Tests-Core-Platform@1.0')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsPharo20CoreSpec >> repositories [
 	^ #('http://smalltalkhub.com/mc/Seaside/Seaside31/main')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsPharo20CoreSpec >> sourcePackageVersion [
 	^ { #backend -> #monticello .
 		#repositoryUrl -> 'http://smalltalkhub.com/mc/Seaside/Seaside31/main' .
@@ -43,7 +45,7 @@ SeasideTestsPharo20CoreSpec >> sourcePackageVersion [
 		#versionString -> 'JohnDoe.0' } asDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsPharo20CoreSpec >> version [
 	^  '3.1.0'
 ]

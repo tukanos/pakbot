@@ -6,8 +6,8 @@ packages instance variable holds the list of packages on wich actions will apply
 	NOTE: for now, only one package is allowed / used
 "
 Class {
-	#name : #Cargo,
-	#superclass : #Object,
+	#name : 'Cargo',
+	#superclass : 'Object',
 	#instVars : [
 		'packages',
 		'sourceRepositories',
@@ -19,25 +19,26 @@ Class {
 		'DefaultPackageRepository',
 		'PlatformAttributes'
 	],
-	#category : #'CargoPackageManager-Minimal'
+	#category : 'CargoPackageManager-Minimal',
+	#package : 'CargoPackageManager-Minimal'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Cargo class >> defaultPackageRepository [
 	^ DefaultPackageRepository ifNil: [ self initialize. DefaultPackageRepository ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Cargo class >> defaultPackageRepository: aCGOPackageRepository [
 	DefaultPackageRepository := aCGOPackageRepository
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Cargo class >> defaultPackageRepositoryUrl [
 	^ 'http://pharo-repo.inria.fr'
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 Cargo class >> initialize [
 	"initialize default repository if CGORemoteRepositoryProxy is loaded"
 	self defaultPackageRepository: 
@@ -46,28 +47,28 @@ Cargo class >> initialize [
 			ifPresent: [ :repositoryClass | repositoryClass newWithUrl: self defaultPackageRepositoryUrl ])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Cargo class >> platformAttributes [
 	^ PlatformAttributes ifNil: [ Smalltalk image metacelloPlatformAttributes ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Cargo class >> platformAttributes: aListOfPlatformAttributes [
 	PlatformAttributes := aListOfPlatformAttributes
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 Cargo class >> useLocalRepository: aPathString [
 	self defaultPackageRepository: 
 		(CGODirectoryPackageRepository newWithUrl: aPathString)
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 Cargo >> enablePackageCache [
 	sourceRepositories addFirst: MCCacheRepository uniqueInstance
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 Cargo >> initialize [
 	super initialize.
 	projectMetadataFromSCM := CGOScmPackageMetadata new.
@@ -76,17 +77,17 @@ Cargo >> initialize [
 	registry := PBPackageRegistry default.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 Cargo >> installFrom: aLoadInstructions [
 	aLoadInstructions load
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 Cargo >> installFromFile: aFileReference [
 	self installFrom: (STON fromStream: aFileReference readStream)
 ]
 
-{ #category : #installing }
+{ #category : 'installing' }
 Cargo >> installProjectFromSourceRepository: aCGOSourceRepository [ 
 	| project |
 
@@ -95,18 +96,18 @@ Cargo >> installProjectFromSourceRepository: aCGOSourceRepository [
 	self install
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 Cargo >> installedPackages [
 	^ registry installedPackages
 		
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 Cargo >> package: aPackageName [
 	self package: aPackageName version: ''
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 Cargo >> package: aPackageName version: aSemanticVersionString [
 	packages addIfNotPresent: 
 		(PBPackageVersionReference 
@@ -114,13 +115,13 @@ Cargo >> package: aPackageName version: aSemanticVersionString [
 			version: aSemanticVersionString)
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 Cargo >> registry: aCGOPackageRegistry [
 	"Should only be used to set a registry when performing tests"
 	registry := aCGOPackageRegistry
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 Cargo >> rootDependency [
 	| pkgVersionRef |
 	pkgVersionRef := packages first.
@@ -132,7 +133,7 @@ Cargo >> rootDependency [
 			ifNotEmpty: [ {(PBFixedVersionConstraint with: pkgVersionRef versionString)} ] ) 
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 Cargo >> useLocalRepository: aPathString [
 	"A local repository takes precedence from the central one but not on package metadata fetch from SCM"
 	repositories 
@@ -140,7 +141,7 @@ Cargo >> useLocalRepository: aPathString [
 		afterIndex: 1
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 Cargo >> useSourceRepository: aCGOSourceRepository [ 
 	^ projectMetadataFromSCM registerProjectFromSourceRepository: aCGOSourceRepository
 ]

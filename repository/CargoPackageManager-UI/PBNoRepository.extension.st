@@ -1,12 +1,12 @@
-Extension { #name : #PBNoRepository }
+Extension { #name : 'PBNoRepository' }
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PBNoRepository >> description [
 	
 	^ 'No repository configured'
 ]
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PBNoRepository >> editionIconName [
 	^ #add
 ]

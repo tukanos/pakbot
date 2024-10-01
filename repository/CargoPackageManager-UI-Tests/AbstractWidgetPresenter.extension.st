@@ -1,6 +1,6 @@
-Extension { #name : #AbstractWidgetPresenter }
+Extension { #name : 'AbstractWidgetPresenter' }
 
-{ #category : #'*CargoPackageManager-UI-Tests' }
+{ #category : '*CargoPackageManager-UI-Tests' }
 AbstractWidgetPresenter >> isEnabled [
 	^ enabledHolder value
 ]

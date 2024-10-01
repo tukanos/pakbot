@@ -1,10 +1,12 @@
 Class {
-	#name : #SeasideWelcomeSpec,
-	#superclass : #Seaside31PackageSpec,
-	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Welcome'
+	#name : 'SeasideWelcomeSpec',
+	#superclass : 'Seaside31PackageSpec',
+	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Welcome',
+	#package : 'CargoPackageManager-TestRessources',
+	#tag : 'SeasideDesc-Welcome'
 }
 
-{ #category : #spec }
+{ #category : 'spec' }
 SeasideWelcomeSpec >> dependencies [
 	^ { #'Seaside-Environment' -> #('=3.1') .
 		#'Seaside-Tools-Web' -> #('=3.1') .
@@ -21,17 +23,17 @@ SeasideWelcomeSpec >> dependencies [
 		yourself."
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideWelcomeSpec >> name [
 	^ 'Seaside-Welcome'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideWelcomeSpec >> srcArtifact [
 	^ 'Seaside-Welcome-pmm.47'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideWelcomeSpec >> version [
 	^  '3.1'
 ]

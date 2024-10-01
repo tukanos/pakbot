@@ -5,41 +5,43 @@ You can select an option and then proceed with the selected action.
 You just need to provide a layout, a list of available options and the presenter is ready to be used.
 "
 Class {
-	#name : #PBProjectOptionPresenter,
-	#superclass : #SpPresenterWithModel,
+	#name : 'PBProjectOptionPresenter',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'optionList',
 		'detailPanel'
 	],
-	#category : #'Pakbot-Browser-Presenters'
+	#category : 'Pakbot-Browser-Presenters',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters'
 }
 
-{ #category : #action }
+{ #category : 'action' }
 PBProjectOptionPresenter >> accept [
 
 	self closeWindow.
 	self selectedOption execute.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectOptionPresenter >> availableOptions [
 
 	self subclassResponsibility
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PBProjectOptionPresenter >> cancel [
 
 	self closeWindow
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PBProjectOptionPresenter >> closeWindow [
 
 	self window close
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBProjectOptionPresenter >> initializeDialogWindow: aWindow [
 
 	super initializeDialogWindow: aWindow.
@@ -50,7 +52,7 @@ PBProjectOptionPresenter >> initializeDialogWindow: aWindow [
 		  bindKeyCombination: Character escape asShortcut toAction: [ self cancel ].
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBProjectOptionPresenter >> initializePresenters [ 
 
 	optionList := self newTable
@@ -80,13 +82,13 @@ PBProjectOptionPresenter >> initializePresenters [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectOptionPresenter >> project [
 	
 	^ self model
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 PBProjectOptionPresenter >> refreshDetailPanel [
 
 	self selectedOption ifNotNil: [ :option |
@@ -95,20 +97,20 @@ PBProjectOptionPresenter >> refreshDetailPanel [
 			yourself ]
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 PBProjectOptionPresenter >> refreshDialogButtons [
 
 	self window ifNotNil: [ :aWindow |
 		aWindow buttons first enabled: (self selectedOption isNotNil) ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectOptionPresenter >> selectedOption [
 	
 	^ optionList selectedItem
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 PBProjectOptionPresenter >> selectionChanged [
 
 	self refreshDetailPanel.

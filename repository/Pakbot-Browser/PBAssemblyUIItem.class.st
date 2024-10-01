@@ -2,15 +2,17 @@
 I'm an UI representation of a Packbot assembly
 "
 Class {
-	#name : #PBAssemblyUIItem,
-	#superclass : #PBAbstractUIItem,
+	#name : 'PBAssemblyUIItem',
+	#superclass : 'PBAbstractUIItem',
 	#instVars : [
 		'assembly'
 	],
-	#category : #'Pakbot-Browser-Items'
+	#category : 'Pakbot-Browser-Items',
+	#package : 'Pakbot-Browser',
+	#tag : 'Items'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBAssemblyUIItem class >> forAssembly: aPBAssembly presenter: aSpPresenter [
 	^ self new
 		assembly: aPBAssembly;
@@ -18,12 +20,12 @@ PBAssemblyUIItem class >> forAssembly: aPBAssembly presenter: aSpPresenter [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBAssemblyUIItem >> assembly: aPBAssembly [ 
 	assembly := aPBAssembly
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssemblyUIItem >> commands [
 	^ { 
 		PBAddPackageToAssemblyCommand .
@@ -31,40 +33,40 @@ PBAssemblyUIItem >> commands [
 	} collect: [ :cmd | cmd forSpecContext: presenter ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssemblyUIItem >> displayName [
 	^ assembly name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssemblyUIItem >> iconName [ 
 	^ #image
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBAssemblyUIItem >> isAssembly [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssemblyUIItem >> items [ 
 	^ assembly packages collect: [ :assemblyPart | self uiItemFor: assemblyPart ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssemblyUIItem >> pakbotItem [
 	
 	^ assembly
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssemblyUIItem >> project [
 
 	^ assembly project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAssemblyUIItem >> uiItemFor: assemblyPart [
 	^ assemblyPart uiItemIn: assembly presenter: presenter
 ]

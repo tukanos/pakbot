@@ -3,17 +3,19 @@ I'm in charge of displaying meta-information on Pakbot projects.
 I also allow to edit these meta-data.
 "
 Class {
-	#name : #PBProjectPresenter,
-	#superclass : #SpPresenterWithModel,
+	#name : 'PBProjectPresenter',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'overview',
 		'dependencies',
 		'projectStatus'
 	],
-	#category : #'Pakbot-Browser-Presenters'
+	#category : 'Pakbot-Browser-Presenters',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBProjectPresenter >> connectPresenters [
 
 	self
@@ -23,7 +25,7 @@ PBProjectPresenter >> connectPresenters [
 		transmitTo: dependencies
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBProjectPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom 
@@ -33,7 +35,7 @@ PBProjectPresenter >> defaultLayout [
 		yourself.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBProjectPresenter >> initializePresenters [
 
 	overview := self instantiate: PBLoadableUnitOverviewPresenter on: self projectVersion.
@@ -41,12 +43,12 @@ PBProjectPresenter >> initializePresenters [
 	projectStatus := self instantiate: PBProjectStatusPresenter on: self projectVersion.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBProjectPresenter >> projectVersion [ 
 	^ self model
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 PBProjectPresenter >> refreshUI [
 	self setModel: self projectVersion
 ]

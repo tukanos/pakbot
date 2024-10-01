@@ -1,16 +1,18 @@
 Class {
-	#name : #PBNewDependencyDialog,
-	#superclass : #ITOptionDialog,
-	#category : #'CargoPackageManager-UI-NewDependency'
+	#name : 'PBNewDependencyDialog',
+	#superclass : 'ITOptionDialog',
+	#category : 'CargoPackageManager-UI-NewDependency',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'NewDependency'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBNewDependencyDialog class >> example [
 	<example>
 	self new openDialogWithSpec
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBNewDependencyDialog >> initialize [
 	panels := {
 		PBMetacelloBaselineDependencyPanel new.
@@ -22,7 +24,7 @@ PBNewDependencyDialog >> initialize [
 	panels do: [ :aPanel | aPanel whenChangedDo: [ :p | self okEnabled: p isValid  ]]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBNewDependencyDialog >> replacePanelWith: aType [
 
 	super replacePanelWith: aType.

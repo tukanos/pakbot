@@ -1,13 +1,14 @@
 Class {
-	#name : #PBProjectUIItemTest,
-	#superclass : #PBAbstractCalypsoTest,
+	#name : 'PBProjectUIItemTest',
+	#superclass : 'PBAbstractCalypsoTest',
 	#instVars : [
 		'projectUIItem'
 	],
-	#category : #'CargoPackageManager-UI-Tests'
+	#category : 'CargoPackageManager-UI-Tests',
+	#package : 'CargoPackageManager-UI-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PBProjectUIItemTest >> assertCommands: activators includes: aClass [
 	^ activators 
 		detect:  [ :each | each command class = aClass ]
@@ -15,12 +16,12 @@ PBProjectUIItemTest >> assertCommands: activators includes: aClass [
 		ifNone: [ self fail: 'cannot find command ' , aClass name ]
 ]
 
-{ #category : #utility }
+{ #category : 'utility' }
 PBProjectUIItemTest >> projectUIItem [
 	^ projectUIItem
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectUIItemTest >> setUp [
 
 	super setUp.
@@ -29,7 +30,7 @@ PBProjectUIItemTest >> setUp [
 	projectUIItem := self findProject: 'TestProject'.	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectUIItemTest >> testAddAssemblyCommand [
 
 	| cmd assembly |	
@@ -45,7 +46,7 @@ PBProjectUIItemTest >> testAddAssemblyCommand [
 	self assert: assembly isNotNil.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectUIItemTest >> testAddPackageCommand [
 
 	| cmd pkg |
@@ -61,7 +62,7 @@ PBProjectUIItemTest >> testAddPackageCommand [
 	self assert: pkg isNotNil.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectUIItemTest >> testAnEmptyProjectHasTheCorrectCommands [
 
 	| commands |
@@ -76,7 +77,7 @@ PBProjectUIItemTest >> testAnEmptyProjectHasTheCorrectCommands [
 	self assertCommands: commands includes: PBSetupProjectRepositoryCommand.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectUIItemTest >> testAnEmptyProjectHasTheCorrectCommandsWhenRepositoryIsSet [
 
 	| repository commands |
@@ -98,7 +99,7 @@ PBProjectUIItemTest >> testAnEmptyProjectHasTheCorrectCommandsWhenRepositoryIsSe
 				self assert: (activator command project isKindOf: PBProjectVersion) ].
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectUIItemTest >> testCreatingAProjectCreatesTheCorrectUIItem [
 
 	"Check the setUp"
@@ -106,14 +107,14 @@ PBProjectUIItemTest >> testCreatingAProjectCreatesTheCorrectUIItem [
 	self assert: projectUIItem isNotNil.	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectUIItemTest >> testNewProjectHasNoElements [
 
 	"Check the setUp"
 	self assert: projectUIItem items isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectUIItemTest >> testNewProjectIsEmpty [
 
 	"Check the setUp"

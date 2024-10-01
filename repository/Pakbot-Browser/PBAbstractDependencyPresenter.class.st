@@ -2,33 +2,35 @@
 Abstract presenter used to edit pakbot project dependencies
 "
 Class {
-	#name : #PBAbstractDependencyPresenter,
-	#superclass : #SpOptionPresenter,
+	#name : 'PBAbstractDependencyPresenter',
+	#superclass : 'SpOptionPresenter',
 	#instVars : [
 		'dependency'
 	],
-	#category : #'Pakbot-Browser-Presenters-Dependencies'
+	#category : 'Pakbot-Browser-Presenters-Dependencies',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters-Dependencies'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBAbstractDependencyPresenter class >> isAbstract [
 
 	^ self name = #PBAbstractDependencyPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractDependencyPresenter >> dependency [
 	
 	^ dependency
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBAbstractDependencyPresenter >> initializePresenters [
 
 	self dependency ifNotNil: [ self setInitialValues ]
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 PBAbstractDependencyPresenter >> isValid [
 	
 	| report |
@@ -36,43 +38,43 @@ PBAbstractDependencyPresenter >> isValid [
 	^ report	hasErrors not
 ]
 
-{ #category : #'option list presenter' }
+{ #category : 'option list presenter' }
 PBAbstractDependencyPresenter >> optionIcon [
 
 	^ self icon
 ]
 
-{ #category : #'option list presenter' }
+{ #category : 'option list presenter' }
 PBAbstractDependencyPresenter >> optionTitle [ 
 
 	^ self title
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBAbstractDependencyPresenter >> setInitialValues [
 
 	self subclassResponsibility 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBAbstractDependencyPresenter >> setModelBeforeInitialization: aPakbotDependency [
 
 	dependency := aPakbotDependency
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBAbstractDependencyPresenter >> updateDependency [
 
 	^ self subclassResponsibility 
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBAbstractDependencyPresenter >> updateOkButton [ 
 
 	self withWindowDo: [ :window | window okButton enabled: self isValid ] 
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBAbstractDependencyPresenter >> updatePresenter [
 
 	self dependency ifNotNil: [ self setInitialValues ]

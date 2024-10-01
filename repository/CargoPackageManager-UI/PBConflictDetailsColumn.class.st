@@ -1,10 +1,12 @@
 Class {
-	#name : #PBConflictDetailsColumn,
-	#superclass : #PBConflictsColumn,
-	#category : #'CargoPackageManager-UI-Conflicts'
+	#name : 'PBConflictDetailsColumn',
+	#superclass : 'PBConflictsColumn',
+	#category : 'CargoPackageManager-UI-Conflicts',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Conflicts'
 }
 
-{ #category : #reading }
+{ #category : 'reading' }
 PBConflictDetailsColumn >> read: aPBConflict [
 
 	^ aPBConflict resolutionDetailText asMorph

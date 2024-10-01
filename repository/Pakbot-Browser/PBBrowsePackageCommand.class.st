@@ -2,12 +2,14 @@
 I allow to browse a Packbot project package with the system browser
 "
 Class {
-	#name : #PBBrowsePackageCommand,
-	#superclass : #CmCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBBrowsePackageCommand',
+	#superclass : 'CmCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBBrowsePackageCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #glamorousBrowse;
@@ -17,18 +19,18 @@ PBBrowsePackageCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBBrowsePackageCommand >> canBeExecuted [ 
 	^ self package isInstalled
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBBrowsePackageCommand >> execute [
 	
 	self package ifNotNil: [ :pkg | pkg systemPackage browse ].
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBBrowsePackageCommand >> package [
 	^ self context selectedPackage
 ]

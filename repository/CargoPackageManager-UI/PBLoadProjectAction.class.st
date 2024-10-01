@@ -3,15 +3,17 @@ Subclass me to provide a new way of loading a project.
 My subclasses are dynamically collected by PBLoadProjectDialog.
 "
 Class {
-	#name : #PBLoadProjectAction,
-	#superclass : #Object,
+	#name : 'PBLoadProjectAction',
+	#superclass : 'Object',
 	#instVars : [
 		'project'
 	],
-	#category : #'CargoPackageManager-UI-Loading'
+	#category : 'CargoPackageManager-UI-Loading',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Loading'
 }
 
-{ #category : #querying }
+{ #category : 'querying' }
 PBLoadProjectAction class >> allAvailableFor: aProject [
 
 	^ (self allSubclasses 
@@ -19,7 +21,7 @@ PBLoadProjectAction class >> allAvailableFor: aProject [
 		thenCollect: [ :aClass | aClass forProject: aProject ]) flattened
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBLoadProjectAction class >> forProject: aProject [
 
 	^ self new
@@ -27,27 +29,27 @@ PBLoadProjectAction class >> forProject: aProject [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadProjectAction >> description [
 	self subclassResponsibility
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBLoadProjectAction >> execute [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadProjectAction >> iconName [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadProjectAction >> name [
 	self subclassResponsibility
 ]
 
-{ #category : #initializing }
+{ #category : 'initializing' }
 PBLoadProjectAction >> project: aProject [ 
 	project := aProject
 ]

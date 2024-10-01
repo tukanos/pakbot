@@ -1,34 +1,36 @@
 Class {
-	#name : #CGOTest,
-	#superclass : #TestCase,
+	#name : 'CGOTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'systemPackages',
 		'packageProviderStrategyBackup'
 	],
-	#category : #'CargoPackageManager-TestRessources-Resources'
+	#category : 'CargoPackageManager-TestRessources-Resources',
+	#package : 'CargoPackageManager-TestRessources',
+	#tag : 'Resources'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGOTest class >> isAbstract [
 	^ self name = #CGOTest
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOTest class >> resources [
 	^ { Seaside31TestResource }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOTest >> packageVersions [
 	^ Seaside31TestResource current seaside31PackageVersions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOTest >> packages [
 	^ Seaside31TestResource current seaside31Packages
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOTest >> virtualPackageNames [
 	^ Seaside31TestResource current seaside31PackageVersions
 		flatCollect: 
@@ -38,14 +40,14 @@ CGOTest >> virtualPackageNames [
 		as: Set 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOTest >> virtualPackageVersions [
 	^ self virtualPackageNames
 		collect: [:name | CGOVirtualPackageVersion fromString: name,'@1.0']
 		
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOTest >> virtualPackages [
 	^ self virtualPackageNames
 		collect: [:pkgName | CGOPackageProvider default virtualPackageNamed: pkgName ]

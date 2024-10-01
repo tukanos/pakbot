@@ -1,16 +1,18 @@
 Class {
-	#name : #PBResolveConflictsPanel,
-	#superclass : #ComposablePresenter,
+	#name : 'PBResolveConflictsPanel',
+	#superclass : 'ComposablePresenter',
 	#instVars : [
 		'toolbar',
 		'conflictsList',
 		'resolution',
 		'conflicts'
 	],
-	#category : #'CargoPackageManager-UI-Conflicts'
+	#category : 'CargoPackageManager-UI-Conflicts',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Conflicts'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBResolveConflictsPanel class >> defaultSpec [
 	<spec: #default>
 	
@@ -19,7 +21,7 @@ PBResolveConflictsPanel class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBResolveConflictsPanel class >> onResolution: aResolution owner: anOwner [
 
 	^ self basicNew
@@ -29,7 +31,7 @@ PBResolveConflictsPanel class >> onResolution: aResolution owner: anOwner [
 		yourself
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBResolveConflictsPanel class >> specWithToolbar [
 	<spec: #withToolbar>
 	
@@ -40,34 +42,34 @@ PBResolveConflictsPanel class >> specWithToolbar [
 				newRow: #conflictsList ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PBResolveConflictsPanel >> accept [
 	
 	self conflicts do: [:aConflict | aConflict resolveWithSelected].
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolveConflictsPanel >> conflicts [
 	^ conflicts
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolveConflictsPanel >> conflictsList [
 	^ conflictsList
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBResolveConflictsPanel >> hasConflicts [
 	^ self conflicts anySatisfy: [ :each | each isResolved not ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolveConflictsPanel >> initialExtent [
 	^ 600@450
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolveConflictsPanel >> initializeWidgets [
 	
 	toolbar := self instantiate: ITToolBar.
@@ -86,7 +88,7 @@ PBResolveConflictsPanel >> initializeWidgets [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolveConflictsPanel >> newConflictDataSource [
 
 	^ PBConflictsDataSource new 
@@ -94,7 +96,7 @@ PBResolveConflictsPanel >> newConflictDataSource [
 		yourself
 ]
 
-{ #category : #opening }
+{ #category : 'opening' }
 PBResolveConflictsPanel >> openDialogWithSpec [
 
 	^ super openDialogWithSpec
@@ -102,27 +104,27 @@ PBResolveConflictsPanel >> openDialogWithSpec [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolveConflictsPanel >> resolution [
 	^ resolution 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolveConflictsPanel >> resolution: aResolution [
 	resolution := aResolution
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolveConflictsPanel >> title [
 	^ 'Resolve Conflicts for Project ' , self resolution resolvedProjectVersion name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolveConflictsPanel >> toolbar [
 	^ toolbar
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBResolveConflictsPanel >> updateOkButton [
 	
 	self conflicts do: #resolveWithSelected.
@@ -130,7 +132,7 @@ PBResolveConflictsPanel >> updateOkButton [
 	
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PBResolveConflictsPanel >> updateTable [
 	conflictsList widget refresh.
 

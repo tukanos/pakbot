@@ -1,24 +1,26 @@
 Class {
-	#name : #CGOScmPackageMetadataTest,
-	#superclass : #TestCase,
-	#category : 'CargoPackageManager-FailingTests-PackageRepository'
+	#name : 'CGOScmPackageMetadataTest',
+	#superclass : 'TestCase',
+	#category : 'CargoPackageManager-FailingTests-PackageRepository',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'PackageRepository'
 }
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 CGOScmPackageMetadataTest >> greaseRepository [
 	^ (PBGitRepositoryCreator repositoryCreatorWithUrl: 'https://github.com/demarey/Grease-cargo.git')
 		subdirectory: 'repository';
 		create
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 CGOScmPackageMetadataTest >> greaseSCMPackageMetadata [
 	^ CGOScmPackageMetadata new
 		registerProjectFromSourceRepository: self greaseRepository at: #Grease;
 		yourself
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOScmPackageMetadataTest >> testCanGetLatestVersionOfVirtualPackage [
 	| repository package |
 	repository := self greaseSCMPackageMetadata.

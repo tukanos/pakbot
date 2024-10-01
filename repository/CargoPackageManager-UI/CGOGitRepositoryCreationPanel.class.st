@@ -7,18 +7,19 @@ You can try me with :
 	self  withNewRepositoryDo: [: repo | repo inspect ]
 "
 Class {
-	#name : #CGOGitRepositoryCreationPanel,
-	#superclass : #ComposablePresenter,
+	#name : 'CGOGitRepositoryCreationPanel',
+	#superclass : 'ComposablePresenter',
 	#instVars : [
 		'newRepositoryButton',
 		'cloneRepositoryButton',
 		'addLocalRepositoryButton',
 		'onNewRepositoryBlock'
 	],
-	#category : #'CargoPackageManager-UI'
+	#category : 'CargoPackageManager-UI',
+	#package : 'CargoPackageManager-UI'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 CGOGitRepositoryCreationPanel class >> defaultSpec [
 	^ SpecLayout composed
 		newColumn: [ :column |
@@ -28,43 +29,43 @@ CGOGitRepositoryCreationPanel class >> defaultSpec [
 				add: #addLocalRepositoryButton height: self toolbarHeight ]
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 CGOGitRepositoryCreationPanel class >> withNewRepositoryDo: aBlock [
 	self new
 		onNewRepositoryBlock: aBlock; 
 		openWithSpec
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 CGOGitRepositoryCreationPanel >> addLocalRepository [
 	self flag: 'TODO'.
 	"IceTipLocalRepositoryPanel ?"
 	#IceImportLocalRepositoryModel new openWithSpec
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOGitRepositoryCreationPanel >> addLocalRepositoryButton [
 	^ addLocalRepositoryButton
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 CGOGitRepositoryCreationPanel >> cloneRepository [
 	self flag: 'TODO'.
 	"IceTipGitProviderRepositoryPanel?"
 	#IceCloneRepositoryModel new openWithSpec
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOGitRepositoryCreationPanel >> cloneRepositoryButton [
 	^ cloneRepositoryButton
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOGitRepositoryCreationPanel >> initialExtent [
 	 ^ (350.0@125.0)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOGitRepositoryCreationPanel >> initializePresenter [
 	super initializePresenter.
 
@@ -78,7 +79,7 @@ CGOGitRepositoryCreationPanel >> initializePresenter [
 		to: self.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOGitRepositoryCreationPanel >> initializeWidgets [
 	newRepositoryButton := self newButton
 		label: 'New repository';
@@ -95,17 +96,17 @@ CGOGitRepositoryCreationPanel >> initializeWidgets [
 
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 CGOGitRepositoryCreationPanel >> newRepository [
 	IceTipNewRepositoryPanel new openWithSpec
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOGitRepositoryCreationPanel >> newRepositoryButton [
 	^ newRepositoryButton
 ]
 
-{ #category : #notifying }
+{ #category : 'notifying' }
 CGOGitRepositoryCreationPanel >> newRepositoryCreated: anIceRepositoryCreatedAnnouncement [
 	Iceberg announcer unsubscribe: self.
 	onNewRepositoryBlock 
@@ -113,12 +114,12 @@ CGOGitRepositoryCreationPanel >> newRepositoryCreated: anIceRepositoryCreatedAnn
 	self delete
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOGitRepositoryCreationPanel >> onNewRepositoryBlock: aBlockClosure [ 
 	onNewRepositoryBlock := aBlockClosure
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOGitRepositoryCreationPanel >> title [
 	^ 'Set Cargo project Git repository'
 ]

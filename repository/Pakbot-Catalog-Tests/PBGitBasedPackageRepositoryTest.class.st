@@ -1,14 +1,15 @@
 Class {
-	#name : #PBGitBasedPackageRepositoryTest,
-	#superclass : #PBTestCaseWithGitCredentials,
+	#name : 'PBGitBasedPackageRepositoryTest',
+	#superclass : 'PBTestCaseWithGitCredentials',
 	#instVars : [
 		'tempFolder',
 		'tempFolder2'
 	],
-	#category : #'Pakbot-Catalog-Tests'
+	#category : 'Pakbot-Catalog-Tests',
+	#package : 'Pakbot-Catalog-Tests'
 }
 
-{ #category : #utils }
+{ #category : 'utils' }
 PBGitBasedPackageRepositoryTest >> newLocalPBGitBasedPackageRepository [
 	| repository |
 	repository := PBGitBasedPackageRepository
@@ -19,7 +20,7 @@ PBGitBasedPackageRepositoryTest >> newLocalPBGitBasedPackageRepository [
 	^ repository
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBGitBasedPackageRepositoryTest >> setUp [
 	| baseFolderName |
 	super setUp.
@@ -30,7 +31,7 @@ PBGitBasedPackageRepositoryTest >> setUp [
 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBGitBasedPackageRepositoryTest >> tearDown [ 
 	tempFolder ifExists: [ :folder | folder ensureDeleteAll ].
 	tempFolder2 ifExists: [ :folder | folder ensureDeleteAll ].
@@ -38,7 +39,7 @@ PBGitBasedPackageRepositoryTest >> tearDown [
 	super tearDown.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitBasedPackageRepositoryTest >> testCanCreateALocalCloneOfPackageRepository [
 	| repository |
 	
@@ -48,7 +49,7 @@ PBGitBasedPackageRepositoryTest >> testCanCreateALocalCloneOfPackageRepository [
 	self assert: repository packages size equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitBasedPackageRepositoryTest >> testCanFetchAProject [
 	| repository project published |
 	repository := self newLocalPBGitBasedPackageRepository.
@@ -69,7 +70,7 @@ PBGitBasedPackageRepositoryTest >> testCanFetchAProject [
 		equals: project version.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitBasedPackageRepositoryTest >> testCanPublishAProject [
 	| repository project published |
 	repository := self newLocalPBGitBasedPackageRepository.
@@ -96,7 +97,7 @@ PBGitBasedPackageRepositoryTest >> testCanPublishAProject [
 		hasSameElements: #(#UnitTest)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitBasedPackageRepositoryTest >> testCannotPublishedIfAlreadyPublished [
 	| repository project |
 	repository := self newLocalPBGitBasedPackageRepository.
@@ -116,7 +117,7 @@ PBGitBasedPackageRepositoryTest >> testCannotPublishedIfAlreadyPublished [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGitBasedPackageRepositoryTest >> testPublishedProjectIsTagged [
 	| packageRepository project repository |
 	packageRepository := self newLocalPBGitBasedPackageRepository.

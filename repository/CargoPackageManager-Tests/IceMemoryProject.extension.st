@@ -1,6 +1,6 @@
-Extension { #name : #IceMemoryProject }
+Extension { #name : 'IceMemoryProject' }
 
-{ #category : #'*CargoPackageManager-Tests' }
+{ #category : '*CargoPackageManager-Tests' }
 IceMemoryProject >> isUnborn [
 	^ false
 ]

@@ -1,13 +1,15 @@
 Class {
-	#name : #RepositoryBasedTest,
-	#superclass : #CGOTest,
+	#name : 'RepositoryBasedTest',
+	#superclass : 'CGOTest',
 	#instVars : [
 		'repository'
 	],
-	#category : 'CargoPackageManager-FailingTests-Solver'
+	#category : 'CargoPackageManager-FailingTests-Solver',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'Solver'
 }
 
-{ #category : #'set up' }
+{ #category : 'set up' }
 RepositoryBasedTest >> setUp [
 	super setUp.
 	repository := CGOMemoryRepository new.
@@ -17,7 +19,7 @@ RepositoryBasedTest >> setUp [
 	self virtualPackageVersions do: #save.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RepositoryBasedTest >> voyageRepository [
 	^ repository instVarNamed: 'voyageRepository' 
 ]

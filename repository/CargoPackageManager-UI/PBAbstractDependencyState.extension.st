@@ -1,6 +1,6 @@
-Extension { #name : #PBAbstractDependencyState }
+Extension { #name : 'PBAbstractDependencyState' }
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PBAbstractDependencyState >> nodesInResolutionTree [
 	
 	^ dependency subresolutions

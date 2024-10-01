@@ -1,6 +1,6 @@
-Extension { #name : #MCHttpRepository }
+Extension { #name : 'MCHttpRepository' }
 
-{ #category : #'*CargoPackageManager' }
+{ #category : '*CargoPackageManager' }
 MCHttpRepository >> stonOn: stonWriter [
 	stonWriter writeString: self location
 ]

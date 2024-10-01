@@ -1,19 +1,21 @@
 Class {
-	#name : #PBLoadInstructionsBuilderTest,
-	#superclass : #Seaside31BasedTest,
+	#name : 'PBLoadInstructionsBuilderTest',
+	#superclass : 'Seaside31BasedTest',
 	#instVars : [
 		'resolution',
 		'loadInstructionsBuilder'
 	],
-	#category : #'CargoPackageManager-FailingTests-Loader'
+	#category : 'CargoPackageManager-FailingTests-Loader',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'Loader'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadInstructionsBuilderTest class >> resources [
 	^ super resources copyWith: FooDependencyResolutionResource
 ]
 
-{ #category : #utility }
+{ #category : 'utility' }
 PBLoadInstructionsBuilderTest >> assertPackage: aPackage equals: aPackageVersionString [
 	| anotherPackage |
 	
@@ -23,13 +25,13 @@ PBLoadInstructionsBuilderTest >> assertPackage: aPackage equals: aPackageVersion
 	self assert: aPackage version equals: anotherPackage versionNumber.
 ]
 
-{ #category : #'expected results' }
+{ #category : 'expected results' }
 PBLoadInstructionsBuilderTest >> expectedSortResult [
 	"self collect: [ :item | item packageVersion packageName , '@' , item packageVersion version asString]"
 	^ #('B@3.1.0' 'D@1.1.0' 'C@1.0.0' 'E@1.0.0' 'A@1.0.0' 'Foo@1.0.0')
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBLoadInstructionsBuilderTest >> setUp [
 	super setUp.
 	loadInstructionsBuilder := PBLoadInstructionsBuilder new
@@ -37,7 +39,7 @@ PBLoadInstructionsBuilderTest >> setUp [
 					yourself
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBLoadInstructionsBuilderTest >> testLoadInstructions [
 	| loadInstructions pkgVersionReferences |
 
@@ -50,7 +52,7 @@ PBLoadInstructionsBuilderTest >> testLoadInstructions [
 		equals: self expectedSortResult.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBLoadInstructionsBuilderTest >> testLoadOrder [
 	| packages |
 
@@ -62,14 +64,14 @@ PBLoadInstructionsBuilderTest >> testLoadOrder [
 			equals: (self expectedSortResult at: index) ].
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBLoadInstructionsBuilderTest >> testLoadOrderHandlesCycles [
 	self 
 		shouldnt: [ loadInstructionsBuilder loadOrder ]
 		raise: MessageNotUnderstood
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBLoadInstructionsBuilderTest >> testReducedGraph [
 	| nodes |
 

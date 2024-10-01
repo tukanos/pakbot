@@ -2,12 +2,13 @@
 Dummy class used to keep some usefull pieces of code (easier to get them in a fresh image).
 "
 Class {
-	#name : #CGODataHolder,
-	#superclass : #Object,
-	#category : #'CargoPackageManager-Spec'
+	#name : 'CGODataHolder',
+	#superclass : 'Object',
+	#category : 'CargoPackageManager-Spec',
+	#package : 'CargoPackageManager-Spec'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CGODataHolder >> diffMetacelloPPM4Seaside31 [
 	"Only loaded by Metacello"
  '		load : Grease-Tests-Core-pmm.94
@@ -27,7 +28,7 @@ CGODataHolder >> diffMetacelloPPM4Seaside31 [
 		load : Seaside-Tests-Pharo-Continuation-pmm.9'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CGODataHolder >> metacelloSeaside31Resolution [
  Metacello new
   configuration: 'Seaside3';
@@ -89,7 +90,7 @@ CGODataHolder >> metacelloSeaside31Resolution [
 		load : Seaside-Pharo-Development-JohanBrichau.66'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CGODataHolder >> seaside31DescriptionGeneration [
 "common"
 CGOPackageSpecGenerator generateFor: 'Seaside-Canvas' withDependencies: #('Seaside-Core').
@@ -172,7 +173,7 @@ CGOPackageSpecGenerator generateFor: 'Seaside-Pharo-Welcome' withDependencies: #
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CGODataHolder >> seaside31LoadingAnyOrder [
 | files gofer |
 files := #('Seaside-Tools-Core-pmm.23' 'Seaside-Pharo20-Core-pmm.3' 'Seaside-Pharo-Welcome-NickAger.2' 'JQuery-Core-pmm.128' 'Seaside-Component-pmm.101' 'Seaside-Pharo-Continuation-lr.5' 'Javascript-Core-pmm.95' 'Seaside-Pharo20-Tools-Web-JohanBrichau.3' 'Grease-Core-JohanBrichau.83' 'Grease-Pharo30-Core-pmm.11' 'Seaside-Tools-Web-pmm.118' 'Zinc-Seaside-SvenVanCaekenberghe.40' 'Javascript-Pharo20-Core-JohanBrichau.4' 'Seaside-Environment-pmm.81' 'Seaside-Development-pmm.163' 'Seaside-Examples-pmm.24' 'JQuery-UI-pmm.88' 'Seaside-RenderLoop-JohanBrichau.95' 'Seaside-Pharo-Environment-lr.6' 'Seaside-Pharo-Tools-Spec-pmm.9' 'Seaside-Core-pmm.808' 'Seaside-Widgets-pmm.33' 'Seaside-Session-pmm.168' 'Seaside-Pharo-Flow-lr.5' 'Seaside-Pharo-Development-JohanBrichau.66' 'Seaside-Flow-pmm.24' 'Zinc-Character-Encoding-Core-SvenVanCaekenberghe.28' 'Zinc-HTTP-SvenVanCaekenberghe.388' 'Zinc-Resource-Meta-Core-SvenVanCaekenberghe.30' 'Seaside-Canvas-pmm.127' 'Seaside-Pharo-Canvas-pmm.4' 'Seaside-Welcome-pmm.47').
@@ -187,7 +188,7 @@ files do: [ :file | gofer version: file ].
 gofer load
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CGODataHolder >> seaside31LoadingInOrder [
 | files gofer |
 
@@ -249,7 +250,7 @@ files do: [ :file |
 "test with: ZnZincServerAdaptor startOn: 8080 "
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CGODataHolder >> seaside31PPMResolution [
 	| aPackageVersion dependencyToSolve |
 	

@@ -1,6 +1,6 @@
-Extension { #name : #PBResolvedDependency }
+Extension { #name : 'PBResolvedDependency' }
 
-{ #category : #'*Pakbot-Browser' }
+{ #category : '*Pakbot-Browser' }
 PBResolvedDependency >> nodesInResolutionTree [
 	
 	^ dependencyState nodesInResolutionTree

@@ -2,17 +2,19 @@
 A BleedingEdgeUpdatePolicy is used to specify that we should always take the latest version of the package targeted by the dependency.
 "
 Class {
-	#name : #CGOBleedingEdgeResolutionStrategy,
-	#superclass : #CGOPackageVersionResolutionStrategy,
-	#category : #'CargoPackageManager-SolverStrategies'
+	#name : 'CGOBleedingEdgeResolutionStrategy',
+	#superclass : 'CGOPackageVersionResolutionStrategy',
+	#category : 'CargoPackageManager-SolverStrategies',
+	#package : 'CargoPackageManager',
+	#tag : 'SolverStrategies'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 CGOBleedingEdgeResolutionStrategy >> printOn: aStream [
 	aStream nextPutAll: '#bleedingEdge'
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 CGOBleedingEdgeResolutionStrategy >> versionOf: aCGOPackageDependency in: aRepositoryList forEnvironment: platformAttributes [
 	| candidates packageName |
 

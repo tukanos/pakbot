@@ -1,17 +1,18 @@
 Class {
-	#name : #PBAllProjectsQueryTest,
-	#superclass : #PBAbstractCalypsoTest,
-	#category : #'CargoPackageManager-UI-Tests'
+	#name : 'PBAllProjectsQueryTest',
+	#superclass : 'PBAbstractCalypsoTest',
+	#category : 'CargoPackageManager-UI-Tests',
+	#package : 'CargoPackageManager-UI-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAllProjectsQueryTest >> testEmptyProjectsReturnEmptyCollection [
 
 			
 	self assert: query execute items isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAllProjectsQueryTest >> testWithOneProjectHasTheCorrectName [
 
 	
@@ -23,7 +24,7 @@ PBAllProjectsQueryTest >> testWithOneProjectHasTheCorrectName [
 	self assert: result anyOne name equals: 'TestProject'.	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAllProjectsQueryTest >> testWithOneProjectIsNotEmpty [
 
 	
@@ -32,7 +33,7 @@ PBAllProjectsQueryTest >> testWithOneProjectIsNotEmpty [
 	self deny: query execute items isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAllProjectsQueryTest >> testWithOneProjectReturnsTheCorrectUIInstance [
 
 	

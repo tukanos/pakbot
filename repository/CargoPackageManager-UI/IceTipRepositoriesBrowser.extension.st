@@ -1,6 +1,6 @@
-Extension { #name : #IceTipRepositoriesBrowser }
+Extension { #name : 'IceTipRepositoriesBrowser' }
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 IceTipRepositoriesBrowser class >> pakbotCommandsWith: presenter forRootGroup: aCommandGroup [
 
 	<extensionCommands>

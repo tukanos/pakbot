@@ -1,16 +1,18 @@
 Class {
-	#name : #CGORepairProjectDialog,
-	#superclass : #ComposablePresenter,
+	#name : 'CGORepairProjectDialog',
+	#superclass : 'ComposablePresenter',
 	#instVars : [
 		'project',
 		'reasonPanel',
 		'detailPanel',
 		'optionsList'
 	],
-	#category : #'CargoPackageManager-UI-Repair'
+	#category : 'CargoPackageManager-UI-Repair',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Repair'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 CGORepairProjectDialog class >> defaultSpec [
 	<spec: #default>
 	
@@ -22,7 +24,7 @@ CGORepairProjectDialog class >> defaultSpec [
 				newRow: #detailPanel ]
 ]
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 CGORepairProjectDialog class >> onProject: aProject [
 	^ self basicNew
 		project: aProject;
@@ -30,23 +32,23 @@ CGORepairProjectDialog class >> onProject: aProject [
 		yourself.
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 CGORepairProjectDialog >> accept [
 	
 	self selectedAction execute.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGORepairProjectDialog >> detailPanel [
 	^ detailPanel
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 CGORepairProjectDialog >> initialExtent [
 	^ 700@500
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGORepairProjectDialog >> initializeWidgets [
 	reasonPanel := self newReadOnlyText.
 	optionsList := self newFastTable.
@@ -60,7 +62,7 @@ CGORepairProjectDialog >> initializeWidgets [
 		selectIndex: 1
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGORepairProjectDialog >> newActionsDataSource [
 
 	^ FTEasyListDataSource new
@@ -70,7 +72,7 @@ CGORepairProjectDialog >> newActionsDataSource [
 		yourself
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 CGORepairProjectDialog >> openDialogWithSpec [
 	
 	^ super openDialogWithSpec
@@ -78,22 +80,22 @@ CGORepairProjectDialog >> openDialogWithSpec [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGORepairProjectDialog >> optionsList [
 	^ optionsList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGORepairProjectDialog >> project: aCGOOngoingProject [ 
 	project := aCGOOngoingProject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGORepairProjectDialog >> reasonPanel [
 	^ reasonPanel
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 CGORepairProjectDialog >> selectedAction [
 	| selectedIndex |
 	selectedIndex := optionsList widget selectedIndex.
@@ -101,7 +103,7 @@ CGORepairProjectDialog >> selectedAction [
 	^ optionsList widget dataSource elementAt: selectedIndex
 ]
 
-{ #category : #selection }
+{ #category : 'selection' }
 CGORepairProjectDialog >> selectionChanged: aFTSelectionChanged [ 
 	
 	detailPanel widget contentsWrapped: (self selectedAction ifNil: [ '' ] ifNotNil: #description).
@@ -113,7 +115,7 @@ CGORepairProjectDialog >> selectionChanged: aFTSelectionChanged [
 		ifNotNil: [ self window toolbar okButton enable ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 CGORepairProjectDialog >> title [
 	^ 'Repair Cargo Project'
 ]

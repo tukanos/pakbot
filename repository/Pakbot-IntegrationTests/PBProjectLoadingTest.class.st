@@ -1,17 +1,18 @@
 Class {
-	#name : #PBProjectLoadingTest,
-	#superclass : #PBAbstractTest,
-	#category : #'Pakbot-IntegrationTests'
+	#name : 'PBProjectLoadingTest',
+	#superclass : 'PBAbstractTest',
+	#category : 'Pakbot-IntegrationTests',
+	#package : 'Pakbot-IntegrationTests'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PBProjectLoadingTest >> performTest [
 	PBPackageRegistry 
 		useDefaultRegistry: testRegistry
 		during: [ self perform: testSelector asSymbol ]
 ]
 
-{ #category : #'tests-pakbot-dependencies' }
+{ #category : 'tests-pakbot-dependencies' }
 PBProjectLoadingTest >> testAResolvedProjectIsInstalledWhenAllPackagesToLoadAreInstalled [
 
 	| project repository resolvedProject |
@@ -27,7 +28,7 @@ PBProjectLoadingTest >> testAResolvedProjectIsInstalledWhenAllPackagesToLoadAreI
 	self assert: resolvedProject isInstalled.
 ]
 
-{ #category : #'tests-pakbot-dependencies' }
+{ #category : 'tests-pakbot-dependencies' }
 PBProjectLoadingTest >> testAResolvedProjectIsNotInstalledWhenAtLeastOnePackageToLoadIsNotInstalled [
 
 	| project repository packageCore resolvedProject |
@@ -46,7 +47,7 @@ PBProjectLoadingTest >> testAResolvedProjectIsNotInstalledWhenAtLeastOnePackageT
 
 ]
 
-{ #category : #'tests-pakbot-dependencies' }
+{ #category : 'tests-pakbot-dependencies' }
 PBProjectLoadingTest >> testCanLoadAProjectAssembly [
 
 	| project repository packageCore packageTest assembly |
@@ -70,7 +71,7 @@ PBProjectLoadingTest >> testCanLoadAProjectAssembly [
 	self assert: (Smalltalk globals hasClassNamed: 'CounterTest').
 ]
 
-{ #category : #'tests-pakbot-dependencies' }
+{ #category : 'tests-pakbot-dependencies' }
 PBProjectLoadingTest >> testCanLoadAProjectPackage [
 
 	| project packageCore repository |
@@ -90,7 +91,7 @@ PBProjectLoadingTest >> testCanLoadAProjectPackage [
 	self deny: (Smalltalk globals hasClassNamed: 'CounterTest').
 ]
 
-{ #category : #'tests-baseline-dependencies' }
+{ #category : 'tests-baseline-dependencies' }
 PBProjectLoadingTest >> testLoadingProjectWithDependenciesToSameProjectButDifferentPackagesLoadBothPackages [
 
 	| project baselineProjectPkgA baselineProjectPkgB |
@@ -120,7 +121,7 @@ PBProjectLoadingTest >> testLoadingProjectWithDependenciesToSameProjectButDiffer
 	self deny: (project systemPackageOrganizer includesPackageNamed: #'PakbotTestExample-PackageD').
 ]
 
-{ #category : #'tests-baseline-dependencies' }
+{ #category : 'tests-baseline-dependencies' }
 PBProjectLoadingTest >> testLoadingProjectWithMetacelloBaselineConflictsFailsWithException [
 
 	| project baselineProjectV1 baselineProjectV2 |
@@ -144,7 +145,7 @@ PBProjectLoadingTest >> testLoadingProjectWithMetacelloBaselineConflictsFailsWit
 	self assert: project resolve hasConflicts.	
 ]
 
-{ #category : #'tests-configuration-dependencies' }
+{ #category : 'tests-configuration-dependencies' }
 PBProjectLoadingTest >> testLoadingProjectWithMetacelloConfigurationConflictsFailsWithException [
 
 	| project configurationProjectV1 configurationProjectV2 |
@@ -168,7 +169,7 @@ PBProjectLoadingTest >> testLoadingProjectWithMetacelloConfigurationConflictsFai
 	self assert: project resolve hasConflicts.	
 ]
 
-{ #category : #'tests-baseline-dependencies' }
+{ #category : 'tests-baseline-dependencies' }
 PBProjectLoadingTest >> testNotLoadingMetacelloBaselineDoesNotLoadCorrespondingClassesInSystem [
 
 	| project baselineProjectV1 |
@@ -187,7 +188,7 @@ PBProjectLoadingTest >> testNotLoadingMetacelloBaselineDoesNotLoadCorrespondingC
 	self deny: (Smalltalk globals hasClassNamed: 'ClassInPakbotTestExamplePackageD').
 ]
 
-{ #category : #'tests-configuration-dependencies' }
+{ #category : 'tests-configuration-dependencies' }
 PBProjectLoadingTest >> testNotLoadingMetacelloConfigurationDoesNotLoadCorrespondingClassesInSystem [
 
 	| project configurationProject |
@@ -207,7 +208,7 @@ PBProjectLoadingTest >> testNotLoadingMetacelloConfigurationDoesNotLoadCorrespon
 	self deny: (Smalltalk globals hasClassNamed: 'ClassInPackageD').
 ]
 
-{ #category : #'tests-conditional-dependencies' }
+{ #category : 'tests-conditional-dependencies' }
 PBProjectLoadingTest >> testPackageLoadingWithConditionalPackageDoesNotLoadPackageWhenConditionUnmet [
 
 	| assembly repository project packageCore conditionalPackage |
@@ -232,7 +233,7 @@ PBProjectLoadingTest >> testPackageLoadingWithConditionalPackageDoesNotLoadPacka
 	self deny: (Smalltalk globals hasClassNamed: 'CounterTest').
 ]
 
-{ #category : #'tests-conditional-dependencies' }
+{ #category : 'tests-conditional-dependencies' }
 PBProjectLoadingTest >> testPackageLoadingWithConditionalPackageLoadsPackageWhenConditionMet [
 
 	| assembly repository project packageCore conditionalPackage |
@@ -257,7 +258,7 @@ PBProjectLoadingTest >> testPackageLoadingWithConditionalPackageLoadsPackageWhen
 	self assert: (Smalltalk globals hasClassNamed: 'CounterTest').
 ]
 
-{ #category : #'tests-conditional-dependencies' }
+{ #category : 'tests-conditional-dependencies' }
 PBProjectLoadingTest >> testProjectLoadingWithConditionalPackageDoesNotLoadPackageWhenConditionUnmet [
 	| repository project packageCore conditionalPackage |
 
@@ -278,7 +279,7 @@ PBProjectLoadingTest >> testProjectLoadingWithConditionalPackageDoesNotLoadPacka
 	self deny: (Smalltalk globals hasClassNamed: 'CounterTest').
 ]
 
-{ #category : #'tests-conditional-dependencies' }
+{ #category : 'tests-conditional-dependencies' }
 PBProjectLoadingTest >> testProjectLoadingWithConditionalPackageLoadsPackageWhenConditionMet [
 	| repository project packageCore conditionalPackage |
 
@@ -299,7 +300,7 @@ PBProjectLoadingTest >> testProjectLoadingWithConditionalPackageLoadsPackageWhen
 	self assert: (Smalltalk globals hasClassNamed: 'CounterTest').
 ]
 
-{ #category : #'tests-baseline-dependencies' }
+{ #category : 'tests-baseline-dependencies' }
 PBProjectLoadingTest >> testProjectLoadingWithIndirectMetacelloBaselineDependenciesV1LoadsCorrespondingClassesInSystem [
 
 	| projectOne projectTwo baselineProjectV1 |
@@ -331,7 +332,7 @@ PBProjectLoadingTest >> testProjectLoadingWithIndirectMetacelloBaselineDependenc
 	self assert: (Smalltalk globals at: 'ClassInPakbotTestExamplePackageD' asSymbol) version equals: 1.
 ]
 
-{ #category : #'tests-baseline-dependencies' }
+{ #category : 'tests-baseline-dependencies' }
 PBProjectLoadingTest >> testProjectLoadingWithIndirectMetacelloBaselineDependenciesV2LoadsCorrespondingClassesInSystem [
 
 	| projectOne projectTwo baselineProjectV2 |
@@ -363,7 +364,7 @@ PBProjectLoadingTest >> testProjectLoadingWithIndirectMetacelloBaselineDependenc
 	self assert: (Smalltalk globals at: 'ClassInPakbotTestExamplePackageD' asSymbol) version equals: 2.
 ]
 
-{ #category : #'tests-configuration-dependencies' }
+{ #category : 'tests-configuration-dependencies' }
 PBProjectLoadingTest >> testProjectLoadingWithIndirectMetacelloConfigurationDependenciesV1LoadsCorrespondingClassesInSystem [
 
 	| projectOne projectTwo configurationProject |
@@ -395,7 +396,7 @@ PBProjectLoadingTest >> testProjectLoadingWithIndirectMetacelloConfigurationDepe
 	self assert: (Smalltalk globals at: 'ClassInPackageD' asSymbol) version equals: 1.
 ]
 
-{ #category : #'tests-configuration-dependencies' }
+{ #category : 'tests-configuration-dependencies' }
 PBProjectLoadingTest >> testProjectLoadingWithIndirectMetacelloConfigurationDependenciesV2LoadsCorrespondingClassesInSystem [
 
 	| projectOne projectTwo configurationProject |
@@ -427,7 +428,7 @@ PBProjectLoadingTest >> testProjectLoadingWithIndirectMetacelloConfigurationDepe
 	self assert: (Smalltalk globals at: 'ClassInPackageD' asSymbol) version equals: 2.
 ]
 
-{ #category : #'tests-baseline-dependencies' }
+{ #category : 'tests-baseline-dependencies' }
 PBProjectLoadingTest >> testProjectLoadingWithMetacelloBaselineDependenciesV1LoadsCorrespondingClassesInSystem [
 
 	| project baselineProjectV1 |
@@ -454,7 +455,7 @@ PBProjectLoadingTest >> testProjectLoadingWithMetacelloBaselineDependenciesV1Loa
 	self assert: (Smalltalk globals at: 'ClassInPakbotTestExamplePackageD' asSymbol) version equals: 1.
 ]
 
-{ #category : #'tests-baseline-dependencies' }
+{ #category : 'tests-baseline-dependencies' }
 PBProjectLoadingTest >> testProjectLoadingWithMetacelloBaselineDependenciesV2LoadsCorrespondingClassesInSystem [
 
 	| project baselineProjectV1 |
@@ -481,7 +482,7 @@ PBProjectLoadingTest >> testProjectLoadingWithMetacelloBaselineDependenciesV2Loa
 	self assert: (Smalltalk globals at: 'ClassInPakbotTestExamplePackageD' asSymbol) version equals: 2.
 ]
 
-{ #category : #'tests-configuration-dependencies' }
+{ #category : 'tests-configuration-dependencies' }
 PBProjectLoadingTest >> testProjectLoadingWithMetacelloConfigurationDependenciesV1LoadsCorrespondingClassesInSystem [
 
 	| project configurationProjectDependency |
@@ -508,7 +509,7 @@ PBProjectLoadingTest >> testProjectLoadingWithMetacelloConfigurationDependencies
 	self assert: (Smalltalk globals at: 'ClassInPackageD' asSymbol) version equals: 1.
 ]
 
-{ #category : #'tests-configuration-dependencies' }
+{ #category : 'tests-configuration-dependencies' }
 PBProjectLoadingTest >> testProjectLoadingWithMetacelloConfigurationDependenciesV2LoadsCorrespondingClassesInSystem [
 
 	| project configurationProject |
@@ -535,7 +536,7 @@ PBProjectLoadingTest >> testProjectLoadingWithMetacelloConfigurationDependencies
 	self assert: (Smalltalk globals at: 'ClassInPackageD' asSymbol) version equals: 2.
 ]
 
-{ #category : #'tests-pakbot-dependencies' }
+{ #category : 'tests-pakbot-dependencies' }
 PBProjectLoadingTest >> testProjectLoadingWithPakbotDependenciesV1LoadsCorrespondingClassesInSystem [
 
 	| project pakbotProjectDependency |
@@ -557,7 +558,7 @@ PBProjectLoadingTest >> testProjectLoadingWithPakbotDependenciesV1LoadsCorrespon
 	self assert: (Smalltalk globals at: 'CounterTest' asSymbol) version equals: 1.
 ]
 
-{ #category : #'tests-pakbot-dependencies' }
+{ #category : 'tests-pakbot-dependencies' }
 PBProjectLoadingTest >> testProjectLoadingWithPakbotOngoingProjectDependenciesKeepsThemLoaded [
 
 	| projectOne projectTwo |

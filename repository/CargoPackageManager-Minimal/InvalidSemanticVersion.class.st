@@ -1,20 +1,22 @@
 Class {
-	#name : #InvalidSemanticVersion,
-	#superclass : #Object,
+	#name : 'InvalidSemanticVersion',
+	#superclass : 'Object',
 	#instVars : [
 		'version'
 	],
-	#category : #'CargoPackageManager-Minimal-Model-Versions'
+	#category : 'CargoPackageManager-Minimal-Model-Versions',
+	#package : 'CargoPackageManager-Minimal',
+	#tag : 'Model-Versions'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 InvalidSemanticVersion class >> fromString: aString [
 	^ self new 
 		version: aString;
 		yourself
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 InvalidSemanticVersion >> = anotherVersion [
 	
 	self == anotherVersion ifTrue: [ ^ true ].
@@ -22,34 +24,34 @@ InvalidSemanticVersion >> = anotherVersion [
 	^ self version = anotherVersion version
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 InvalidSemanticVersion >> asSemanticVersion [
 	^ self
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 InvalidSemanticVersion >> hash [
 
 	^ version hash
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 InvalidSemanticVersion >> isInvalid [
 	^ true
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 InvalidSemanticVersion >> printOn: aStream [
 	
 	aStream nextPutAll: version asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 InvalidSemanticVersion >> version [
 	^ version
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 InvalidSemanticVersion >> version: anObject [
 	version := anObject
 ]

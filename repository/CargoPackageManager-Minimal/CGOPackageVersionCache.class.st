@@ -2,29 +2,31 @@
 Local repository used to cache package descriptions fetched from remote repositories.
 "
 Class {
-	#name : #CGOPackageVersionCache,
-	#superclass : #Object,
+	#name : 'CGOPackageVersionCache',
+	#superclass : 'Object',
 	#instVars : [
 		'packageRepositories',
 		'packageName',
 		'versionNumber'
 	],
-	#category : #'CargoPackageManager-Minimal-Model'
+	#category : 'CargoPackageManager-Minimal-Model',
+	#package : 'CargoPackageManager-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 CGOPackageVersionCache class >> packageDescriptionCache [
 	^ self new packageDescriptionCache
 ]
 
-{ #category : #decoding }
+{ #category : 'decoding' }
 CGOPackageVersionCache >> decode: aFileReference [
 	^ [ STON fromStream: aFileReference readStream ]
 		on: Error
 		do: [ nil ]
 ]
 
-{ #category : #fetching }
+{ #category : 'fetching' }
 CGOPackageVersionCache >> fetchDescription: aPackageVersionString [
 	| fileRef |
 	fileRef := self packageDescriptionCache / aPackageVersionString asLowercase.
@@ -33,7 +35,7 @@ CGOPackageVersionCache >> fetchDescription: aPackageVersionString [
 		ifFalse: [ nil ]
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 CGOPackageVersionCache >> packageDescriptionCache [
 	[ ^ (MCCacheRepository uniqueInstance directory / 'package-descriptions') 
 			ensureCreateDirectory; 
@@ -42,7 +44,7 @@ CGOPackageVersionCache >> packageDescriptionCache [
 	do: [ Error signal: 'Can''t create a cache for package-description' ]
 ]
 
-{ #category : #saving }
+{ #category : 'saving' }
 CGOPackageVersionCache >> saveDescription: aPackageVersion [
 	| fileRef |
 	aPackageVersion ifNil: [ ^ self ].

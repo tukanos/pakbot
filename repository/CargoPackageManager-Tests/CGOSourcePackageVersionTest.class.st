@@ -1,10 +1,12 @@
 Class {
-	#name : #CGOSourcePackageVersionTest,
-	#superclass : #TestCase,
-	#category : 'CargoPackageManager-Tests-SCM'
+	#name : 'CGOSourcePackageVersionTest',
+	#superclass : 'TestCase',
+	#category : 'CargoPackageManager-Tests-SCM',
+	#package : 'CargoPackageManager-Tests',
+	#tag : 'SCM'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSourcePackageVersionTest >> testCanInstantiateGitHostedPackageVersionFromAGitRepository [
 	| sourcePackageVersion |
 	
@@ -17,7 +19,7 @@ CGOSourcePackageVersionTest >> testCanInstantiateGitHostedPackageVersionFromAGit
 		equals: CGOGitHostedPackageVersion 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSourcePackageVersionTest >> testCanInstantiateMonticelloHostedPackageVersionFromAMonticelloRepository [
 	| sourcePackageVersion |
 	

@@ -6,12 +6,14 @@ ex:
 	B@2.0 provides  MAIL@1.0
 "
 Class {
-	#name : #CGOInteractiveVirtualPackageResolutionStrategy,
-	#superclass : #CGOVirtualPackageResolutionStrategy,
-	#category : 'CargoPackageManager-SolverStrategies'
+	#name : 'CGOInteractiveVirtualPackageResolutionStrategy',
+	#superclass : 'CGOVirtualPackageResolutionStrategy',
+	#category : 'CargoPackageManager-SolverStrategies',
+	#package : 'CargoPackageManager',
+	#tag : 'SolverStrategies'
 }
 
-{ #category : #solving }
+{ #category : 'solving' }
 CGOInteractiveVirtualPackageResolutionStrategy >> solve: aDependency candidates: aListOfPackageVersionReferences [
 	| candidates |
 	

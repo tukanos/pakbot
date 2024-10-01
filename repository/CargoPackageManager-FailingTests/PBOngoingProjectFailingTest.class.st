@@ -1,13 +1,15 @@
 Class {
-	#name : #PBOngoingProjectFailingTest,
-	#superclass : #PBProjectVersionTest,
+	#name : 'PBOngoingProjectFailingTest',
+	#superclass : 'PBProjectVersionTest',
 	#instVars : [
 		'protocol'
 	],
-	#category : #'CargoPackageManager-FailingTests-Model'
+	#category : 'CargoPackageManager-FailingTests-Model',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'Model'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PBOngoingProjectFailingTest >> testAddingDependencyPerformAnnouncement [
 	| announced subscription |
 

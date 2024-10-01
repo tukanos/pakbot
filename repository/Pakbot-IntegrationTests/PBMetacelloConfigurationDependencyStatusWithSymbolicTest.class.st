@@ -1,10 +1,12 @@
 Class {
-	#name : #PBMetacelloConfigurationDependencyStatusWithSymbolicTest,
-	#superclass : #PBDependencyStatusTest,
-	#category : #'Pakbot-IntegrationTests-DependencyStatus'
+	#name : 'PBMetacelloConfigurationDependencyStatusWithSymbolicTest',
+	#superclass : 'PBDependencyStatusTest',
+	#category : 'Pakbot-IntegrationTests-DependencyStatus',
+	#package : 'Pakbot-IntegrationTests',
+	#tag : 'DependencyStatus'
 }
 
-{ #category : #utils }
+{ #category : 'utils' }
 PBMetacelloConfigurationDependencyStatusWithSymbolicTest >> createProjectDependency [
 
 	^ PBMetacelloConfigurationProjectDependency  
@@ -13,7 +15,7 @@ PBMetacelloConfigurationDependencyStatusWithSymbolicTest >> createProjectDepende
 		version: #stable
 ]
 
-{ #category : #utils }
+{ #category : 'utils' }
 PBMetacelloConfigurationDependencyStatusWithSymbolicTest >> installProject [
 
 	Metacello new

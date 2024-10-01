@@ -2,17 +2,18 @@
 Example of a package specification.
 "
 Class {
-	#name : #CGOExamplePackageSpec,
-	#superclass : #CGOPackageSpec,
-	#category : 'CargoPackageManager-Spec'
+	#name : 'CGOExamplePackageSpec',
+	#superclass : 'CGOPackageSpec',
+	#category : 'CargoPackageManager-Spec',
+	#package : 'CargoPackageManager-Spec'
 }
 
-{ #category : #description }
+{ #category : 'description' }
 CGOExamplePackageSpec >> authors [
 	^ 'Demarey Christophe'
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 CGOExamplePackageSpec >> dependencies [
 	^ { #spec -> #('=2.0') .
 		#'spec-Platform' -> #('=2.0') .
@@ -20,22 +21,22 @@ CGOExamplePackageSpec >> dependencies [
 
 ]
 
-{ #category : #description }
+{ #category : 'description' }
 CGOExamplePackageSpec >> description [
 	^ 'An example of a Pharo package description'
 ]
 
-{ #category : #description }
+{ #category : 'description' }
 CGOExamplePackageSpec >> name [
 	^ 'ExamplePackage'.
 ]
 
-{ #category : #description }
+{ #category : 'description' }
 CGOExamplePackageSpec >> repositories [
 	^ #('http://smalltalkhub.com/mc/demarey/Versionner/main')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOExamplePackageSpec >> sourcePackageVersion [
 	^ { #backend -> #monticello .
 		#repositoryUrl -> 'http://smalltalkhub.com/mc/demarey/Versionner/main' .
@@ -43,7 +44,7 @@ CGOExamplePackageSpec >> sourcePackageVersion [
 		#versionString -> 'JohnDoe.0' } asDictionary
 ]
 
-{ #category : #description }
+{ #category : 'description' }
 CGOExamplePackageSpec >> version [
 	^ '0.1'.
 ]

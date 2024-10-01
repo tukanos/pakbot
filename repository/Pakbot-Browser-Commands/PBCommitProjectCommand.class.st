@@ -2,15 +2,16 @@
 A command to commit the whole project + its metadata through Iceberg UI
 "
 Class {
-	#name : #PBCommitProjectCommand,
-	#superclass : #PBProjectCommand,
+	#name : 'PBCommitProjectCommand',
+	#superclass : 'PBProjectCommand',
 	#instVars : [
 		'usePakbot'
 	],
-	#category : #'Pakbot-Browser-Commands'
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser-Commands'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PBCommitProjectCommand >> alertNotInABranch [
 	UIManager default 
 		alert: ('The commit project command failed because you are not in a branch!' , String cr, 
@@ -19,7 +20,7 @@ PBCommitProjectCommand >> alertNotInABranch [
 		title: 'Commit project failed'
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBCommitProjectCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #smallOk;
@@ -29,7 +30,7 @@ PBCommitProjectCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBCommitProjectCommand >> askUseMetadata [
 
 	| answer |
@@ -45,7 +46,7 @@ PBCommitProjectCommand >> askUseMetadata [
 		
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBCommitProjectCommand >> execute [
 
 	self project ifNotMarried: [ 
@@ -63,7 +64,7 @@ PBCommitProjectCommand >> execute [
 		do: [ self alertNotInABranch ]
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 PBCommitProjectCommand >> usePakbot: aBoolean [ 
 	usePakbot := aBoolean
 ]

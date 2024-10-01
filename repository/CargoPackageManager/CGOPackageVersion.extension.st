@@ -1,6 +1,6 @@
-Extension { #name : #CGOPackageVersion }
+Extension { #name : 'CGOPackageVersion' }
 
-{ #category : #'*CargoPackageManager' }
+{ #category : '*CargoPackageManager' }
 CGOPackageVersion >> ongoingClass [
 	self subclassResponsibility 
 ]

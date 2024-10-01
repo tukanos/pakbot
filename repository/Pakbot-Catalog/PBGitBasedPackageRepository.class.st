@@ -5,20 +5,21 @@ I use a git repository as backend.
 root will be the root of the git working copy.
 "
 Class {
-	#name : #PBGitBasedPackageRepository,
-	#superclass : #PBPackageRepository,
+	#name : 'PBGitBasedPackageRepository',
+	#superclass : 'PBPackageRepository',
 	#instVars : [
 		'repository'
 	],
-	#category : #'Pakbot-Catalog'
+	#category : 'Pakbot-Catalog',
+	#package : 'Pakbot-Catalog'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGitBasedPackageRepository class >> defaultGitUrl [
 	^ 'https://github.com/pharo-pkg/project-repository.git'
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBGitBasedPackageRepository class >> newEmptyLocalRepositoryIn: aFileReference [ 
 	^ self basicNew 
 		root: aFileReference;
@@ -26,7 +27,7 @@ PBGitBasedPackageRepository class >> newEmptyLocalRepositoryIn: aFileReference [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBGitBasedPackageRepository class >> newLocalRepositoryIn: aFileReference [ 
 	^ self basicNew 
 		root: aFileReference;
@@ -34,27 +35,27 @@ PBGitBasedPackageRepository class >> newLocalRepositoryIn: aFileReference [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitBasedPackageRepository >> head [
 	^ self iceRepository head
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBGitBasedPackageRepository >> iceRepository [
 	^ repository iceRepository
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGitBasedPackageRepository >> initialize [
 	self initializeRepositoryOnUrl: self class defaultGitUrl.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGitBasedPackageRepository >> initializeEmptyRepository [
 	self initializeRepositoryOnUrl: 'file://', root fullName.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBGitBasedPackageRepository >> initializeRepositoryOnUrl: url [
 	repository := PBGitRepositoryCreator new
 		url: url;
@@ -63,20 +64,20 @@ PBGitBasedPackageRepository >> initializeRepositoryOnUrl: url [
 	root := self workingCopy fileSystem.
 ]
 
-{ #category : #saving }
+{ #category : 'saving' }
 PBGitBasedPackageRepository >> saveProject: aPBProjectVersion [
 	super saveProject: aPBProjectVersion.
 	self iceRepository commitIndexWithMessage: aPBProjectVersion name, ' ', aPBProjectVersion version asString
 		andParents: { self iceRepository headCommit }.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitBasedPackageRepository >> url [
 	
 	^ repository repositoryUrl
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBGitBasedPackageRepository >> workingCopy [
 	^ self iceRepository workingCopy
 ]

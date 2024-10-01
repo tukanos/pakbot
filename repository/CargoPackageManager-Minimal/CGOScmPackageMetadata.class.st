@@ -3,16 +3,18 @@ This class is used to hold package metadata loaded directly from a Source Code M
 It implements the minimial set of messages of CGOPackageRegistry needed by the Cargo solver to work.
 "
 Class {
-	#name : #CGOScmPackageMetadata,
-	#superclass : #Object,
+	#name : 'CGOScmPackageMetadata',
+	#superclass : 'Object',
 	#instVars : [
 		'repository',
 		'projects'
 	],
-	#category : #'CargoPackageManager-Minimal-Model'
+	#category : 'CargoPackageManager-Minimal-Model',
+	#package : 'CargoPackageManager-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGOScmPackageMetadata >> fetch: aPackageName version: aVersion [
 	| package version |
 	package := self package: aPackageName.
@@ -27,23 +29,23 @@ CGOScmPackageMetadata >> fetch: aPackageName version: aVersion [
 		ifFalse: [ CGOPackageVersionNotFoundError signal ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOScmPackageMetadata >> initialize [
 	projects := Dictionary new.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGOScmPackageMetadata >> isVirtual: aPackageName [
 	^ (self package: aPackageName) isVirtual
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGOScmPackageMetadata >> latestVersionOfPackage: aPackageName suitableForEnvironment: platformAttributes [ 
 	"just pick the current version in the SCM"
 	^ (self package: aPackageName) asPackageVersionReference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOScmPackageMetadata >> package: aPackageName [
 	| dependency |
 	dependency := PBPackageDependency on: aPackageName.
@@ -62,13 +64,13 @@ CGOScmPackageMetadata >> package: aPackageName [
 						detect: [ :each | each hasPackage: 'default' ] ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOScmPackageMetadata >> packageVersions [
 	self flag: 'in the future, we should check in which external project to find the package'.
 	^ projects values flattened
 ]
 
-{ #category : #'versions fetching' }
+{ #category : 'versions fetching' }
 CGOScmPackageMetadata >> packagesProviding: aName version: aSemanticVersion forEnvironment: platformAttributes [
 	"We ignore virtual package version as we load from SCM, eveything should be in sync."
 	"We also ignore platformAttributes as a virtual package has no platform attribute"
@@ -81,7 +83,7 @@ CGOScmPackageMetadata >> packagesProviding: aName version: aSemanticVersion forE
 			and: [ CGOPackageRepository new does: each fitPlatformRequirements: platformAttributes ] ] ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOScmPackageMetadata >> registerExternalProjectsOf: aCGOProject [
 	"Add external projects metadata to this SCM package repository"
 	aCGOProject pakbotProjectDependencies
@@ -94,7 +96,7 @@ CGOScmPackageMetadata >> registerExternalProjectsOf: aCGOProject [
 			[ :cgoMetacelloProject | self registerProject: cgoMetacelloProject at: cgoMetacelloProject name ]
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 CGOScmPackageMetadata >> registerProject: aCGOProject at: projectIdentifier [
 	"Add external projects metadata to this SCM package repository"
 	| packageVersions |
@@ -111,14 +113,14 @@ CGOScmPackageMetadata >> registerProject: aCGOProject at: projectIdentifier [
 	^ aCGOProject
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 CGOScmPackageMetadata >> registerProjectFromSourceRepository: aCGOSourceRepository [
 	^ self 
 		registerProjectFromSourceRepository: aCGOSourceRepository
 		at: nil
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 CGOScmPackageMetadata >> registerProjectFromSourceRepository: aCGOSourceRepository at: projectId [
 	^ self 
 		registerProject: (PBProjectVersion fromRepository: aCGOSourceRepository)

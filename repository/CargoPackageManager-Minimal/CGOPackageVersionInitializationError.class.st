@@ -2,7 +2,9 @@
 Error raised when a problem occurs during PackageVersion initialization.
 "
 Class {
-	#name : #CGOPackageVersionInitializationError,
-	#superclass : #PBError,
-	#category : #'CargoPackageManager-Minimal-Model'
+	#name : 'CGOPackageVersionInitializationError',
+	#superclass : 'PBError',
+	#category : 'CargoPackageManager-Minimal-Model',
+	#package : 'CargoPackageManager-Minimal',
+	#tag : 'Model'
 }

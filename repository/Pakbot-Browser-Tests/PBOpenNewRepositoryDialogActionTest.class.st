@@ -1,21 +1,22 @@
 Class {
-	#name : #PBOpenNewRepositoryDialogActionTest,
-	#superclass : #FileTestCase,
+	#name : 'PBOpenNewRepositoryDialogActionTest',
+	#superclass : 'FileTestCase',
 	#instVars : [
 		'counterIceRepository',
 		'presenter'
 	],
-	#category : #'Pakbot-Browser-Tests'
+	#category : 'Pakbot-Browser-Tests',
+	#package : 'Pakbot-Browser-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PBOpenNewRepositoryDialogActionTest >> tearDown [ 
 	counterIceRepository ifNotNil: [ counterIceRepository forget ].
 	presenter ifNotNil: [ presenter delete ].
 	super tearDown.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBOpenNewRepositoryDialogActionTest >> testCanCreateNewProject [
 	| newRepositoryPresenter project |
 
@@ -43,7 +44,7 @@ PBOpenNewRepositoryDialogActionTest >> testCanCreateNewProject [
 		equals: 'foo'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBOpenNewRepositoryDialogActionTest >> testCanImportProject [
 	| importRepositoryPresenter project iceRepository projectName |
 

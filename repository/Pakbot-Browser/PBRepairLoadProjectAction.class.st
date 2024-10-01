@@ -2,36 +2,38 @@
 See `PBLoadProjectAction>>#description`
 "
 Class {
-	#name : #PBRepairLoadProjectAction,
-	#superclass : #PBRepairProjectAction,
-	#category : #'Pakbot-Browser-Actions'
+	#name : 'PBRepairLoadProjectAction',
+	#superclass : 'PBRepairProjectAction',
+	#category : 'Pakbot-Browser-Actions',
+	#package : 'Pakbot-Browser',
+	#tag : 'Actions'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBRepairLoadProjectAction class >> isAvailableFor: aProject [
 
 	^ aProject isUpToDate not
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBRepairLoadProjectAction >> description [
 	^ 'Loads the missing dependencies of the project. 
 If there is a conflict it should be fixed before being able to load the dependencies.'
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 PBRepairLoadProjectAction >> doExecute [
 
 	^ (PBLoadPreviewPresenter on: project resolve) openDialog
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBRepairLoadProjectAction >> iconName [
 
 	^ #smallLoadProject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBRepairLoadProjectAction >> name [
 
 	^ 'Load Dependencies of the Project'

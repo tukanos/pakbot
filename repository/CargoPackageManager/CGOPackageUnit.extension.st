@@ -1,6 +1,6 @@
-Extension { #name : #CGOPackageUnit }
+Extension { #name : 'CGOPackageUnit' }
 
-{ #category : #'*CargoPackageManager' }
+{ #category : '*CargoPackageManager' }
 CGOPackageUnit >> ongoingClass [
 	^ PBPackage
 ]

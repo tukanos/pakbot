@@ -2,12 +2,14 @@
 I display and allow edition of dependencies of the provided PackageVersion.
 "
 Class {
-	#name : #PBPackageDependenciesView,
-	#superclass : #PBPackageListEditor,
-	#category : #'Pakbot-Browser-Presenters'
+	#name : 'PBPackageDependenciesView',
+	#superclass : 'PBPackageListEditor',
+	#category : 'Pakbot-Browser-Presenters',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 PBPackageDependenciesView class >> example [
 	| package registry project |
 	
@@ -21,7 +23,7 @@ PBPackageDependenciesView class >> example [
 	^ (self on: package) open
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PBPackageDependenciesView >> addAction [
 	
 	PBNewDependencyPresenter new 
@@ -31,7 +33,7 @@ PBPackageDependenciesView >> addAction [
 		onCancel: [ "Nothing" ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PBPackageDependenciesView >> editAction [
 	"only one fixed constraint managed for now"
 	| dependency |
@@ -41,20 +43,20 @@ PBPackageDependenciesView >> editAction [
 		cancelAction: [  ]
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 PBPackageDependenciesView >> refreshUI [
 	
 	packageList refresh
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PBPackageDependenciesView >> removeAction: aDependency [ 
 
 	self packageVersion removeDependency: aDependency.
 	self refreshUI.
 ]
 
-{ #category : #'private - building' }
+{ #category : 'private - building' }
 PBPackageDependenciesView >> roots [
 	
 	^ self packageVersion 

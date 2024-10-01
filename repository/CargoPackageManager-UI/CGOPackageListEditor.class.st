@@ -2,8 +2,8 @@
 Abstract class showing a list of packages and allowing to add/remove/edit elements from the list
 "
 Class {
-	#name : #CGOPackageListEditor,
-	#superclass : #PBLoadableUnitPanel,
+	#name : 'CGOPackageListEditor',
+	#superclass : 'PBLoadableUnitPanel',
 	#instVars : [
 		'label',
 		'addButton',
@@ -11,15 +11,16 @@ Class {
 		'removeButton',
 		'packageList'
 	],
-	#category : #'CargoPackageManager-UI'
+	#category : 'CargoPackageManager-UI',
+	#package : 'CargoPackageManager-UI'
 }
 
-{ #category : #'private - displaying' }
+{ #category : 'private - displaying' }
 CGOPackageListEditor >> assemblyIcon [
 	^ self iconNamed: #groupIcon
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackageListEditor >> connectPresenters [
 	super connectPresenters.
 	packageList whenSelectionChangedDo: [ :selection | | enabled |
@@ -33,7 +34,7 @@ CGOPackageListEditor >> connectPresenters [
 	editButton action: [ self editAction ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 CGOPackageListEditor >> defaultLayout [
 	^ SpBoxLayout newTopToBottom 
 		add: (SpBoxLayout newLeftToRight 
@@ -47,7 +48,7 @@ CGOPackageListEditor >> defaultLayout [
 		yourself
 ]
 
-{ #category : #'private - displaying' }
+{ #category : 'private - displaying' }
 CGOPackageListEditor >> displayFor: aDependency [
 
 	^ aDependency displayString asMorph
@@ -55,14 +56,14 @@ CGOPackageListEditor >> displayFor: aDependency [
 		yourself
 ]
 
-{ #category : #'private - displaying' }
+{ #category : 'private - displaying' }
 CGOPackageListEditor >> iconForPackage: aDependency [
 
 	^ self iconNamed: aDependency statusIconName.
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackageListEditor >> initializePresenters [
 	(label := self newLabel) label: self packageListEditorLabel.
 	addButton := self newButton
@@ -83,7 +84,7 @@ CGOPackageListEditor >> initializePresenters [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackageListEditor >> initializeTable [
 
 	packageList 
@@ -94,35 +95,35 @@ CGOPackageListEditor >> initializeTable [
 			addColumn: (SpStringTableColumn evaluated: [ :each | self displayFor: each ])).
 ]
 
-{ #category : #'private - displaying' }
+{ #category : 'private - displaying' }
 CGOPackageListEditor >> morphIconFor: aPart [
 
 	^ (self iconForPackage: aPart) asMorph
 		 setBalloonText: aPart balloonText
 ]
 
-{ #category : #'private - displaying' }
+{ #category : 'private - displaying' }
 CGOPackageListEditor >> notInstalledIcon [
 	
 	^ self iconNamed: #error
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageListEditor >> packageVersion [
 	^ self model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageListEditor >> roots [
 	self subclassResponsibility 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageListEditor >> selectedPackage [
 	^ packageList selectedItem
 ]
 
-{ #category : #'private - displaying' }
+{ #category : 'private - displaying' }
 CGOPackageListEditor >> virtualPackageIcon [
 	^ self iconNamed: #image
 ]

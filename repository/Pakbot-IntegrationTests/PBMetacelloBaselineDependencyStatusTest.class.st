@@ -1,10 +1,12 @@
 Class {
-	#name : #PBMetacelloBaselineDependencyStatusTest,
-	#superclass : #PBDependencyStatusTest,
-	#category : #'Pakbot-IntegrationTests-DependencyStatus'
+	#name : 'PBMetacelloBaselineDependencyStatusTest',
+	#superclass : 'PBDependencyStatusTest',
+	#category : 'Pakbot-IntegrationTests-DependencyStatus',
+	#package : 'Pakbot-IntegrationTests',
+	#tag : 'DependencyStatus'
 }
 
-{ #category : #utils }
+{ #category : 'utils' }
 PBMetacelloBaselineDependencyStatusTest >> createProjectDependency [
 	^ PBMetacelloBaselineProjectDependency
 		name: 'PakbotTestExample'
@@ -12,7 +14,7 @@ PBMetacelloBaselineDependencyStatusTest >> createProjectDependency [
 		version: '0866472ddded2a8fc36d3bae23f01aecfe947dc7'
 ]
 
-{ #category : #utils }
+{ #category : 'utils' }
 PBMetacelloBaselineDependencyStatusTest >> installProject [
 
 	Metacello new
@@ -22,7 +24,7 @@ PBMetacelloBaselineDependencyStatusTest >> installProject [
 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBMetacelloBaselineDependencyStatusTest >> tearDown [
 
 	#(#'BaselineOfPakbotTestExample'
@@ -46,7 +48,7 @@ PBMetacelloBaselineDependencyStatusTest >> tearDown [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBMetacelloBaselineDependencyStatusTest >> testDependencyIsSatisfiedIfBaselineFoundButNoIceRepositoryToCheckTheVersion [
 	| dependency |
 	self flag: 'This has probably to change with next development of Pakbot'.

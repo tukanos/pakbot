@@ -5,23 +5,25 @@ It means that Iceberg will be able to load and commit Pakbot metadata.
 I collaborate with IceProjectReader and IceRepository.
 "
 Class {
-	#name : #PBEnablePakbotProjectCommand,
-	#superclass : #IceTipCommand,
-	#category : #'Pakbot-Browser-Iceberg-Integration'
+	#name : 'PBEnablePakbotProjectCommand',
+	#superclass : 'IceTipCommand',
+	#category : 'Pakbot-Browser-Iceberg-Integration',
+	#package : 'Pakbot-Browser',
+	#tag : 'Iceberg-Integration'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBEnablePakbotProjectCommand class >> defaultIconName [
 	
 	^ #smallOk
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBEnablePakbotProjectCommand class >> defaultName [
 	^ 'Enable Packbot project integration'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBEnablePakbotProjectCommand >> canBeExecuted [
 
 	^ self isRepositoryOperational
@@ -30,7 +32,7 @@ PBEnablePakbotProjectCommand >> canBeExecuted [
 			workingCopy project isPakbotProject not and: [ PBIcebergProjectReader new canReadProjectFromCommitish: workingCopy ] ]
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 PBEnablePakbotProjectCommand >> execute [
 	| workingCopy |
 	workingCopy := self repositoryModel entity workingCopy.

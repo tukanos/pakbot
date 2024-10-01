@@ -1,6 +1,6 @@
 Class {
-	#name : #PBNewProjectPresenterTest,
-	#superclass : #PBAbstractTest,
+	#name : 'PBNewProjectPresenterTest',
+	#superclass : 'PBAbstractTest',
 	#instVars : [
 		'project',
 		'panel',
@@ -10,10 +10,11 @@ Class {
 		'description',
 		'editionPanel'
 	],
-	#category : #'CargoPackageManager-UI-Tests'
+	#category : 'CargoPackageManager-UI-Tests',
+	#package : 'CargoPackageManager-UI-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBNewProjectPresenterTest >> setUp [
 
 	super setUp.
@@ -29,7 +30,7 @@ PBNewProjectPresenterTest >> setUp [
 	description := 'A description'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBNewProjectPresenterTest >> testProjectIsFilledAfterAccept [
 
 	editionPanel name: name.
@@ -43,7 +44,7 @@ PBNewProjectPresenterTest >> testProjectIsFilledAfterAccept [
 	self assert: project description equals: description.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBNewProjectPresenterTest >> testProjectIsNotInstalledBeforeAccept [
 
 	editionPanel name: name.
@@ -54,7 +55,7 @@ PBNewProjectPresenterTest >> testProjectIsNotInstalledBeforeAccept [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBNewProjectPresenterTest >> testProjectIsRegisteredAfterAccept [
 
 	editionPanel name: name.

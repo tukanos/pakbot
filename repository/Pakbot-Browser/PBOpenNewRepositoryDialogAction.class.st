@@ -3,15 +3,17 @@ I open a repository dialog so that the user can choose to import an exisitng ice
 Once creeated, I will set the Iceberg project and the project repository
 "
 Class {
-	#name : #PBOpenNewRepositoryDialogAction,
-	#superclass : #PBAbstractAction,
+	#name : 'PBOpenNewRepositoryDialogAction',
+	#superclass : 'PBAbstractAction',
 	#instVars : [
 		'postActionCallback'
 	],
-	#category : #'Pakbot-Browser-Actions'
+	#category : 'Pakbot-Browser-Actions',
+	#package : 'Pakbot-Browser',
+	#tag : 'Actions'
 }
 
-{ #category : #'instance-creation' }
+{ #category : 'instance-creation' }
 PBOpenNewRepositoryDialogAction class >> onProject: aProject [
 
 	^ self new
@@ -19,7 +21,7 @@ PBOpenNewRepositoryDialogAction class >> onProject: aProject [
 		yourself
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 PBOpenNewRepositoryDialogAction >> doExecute [
 	
 	| presenter |
@@ -36,12 +38,12 @@ PBOpenNewRepositoryDialogAction >> doExecute [
 	^ presenter
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 PBOpenNewRepositoryDialogAction >> doPostAction [
 	postActionCallback value
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 PBOpenNewRepositoryDialogAction >> postActionCallback: aCallback [
 
 	postActionCallback := aCallback	

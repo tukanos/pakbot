@@ -1,6 +1,6 @@
-Extension { #name : #CGOMonticelloRepository }
+Extension { #name : 'CGOMonticelloRepository' }
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 CGOMonticelloRepository >> description [
 	
 	^ 'Buggy Monticello repository?'

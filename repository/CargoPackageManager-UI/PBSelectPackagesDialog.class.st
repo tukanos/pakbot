@@ -1,6 +1,6 @@
 Class {
-	#name : #PBSelectPackagesDialog,
-	#superclass : #ComposablePresenter,
+	#name : 'PBSelectPackagesDialog',
+	#superclass : 'ComposablePresenter',
 	#instVars : [
 		'model',
 		'packagesList',
@@ -8,10 +8,11 @@ Class {
 		'acceptButton',
 		'cancelButton'
 	],
-	#category : #'CargoPackageManager-UI'
+	#category : 'CargoPackageManager-UI',
+	#package : 'CargoPackageManager-UI'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBSelectPackagesDialog class >> defaultSpec [
 	<spec: #default>
 	
@@ -22,22 +23,22 @@ PBSelectPackagesDialog class >> defaultSpec [
 				newRow: #packageNameText height: self inputTextHeight ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSelectPackagesDialog class >> icon [
 	^ self iconNamed: #branch
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSelectPackagesDialog class >> order [
 	^ 20
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBSelectPackagesDialog class >> title [
 	^ 'Add packages'
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PBSelectPackagesDialog >> accept [
 	| items |
 	
@@ -53,7 +54,7 @@ PBSelectPackagesDialog >> accept [
 		self model importPackageNamed: each name ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBSelectPackagesDialog >> addShortcutsTo: aWidget [
 	super addShortcutsTo: aWidget.
 	aWidget 
@@ -62,14 +63,14 @@ PBSelectPackagesDialog >> addShortcutsTo: aWidget [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSelectPackagesDialog >> allPackages [
 	^ RPackageOrganizer default packages
 		asOrderedCollection 
 		sort: [ :a :b | a name < b name ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBSelectPackagesDialog >> initializeDialogWindow: aWindow [
 	acceptButton := aWindow toolbar okButton.
 	cancelButton := aWindow toolbar cancelButton.
@@ -78,7 +79,7 @@ PBSelectPackagesDialog >> initializeDialogWindow: aWindow [
 		label: 'Add'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBSelectPackagesDialog >> initializePackageNameText [
 	self packageNameText whenBuiltDo: [ :ann |
 		ann widget 
@@ -94,7 +95,7 @@ PBSelectPackagesDialog >> initializePackageNameText [
 					self packagesList widget selectFirstVisibleRow ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBSelectPackagesDialog >> initializePackagesList [
 	| dataSource |
 	
@@ -110,7 +111,7 @@ PBSelectPackagesDialog >> initializePackagesList [
 		onAnnouncement: FTStrongSelectionChanged do: [ self accept ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBSelectPackagesDialog >> initializeWidgets [
 	packagesList := self newIceTreeTable.
 	packageNameText := self newTextInput 
@@ -125,18 +126,18 @@ PBSelectPackagesDialog >> initializeWidgets [
 		add: self packageNameText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSelectPackagesDialog >> model [
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSelectPackagesDialog >> model: anObject [
 	model := anObject.
 	self refresh
 ]
 
-{ #category : #'private factory' }
+{ #category : 'private factory' }
 PBSelectPackagesDialog >> newPackagesListDataSource [
 	| dataSource |
 	^ (dataSource := IceTipSelectingDataSource new)
@@ -146,34 +147,34 @@ PBSelectPackagesDialog >> newPackagesListDataSource [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSelectPackagesDialog >> openDialogWithSpec [
 	^ super openDialogWithSpec
 		okAction: [ self accept ];
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSelectPackagesDialog >> packageNameText [
 	^ packageNameText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSelectPackagesDialog >> packageNameText: anObject [
 	packageNameText := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSelectPackagesDialog >> packagesList [
 	^ packagesList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSelectPackagesDialog >> packagesList: anObject [
 	packagesList := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSelectPackagesDialog >> refresh [
 	packagesList widget 
 		in: [ :this | 
@@ -184,18 +185,18 @@ PBSelectPackagesDialog >> refresh [
 		refresh.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSelectPackagesDialog >> selectedItems [
 
 	^ self packagesList widget dataSource selectedItems
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBSelectPackagesDialog >> setModelBeforeInitialization: anObject [ 
 	model := anObject
 ]
 
-{ #category : #'private factory' }
+{ #category : 'private factory' }
 PBSelectPackagesDialog >> withAssertHandlingDo: aBlock [
 	^ aBlock 
 		on: AssertionFailure 

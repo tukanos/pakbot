@@ -2,29 +2,30 @@
 Common super class for PPM views woth some utility methods
 "
 Class {
-	#name : #PBLoadableUnitPanel,
-	#superclass : #SpPresenterWithModel,
-	#category : #'CargoPackageManager-UI'
+	#name : 'PBLoadableUnitPanel',
+	#superclass : 'SpPresenterWithModel',
+	#category : 'CargoPackageManager-UI',
+	#package : 'CargoPackageManager-UI'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 PBLoadableUnitPanel class >> isAbstract [
 
 	^ self == PBLoadableUnitPanel
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 PBLoadableUnitPanel class >> labelSize [
 	^ 75
 ]
 
-{ #category : #opening }
+{ #category : 'opening' }
 PBLoadableUnitPanel class >> openOn: anOngoingPackageVersion [
 	(self owner: nil on: anOngoingPackageVersion)
 		openWithSpec
 ]
 
-{ #category : #'building widgets' }
+{ #category : 'building widgets' }
 PBLoadableUnitPanel >> newTextInput [
 			
 	^ super newTextInput
@@ -32,7 +33,7 @@ PBLoadableUnitPanel >> newTextInput [
 		yourself
 ]
 
-{ #category : #'building widgets' }
+{ #category : 'building widgets' }
 PBLoadableUnitPanel >> newTextInputField: textInputFieldModelName [
 	self
 		instVarNamed: textInputFieldModelName  
@@ -42,7 +43,7 @@ PBLoadableUnitPanel >> newTextInputField: textInputFieldModelName [
 			ghostText: '')
 ]
 
-{ #category : #'building widgets' }
+{ #category : 'building widgets' }
 PBLoadableUnitPanel >> newTextInputField: textInputFieldModelName default: aValue [
 	self
 		instVarNamed: textInputFieldModelName  
@@ -52,7 +53,7 @@ PBLoadableUnitPanel >> newTextInputField: textInputFieldModelName default: aValu
 			text: aValue)
 ]
 
-{ #category : #'building widgets' }
+{ #category : 'building widgets' }
 PBLoadableUnitPanel >> newTextInputField: textInputFieldModelName description: aDescription [
 	self
 		instVarNamed: textInputFieldModelName  

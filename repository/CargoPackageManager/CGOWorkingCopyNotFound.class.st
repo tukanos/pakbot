@@ -2,32 +2,34 @@
 Error raised when no working copy is found in the image for the given package unit.
 "
 Class {
-	#name : #CGOWorkingCopyNotFound,
-	#superclass : #PBError,
+	#name : 'CGOWorkingCopyNotFound',
+	#superclass : 'PBError',
 	#instVars : [
 		'packageUnit'
 	],
-	#category : #'CargoPackageManager-Model'
+	#category : 'CargoPackageManager-Model',
+	#package : 'CargoPackageManager',
+	#tag : 'Model'
 }
 
-{ #category : #signalling }
+{ #category : 'signalling' }
 CGOWorkingCopyNotFound class >> signalFor: aCGOPackageUnit [
 	^ self new 
 		packageUnit: aCGOPackageUnit;
 		signal
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOWorkingCopyNotFound >> isResumable [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOWorkingCopyNotFound >> messageText [
 	^ packageUnit packageName , ' has no working copy!'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOWorkingCopyNotFound >> packageUnit: aCGOPackageUnit [
 	packageUnit := aCGOPackageUnit
 ]

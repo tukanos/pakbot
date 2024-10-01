@@ -1,13 +1,14 @@
 Class {
-	#name : #PBDependenciesUIGroupTest,
-	#superclass : #PBAbstractCalypsoTest,
+	#name : 'PBDependenciesUIGroupTest',
+	#superclass : 'PBAbstractCalypsoTest',
 	#instVars : [
 		'configurationProjectV1'
 	],
-	#category : #'CargoPackageManager-UI-Tests'
+	#category : 'CargoPackageManager-UI-Tests',
+	#package : 'CargoPackageManager-UI-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBDependenciesUIGroupTest >> testProjectWithDependenciesShowsDependencieItem [
 
 	| dep |
@@ -27,7 +28,7 @@ PBDependenciesUIGroupTest >> testProjectWithDependenciesShowsDependencieItem [
 	self assert: dep isNotNil.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBDependenciesUIGroupTest >> testProjectWithDependenciesShowsDependencies [
 
 	| dependencies |
@@ -46,7 +47,7 @@ PBDependenciesUIGroupTest >> testProjectWithDependenciesShowsDependencies [
 	self assert: dependencies isNotNil.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBDependenciesUIGroupTest >> testProjectWithoutDependenciesDoesNotShowDependencies [
 
 	| dependencies |

@@ -1,6 +1,6 @@
-Extension { #name : #PBConflict }
+Extension { #name : 'PBConflict' }
 
-{ #category : #'*Pakbot-Browser' }
+{ #category : '*Pakbot-Browser' }
 PBConflict >> resolutionDetailText [
 
 	selectedResolution ifNil: [ ^ 'Please select a version to use' ].

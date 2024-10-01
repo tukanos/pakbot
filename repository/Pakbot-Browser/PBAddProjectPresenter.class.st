@@ -5,17 +5,19 @@ I present different options to create a project:
 - import from a package version
 "
 Class {
-	#name : #PBAddProjectPresenter,
-	#superclass : #SpOptionListPresenter,
-	#category : #'Pakbot-Browser-Presenters-NewProject'
+	#name : 'PBAddProjectPresenter',
+	#superclass : 'SpOptionListPresenter',
+	#category : 'Pakbot-Browser-Presenters-NewProject',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters-NewProject'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBAddProjectPresenter class >> example [
 	self new openDialog.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBAddProjectPresenter >> allOptions [
 
 	^ { PBNewProjectPresenter .
@@ -24,7 +26,7 @@ PBAddProjectPresenter >> allOptions [
 		collect: [ :class | class newApplication: self application ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBAddProjectPresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter

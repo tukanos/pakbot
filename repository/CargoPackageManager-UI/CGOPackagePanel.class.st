@@ -6,17 +6,18 @@ I mainly interact with OnGoingPackage[Unit/Assembly]
 
 "
 Class {
-	#name : #CGOPackagePanel,
-	#superclass : #PBLoadableUnitPanel,
+	#name : 'CGOPackagePanel',
+	#superclass : 'PBLoadableUnitPanel',
 	#instVars : [
 		'overview',
 		'ongoingPackageUnit',
 		'detailsView'
 	],
-	#category : #'CargoPackageManager-UI'
+	#category : 'CargoPackageManager-UI',
+	#package : 'CargoPackageManager-UI'
 }
 
-{ #category : #opening }
+{ #category : 'opening' }
 CGOPackagePanel class >> browsePackageMetadata: aBuilder [
 	<contextMenu>
 	<nautilusGlobalPackageMenu>
@@ -28,14 +29,14 @@ CGOPackagePanel class >> browsePackageMetadata: aBuilder [
 		order: 1000
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOPackagePanel class >> buildOnOngoing: anOngoingPackageVersion [
 	^ self basicNew
 		initializeWith: anOngoingPackageVersion;
 		buildWithSpec
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 CGOPackagePanel class >> defaultSpec [
 	^ SpecLayout composed
 		newRow: [ :row |
@@ -44,12 +45,12 @@ CGOPackagePanel class >> defaultSpec [
 				add: #dependenciesView ]
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 CGOPackagePanel class >> example [
 	^ self openOnOngoing: (PBPackage example)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOPackagePanel class >> ongoingPackageVersionFor: selectedPackage [
 	| manifest ongoing |
 	manifest := selectedPackage packageManifest.
@@ -59,12 +60,12 @@ CGOPackagePanel class >> ongoingPackageVersionFor: selectedPackage [
 	^ ongoing
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CGOPackagePanel class >> openOn: aRPackageOrPackageName [
 	^ self openOnOngoing: (self ongoingPackageVersionFor: aRPackageOrPackageName)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOPackagePanel class >> openOnOngoing: anOngoingPackageVersion [
 	^ self basicNew
 		initializeWith: anOngoingPackageVersion;
@@ -72,35 +73,35 @@ CGOPackagePanel class >> openOnOngoing: anOngoingPackageVersion [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackagePanel >> dependenciesView [
 	^ detailsView
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackagePanel >> initialExtent [
 	 ^ (800.0@320.0)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackagePanel >> initializeWidgets [
 	overview := PBLoadableUnitOverviewPanel newOn: ongoingPackageUnit owner: self.
 	detailsView := CGOPackageDetailsView newOn: ongoingPackageUnit owner: self.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackagePanel >> initializeWith: anOngoingPackageUnit [
 	ongoingPackageUnit := anOngoingPackageUnit.
 	super initialize
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackagePanel >> overview [
 	^ overview
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackagePanel >> title [
 	^ 	ongoingPackageUnit packageName, ' metadata'
 ]

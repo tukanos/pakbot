@@ -2,36 +2,38 @@
 Action used to load the project metadata, its package and dependencies
 "
 Class {
-	#name : #PBLoadFullProjectCommand,
-	#superclass : #PBLoadProjectCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBLoadFullProjectCommand',
+	#superclass : 'PBLoadProjectCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBLoadFullProjectCommand class >> isAvailableFor: aProject [
 
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadFullProjectCommand >> description [
 
 	^ 'Loads all the packages of a project and their dependencies.'
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBLoadFullProjectCommand >> doExecute [
 	
 	self project load
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadFullProjectCommand >> iconName [
 
 	^ #smallLoadProject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadFullProjectCommand >> name [
 
 	^ 'Load the whole project'

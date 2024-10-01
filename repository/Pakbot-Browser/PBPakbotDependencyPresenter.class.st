@@ -2,23 +2,25 @@
 Presenter to edit a Pakbot project dependency.
 "
 Class {
-	#name : #PBPakbotDependencyPresenter,
-	#superclass : #PBAbstractDependencyPresenter,
+	#name : 'PBPakbotDependencyPresenter',
+	#superclass : 'PBAbstractDependencyPresenter',
 	#instVars : [
 		'projectName',
 		'projectVersion',
 		'projectRepository'
 	],
-	#category : #'Pakbot-Browser-Presenters-Dependencies'
+	#category : 'Pakbot-Browser-Presenters-Dependencies',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters-Dependencies'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBPakbotDependencyPresenter class >> example [
 
 	(self on: PBPakbotProjectDependency example) open
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PBPakbotDependencyPresenter >> buildDependency [
 	^ PBPakbotProjectDependency
 		named: projectName text
@@ -26,7 +28,7 @@ PBPakbotDependencyPresenter >> buildDependency [
 		version: projectVersion text
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBPakbotDependencyPresenter >> defaultLayout [ 
 
 	^ SpGridLayout build: [ :builder |
@@ -38,12 +40,12 @@ PBPakbotDependencyPresenter >> defaultLayout [
 			add: 'Repository'; add: projectRepository ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotDependencyPresenter >> icon [
 	^ self iconNamed: #glamorousBookmark
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPakbotDependencyPresenter >> initializePresenters [
 	projectName := (self instantiate: SpTextInputFieldWithValidationPresenter)
 			placeholder: 'e.g., My Project';
@@ -66,19 +68,19 @@ PBPakbotDependencyPresenter >> initializePresenters [
 	super initializePresenters.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotDependencyPresenter >> name: aName [
 	
 	projectName text: aName.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotDependencyPresenter >> repositoryUrl: aString [ 
 	
 	projectRepository text: aString.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPakbotDependencyPresenter >> setInitialValues [
 
 	projectName text: self dependency name.
@@ -87,12 +89,12 @@ PBPakbotDependencyPresenter >> setInitialValues [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotDependencyPresenter >> title [
 	^ 'Pakbot Project'
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PBPakbotDependencyPresenter >> updateDependency [
 
 	self dependency ifNil: [ dependency := self buildDependency. ^ self ].
@@ -103,7 +105,7 @@ PBPakbotDependencyPresenter >> updateDependency [
 		version: projectVersion text
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotDependencyPresenter >> version: aString [ 
 	
 	projectVersion text: aString.

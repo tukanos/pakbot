@@ -1,14 +1,16 @@
 Class {
-	#name : #Seaside31BasedTest,
-	#superclass : #RepositoryBasedTest,
+	#name : 'Seaside31BasedTest',
+	#superclass : 'RepositoryBasedTest',
 	#instVars : [
 		'seaside31Dependency',
 		'seaside31PackageVersion'
 	],
-	#category : #'CargoPackageManager-FailingTests-Functional'
+	#category : 'CargoPackageManager-FailingTests-Functional',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'Functional'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 Seaside31BasedTest >> setUp [
 	super setUp.
 	seaside31PackageVersion := self packageVersions

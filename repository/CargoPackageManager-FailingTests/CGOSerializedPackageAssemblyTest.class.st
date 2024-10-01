@@ -2,12 +2,14 @@
 A SerializedPackageAssemblyTest is a test class for testing the behavior of SerializedPackageAssembly
 "
 Class {
-	#name : #CGOSerializedPackageAssemblyTest,
-	#superclass : #TestCase,
-	#category : #'CargoPackageManager-FailingTests-Model-Serialization'
+	#name : 'CGOSerializedPackageAssemblyTest',
+	#superclass : 'TestCase',
+	#category : 'CargoPackageManager-FailingTests-Model-Serialization',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'Model-Serialization'
 }
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 CGOSerializedPackageAssemblyTest >> assemblyFoo [
 	| dictionary |
 	dictionary := Dictionary
@@ -19,7 +21,7 @@ CGOSerializedPackageAssemblyTest >> assemblyFoo [
 
 ]
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 CGOSerializedPackageAssemblyTest >> assemblyFooStonString [
 	^ 'CGOPackageAssembly {
 	#description : '''',
@@ -35,7 +37,7 @@ CGOSerializedPackageAssemblyTest >> assemblyFooStonString [
 }'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSerializedPackageAssemblyTest >> testFromSton [
 	| pkgAssembly |
 	pkgAssembly := STON fromString: self assemblyFooStonString.
@@ -48,7 +50,7 @@ CGOSerializedPackageAssemblyTest >> testFromSton [
 	self assert: ((pkgAssembly parts collect: #class) anySatisfy: [ :class | class = PBPackageDependency ])
 ]
 
-{ #category : #'tests-initialization' }
+{ #category : 'tests-initialization' }
 CGOSerializedPackageAssemblyTest >> testInitializeWith [
 	| result |
 	result := self assemblyFoo asSerializablePackageVersion.
@@ -57,7 +59,7 @@ CGOSerializedPackageAssemblyTest >> testInitializeWith [
 		equals: {#bar->#(). #baz->#('=1.1.0')}
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSerializedPackageAssemblyTest >> testStonOn [
 	| serializedAssembly |
 	serializedAssembly := self assemblyFoo asSerializablePackageVersion.

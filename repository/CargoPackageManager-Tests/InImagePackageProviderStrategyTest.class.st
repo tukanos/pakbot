@@ -2,20 +2,22 @@
 An InImagePackageProviderStrategyTest is a test class for testing the behavior of InImagePackageProviderStrategy
 "
 Class {
-	#name : #InImagePackageProviderStrategyTest,
-	#superclass : #TestCase,
+	#name : 'InImagePackageProviderStrategyTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'strategy'
 	],
-	#category : 'CargoPackageManager-Tests-Model'
+	#category : 'CargoPackageManager-Tests-Model',
+	#package : 'CargoPackageManager-Tests',
+	#tag : 'Model'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 InImagePackageProviderStrategyTest >> setUp [
 	strategy := CGOInImagePackageProviderStrategy new
 ]
 
-{ #category : #'tests-querying' }
+{ #category : 'tests-querying' }
 InImagePackageProviderStrategyTest >> testPackageNamed [
 	| package |
 	package := strategy packageNamed: 'foo'.
@@ -25,7 +27,7 @@ InImagePackageProviderStrategyTest >> testPackageNamed [
 		
 ]
 
-{ #category : #'tests-querying' }
+{ #category : 'tests-querying' }
 InImagePackageProviderStrategyTest >> testVirtualPackageNamed [
 	| package |
 	package := strategy virtualPackageNamed: 'foo'.

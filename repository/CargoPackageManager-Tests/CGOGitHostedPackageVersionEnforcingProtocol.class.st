@@ -3,30 +3,32 @@ Set up of credentials on CI infrastructure is not always easy but mandatory to r
 To avoid to force the URL change in tests, this class will just rewrite the reposiory URL to ensure an https url or a SSH url according to useHttps url flag.
 "
 Class {
-	#name : #CGOGitHostedPackageVersionEnforcingProtocol,
-	#superclass : #CGOGitHostedPackageVersion,
+	#name : 'CGOGitHostedPackageVersionEnforcingProtocol',
+	#superclass : 'CGOGitHostedPackageVersion',
 	#classVars : [
 		'useHttpsUrl'
 	],
-	#category : #'CargoPackageManager-Tests-SCM'
+	#category : 'CargoPackageManager-Tests-SCM',
+	#package : 'CargoPackageManager-Tests',
+	#tag : 'SCM'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOGitHostedPackageVersionEnforcingProtocol class >> initialize [
 	self useHttpsUrl
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 CGOGitHostedPackageVersionEnforcingProtocol class >> useHttpsUrl [
 	useHttpsUrl := true
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 CGOGitHostedPackageVersionEnforcingProtocol class >> useSshUrl [
 	useHttpsUrl := false
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 CGOGitHostedPackageVersionEnforcingProtocol >> httpUrlFrom: aString [ 
 	| matcher |
 	matcher := 'git@((\w|\d|\.)+)\:(\w+)/(\w+).git' asRegex.
@@ -36,7 +38,7 @@ CGOGitHostedPackageVersionEnforcingProtocol >> httpUrlFrom: aString [
 		
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOGitHostedPackageVersionEnforcingProtocol >> repositoryUrl: gitUrlString	subdirectory: directoryName	packageName: pkgName commitish: commitOrTag [
 	repository:= PBGitRepository 
 		repositoryUrl: (useHttpsUrl 
@@ -47,7 +49,7 @@ CGOGitHostedPackageVersionEnforcingProtocol >> repositoryUrl: gitUrlString	subdi
 	commitish := commitOrTag 
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 CGOGitHostedPackageVersionEnforcingProtocol >> sshUrlFrom: aString [ 
 	| matcher |
 	matcher := 'https\://((\w|\d|\.)+)/(.+)' asRegex.

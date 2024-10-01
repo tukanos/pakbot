@@ -3,8 +3,8 @@ I display and allow edition of package details such as the source code reference
 I also use the package dependencies view.
 "
 Class {
-	#name : #CGOPackageDetailsView,
-	#superclass : #PBLoadableUnitPanel,
+	#name : 'CGOPackageDetailsView',
+	#superclass : 'PBLoadableUnitPanel',
 	#instVars : [
 		'dependenciesView',
 		'provisionsInputField',
@@ -15,20 +15,21 @@ Class {
 	#classInstVars : [
 		'platformRequirementWidget'
 	],
-	#category : #'CargoPackageManager-UI'
+	#category : 'CargoPackageManager-UI',
+	#package : 'CargoPackageManager-UI'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 CGOPackageDetailsView class >> example [
 	^ self openOn: (PBPackage example)
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 CGOPackageDetailsView >> addPlatformRequirementTagsTo: morph [
 	self ongoingPackageUnit platformRequirements do: [ :string | morph addMorph: (self tagFactory text: string asMorph) morph ]
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 CGOPackageDetailsView >> buildPlatformTagsMorph [
 	| morph |
 	morph := Morph new
@@ -40,7 +41,7 @@ CGOPackageDetailsView >> buildPlatformTagsMorph [
 	^ morph
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 CGOPackageDetailsView >> defaultLayout [
 	^ SpBoxLayout newTopToBottom 
 		add: (SpGridLayout build: [ :builder |
@@ -55,12 +56,12 @@ CGOPackageDetailsView >> defaultLayout [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageDetailsView >> dependenciesView [
 	^ dependenciesView
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 CGOPackageDetailsView >> editPlatformRequirements [
 	| requirementsString |
 	requirementsString := UIManager default
@@ -78,12 +79,12 @@ CGOPackageDetailsView >> editPlatformRequirements [
 	self updatePlatformRequirementsMorph
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackageDetailsView >> initialExtent [
 	 ^ (800.0@320.0)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackageDetailsView >> initializePresenter [
 	super initializePresenter.
 	editPlatformRequirementsButton action: [ self editPlatformRequirements ].
@@ -93,7 +94,7 @@ CGOPackageDetailsView >> initializePresenter [
 	self layout: self defaultLayout.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackageDetailsView >> initializeWidgets [
 	dependenciesView := self instantiate: CGOPackageDependenciesView on: self ongoingPackageUnit.
 	provisionsInputField := self newTextInput.
@@ -106,12 +107,12 @@ CGOPackageDetailsView >> initializeWidgets [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageDetailsView >> ongoingPackageUnit [
 	^ self model
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackageDetailsView >> refreshWidgetValues [
 	provisionsInputField text: (self ongoingPackageUnit provisions
 		ifEmpty: [ '' ]
@@ -120,13 +121,13 @@ CGOPackageDetailsView >> refreshWidgetValues [
 	platformRequirementWidget := self buildPlatformTagsMorph asSpecAdapter
 ]
 
-{ #category : #'updating - ui' }
+{ #category : 'updating - ui' }
 CGOPackageDetailsView >> updatePlatformRequirementsMorph [
 	platformRequirementWidget morph removeAllMorphs.
 	self addPlatformRequirementTagsTo: platformRequirementWidget morph
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 CGOPackageDetailsView >> updateProvisions [
 	| provisions |
 	provisions := (Character space split: provisionsInputField text) 

@@ -1,6 +1,6 @@
-Extension { #name : #PBPakbotProjectDependency }
+Extension { #name : 'PBPakbotProjectDependency' }
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PBPakbotProjectDependency >> newEditPanel [
 	^ PBPakbotDependencyPanel on: self
 ]

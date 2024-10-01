@@ -1,6 +1,6 @@
-Extension { #name : #PBAbstractDependency }
+Extension { #name : 'PBAbstractDependency' }
 
-{ #category : #'*Pakbot-Browser' }
+{ #category : '*Pakbot-Browser' }
 PBAbstractDependency >> statusIconName [
 	^ self isInstalled
 		ifTrue: [ #package ]

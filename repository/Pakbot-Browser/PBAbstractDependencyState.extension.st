@@ -1,6 +1,6 @@
-Extension { #name : #PBAbstractDependencyState }
+Extension { #name : 'PBAbstractDependencyState' }
 
-{ #category : #'*Pakbot-Browser' }
+{ #category : '*Pakbot-Browser' }
 PBAbstractDependencyState >> nodesInResolutionTree [
 	
 	^ dependency subresolutions

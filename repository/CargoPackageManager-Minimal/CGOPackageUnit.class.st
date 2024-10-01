@@ -2,17 +2,19 @@
 I represent a package leaf, i.e., I do not contain another package. I have dependencies.
 "
 Class {
-	#name : #CGOPackageUnit,
-	#superclass : #CGOPackageVersion,
+	#name : 'CGOPackageUnit',
+	#superclass : 'CGOPackageVersion',
 	#instVars : [
 		'dependencies',
 		'provisions',
 		'platformRequirements'
 	],
-	#category : #'CargoPackageManager-Minimal-Model'
+	#category : 'CargoPackageManager-Minimal-Model',
+	#package : 'CargoPackageManager-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #utility }
+{ #category : 'utility' }
 CGOPackageUnit class >> provisionsFromListOfProvisionStrings: aListOfProvisionStrings [
 	" example: self provisionsFromListOfProvisionStrings: #('A@2.0' 'B') "
 	aListOfProvisionStrings ifNil: [ ^ #() ].
@@ -26,22 +28,22 @@ CGOPackageUnit class >> provisionsFromListOfProvisionStrings: aListOfProvisionSt
 					ifNotNil: [ pkgVersionRef versionNumber ]) ]
 ]
 
-{ #category : #serialization }
+{ #category : 'serialization' }
 CGOPackageUnit class >> stonName [
 	^ #'PackageUnit'
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 CGOPackageUnit >> asSerializablePackageVersion [
 	^ CGOSerializedPackageUnit from: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageUnit >> dependencies [
 	^ dependencies
 ]
 
-{ #category : #'initialization - private' }
+{ #category : 'initialization - private' }
 CGOPackageUnit >> dependenciesFrom: aDictionary [
 	^ aDictionary 
 		at: #dependencies
@@ -49,12 +51,12 @@ CGOPackageUnit >> dependenciesFrom: aDictionary [
 		ifAbsent: #()
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGOPackageUnit >> fitsPlatformRequirements [
 	^ Cargo platformAttributes includesAll: platformRequirements
 ]
 
-{ #category : #ston }
+{ #category : 'ston' }
 CGOPackageUnit >> fromSton: stonReader [
 	"Decode the specific PackageVersion serialization format."
 	| serializedPkgVersion |
@@ -62,7 +64,7 @@ CGOPackageUnit >> fromSton: stonReader [
 	serializedPkgVersion flushIn: self.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackageUnit >> initializeFrom: aDictionary [
 	super initializeFrom: aDictionary.
 	dependencies := self dependenciesFrom: aDictionary.
@@ -71,7 +73,7 @@ CGOPackageUnit >> initializeFrom: aDictionary [
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackageUnit >> initializeFromOngoing: aCGOOngoingPackageUnit project: aCGOProject [
 	super initializeFromOngoing: aCGOOngoingPackageUnit project: aCGOProject.
 	self flag: 'todo'.
@@ -80,17 +82,17 @@ CGOPackageUnit >> initializeFromOngoing: aCGOOngoingPackageUnit project: aCGOPro
 	provisions.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGOPackageUnit >> isUnit [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageUnit >> platformRequirements [
 	^ platformRequirements
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 CGOPackageUnit >> printOn: aStream [
 	aStream 
 		<< self name 
@@ -99,7 +101,7 @@ CGOPackageUnit >> printOn: aStream [
 		<< ' (unit)'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CGOPackageUnit >> provides: aVirtualPackageVersionReference [
 	^ provisions 
 		detect: [ :provision | | pkgVersionRef |
@@ -112,12 +114,12 @@ CGOPackageUnit >> provides: aVirtualPackageVersionReference [
 		ifNone: [ false ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOPackageUnit >> provisions [
 	^ provisions
 ]
 
-{ #category : #'initialization - private' }
+{ #category : 'initialization - private' }
 CGOPackageUnit >> provisionsFrom: aDictionary [
 	^ aDictionary 
 		at: #provisions 
@@ -126,7 +128,7 @@ CGOPackageUnit >> provisionsFrom: aDictionary [
 
 ]
 
-{ #category : #ston }
+{ #category : 'ston' }
 CGOPackageUnit >> stonOn: stonWriter [
 	self asSerializablePackageVersion stonOn: stonWriter
 ]

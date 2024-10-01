@@ -1,16 +1,18 @@
 Class {
-	#name : #PBCreateProjectDialog,
-	#superclass : #ITOptionDialog,
-	#category : #'CargoPackageManager-UI-NewProject'
+	#name : 'PBCreateProjectDialog',
+	#superclass : 'ITOptionDialog',
+	#category : 'CargoPackageManager-UI-NewProject',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'NewProject'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBCreateProjectDialog class >> example [
 	<example>
 	self new openDialogWithSpec
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBCreateProjectDialog >> initialize [
 	panels := {
 		PBNewProjectPresenter new.

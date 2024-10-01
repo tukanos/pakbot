@@ -1,13 +1,14 @@
 Class {
-	#name : #CGOPackageDependencyUpdaterTest,
-	#superclass : #Object,
+	#name : 'CGOPackageDependencyUpdaterTest',
+	#superclass : 'Object',
 	#instVars : [
 		'manifests'
 	],
-	#category : 'CargoPackageManager-Utils-FailingTests'
+	#category : 'CargoPackageManager-Utils-FailingTests',
+	#package : 'CargoPackageManager-Utils-FailingTests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageDependencyUpdaterTest >> testShouldGetAllCurrentDependenciesOfPackageUnit [
 	| deps |
 	
@@ -18,7 +19,7 @@ CGOPackageDependencyUpdaterTest >> testShouldGetAllCurrentDependenciesOfPackageU
 		hasSameElements: #(#OneDependency #NoDependency)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageDependencyUpdaterTest >> testShouldGetStaticAndManuallyResolvedDependencies [
 	| deps |
 	
@@ -29,7 +30,7 @@ CGOPackageDependencyUpdaterTest >> testShouldGetStaticAndManuallyResolvedDepende
 		hasSameElements: deps
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageDependencyUpdaterTest >> testShouldGetStaticAndManuallyResolvedDependenciesWhenNoIgnoredDependency [
 	| deps |
 	

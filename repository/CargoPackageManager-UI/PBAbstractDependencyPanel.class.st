@@ -1,25 +1,27 @@
 Class {
-	#name : #PBAbstractDependencyPanel,
-	#superclass : #SpPresenterWithModel,
+	#name : 'PBAbstractDependencyPanel',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'form'
 	],
-	#category : #'CargoPackageManager-UI-NewDependency'
+	#category : 'CargoPackageManager-UI-NewDependency',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'NewDependency'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBAbstractDependencyPanel class >> isAbstract [
 
 	^ self name = #PBAbstractDependencyPanel
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PBAbstractDependencyPanel >> buildDependency [
 
 	^ self subclassResponsibility 
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBAbstractDependencyPanel >> defaultLayout [
 	
 	^ SpBoxLayout newTopToBottom 
@@ -27,18 +29,18 @@ PBAbstractDependencyPanel >> defaultLayout [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractDependencyPanel >> dependency [
 	^ self model
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBAbstractDependencyPanel >> initializeForm [
 
 	self subclassResponsibility 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBAbstractDependencyPanel >> initializeWidgets [
 	self initializeForm.
 
@@ -47,12 +49,12 @@ PBAbstractDependencyPanel >> initializeWidgets [
 	self layout: self defaultLayout.
 ]
 
-{ #category : #validation }
+{ #category : 'validation' }
 PBAbstractDependencyPanel >> isValid [
 	^ form isValid
 ]
 
-{ #category : #opening }
+{ #category : 'opening' }
 PBAbstractDependencyPanel >> openDialogOnAccept: acceptBlock onCancel: cancelBlock [
 	| dialog |
 	
@@ -68,13 +70,13 @@ PBAbstractDependencyPanel >> openDialogOnAccept: acceptBlock onCancel: cancelBlo
 	^ dialog
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBAbstractDependencyPanel >> setInitialValues [
 
 	self subclassResponsibility 
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PBAbstractDependencyPanel >> updateDependency [
 	^ self subclassResponsibility 
 ]

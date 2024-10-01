@@ -1,10 +1,12 @@
 Class {
-	#name : #SeasideTestsEmailSpec,
-	#superclass : #Seaside31PackageSpec,
-	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Common'
+	#name : 'SeasideTestsEmailSpec',
+	#superclass : 'Seaside31PackageSpec',
+	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Common',
+	#package : 'CargoPackageManager-TestRessources',
+	#tag : 'SeasideDesc-Common'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsEmailSpec >> dependencies [
 	^ { #'Seaside-Email' -> #('=3.1') .
 		#'Seaside-Tests-Core' -> #('=3.1') .
@@ -15,17 +17,17 @@ SeasideTestsEmailSpec >> dependencies [
 		yourself."
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsEmailSpec >> name [
 	^ 'Seaside-Tests-Email'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsEmailSpec >> repositories [
 	^ #('http://smalltalkhub.com/mc/Seaside/Seaside31/main')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsEmailSpec >> sourcePackageVersion [
 	^ { #backend -> #monticello .
 		#repositoryUrl -> 'http://smalltalkhub.com/mc/Seaside/Seaside31/main' .
@@ -33,7 +35,7 @@ SeasideTestsEmailSpec >> sourcePackageVersion [
 		#versionString -> 'JohnDoe.0' } asDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideTestsEmailSpec >> version [
 	^  '3.1.0'
 ]

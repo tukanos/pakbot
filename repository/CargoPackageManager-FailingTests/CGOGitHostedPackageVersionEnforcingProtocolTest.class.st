@@ -1,10 +1,12 @@
 Class {
-	#name : #CGOGitHostedPackageVersionEnforcingProtocolTest,
-	#superclass : #TestCase,
-	#category : 'CargoPackageManager-FailingTests-SCM'
+	#name : 'CGOGitHostedPackageVersionEnforcingProtocolTest',
+	#superclass : 'TestCase',
+	#category : 'CargoPackageManager-FailingTests-SCM',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'SCM'
 }
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 CGOGitHostedPackageVersionEnforcingProtocolTest >> assertSrcPackageVersion: srcPackageVersion repositoryUrlEquals: aUrl [
 	^ self
 		assert:
@@ -13,17 +15,17 @@ CGOGitHostedPackageVersionEnforcingProtocolTest >> assertSrcPackageVersion: srcP
 		equals: aUrl
 ]
 
-{ #category : #input }
+{ #category : 'input' }
 CGOGitHostedPackageVersionEnforcingProtocolTest >> gitHttpsUrl [
 	^ 'https://github.com/demarey/cargo'
 ]
 
-{ #category : #input }
+{ #category : 'input' }
 CGOGitHostedPackageVersionEnforcingProtocolTest >> gitSshUrl [
 	^ 'git@github.com:demarey/cargo.git'
 ]
 
-{ #category : #input }
+{ #category : 'input' }
 CGOGitHostedPackageVersionEnforcingProtocolTest >> srcPackageVersionWithUrl: url [
 	^ CGOGitHostedPackageVersionEnforcingProtocol
 		repositoryUrl: url
@@ -32,7 +34,7 @@ CGOGitHostedPackageVersionEnforcingProtocolTest >> srcPackageVersionWithUrl: url
 		commitish: 'b9ee048f40e500198120aedf8db60266caa9ece9'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOGitHostedPackageVersionEnforcingProtocolTest >> testShouldGetHttpsUrlWhenHttpsUrlProvidedAndUseHttpsIsTrue [
 	| srcPackageVersion |
 	self useHttpsUrl.
@@ -42,7 +44,7 @@ CGOGitHostedPackageVersionEnforcingProtocolTest >> testShouldGetHttpsUrlWhenHttp
 		repositoryUrlEquals: self gitHttpsUrl
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOGitHostedPackageVersionEnforcingProtocolTest >> testShouldGetHttpsUrlWhenSshUrlProvidedAndUseHttpsIsTrue [
 	| srcPackageVersion |
 	self useHttpsUrl.
@@ -52,7 +54,7 @@ CGOGitHostedPackageVersionEnforcingProtocolTest >> testShouldGetHttpsUrlWhenSshU
 		repositoryUrlEquals: self gitHttpsUrl
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOGitHostedPackageVersionEnforcingProtocolTest >> testShouldGetSshUrlWhenHttpUrlProvidedAndUseHttpsIsFalse [
 	| srcPackageVersion |
 	self useSshUrl.
@@ -62,7 +64,7 @@ CGOGitHostedPackageVersionEnforcingProtocolTest >> testShouldGetSshUrlWhenHttpUr
 		repositoryUrlEquals: self gitSshUrl
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOGitHostedPackageVersionEnforcingProtocolTest >> testShouldGetSshUrlWhenSshUrlProvidedAndUseHttpsIsFalse [
 	| srcPackageVersion |
 	self useSshUrl.
@@ -72,12 +74,12 @@ CGOGitHostedPackageVersionEnforcingProtocolTest >> testShouldGetSshUrlWhenSshUrl
 		repositoryUrlEquals: self gitSshUrl
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 CGOGitHostedPackageVersionEnforcingProtocolTest >> useHttpsUrl [
 	CGOGitHostedPackageVersionEnforcingProtocol useHttpsUrl
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 CGOGitHostedPackageVersionEnforcingProtocolTest >> useSshUrl [
 	CGOGitHostedPackageVersionEnforcingProtocol useSshUrl
 ]

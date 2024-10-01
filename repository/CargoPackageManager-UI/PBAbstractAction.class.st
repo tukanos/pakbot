@@ -2,20 +2,22 @@
 I execute an action by taking care of capturing errors and provide them to the default error visitor 
 "
 Class {
-	#name : #PBAbstractAction,
-	#superclass : #Object,
+	#name : 'PBAbstractAction',
+	#superclass : 'Object',
 	#instVars : [
 		'project'
 	],
-	#category : #'CargoPackageManager-UI-Actions'
+	#category : 'CargoPackageManager-UI-Actions',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Actions'
 }
 
-{ #category : #execution }
+{ #category : 'execution' }
 PBAbstractAction >> doExecute [
 	^ self subclassResponsibility 
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 PBAbstractAction >> execute [
 
 	[ ^ self doExecute ]
@@ -23,7 +25,7 @@ PBAbstractAction >> execute [
 		do: [ :ex | ex acceptVisitor: PBErrorVisitor default ]
 ]
 
-{ #category : #acccessing }
+{ #category : 'acccessing' }
 PBAbstractAction >> project: aProject [
 	project := aProject
 ]

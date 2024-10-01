@@ -2,15 +2,17 @@
 I'm an UI representation of a Packbot package
 "
 Class {
-	#name : #PBPackageUIItem,
-	#superclass : #PBAbstractUIItem,
+	#name : 'PBPackageUIItem',
+	#superclass : 'PBAbstractUIItem',
 	#instVars : [
 		'package'
 	],
-	#category : #'Pakbot-Browser-Items'
+	#category : 'Pakbot-Browser-Items',
+	#package : 'Pakbot-Browser',
+	#tag : 'Items'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBPackageUIItem class >> forPackage: aPBPackage presenter: aSpPresenter [
 
 	^ self new
@@ -19,13 +21,13 @@ PBPackageUIItem class >> forPackage: aPBPackage presenter: aSpPresenter [
 		yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBPackageUIItem >> canBeRemovedFromAssembly [
 	
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageUIItem >> commands [
 	^ { 
 		PBBrowsePackageCommand .
@@ -36,12 +38,12 @@ PBPackageUIItem >> commands [
 	} collect: [ :cmd | cmd forSpecContext: presenter ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageUIItem >> displayName [
 	^ package name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageUIItem >> icon [
 	| icon |
 	
@@ -53,39 +55,39 @@ PBPackageUIItem >> icon [
 						yourself) ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageUIItem >> iconName [
 	^ #package
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBPackageUIItem >> isInstalled [
 	
 	^ package isInstalled
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBPackageUIItem >> isPackage [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageUIItem >> items [
 	^ #()
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageUIItem >> package: aPBPackage [ 
 	package := aPBPackage
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageUIItem >> pakbotItem [
 	
 	^ package
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageUIItem >> project [
 	^ package project
 ]

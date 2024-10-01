@@ -2,18 +2,20 @@
 Command to import an existing package as a Pakbot package unit
 "
 Class {
-	#name : #PBImportPackageInProjectCommand,
-	#superclass : #PBProjectCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBImportPackageInProjectCommand',
+	#superclass : 'PBProjectCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #'accessing - defaults' }
+{ #category : 'accessing - defaults' }
 PBImportPackageInProjectCommand class >> defaultDescription [
 
 	^ 'Import exising system packages into the project.'
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBImportPackageInProjectCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #smallLoadProject;
@@ -22,14 +24,14 @@ PBImportPackageInProjectCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 PBImportPackageInProjectCommand >> execute [
 
 	self project importPackagesNamed: (self packagesToImport collect: #name).
 	self refreshPresenterKeepingSelection.
 ]
 
-{ #category : #interaction }
+{ #category : 'interaction' }
 PBImportPackageInProjectCommand >> packagesToImport [
 
 	| chooser |

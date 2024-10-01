@@ -8,12 +8,13 @@ Gofer new smalltalkhubUser: 'ObjectProfile'
 Seaside31Visualization new open
 "
 Class {
-	#name : #CGOSeaside31Visualization,
-	#superclass : #Object,
-	#category : #'CargoPackageManager-Spec'
+	#name : 'CGOSeaside31Visualization',
+	#superclass : 'Object',
+	#category : 'CargoPackageManager-Spec',
+	#package : 'CargoPackageManager-Spec'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CGOSeaside31Visualization >> open [
 | package seaside31Dependency resolution builder  |
 	package := Seaside31Spec new buildPackage.

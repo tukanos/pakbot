@@ -2,12 +2,13 @@
 I display and allow edition of dependencies of the provided PackageVersion.
 "
 Class {
-	#name : #CGOPackageDependenciesView,
-	#superclass : #CGOPackageListEditor,
-	#category : #'CargoPackageManager-UI'
+	#name : 'CGOPackageDependenciesView',
+	#superclass : 'CGOPackageListEditor',
+	#category : 'CargoPackageManager-UI',
+	#package : 'CargoPackageManager-UI'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 CGOPackageDependenciesView class >> example [
 	| package registry project |
 	
@@ -21,7 +22,7 @@ CGOPackageDependenciesView class >> example [
 	^ (self on: package) openWithSpec 
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 CGOPackageDependenciesView >> addAction [
 	
 	PBNewDependencyDialog new 
@@ -31,12 +32,12 @@ CGOPackageDependenciesView >> addAction [
 		onCancel: [ "Nothing" ]
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 CGOPackageDependenciesView >> addButtonHelpString [
 	^ 'Add a new dependency'
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 CGOPackageDependenciesView >> editAction [
 	"only one fixed constraint managed for now"
 	| dependency |
@@ -47,27 +48,27 @@ CGOPackageDependenciesView >> editAction [
 		onCancel: [  ]
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 CGOPackageDependenciesView >> editButtonHelpString [
 	^ 'Edit the dependency'
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 CGOPackageDependenciesView >> packageListEditorLabel [
 	^ 'Dependencies:'
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 CGOPackageDependenciesView >> removeAction: aCGOPackageDependency [ 
 	self packageVersion removeDependency: aCGOPackageDependency
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 CGOPackageDependenciesView >> removeButtonHelpString [
 	^ 'Remove the dependency'
 ]
 
-{ #category : #'private - building' }
+{ #category : 'private - building' }
 CGOPackageDependenciesView >> roots [
 	
 	^ self packageVersion dependencies

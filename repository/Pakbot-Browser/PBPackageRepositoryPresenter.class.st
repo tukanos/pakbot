@@ -2,16 +2,18 @@
 A small UI to search published projects and their available versions
 "
 Class {
-	#name : #PBPackageRepositoryPresenter,
-	#superclass : #SpPresenterWithModel,
+	#name : 'PBPackageRepositoryPresenter',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'projectList',
 		'versionList'
 	],
-	#category : #'Pakbot-Browser-Repository'
+	#category : 'Pakbot-Browser-Repository',
+	#package : 'Pakbot-Browser',
+	#tag : 'Repository'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPackageRepositoryPresenter >> buildContextMenu [
 		
 	^ SpMenuPresenter new 
@@ -20,7 +22,7 @@ PBPackageRepositoryPresenter >> buildContextMenu [
 			yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPackageRepositoryPresenter >> connectPresenters [
 
 	projectList
@@ -28,7 +30,7 @@ PBPackageRepositoryPresenter >> connectPresenters [
 		transform: [ :projectName | self repository versionsOf: projectName ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBPackageRepositoryPresenter >> defaultLayout [ 
 
 	^ SpBoxLayout newLeftToRight
@@ -38,7 +40,7 @@ PBPackageRepositoryPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPackageRepositoryPresenter >> initializePresenters [ 
 	projectList := self newFilteringList
 		items: self repository packages;
@@ -51,7 +53,7 @@ PBPackageRepositoryPresenter >> initializePresenters [
 		whenActivatedDo: [ self openProjectBrowserOnSelection ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPackageRepositoryPresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
@@ -59,19 +61,19 @@ PBPackageRepositoryPresenter >> initializeWindow: aWindowPresenter [
 		initialExtent: 500@300
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PBPackageRepositoryPresenter >> inspectSelectedProject [
 
 	(PBProjectVersion fromStonString: self selectedProjectMetadataFile contents) inspect.
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PBPackageRepositoryPresenter >> inspectSelectedProjectMetadataFile [
 
 	self selectedProjectMetadataFile inspect.
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PBPackageRepositoryPresenter >> openProjectBrowserOnSelection [
 
 	| project version projectVersion registry |
@@ -86,12 +88,12 @@ PBPackageRepositoryPresenter >> openProjectBrowserOnSelection [
 		startWithoutActions.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRepositoryPresenter >> repository [
 	^ self model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageRepositoryPresenter >> selectedProjectMetadataFile [
 
 	| project version |

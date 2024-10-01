@@ -2,12 +2,14 @@
 Remove the assembly from the project
 "
 Class {
-	#name : #PBDeleteAssemblyCommand,
-	#superclass : #PBAssemblyCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBDeleteAssemblyCommand',
+	#superclass : 'PBAssemblyCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBDeleteAssemblyCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #delete;
@@ -16,7 +18,7 @@ PBDeleteAssemblyCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBDeleteAssemblyCommand >> execute [
 
 	assembly remove

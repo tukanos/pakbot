@@ -1,13 +1,15 @@
 Class {
-	#name : #CGOSolverSeasideTest,
-	#superclass : #RepositoryBasedTest,
+	#name : 'CGOSolverSeasideTest',
+	#superclass : 'RepositoryBasedTest',
 	#instVars : [
 		'solver'
 	],
-	#category : #'CargoPackageManager-FailingTests-Solver'
+	#category : 'CargoPackageManager-FailingTests-Solver',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'Solver'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 CGOSolverSeasideTest >> setUp [
 	super setUp.
 	solver := PBSolver new
@@ -16,13 +18,13 @@ CGOSolverSeasideTest >> setUp [
 	Cargo platformAttributes: #(#squeakCommon #pharo #'pharo4.x' #'pharo4.0.x').
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 CGOSolverSeasideTest >> tearDown [
 	super tearDown.
 	Cargo platformAttributes: nil
 ]
 
-{ #category : #'tests - packages' }
+{ #category : 'tests - packages' }
 CGOSolverSeasideTest >> testCanSolvePackageWithManyCompatibleConstraints [
 	| testPackage dependency version resolution |
 	
@@ -41,7 +43,7 @@ CGOSolverSeasideTest >> testCanSolvePackageWithManyCompatibleConstraints [
 		equals: version
 ]
 
-{ #category : #'tests - packages' }
+{ #category : 'tests - packages' }
 CGOSolverSeasideTest >> testCanSolvePackageWithSpecifiedVersion [
 	| testPackage dependency  version resolution |
 	testPackage := #'JQuery-Core'.
@@ -59,7 +61,7 @@ CGOSolverSeasideTest >> testCanSolvePackageWithSpecifiedVersion [
 		equals: version
 ]
 
-{ #category : #'tests - packages' }
+{ #category : 'tests - packages' }
 CGOSolverSeasideTest >> testCanSolvePackageWithoutSpecifiedVersion [
 	| testPackage dependency resolution |
 	
@@ -76,7 +78,7 @@ CGOSolverSeasideTest >> testCanSolvePackageWithoutSpecifiedVersion [
 		equals: '3.1.0' asSemanticVersion
 ]
 
-{ #category : #'tests - virtual packages' }
+{ #category : 'tests - virtual packages' }
 CGOSolverSeasideTest >> testCanSolveVirtualPackageWithSpecifiedVersion [
 	| testPackage version dependency resolution packageVersion |
 	
@@ -99,7 +101,7 @@ CGOSolverSeasideTest >> testCanSolveVirtualPackageWithSpecifiedVersion [
 
 ]
 
-{ #category : #'tests - virtual packages' }
+{ #category : 'tests - virtual packages' }
 CGOSolverSeasideTest >> testCanSolveVirtualPackageWithoutSpecifiedVersion [
 	| testPackage dependency resolution packageVersion |
 	
@@ -120,7 +122,7 @@ CGOSolverSeasideTest >> testCanSolveVirtualPackageWithoutSpecifiedVersion [
 		equals: '3.1' asSemanticVersion
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSolverSeasideTest >> testDefaultVersionIsAddedToConstraintsWhenNoConstraintAreSpecified [
 	| resolution testPackage |
 	testPackage := #'Seaside-Pharo-Flow'.
@@ -135,7 +137,7 @@ CGOSolverSeasideTest >> testDefaultVersionIsAddedToConstraintsWhenNoConstraintAr
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSolverSeasideTest >> testSolvePackageWithNonFixedConstraintDependencyRaisesUnresolvedDependency [
 	| testPackage dependency |
 	testPackage := #'JQuery-Core'.
@@ -149,7 +151,7 @@ CGOSolverSeasideTest >> testSolvePackageWithNonFixedConstraintDependencyRaisesUn
 		raise: PBUnresolvedDependency.
 ]
 
-{ #category : #'tests - packages' }
+{ #category : 'tests - packages' }
 CGOSolverSeasideTest >> testSolvingADependencyWithATransitiveDependencySolvesBothDependencies [
 	| dependencyToSolve resolution |
 	dependencyToSolve := PBPackageDependency 
@@ -164,7 +166,7 @@ CGOSolverSeasideTest >> testSolvingADependencyWithATransitiveDependencySolvesBot
 		equals: 2
 ]
 
-{ #category : #'tests - virtual packages' }
+{ #category : 'tests - virtual packages' }
 CGOSolverSeasideTest >> testSolvingAVirtualPackageProvidedByMoreThanOnePackageRaisesUnresolvedDependency [
 	| dependency |
 	
@@ -183,7 +185,7 @@ CGOSolverSeasideTest >> testSolvingAVirtualPackageProvidedByMoreThanOnePackageRa
 	
 ]
 
-{ #category : #'tests - virtual packages' }
+{ #category : 'tests - virtual packages' }
 CGOSolverSeasideTest >> testSolvingAVirtualPackageProvidedByNoPackageRaisesUnresolvedDependency [
 	| dependency |
 	

@@ -1,6 +1,6 @@
 Class {
-	#name : #PBImportProjectFromGitPanel,
-	#superclass : #ITOptionPanel,
+	#name : 'PBImportProjectFromGitPanel',
+	#superclass : 'ITOptionPanel',
 	#instVars : [
 		'repositoryUrlLabel',
 		'repositoryUrlInputText',
@@ -9,10 +9,12 @@ Class {
 		'spacePanel',
 		'iceErrorVisitor'
 	],
-	#category : #'CargoPackageManager-UI-NewProject'
+	#category : 'CargoPackageManager-UI-NewProject',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'NewProject'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBImportProjectFromGitPanel class >> defaultSpec [
 	<spec: #default>
 
@@ -32,7 +34,7 @@ PBImportProjectFromGitPanel class >> defaultSpec [
 				newRow: #spacePanel ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPanel >> accept [
 	| project repository |
 	[ repository := PBGitRepositoryCreator new
@@ -51,29 +53,29 @@ PBImportProjectFromGitPanel >> accept [
 	^ project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPanel >> iceErrorVisitor [
 	^ iceErrorVisitor ifNil: [ iceErrorVisitor := IceTipInteractiveErrorVisitor new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPanel >> iceErrorVisitor: aVisitor [
 	iceErrorVisitor := aVisitor 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPanel >> icon [
 
 	^ self iconNamed: #git
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBImportProjectFromGitPanel >> initializeSpacePanel [
 	"just to gain space"
 	spacePanel := self newPanel. 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBImportProjectFromGitPanel >> initializeWidgets [
 
 	self initializeSpacePanel.
@@ -93,64 +95,64 @@ PBImportProjectFromGitPanel >> initializeWidgets [
 		add: self versionInputText
 ]
 
-{ #category : #opening }
+{ #category : 'opening' }
 PBImportProjectFromGitPanel >> openDialogOnAccept: aBlockClosure onCancel: aBlockClosure2 [ 
 
 	self openDialogWithSpec
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPanel >> repositoryUrlInputText [
 	^ repositoryUrlInputText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPanel >> repositoryUrlInputText: anObject [
 	repositoryUrlInputText := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPanel >> repositoryUrlLabel [
 	^ repositoryUrlLabel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPanel >> repositoryUrlLabel: anObject [
 	repositoryUrlLabel := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPanel >> spacePanel [
 	^ spacePanel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPanel >> spacePanel: anObject [
 	spacePanel := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPanel >> title [
 
 	^ 'Import from Git'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPanel >> versionInputText [
 	^ versionInputText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPanel >> versionInputText: anObject [
 	versionInputText := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPanel >> versionLabel [
 	^ versionLabel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPanel >> versionLabel: anObject [
 	versionLabel := anObject
 ]

@@ -1,10 +1,11 @@
 Class {
-	#name : #CGOStrictResolutionPolicyTest,
-	#superclass : #TestCase,
-	#category : #'CargoPackageManager-Tests'
+	#name : 'CGOStrictResolutionPolicyTest',
+	#superclass : 'TestCase',
+	#category : 'CargoPackageManager-Tests',
+	#package : 'CargoPackageManager-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOStrictResolutionPolicyTest >> testMergeStrictResolutionPolicy [
 	| constraint1 constraint2 |
 	

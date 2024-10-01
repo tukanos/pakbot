@@ -2,15 +2,17 @@
 Abstract class for all the commands that works on packages.
 "
 Class {
-	#name : #PBPackageCommand,
-	#superclass : #PBCommand,
+	#name : 'PBPackageCommand',
+	#superclass : 'PBCommand',
 	#instVars : [
 		'package'
 	],
-	#category : #'Pakbot-Browser-Commands'
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageCommand >> package [
 
 	^ package ifNil: [ self context selectedPackage ]

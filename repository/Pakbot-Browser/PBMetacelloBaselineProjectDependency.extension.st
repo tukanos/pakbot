@@ -1,12 +1,12 @@
-Extension { #name : #PBMetacelloBaselineProjectDependency }
+Extension { #name : 'PBMetacelloBaselineProjectDependency' }
 
-{ #category : #'*Pakbot-Browser' }
+{ #category : '*Pakbot-Browser' }
 PBMetacelloBaselineProjectDependency >> iconName [
 
 	^ #komitterSmalltalkhubRemote
 ]
 
-{ #category : #'*Pakbot-Browser' }
+{ #category : '*Pakbot-Browser' }
 PBMetacelloBaselineProjectDependency >> newEditPanel [
 	
 	^ PBMetacelloBaselineDependencyPresenter on: self

@@ -2,8 +2,8 @@
 Presenter to edit Metacello Baseline project dependency.
 "
 Class {
-	#name : #PBMetacelloBaselineDependencyPresenter,
-	#superclass : #PBAbstractDependencyPresenter,
+	#name : 'PBMetacelloBaselineDependencyPresenter',
+	#superclass : 'PBAbstractDependencyPresenter',
 	#instVars : [
 		'nameInput',
 		'repositoryUrlInput',
@@ -11,10 +11,12 @@ Class {
 		'srcDirectoryInput',
 		'groupInput'
 	],
-	#category : #'Pakbot-Browser-Presenters-Dependencies'
+	#category : 'Pakbot-Browser-Presenters-Dependencies',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters-Dependencies'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBMetacelloBaselineDependencyPresenter class >> example [
 	
 	| dependency |
@@ -24,7 +26,7 @@ PBMetacelloBaselineDependencyPresenter class >> example [
 		onCancel: [ ].
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBMetacelloBaselineDependencyPresenter >> defaultLayout [
 	
 	^ SpGridLayout build: [ :builder |
@@ -38,13 +40,13 @@ PBMetacelloBaselineDependencyPresenter >> defaultLayout [
 			add:  'Group'; add: groupInput ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloBaselineDependencyPresenter >> icon [
 
 	^ self iconNamed: PBMetacelloBaselineProjectDependency iconName
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBMetacelloBaselineDependencyPresenter >> initializePresenters [ 
 
 	nameInput := (self instantiate: SpTextInputFieldWithValidationPresenter)
@@ -73,13 +75,13 @@ PBMetacelloBaselineDependencyPresenter >> initializePresenters [
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBMetacelloBaselineDependencyPresenter >> newDependency [
 	
 	^ PBMetacelloBaselineProjectDependency new
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBMetacelloBaselineDependencyPresenter >> setInitialValues [
 
 	nameInput text: self dependency name.
@@ -88,13 +90,13 @@ PBMetacelloBaselineDependencyPresenter >> setInitialValues [
 	groupInput text: self dependency packagesToLoad asArray asString.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBMetacelloBaselineDependencyPresenter >> title [
 
 	^ 'Metacello Baseline'
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PBMetacelloBaselineDependencyPresenter >> updateDependency [
 	
 	self dependency ifNil: [ dependency := self buildDependency. ^ self ].

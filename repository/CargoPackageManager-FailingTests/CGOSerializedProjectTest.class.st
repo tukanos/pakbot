@@ -1,10 +1,12 @@
 Class {
-	#name : #CGOSerializedProjectTest,
-	#superclass : #CGOTest,
-	#category : #'CargoPackageManager-FailingTests-Model-Serialization'
+	#name : 'CGOSerializedProjectTest',
+	#superclass : 'CGOTest',
+	#category : 'CargoPackageManager-FailingTests-Model-Serialization',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'Model-Serialization'
 }
 
-{ #category : #'test data' }
+{ #category : 'test data' }
 CGOSerializedProjectTest >> stonStringForExampleProject [
 	^ 'CGOProject {
 	#description : ''A simple project used for illustration.'',
@@ -21,7 +23,7 @@ CGOSerializedProjectTest >> stonStringForExampleProject [
 }'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSerializedProjectTest >> testFromSton [
 	| project |
 	
@@ -37,7 +39,7 @@ CGOSerializedProjectTest >> testFromSton [
 		hasSameElements: #('Package1' 'Package2')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSerializedProjectTest >> testFromStonTargetClass [
 	| ston |
 	ston := PBPackageVersionWriterV1 toStringPretty: 
@@ -50,7 +52,7 @@ CGOSerializedProjectTest >> testFromStonTargetClass [
 		equals: CGOProject
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOSerializedProjectTest >> testStonOn [
 	| project |
 	

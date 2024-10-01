@@ -3,12 +3,14 @@ Strategy used to solve a dependency on a virtual package, i.e. which package to 
 See subclasses for available strategies.
 "
 Class {
-	#name : #CGOVirtualPackageResolutionStrategy,
-	#superclass : #Object,
-	#category : 'CargoPackageManager-SolverStrategies'
+	#name : 'CGOVirtualPackageResolutionStrategy',
+	#superclass : 'Object',
+	#category : 'CargoPackageManager-SolverStrategies',
+	#package : 'CargoPackageManager',
+	#tag : 'SolverStrategies'
 }
 
-{ #category : #solving }
+{ #category : 'solving' }
 CGOVirtualPackageResolutionStrategy >> solve: aDependency candidates: aListOfPackageVersionReferences [
 	self subclassResponsibility
 ]

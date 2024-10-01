@@ -4,15 +4,17 @@ I represent a package version containing source code hosted on a Git server.
 - commitish allows to identify the package version. It could be either a commit id (hash) or a tag
 "
 Class {
-	#name : #CGOGitHostedPackageVersion,
-	#superclass : #CGOSourcePackageVersion,
+	#name : 'CGOGitHostedPackageVersion',
+	#superclass : 'CGOSourcePackageVersion',
 	#instVars : [
 		'commitish'
 	],
-	#category : 'CargoPackageManager-Loading'
+	#category : 'CargoPackageManager-Loading',
+	#package : 'CargoPackageManager',
+	#tag : 'Loading'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 CGOGitHostedPackageVersion class >> cargoGitRepository [
 	^ self
 		repositoryUrl: 'git@github.com:demarey/cargo.git'
@@ -21,14 +23,14 @@ CGOGitHostedPackageVersion class >> cargoGitRepository [
 		commitish: 'b9ee048f40e500198120aedf8db60266caa9ece9'
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CGOGitHostedPackageVersion class >> repositoryUrl: gitUrlString	subdirectory: directoryName	packageName: pkgName commitish: commitish [
 	^ self basicNew 
 		repositoryUrl: gitUrlString	subdirectory: directoryName	packageName: pkgName commitish: commitish;
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOGitHostedPackageVersion >> ensureIcePackageNamed: aPackageName [
 	| iceRepository |
 	iceRepository := self iceRepository.
@@ -37,12 +39,12 @@ CGOGitHostedPackageVersion >> ensureIcePackageNamed: aPackageName [
 		do: [ iceRepository addPackageNamed: aPackageName ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOGitHostedPackageVersion >> iceRepository [
 	^ repository iceRepository
 ]
 
-{ #category : #fetching }
+{ #category : 'fetching' }
 CGOGitHostedPackageVersion >> loadMetadata [
 	| iceRepository |
 	iceRepository := self iceRepository.
@@ -53,7 +55,7 @@ CGOGitHostedPackageVersion >> loadMetadata [
 		do: [ :error | PBProjectMetadataNotFound signal: error messageText ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOGitHostedPackageVersion >> mcVersion [
 	| iceSavedPackage icePackageVersion |
 	iceSavedPackage := self iceRepository packageNamed: packageName.
@@ -63,29 +65,29 @@ CGOGitHostedPackageVersion >> mcVersion [
 	^ icePackageVersion mcVersion
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGOGitHostedPackageVersion >> metadata [
 	^ self iceRepository 
 		contentOfFileNamed: self metadataPath
 		commit: commitish 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOGitHostedPackageVersion >> metadataDirectory [
 	^ repository codeDirectoryRelativePath , packageName , '.package'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOGitHostedPackageVersion >> metadataFileName [
 	^ 'package-metadata.ston'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOGitHostedPackageVersion >> metadataPath [
 	^ self metadataDirectory , '/' , self metadataFileName
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOGitHostedPackageVersion >> repositoryUrl: gitUrlString	subdirectory: directoryName	packageName: pkgName commitish: commitOrTag [
 	repository:= PBGitRepository 
 		repositoryUrl: gitUrlString
@@ -95,7 +97,7 @@ CGOGitHostedPackageVersion >> repositoryUrl: gitUrlString	subdirectory: director
 
 ]
 
-{ #category : #saving }
+{ #category : 'saving' }
 CGOGitHostedPackageVersion >> saveAndCommitWithMessage: message andMetadataString: stonString [
 	self saveWithMessage: message andMetadataString: stonString.
 	^ self iceRepository 
@@ -103,14 +105,14 @@ CGOGitHostedPackageVersion >> saveAndCommitWithMessage: message andMetadataStrin
 		andParents: { self iceRepository headCommit }
 ]
 
-{ #category : #saving }
+{ #category : 'saving' }
 CGOGitHostedPackageVersion >> saveMetadataToIndex: stonString [
 	^ self iceRepository 
 		saveContent: stonString 
 		inWorkingCopyFile: self metadataPath
 ]
 
-{ #category : #saving }
+{ #category : 'saving' }
 CGOGitHostedPackageVersion >> savePackageSourcesToIndexWithMessage: message [
 	| iceRepository newMcVersion |
 	iceRepository := self iceRepository.
@@ -121,7 +123,7 @@ CGOGitHostedPackageVersion >> savePackageSourcesToIndexWithMessage: message [
 	^ newMcVersion
 ]
 
-{ #category : #saving }
+{ #category : 'saving' }
 CGOGitHostedPackageVersion >> saveWithMessage: message andMetadataString: stonString [
 	self savePackageSourcesToIndexWithMessage: message.
 	self saveMetadataToIndex: stonString

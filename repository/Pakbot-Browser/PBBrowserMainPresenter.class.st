@@ -3,24 +3,26 @@ I'm the main presenter of Pakbot Browser.
 I present a list of projects with their details.
 "
 Class {
-	#name : #PBBrowserMainPresenter,
-	#superclass : #SpPresenter,
+	#name : 'PBBrowserMainPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'projectsTree',
 		'descriptionPanel',
 		'rootCommandsGroup',
 		'toolbar'
 	],
-	#category : #'Pakbot-Browser-Presenters'
+	#category : 'Pakbot-Browser-Presenters',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters'
 }
 
-{ #category : #building }
+{ #category : 'building' }
 PBBrowserMainPresenter class >> buildCommandsGroupWith: aPBBrowserMainPresenter forRoot: rootCommandGroup [
 
 	rootCommandGroup register: (self buildToolbarGroupContext: aPBBrowserMainPresenter)
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PBBrowserMainPresenter class >> buildToolbarGroupContext: aContext [
 
 	^ (CmCommandGroup named: 'Toolbar') asSpecGroup
@@ -33,7 +35,7 @@ PBBrowserMainPresenter class >> buildToolbarGroupContext: aContext [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBBrowserMainPresenter >> buildToolbar [
 	
 	^ self newToolbar
@@ -41,7 +43,7 @@ PBBrowserMainPresenter >> buildToolbar [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBBrowserMainPresenter >> connectPresenters [
 
 	projectsTree
@@ -49,7 +51,7 @@ PBBrowserMainPresenter >> connectPresenters [
 		transform: [ :uiItem | uiItem ifNotNil: [ :item | item pakbotItem ] ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBBrowserMainPresenter >> coreLayout [ 
 	^ SpPanedLayout newLeftToRight
 			add: projectsTree;
@@ -59,7 +61,7 @@ PBBrowserMainPresenter >> coreLayout [
 	
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBBrowserMainPresenter >> defaultLayout [ 
 	^ SpBoxLayout newTopToBottom
 		add: toolbar expand: false;
@@ -68,14 +70,14 @@ PBBrowserMainPresenter >> defaultLayout [
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBBrowserMainPresenter >> delete [
 	
 	super delete.
 	self unsubscribe.
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 PBBrowserMainPresenter >> disableActions [
 	"useful when used to present data that is not part of the system"
 	
@@ -84,7 +86,7 @@ PBBrowserMainPresenter >> disableActions [
 	
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 PBBrowserMainPresenter >> handleProjectChanged: announcement [
 
 	| path |
@@ -93,7 +95,7 @@ PBBrowserMainPresenter >> handleProjectChanged: announcement [
 	self refreshKeepingSelection.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBBrowserMainPresenter >> initializePresenters [
 	projectsTree := self newTreeTable
 		hideColumnHeaders;
@@ -110,7 +112,7 @@ PBBrowserMainPresenter >> initializePresenters [
 	self listenToPakbotAnnouncements.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBBrowserMainPresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
@@ -118,7 +120,7 @@ PBBrowserMainPresenter >> initializeWindow: aWindowPresenter [
 		initialExtent: 850 @ 600.
 ]
 
-{ #category : #'event-listening' }
+{ #category : 'event-listening' }
 PBBrowserMainPresenter >> listenToPakbotAnnouncements [
 	
 	Pakbot announcer weak
@@ -127,57 +129,57 @@ PBBrowserMainPresenter >> listenToPakbotAnnouncements [
 			to: self.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBBrowserMainPresenter >> modelChanged [
 	
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 PBBrowserMainPresenter >> refresh [
 	projectsTree roots: self roots
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 PBBrowserMainPresenter >> refreshKeepingSelection [
 	projectsTree updateRootsKeepingSelection: self roots
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBrowserMainPresenter >> registry [
 	^ self application registry
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBBrowserMainPresenter >> rootCommandsGroup [ 
 	^ rootCommandsGroup ifNil: [ rootCommandsGroup := super rootCommandsGroup ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBrowserMainPresenter >> roots [
 
 	^ (self registry registeredProjects sorted: [ :a :b | a name <= b name ])
 		collect: [ :project | PBProjectUIItem forProject: project presenter: self ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBrowserMainPresenter >> selectedAssembly [
 
 	^ self selectedPakbotItemIfTrue: [ self selectedItem isAssembly ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBrowserMainPresenter >> selectedItem [
 
 	^ projectsTree selectedItem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBrowserMainPresenter >> selectedPackage [
 	
 	^ self selectedPakbotItemIfTrue: [ self selectedItem isPackage ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBBrowserMainPresenter >> selectedPakbotItemIfTrue: aBlock [
 
 	^ aBlock value
@@ -185,18 +187,18 @@ PBBrowserMainPresenter >> selectedPakbotItemIfTrue: aBlock [
 		ifFalse: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBBrowserMainPresenter >> selectedProject [ 
 
 	^ self selectedPakbotItemIfTrue: [ self selectedItem isProject ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBBrowserMainPresenter >> toolbarGroup [
 	^ self rootCommandsGroup / 'Toolbar'
 ]
 
-{ #category : #'event-listening' }
+{ #category : 'event-listening' }
 PBBrowserMainPresenter >> unsubscribe [
 	
 	Pakbot announcer unsubscribe: self.

@@ -2,30 +2,32 @@
 When a Pakbot error occurs while being in non-interactive mode, we do not handle it and pass it to the next handler.
 "
 Class {
-	#name : #PBNonInteractiveErrorVisitor,
-	#superclass : #PBErrorVisitor,
-	#category : #'Pakbot-Browser-ErrorHandling'
+	#name : 'PBNonInteractiveErrorVisitor',
+	#superclass : 'PBErrorVisitor',
+	#category : 'Pakbot-Browser-ErrorHandling',
+	#package : 'Pakbot-Browser',
+	#tag : 'ErrorHandling'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBNonInteractiveErrorVisitor class >> isActive [ 
 
 	^ true
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBNonInteractiveErrorVisitor class >> priority [
 	
 	^ 0
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBNonInteractiveErrorVisitor >> visitGenericError: anException [
 
 	^ anException pass
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBNonInteractiveErrorVisitor >> visitProjectWithConflictsError: anError [
 	
 	^ self visitGenericError: anError

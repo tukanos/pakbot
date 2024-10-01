@@ -2,12 +2,14 @@
 Command used to remove a project from the registry and optionally remove packages from the system.
 "
 Class {
-	#name : #PBRemoveProjectCommand,
-	#superclass : #PBProjectCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBRemoveProjectCommand',
+	#superclass : 'PBProjectCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBRemoveProjectCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #remove;
@@ -16,7 +18,7 @@ PBRemoveProjectCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 PBRemoveProjectCommand >> execute [
 
 	self project unload.

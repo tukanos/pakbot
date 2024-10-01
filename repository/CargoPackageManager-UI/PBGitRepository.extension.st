@@ -1,6 +1,6 @@
-Extension { #name : #PBGitRepository }
+Extension { #name : 'PBGitRepository' }
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PBGitRepository >> description [
 	
 	iceRepositoryCreator ifNotNil: [ ^ iceRepositoryCreator remote url ].

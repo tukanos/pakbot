@@ -1,13 +1,14 @@
 Class {
-	#name : #PMPackageDependenciesCheckerTest,
-	#superclass : #TestCase,
+	#name : 'PMPackageDependenciesCheckerTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'imageDependencies'
 	],
-	#category : 'CargoPackageManager-Utils-FailingTests'
+	#category : 'CargoPackageManager-Utils-FailingTests',
+	#package : 'CargoPackageManager-Utils-FailingTests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMPackageDependenciesCheckerTest >> testCanGetImageDependencies [
 	| dependencyMap |
 	dependencyMap := PMPackageDependenciesChecker new imageDependencies.
@@ -25,7 +26,7 @@ PMPackageDependenciesCheckerTest >> testCanGetImageDependencies [
 	.dependencyMap inspect
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMPackageDependenciesCheckerTest >> testGroupCandidates [
 	| candidates |
 	candidates := PMPackageDependenciesChecker new 
@@ -36,7 +37,7 @@ PMPackageDependenciesCheckerTest >> testGroupCandidates [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMPackageDependenciesCheckerTest >> testTopGroups [
 	| top |
 	^ self skip.

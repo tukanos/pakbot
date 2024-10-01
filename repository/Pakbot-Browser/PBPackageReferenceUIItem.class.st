@@ -2,15 +2,17 @@
 I represent a package referenced in an assembly.
 "
 Class {
-	#name : #PBPackageReferenceUIItem,
-	#superclass : #PBPackageUIItem,
+	#name : 'PBPackageReferenceUIItem',
+	#superclass : 'PBPackageUIItem',
 	#instVars : [
 		'assembly'
 	],
-	#category : #'Pakbot-Browser-Items'
+	#category : 'Pakbot-Browser-Items',
+	#package : 'Pakbot-Browser',
+	#tag : 'Items'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBPackageReferenceUIItem class >> forPackage: aPBPackage in: aPBAssembly presenter: aSpPresenter [
 
 	^ self new
@@ -20,25 +22,25 @@ PBPackageReferenceUIItem class >> forPackage: aPBPackage in: aPBAssembly present
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageReferenceUIItem >> assembly: anAssembly [
 	
 	assembly := anAssembly
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBPackageReferenceUIItem >> canBeRemovedFromAssembly [
 	
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageReferenceUIItem >> commands [ 
 	
 	^ super commands copyWith: (PBRemovePackageReferenceFromAssemblyCommand forSpecContext: presenter)
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 PBPackageReferenceUIItem >> removeFromAssembly [
 	
 	assembly removePackage: package

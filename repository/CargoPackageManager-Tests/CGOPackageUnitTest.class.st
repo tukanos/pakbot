@@ -1,17 +1,19 @@
 Class {
-	#name : #CGOPackageUnitTest,
-	#superclass : #PBModelTest,
-	#category : #'CargoPackageManager-Tests-Model'
+	#name : 'CGOPackageUnitTest',
+	#superclass : 'PBModelTest',
+	#category : 'CargoPackageManager-Tests-Model',
+	#package : 'CargoPackageManager-Tests',
+	#tag : 'Model'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageUnitTest >> testInitializeFromEmptyDictionary [
 	self 
 		should: [ CGOPackageVersion newFrom: Dictionary new ]
 		raise: CGOPackageVersionInitializationError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageUnitTest >> testInitializeFromWithNoPackageValue [
 	| dictionary |
 	dictionary := Dictionary with: #package -> nil.
@@ -20,7 +22,7 @@ CGOPackageUnitTest >> testInitializeFromWithNoPackageValue [
 		raise: CGOPackageVersionInitializationError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageUnitTest >> testInitializeFromWithNoProject [
 	" Could we create a unit without setting its project? "
 	| dictionary |
@@ -30,7 +32,7 @@ CGOPackageUnitTest >> testInitializeFromWithNoProject [
 		raise: CGOPackageVersionInitializationError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageUnitTest >> testInitializeFromWitoutProjectRaiseError [
 	| dictionary |
 	dictionary := Dictionary
@@ -40,7 +42,7 @@ CGOPackageUnitTest >> testInitializeFromWitoutProjectRaiseError [
 		raise: CGOPackageVersionInitializationError 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOPackageUnitTest >> testProvisionsFromListOfProvisionStrings [
 	| provisions |
 	provisions := (CGOPackageUnit provisionsFromListOfProvisionStrings: #('A@2.0' 'B')) asArray.

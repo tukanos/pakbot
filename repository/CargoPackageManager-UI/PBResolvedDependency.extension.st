@@ -1,6 +1,6 @@
-Extension { #name : #PBResolvedDependency }
+Extension { #name : 'PBResolvedDependency' }
 
-{ #category : #'*CargoPackageManager-UI' }
+{ #category : '*CargoPackageManager-UI' }
 PBResolvedDependency >> hasToBeExpanded [
 	
 	^ dependencyState hasToBeExpanded

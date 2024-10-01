@@ -2,12 +2,13 @@
 I store metadata for this package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser
 "
 Class {
-	#name : #ManifestCargoPackageManagerUI,
-	#superclass : #PackageManifest,
-	#category : 'CargoPackageManager-UI'
+	#name : 'ManifestCargoPackageManagerUI',
+	#superclass : 'PackageManifest',
+	#category : 'CargoPackageManager-UI',
+	#package : 'CargoPackageManager-UI'
 }
 
-{ #category : #'meta-data' }
+{ #category : 'meta-data' }
 ManifestCargoPackageManagerUI class >> packageName [
 	^ #'CargoPackageManager-UI'
 ]

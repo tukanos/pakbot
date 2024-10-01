@@ -2,28 +2,30 @@
 Abstract class showing a list of packages and allowing to add/remove/edit elements from the list
 "
 Class {
-	#name : #PBPackageListEditor,
-	#superclass : #SpPresenterWithModel,
+	#name : 'PBPackageListEditor',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'addButton',
 		'editButton',
 		'removeButton',
 		'packageList'
 	],
-	#category : #'Pakbot-Browser-Presenters'
+	#category : 'Pakbot-Browser-Presenters',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageListEditor >> addButtonHelpString [
 	^ 'Add a new dependency'
 ]
 
-{ #category : #'private - displaying' }
+{ #category : 'private - displaying' }
 PBPackageListEditor >> assemblyIcon [
 	^ self iconNamed: #groupIcon
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPackageListEditor >> connectPresenters [
 	super connectPresenters.
 	packageList whenSelectionChangedDo: [ :selection | | enabled |
@@ -36,7 +38,7 @@ PBPackageListEditor >> connectPresenters [
 	editButton action: [ self editAction ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBPackageListEditor >> defaultLayout [
 	^ SpBoxLayout newTopToBottom 
 		add: (SpBoxLayout newLeftToRight 
@@ -50,19 +52,19 @@ PBPackageListEditor >> defaultLayout [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageListEditor >> editButtonHelpString [
 	^ 'Edit the dependency'
 ]
 
-{ #category : #'private - displaying' }
+{ #category : 'private - displaying' }
 PBPackageListEditor >> iconForPackage: aDependency [
 
 	^ self iconNamed: aDependency statusIconName.
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPackageListEditor >> initializePresenters [
 	addButton := self newButton
 		icon: (self iconNamed: #addIcon);
@@ -81,7 +83,7 @@ PBPackageListEditor >> initializePresenters [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPackageListEditor >> initializeTable [
 
 	packageList 
@@ -92,38 +94,38 @@ PBPackageListEditor >> initializeTable [
 			addColumn: (SpStringTableColumn evaluated: [ :each | each displayString ])).
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPackageListEditor >> modelChanged [ 
 	packageList items: self roots
 ]
 
-{ #category : #'private - displaying' }
+{ #category : 'private - displaying' }
 PBPackageListEditor >> notInstalledIcon [
 	
 	^ self iconNamed: #error
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageListEditor >> packageVersion [
 	^ self model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageListEditor >> removeButtonHelpString [
 	^ 'Remove the dependency'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageListEditor >> roots [
 	self subclassResponsibility 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPackageListEditor >> selectedPackage [
 	^ packageList selectedItem
 ]
 
-{ #category : #'private - displaying' }
+{ #category : 'private - displaying' }
 PBPackageListEditor >> virtualPackageIcon [
 	^ self iconNamed: #image
 ]

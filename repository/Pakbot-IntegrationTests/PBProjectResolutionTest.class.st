@@ -1,10 +1,11 @@
 Class {
-	#name : #PBProjectResolutionTest,
-	#superclass : #PBAbstractTest,
-	#category : #'Pakbot-IntegrationTests'
+	#name : 'PBProjectResolutionTest',
+	#superclass : 'PBAbstractTest',
+	#category : 'Pakbot-IntegrationTests',
+	#package : 'Pakbot-IntegrationTests'
 }
 
-{ #category : #'cargo-dependencies' }
+{ #category : 'cargo-dependencies' }
 PBProjectResolutionTest >> testProjectResolutionWithCargoDependenciesIncludesBothProjectAndDependency [
 
 	| project resolution pakbotProject |
@@ -22,7 +23,7 @@ PBProjectResolutionTest >> testProjectResolutionWithCargoDependenciesIncludesBot
 	self assert: (resolution includesResolvedTarget: self expectedPakbotResolvedProject).
 ]
 
-{ #category : #'cargo-dependencies' }
+{ #category : 'cargo-dependencies' }
 PBProjectResolutionTest >> testProjectResolutionWithCargoProjectDependenciesIncludesBothProjectAndDependency [
 
 	| resolution projectOne projectTwo |
@@ -40,7 +41,7 @@ PBProjectResolutionTest >> testProjectResolutionWithCargoProjectDependenciesIncl
 	self assert: (resolution includesResolvedTarget: projectTwo).
 ]
 
-{ #category : #'cargo-dependencies' }
+{ #category : 'cargo-dependencies' }
 PBProjectResolutionTest >> testProjectResolutionWithIndirectCargoDependenciesIncludesBothProjectAndDependencies [
 
 	| projectOne projectTwo resolution pakbotProject |
@@ -64,7 +65,7 @@ PBProjectResolutionTest >> testProjectResolutionWithIndirectCargoDependenciesInc
 	self assert: (resolution includesResolvedTarget: self expectedPakbotResolvedProject).
 ]
 
-{ #category : #'baseline-dependencies' }
+{ #category : 'baseline-dependencies' }
 PBProjectResolutionTest >> testProjectResolutionWithIndirectMetacelloBaselineDependenciesIncludesBothProjectAndDependencies [
 
 	| projectOne projectTwo resolution baselineDependency |
@@ -89,7 +90,7 @@ PBProjectResolutionTest >> testProjectResolutionWithIndirectMetacelloBaselineDep
 	self assert: (resolution includesResolvedTarget: (PBMetacelloConfigurationProject fromProjectDependency: baselineDependency)).
 ]
 
-{ #category : #'configuration-dependencies' }
+{ #category : 'configuration-dependencies' }
 PBProjectResolutionTest >> testProjectResolutionWithIndirectMetacelloConfigurationDependenciesIncludesBothProjectAndDependencies [
 
 	| projectOne projectTwo resolution configurationProject |
@@ -114,7 +115,7 @@ PBProjectResolutionTest >> testProjectResolutionWithIndirectMetacelloConfigurati
 	self assert: (resolution includesResolvedTarget: (PBMetacelloConfigurationProject fromProjectDependency: configurationProject)).
 ]
 
-{ #category : #'baseline-dependencies' }
+{ #category : 'baseline-dependencies' }
 PBProjectResolutionTest >> testProjectResolutionWithMetacelloBaselineDependenciesIncludesBothProjectAndDependency [
 
 	| project resolution baselineDependency |
@@ -134,7 +135,7 @@ PBProjectResolutionTest >> testProjectResolutionWithMetacelloBaselineDependencie
 	self assert: (resolution includesResolvedTarget: (PBMetacelloBaselineProject fromProjectDependency: baselineDependency)).
 ]
 
-{ #category : #'configuration-dependencies' }
+{ #category : 'configuration-dependencies' }
 PBProjectResolutionTest >> testProjectResolutionWithMetacelloConfigurationDependenciesIncludesBothProjectAndDependency [
 
 	| project resolution configurationProject |
@@ -154,7 +155,7 @@ PBProjectResolutionTest >> testProjectResolutionWithMetacelloConfigurationDepend
 	self assert: (resolution includesResolvedTarget: (PBMetacelloBaselineProject fromProjectDependency: configurationProject)).
 ]
 
-{ #category : #'no-dependencies' }
+{ #category : 'no-dependencies' }
 PBProjectResolutionTest >> testProjectWithoutDependenciesResolvesToItself [
 
 	| project resolution |
@@ -165,7 +166,7 @@ PBProjectResolutionTest >> testProjectWithoutDependenciesResolvesToItself [
 	self assert: (resolution includesResolvedTarget: project)
 ]
 
-{ #category : #'cargo-dependencies' }
+{ #category : 'cargo-dependencies' }
 PBProjectResolutionTest >> testResolutionOfCargoDependencyIsResolvedDependency [
 
 	| resolution projectOne pakbotProject |
@@ -180,7 +181,7 @@ PBProjectResolutionTest >> testResolutionOfCargoDependencyIsResolvedDependency [
 	self assert: resolution resolvedDependencies anyOne equals: (resolution resolutionFor: pakbotProject)
 ]
 
-{ #category : #'baseline-dependencies' }
+{ #category : 'baseline-dependencies' }
 PBProjectResolutionTest >> testResolutionOfMetacelloBaselineDependencyIsResolvedDependency [
 
 	| resolution projectOne baselineDependency |
@@ -196,7 +197,7 @@ PBProjectResolutionTest >> testResolutionOfMetacelloBaselineDependencyIsResolved
 	self assert: resolution resolvedDependencies anyOne equals: (resolution resolutionFor: baselineDependency)
 ]
 
-{ #category : #'configuration-dependencies' }
+{ #category : 'configuration-dependencies' }
 PBProjectResolutionTest >> testResolutionOfMetacelloConfigurationDependencyIsResolvedDependency [
 
 	| resolution projectOne configurationProject |
@@ -212,7 +213,7 @@ PBProjectResolutionTest >> testResolutionOfMetacelloConfigurationDependencyIsRes
 	self assert: resolution resolvedDependencies anyOne equals: (resolution resolutionFor: configurationProject)
 ]
 
-{ #category : #'no-dependencies' }
+{ #category : 'no-dependencies' }
 PBProjectResolutionTest >> testResolutionOfProjectIsResolutionRoot [
 
 	| resolution projectOne |

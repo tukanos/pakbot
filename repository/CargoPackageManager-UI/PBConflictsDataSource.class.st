@@ -1,14 +1,16 @@
 Class {
-	#name : #PBConflictsDataSource,
-	#superclass : #FTSimpleDataSource,
-	#category : #'CargoPackageManager-UI-Conflicts'
+	#name : 'PBConflictsDataSource',
+	#superclass : 'FTSimpleDataSource',
+	#category : 'CargoPackageManager-UI-Conflicts',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Conflicts'
 }
 
-{ #category : #actions }
+{ #category : 'actions' }
 PBConflictsDataSource >> actionColumn: aColumn [ 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflictsDataSource >> cellColumn: column row: rowIndex [ 
 
 	^ FTCellMorph new
@@ -17,7 +19,7 @@ PBConflictsDataSource >> cellColumn: column row: rowIndex [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBConflictsDataSource >> headerColumn: column [
 	column id ifNil: [ ^ nil ].
 

@@ -2,12 +2,13 @@
 Very simple implementation of Iceberg Working Copy for test purposes.
 "
 Class {
-	#name : #PBTestIcebergWorkingCopy,
-	#superclass : #IceWorkingCopy,
-	#category : #'CargoPackageManager-UI-Tests'
+	#name : 'PBTestIcebergWorkingCopy',
+	#superclass : 'IceWorkingCopy',
+	#category : 'CargoPackageManager-UI-Tests',
+	#package : 'CargoPackageManager-UI-Tests'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBTestIcebergWorkingCopy >> initialize [
 
 	repository workingCopy: self.
@@ -15,7 +16,7 @@ PBTestIcebergWorkingCopy >> initialize [
 	super initialize.
 ]
 
-{ #category : #'API-changes' }
+{ #category : 'API-changes' }
 PBTestIcebergWorkingCopy >> isModified [
 	^ false
 ]

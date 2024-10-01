@@ -1,6 +1,6 @@
-Extension { #name : #CGOPackageAssembly }
+Extension { #name : 'CGOPackageAssembly' }
 
-{ #category : #'*CargoPackageManager' }
+{ #category : '*CargoPackageManager' }
 CGOPackageAssembly >> ongoingClass [
 	^ PBAssembly 
 ]

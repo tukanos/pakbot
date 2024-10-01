@@ -9,18 +9,19 @@ We avoid to visit already visited children of a node.
 		[ iterator next ]
 "
 Class {
-	#name : #BFSIterator,
-	#superclass : #Object,
+	#name : 'BFSIterator',
+	#superclass : 'Object',
 	#instVars : [
 		'queue',
 		'alreadyVisited',
 		'root',
 		'nextBlock'
 	],
-	#category : 'CargoPackageManager-Utils'
+	#category : 'CargoPackageManager-Utils',
+	#package : 'CargoPackageManager-Utils'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 BFSIterator class >> on: anObject nextBlock: aBlock [
 	^ self new
 		root: anObject;
@@ -28,7 +29,7 @@ BFSIterator class >> on: anObject nextBlock: aBlock [
 		yourself.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 BFSIterator >> hasChildNodes: aNode [
 	| children |
 	
@@ -38,24 +39,24 @@ BFSIterator >> hasChildNodes: aNode [
 	^ children size > 0
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 BFSIterator >> hasNext [
 	^ queue isEmpty not
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BFSIterator >> initialize [
 	queue := SharedQueue new.
 	alreadyVisited := Set new.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 BFSIterator >> isNotVisited: aNode [
 	^ (alreadyVisited includes: aNode) not
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 BFSIterator >> next [
 	| currentElement |
 	
@@ -67,18 +68,18 @@ BFSIterator >> next [
 	^ currentElement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BFSIterator >> nextBlock: aBlock [
 	nextBlock := aBlock
 ]
 
-{ #category : #protocol }
+{ #category : 'protocol' }
 BFSIterator >> reset [
 	self initialize.
 	queue nextPut: root
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BFSIterator >> root: anObject [
 	root := anObject.
 	self reset

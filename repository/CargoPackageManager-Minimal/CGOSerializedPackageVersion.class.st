@@ -4,22 +4,24 @@ I map some instance variables of PackageVersion to an easily serialized form (e.
 Do not use me directly but use one of my subclasses.
 "
 Class {
-	#name : #CGOSerializedPackageVersion,
-	#superclass : #CGOSerializedArtefact,
+	#name : 'CGOSerializedPackageVersion',
+	#superclass : 'CGOSerializedArtefact',
 	#instVars : [
 		'package',
 		'timestamp'
 	],
-	#category : #'CargoPackageManager-Minimal-Model-Serialization'
+	#category : 'CargoPackageManager-Minimal-Model-Serialization',
+	#package : 'CargoPackageManager-Minimal',
+	#tag : 'Model-Serialization'
 }
 
-{ #category : #mapping }
+{ #category : 'mapping' }
 CGOSerializedPackageVersion >> dependencyConstraintsMapping: aDependency [
 	^ (aDependency constraints collect: #asString)
 			ifEmpty: [ #() ]
 ]
 
-{ #category : #deserialization }
+{ #category : 'deserialization' }
 CGOSerializedPackageVersion >> deserialize: instVarName in: aPackageVersion [
 	| deps |
 	deps := self instVarNamed: instVarName.
@@ -31,7 +33,7 @@ CGOSerializedPackageVersion >> deserialize: instVarName in: aPackageVersion [
 				[ :association | PBPackageDependency newFrom: association ] ])
 ]
 
-{ #category : #deserialization }
+{ #category : 'deserialization' }
 CGOSerializedPackageVersion >> flushIn: aPackageVersion [
 	"Flush information in this SerializedPackageVersion into the provided PackageVersion.
 	All instance variables will be set with values from the SerializedPackageVersion"
@@ -46,7 +48,7 @@ CGOSerializedPackageVersion >> flushIn: aPackageVersion [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOSerializedPackageVersion >> initializeWith: aPackageVersion [
 	package := aPackageVersion packageName.
 	version := aPackageVersion version asString.

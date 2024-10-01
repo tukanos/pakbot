@@ -3,17 +3,18 @@ I'm an input widget representing a Git repository.
 I have a button allowing to change the repository URL either by selecting an existing repository (declared in Iceberg) or by creating a new one.
 "
 Class {
-	#name : #PBRepositoryInputField,
-	#superclass : #SpPresenterWithModel,
+	#name : 'PBRepositoryInputField',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'label',
 		'button',
 		'icon'
 	],
-	#category : #'CargoPackageManager-UI'
+	#category : 'CargoPackageManager-UI',
+	#package : 'CargoPackageManager-UI'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBRepositoryInputField class >> example [
 	<example>
 	
@@ -21,7 +22,7 @@ PBRepositoryInputField class >> example [
 		openWithSpec
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBRepositoryInputField >> connectPresenters [
 	
 	button action: [ 
@@ -32,7 +33,7 @@ PBRepositoryInputField >> connectPresenters [
 	self refresh.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBRepositoryInputField >> initializeLayout [
 
 	self layout: (SpBoxLayout newLeftToRight 
@@ -42,7 +43,7 @@ PBRepositoryInputField >> initializeLayout [
 			yourself)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBRepositoryInputField >> initializePresenters [
 	
 	icon := self newImage.
@@ -53,12 +54,12 @@ PBRepositoryInputField >> initializePresenters [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBRepositoryInputField >> project [
 	^ self model
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBRepositoryInputField >> refresh [
 
 	| form repository |

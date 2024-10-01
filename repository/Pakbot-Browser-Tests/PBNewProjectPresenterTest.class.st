@@ -1,6 +1,6 @@
 Class {
-	#name : #PBNewProjectPresenterTest,
-	#superclass : #PBTest,
+	#name : 'PBNewProjectPresenterTest',
+	#superclass : 'PBTest',
 	#instVars : [
 		'name',
 		'url',
@@ -9,10 +9,11 @@ Class {
 		'editionPanel',
 		'newProjectPresenter'
 	],
-	#category : #'Pakbot-Browser-Tests'
+	#category : 'Pakbot-Browser-Tests',
+	#package : 'Pakbot-Browser-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PBNewProjectPresenterTest >> setUp [
 
 	super setUp.
@@ -26,7 +27,7 @@ PBNewProjectPresenterTest >> setUp [
 	description := 'A description'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBNewProjectPresenterTest >> testProjectIsFilledAfterAccept [
 
 	| project |
@@ -41,7 +42,7 @@ PBNewProjectPresenterTest >> testProjectIsFilledAfterAccept [
 	self assert: project description equals: description.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBNewProjectPresenterTest >> testProjectIsNotInstalledBeforeAccept [
 
 	editionPanel name: name.
@@ -52,7 +53,7 @@ PBNewProjectPresenterTest >> testProjectIsNotInstalledBeforeAccept [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBNewProjectPresenterTest >> testProjectIsRegisteredAfterAccept [
 
 	editionPanel name: name.

@@ -1,14 +1,15 @@
 Class {
-	#name : #PBNewDependencyPresenterTest,
-	#superclass : #TestCase,
+	#name : 'PBNewDependencyPresenterTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'presenter',
 		'window'
 	],
-	#category : #'Pakbot-Browser-Tests'
+	#category : 'Pakbot-Browser-Tests',
+	#package : 'Pakbot-Browser-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBNewDependencyPresenterTest >> tearDown [ 
 
 	presenter ifNotNil: [ presenter delete ].
@@ -16,7 +17,7 @@ PBNewDependencyPresenterTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBNewDependencyPresenterTest >> testCanCreateThreeKindOfDependencies [
 	"pakbot, metacello baseline and metacello configuration dependencies"
 	
@@ -28,7 +29,7 @@ PBNewDependencyPresenterTest >> testCanCreateThreeKindOfDependencies [
 		equals: 3.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBNewDependencyPresenterTest >> testGetNewDependencyWhenOkClicked [
 	
 	| dependency |
@@ -53,7 +54,7 @@ PBNewDependencyPresenterTest >> testGetNewDependencyWhenOkClicked [
 		equals: '1.0'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBNewDependencyPresenterTest >> testOkButtonIsDisabledAtOpening [
 	
 	presenter := PBNewDependencyPresenter new.
@@ -63,7 +64,7 @@ PBNewDependencyPresenterTest >> testOkButtonIsDisabledAtOpening [
 	self deny: window okButton isEnabled.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBNewDependencyPresenterTest >> testOkButtonIsDisabledIfOptionPresenterValidationFails [
 	
 	presenter := PBNewDependencyPresenter new.
@@ -77,7 +78,7 @@ PBNewDependencyPresenterTest >> testOkButtonIsDisabledIfOptionPresenterValidatio
 	self deny: window okButton isEnabled.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBNewDependencyPresenterTest >> testOkButtonIsEnabledIfOptionPresenterValidationSucceeds [
 	
 	presenter := PBNewDependencyPresenter new.

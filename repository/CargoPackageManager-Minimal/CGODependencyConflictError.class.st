@@ -7,31 +7,33 @@ ex:
 	=> conflict for PackageA
 "
 Class {
-	#name : #CGODependencyConflictError,
-	#superclass : #PBError,
+	#name : 'CGODependencyConflictError',
+	#superclass : 'PBError',
 	#instVars : [
 		'policy1',
 		'policy2'
 	],
-	#category : #'CargoPackageManager-Minimal-Model'
+	#category : 'CargoPackageManager-Minimal-Model',
+	#package : 'CargoPackageManager-Minimal',
+	#tag : 'Model'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGODependencyConflictError >> policy1 [
 	^ policy1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGODependencyConflictError >> policy1: anObject [
 	policy1 := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGODependencyConflictError >> policy2 [
 	^ policy2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CGODependencyConflictError >> policy2: anObject [
 	policy2 := anObject
 ]

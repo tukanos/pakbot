@@ -2,15 +2,17 @@
 I execute an action by taking care of capturing errors and provide them to the default error visitor 
 "
 Class {
-	#name : #PBAbstractAction,
-	#superclass : #Object,
+	#name : 'PBAbstractAction',
+	#superclass : 'Object',
 	#instVars : [
 		'project'
 	],
-	#category : #'Pakbot-Browser-Actions'
+	#category : 'Pakbot-Browser-Actions',
+	#package : 'Pakbot-Browser',
+	#tag : 'Actions'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBAbstractAction class >> forProject: aProject [
 
 	^ self new
@@ -18,12 +20,12 @@ PBAbstractAction class >> forProject: aProject [
 		yourself
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 PBAbstractAction >> doExecute [
 	^ self subclassResponsibility 
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 PBAbstractAction >> execute [
 
 	[ ^ self doExecute ]
@@ -31,13 +33,13 @@ PBAbstractAction >> execute [
 		do: [ :ex | ex acceptVisitor: PBErrorVisitor default ]
 ]
 
-{ #category : #acccessing }
+{ #category : 'acccessing' }
 PBAbstractAction >> project [
 
 	^ project
 ]
 
-{ #category : #acccessing }
+{ #category : 'acccessing' }
 PBAbstractAction >> project: aProject [
 	project := aProject
 ]

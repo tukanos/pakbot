@@ -4,16 +4,17 @@ It can be instantiated from a JSON file or exported to a JSON file.
 
 "
 Class {
-	#name : #CGOPackageSpec,
-	#superclass : #Object,
+	#name : 'CGOPackageSpec',
+	#superclass : 'Object',
 	#instVars : [
 		'package',
 		'dictionary'
 	],
-	#category : #'CargoPackageManager-Spec'
+	#category : 'CargoPackageManager-Spec',
+	#package : 'CargoPackageManager-Spec'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 CGOPackageSpec >> asPackageVersion [
 	^ CGOPackageUnit newFrom:
 	( Dictionary new
@@ -28,17 +29,17 @@ CGOPackageSpec >> asPackageVersion [
 			yourself )
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 CGOPackageSpec >> authors [
 	"package addAuthorName: 'Demarey' firstname: 'Christophe'"
 ]
 
-{ #category : #builder }
+{ #category : 'builder' }
 CGOPackageSpec >> buildPackage [
 	^ self asPackageVersion
 ]
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 CGOPackageSpec >> cargoSourcePackageForSpec: aPackageSpec [
 	"Package spec defined a list os rouce repositories. It has been replaced by Cargo Source Package Version having an abstraction on the VCS backend and additional data. To avaoid to update all specs, use this method to generate the expecte data."
 	^ CGOMonticelloHostedPackageVersion 
@@ -47,59 +48,59 @@ CGOPackageSpec >> cargoSourcePackageForSpec: aPackageSpec [
 		versionString: (aPackageSpec file copyAfterLast: $-)
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 CGOPackageSpec >> contributors [
 	"package addContributorName: 'Demarey' firstname: 'Christophe'"
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 CGOPackageSpec >> dependencies [
 	^ #()
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 CGOPackageSpec >> description [
 	"package description: 'Pharo dependency management tool'"
 	^ 'No description'
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 CGOPackageSpec >> file [
 	^ self srcArtifact
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackageSpec >> initialize [
 	super initialize.
 	dictionary := Dictionary new
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 CGOPackageSpec >> name [
 	self subclassResponsibility "^ 'Foo"
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 CGOPackageSpec >> packageName [
 	^ self name
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 CGOPackageSpec >> packages [
 	"package addSubPackage: 'Versionner-Spec-Browser'."
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 CGOPackageSpec >> platformRequirements [
 	^ #()
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 CGOPackageSpec >> provisions [
 	^ #()
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 CGOPackageSpec >> repositories [
 	"^ #('http://smalltalkhub.com/mc/demarey/Versionner/main')"
 	^ #()
@@ -107,7 +108,7 @@ CGOPackageSpec >> repositories [
 " is overidern but this method is called by ongoing ..."
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 CGOPackageSpec >> sourcePackageVersionObject [
 	| dict |
 	[ dict := self sourcePackageVersion ]
@@ -125,17 +126,17 @@ CGOPackageSpec >> sourcePackageVersionObject [
 			commitish: (dict at: #commitish) ]
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 CGOPackageSpec >> srcArtifact [
 	^ 'no-file-specified-JohnDoe.0'
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 CGOPackageSpec >> testArtifact [
 	self subclassResponsibility
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 CGOPackageSpec >> version [
 	"package version: '0.1'"
 ]

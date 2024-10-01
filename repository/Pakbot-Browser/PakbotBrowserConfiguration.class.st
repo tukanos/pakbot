@@ -3,12 +3,14 @@ I define the configuration for Pakbot Browser.
 For now, I only define new styles.
 "
 Class {
-	#name : #PakbotBrowserConfiguration,
-	#superclass : #SpMorphicConfiguration,
-	#category : #'Pakbot-Browser-Presenters'
+	#name : 'PakbotBrowserConfiguration',
+	#superclass : 'SpMorphicConfiguration',
+	#category : 'Pakbot-Browser-Presenters',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters'
 }
 
-{ #category : #styling }
+{ #category : 'styling' }
 PakbotBrowserConfiguration >> customStyleSheet [
 	^ (SpStyleVariableSTONReader fromString: '.application [       
  	   .textInputField [ 
@@ -19,7 +21,7 @@ PakbotBrowserConfiguration >> customStyleSheet [
 	')
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PakbotBrowserConfiguration >> newStyleSheet [
 
 	^ SpStyle defaultStyleSheet copy, self customStyleSheet

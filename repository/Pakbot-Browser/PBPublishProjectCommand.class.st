@@ -3,12 +3,14 @@ A command to publish a project and all its packages to a package repository.
 It will publish to the default Pakbot package repository.
 "
 Class {
-	#name : #PBPublishProjectCommand,
-	#superclass : #PBProjectCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBPublishProjectCommand',
+	#superclass : 'PBProjectCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBPublishProjectCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #publish;
@@ -17,7 +19,7 @@ PBPublishProjectCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBPublishProjectCommand >> execute [
 
 	self project publish

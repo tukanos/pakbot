@@ -1,10 +1,12 @@
 Class {
-	#name : #CGOMonticelloHostedPackageVersionTest,
-	#superclass : #TestCase,
-	#category : 'CargoPackageManager-Tests-SCM'
+	#name : 'CGOMonticelloHostedPackageVersionTest',
+	#superclass : 'TestCase',
+	#category : 'CargoPackageManager-Tests-SCM',
+	#package : 'CargoPackageManager-Tests',
+	#tag : 'SCM'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOMonticelloHostedPackageVersionTest >> cargoMinimalCD21 [
 	^ CGOMonticelloHostedPackageVersion
 		repositoryUrl: 'http://smalltalkhub.com/mc/demarey/CargoPackageManager/main'
@@ -12,19 +14,19 @@ CGOMonticelloHostedPackageVersionTest >> cargoMinimalCD21 [
 		versionString: 'ChristopheDemarey.21'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOMonticelloHostedPackageVersionTest >> stonCargoMinimalCD21 [
 	^ 'CGOMonticelloHostedPackageVersion{#repository:CGOMonticelloRepository{#repositoryUrl:''http://smalltalkhub.com/mc/demarey/CargoPackageManager/main''},#packageName:#CargoPackageManager-Minimal,#versionString:''ChristopheDemarey.21''}'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOMonticelloHostedPackageVersionTest >> testCanGetMCVersionWhenAPackageVersionProvided [
 	| repo |
 	repo := self cargoMinimalCD21.
 	self assert: (repo mcVersion isKindOf: MCVersion)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOMonticelloHostedPackageVersionTest >> testCanGetMCVersionWhenRepositoryUrlIsWrong [
 	| repo |
 	
@@ -38,7 +40,7 @@ CGOMonticelloHostedPackageVersionTest >> testCanGetMCVersionWhenRepositoryUrlIsW
 		raise: MCRepositoryError 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOMonticelloHostedPackageVersionTest >> testSTONDeserializationIsOk [
 	| mcHostedPackageVersion |
 	mcHostedPackageVersion := STON fromString: self stonCargoMinimalCD21.
@@ -47,7 +49,7 @@ CGOMonticelloHostedPackageVersionTest >> testSTONDeserializationIsOk [
 		equals: ZnUrl
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CGOMonticelloHostedPackageVersionTest >> testSTONSerializationIsOk [
 	| mcHostedPackageVersion |
 	mcHostedPackageVersion := self cargoMinimalCD21.

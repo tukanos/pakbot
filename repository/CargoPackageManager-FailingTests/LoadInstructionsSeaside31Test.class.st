@@ -13,16 +13,18 @@ pkgRepository
 
 "
 Class {
-	#name : #LoadInstructionsSeaside31Test,
-	#superclass : #RepositoryBasedTest,
+	#name : 'LoadInstructionsSeaside31Test',
+	#superclass : 'RepositoryBasedTest',
 	#instVars : [
 		'pkgRepository',
 		'loadInstructions'
 	],
-	#category : 'CargoPackageManager-FailingTests-Functional'
+	#category : 'CargoPackageManager-FailingTests-Functional',
+	#package : 'CargoPackageManager-FailingTests',
+	#tag : 'Functional'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LoadInstructionsSeaside31Test >> input [
 	"Seaside31 resolution"
 	^  'CGOLoadInstructions {
@@ -287,13 +289,13 @@ LoadInstructionsSeaside31Test >> input [
 }'
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 LoadInstructionsSeaside31Test >> setUp [
 	super setUp.
 	loadInstructions := STON fromString: self input
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LoadInstructionsSeaside31Test >> testLoad [
 	^ self skip.
 	"loadInstructions mcVersions"

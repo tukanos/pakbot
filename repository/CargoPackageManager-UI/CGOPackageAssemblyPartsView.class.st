@@ -2,34 +2,35 @@
 I display and allow edition of parts  of the provided ongoing Package Assembly.
 "
 Class {
-	#name : #CGOPackageAssemblyPartsView,
-	#superclass : #CGOPackageListEditor,
-	#category : #'CargoPackageManager-UI'
+	#name : 'CGOPackageAssemblyPartsView',
+	#superclass : 'CGOPackageListEditor',
+	#category : 'CargoPackageManager-UI',
+	#package : 'CargoPackageManager-UI'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 CGOPackageAssemblyPartsView class >> example [
 	^ self openOn: (PBAssembly example)
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 CGOPackageAssemblyPartsView >> addAction [
 	| package |
 	package := (self packageSelectionDialogFor: self candidatePackages) chooseFromOwner: self widget widget.
 	package ifNotNil: [ packageVersion addPart: package packageName ].
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 CGOPackageAssemblyPartsView >> addButtonHelpString [
 	^ 'Add a new package to the assembly'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOPackageAssemblyPartsView >> buildRoots [
 	^ packageVersion parts
 ]
 
-{ #category : #querying }
+{ #category : 'querying' }
 CGOPackageAssemblyPartsView >> candidatePackages [
 	| partsNames |
 	partsNames := (packageVersion parts collect: #targetedPackage) copyWith: packageVersion packageName.
@@ -37,22 +38,22 @@ CGOPackageAssemblyPartsView >> candidatePackages [
 		reject: [ :packageVersion |	partsNames includes: packageVersion packageName  ]) asArray
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 CGOPackageAssemblyPartsView >> editAction [
 	UIManager default alert: 'Cannot specify a specific version for an assembly part. If really needed, please, open a feature request in Cargo issue tracker'
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 CGOPackageAssemblyPartsView >> editButtonHelpString [
 	^ 'Edit an assembly part'
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 CGOPackageAssemblyPartsView >> packageListEditorLabel [
 	^ 'Assembly parts:'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOPackageAssemblyPartsView >> packageSelectionDialogFor: aListOfPackages [
 	^ ListDialogWindow new
 		getList: [ :regexp | aListOfPackages "sorted" select: [ :package | regexp search: package packageName ] ];
@@ -61,12 +62,12 @@ CGOPackageAssemblyPartsView >> packageSelectionDialogFor: aListOfPackages [
 		yourself
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 CGOPackageAssemblyPartsView >> removeAction: aCGOPackageDependency [ 
 	packageVersion removePart: aCGOPackageDependency
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 CGOPackageAssemblyPartsView >> removeButtonHelpString [
 	^ 'Remove a package from the assembly'
 ]

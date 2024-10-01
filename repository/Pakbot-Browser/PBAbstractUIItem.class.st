@@ -4,15 +4,17 @@ I represent an UI item used to display an abstract element of a packbot project.
 My `presenter` instance variable holds a reference to the presenter I belong to.
 "
 Class {
-	#name : #PBAbstractUIItem,
-	#superclass : #Object,
+	#name : 'PBAbstractUIItem',
+	#superclass : 'Object',
 	#instVars : [
 		'presenter'
 	],
-	#category : #'Pakbot-Browser-Items'
+	#category : 'Pakbot-Browser-Items',
+	#package : 'Pakbot-Browser',
+	#tag : 'Items'
 }
 
-{ #category : #building }
+{ #category : 'building' }
 PBAbstractUIItem >> addExtraGroupTo: contextMenu [
 
 	contextMenu addItem: [ :item | 
@@ -24,12 +26,12 @@ PBAbstractUIItem >> addExtraGroupTo: contextMenu [
 					yourself) ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractUIItem >> commands [
 	^ self subclassResponsibility
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PBAbstractUIItem >> contextMenu [
 	
 	| commandGroup menu |
@@ -44,7 +46,7 @@ PBAbstractUIItem >> contextMenu [
 	^ menu
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBAbstractUIItem >> contextMenuCommandGroup [
 
 	^ (CmCommandGroup named: 'Context Menu') asSpecGroup
@@ -52,53 +54,53 @@ PBAbstractUIItem >> contextMenuCommandGroup [
 			yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractUIItem >> displayName [ 
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractUIItem >> icon [
 	^ self iconNamed: self iconName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractUIItem >> iconName [ 
 	^ self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBAbstractUIItem >> isAssembly [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBAbstractUIItem >> isPackage [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBAbstractUIItem >> isProject [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractUIItem >> items [ 
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractUIItem >> pakbotItem [
 	
 	self subclassResponsibility 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBAbstractUIItem >> presenter: aSpPresenter [ 
 	presenter := aSpPresenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBAbstractUIItem >> project [
 	
 	self subclassResponsibility 

@@ -1,6 +1,6 @@
-Extension { #name : #ButtonPresenter }
+Extension { #name : 'ButtonPresenter' }
 
-{ #category : #'*CargoPackageManager-UI-Tests' }
+{ #category : '*CargoPackageManager-UI-Tests' }
 ButtonPresenter >> click [ 
 
 	"I emulate the click from the presenter point of view.

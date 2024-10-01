@@ -1,13 +1,14 @@
 Class {
-	#name : #PBProjectUnloadTest,
-	#superclass : #PBAbstractTest,
+	#name : 'PBProjectUnloadTest',
+	#superclass : 'PBAbstractTest',
 	#instVars : [
 		'project'
 	],
-	#category : #'Pakbot-IntegrationTests'
+	#category : 'Pakbot-IntegrationTests',
+	#package : 'Pakbot-IntegrationTests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectUnloadTest >> setUp [
 	super setUp.
 
@@ -19,7 +20,7 @@ PBProjectUnloadTest >> setUp [
 		newNotLoadedPackage: 'TestProject-Pck2'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectUnloadTest >> tearDown [
 	
 	self removePackageIfExists: 'TestProject-Pck1'.
@@ -27,7 +28,7 @@ PBProjectUnloadTest >> tearDown [
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectUnloadTest >> testAProjectToRemoveKnowsTheProjectsThatAffect [
 
 	| project2 project3 |
@@ -43,7 +44,7 @@ PBProjectUnloadTest >> testAProjectToRemoveKnowsTheProjectsThatAffect [
 	self assertCollection: project dependantProjects hasSameElements:  { project2. project3 }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectUnloadTest >> testUnloadKeepsThePackagesInTheSystem [
 	
 	| packageOrNil |
@@ -53,7 +54,7 @@ PBProjectUnloadTest >> testUnloadKeepsThePackagesInTheSystem [
 	self assert: packageOrNil isNotNil.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectUnloadTest >> testUnloadRemovesTheProjectFromTheRegistry [
 	
 	project unload.
@@ -61,7 +62,7 @@ PBProjectUnloadTest >> testUnloadRemovesTheProjectFromTheRegistry [
 	self deny: (testRegistry isProjectRegistered: 'TestProject').
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectUnloadTest >> testUnloadRemovingPackagesKeepsThePackagesInTheSystem [
 	
 	| packageOrNil |
@@ -71,7 +72,7 @@ PBProjectUnloadTest >> testUnloadRemovingPackagesKeepsThePackagesInTheSystem [
 	self assert: packageOrNil isNil.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectUnloadTest >> testUnloadRemovingPackagesRemovesTheProjectFromTheRegistry [
 	
 	project unloadRemovingPackages.

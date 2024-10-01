@@ -12,15 +12,16 @@ self
 	do: [ :each | self updateDependenciesOf: each key ]
 "
 Class {
-	#name : #PMPackageDependenciesChecker,
-	#superclass : #Object,
+	#name : 'PMPackageDependenciesChecker',
+	#superclass : 'Object',
 	#instVars : [
 		'imageDependencies'
 	],
-	#category : 'CargoPackageManager-Utils'
+	#category : 'CargoPackageManager-Utils',
+	#package : 'CargoPackageManager-Utils'
 }
 
-{ #category : #'compute - dependencies' }
+{ #category : 'compute - dependencies' }
 PMPackageDependenciesChecker >> buildImageDependencyMap [
 	imageDependencies := (self imagePackageDependencies
 		collect: [ :each | 
@@ -28,7 +29,7 @@ PMPackageDependenciesChecker >> buildImageDependencyMap [
 		asDictionary
 ]
 
-{ #category : #'compute - dependencies' }
+{ #category : 'compute - dependencies' }
 PMPackageDependenciesChecker >> dependenciesForPackagesNamed: aNameList [
 	^ ((DAPackageRelationGraph onPackagesNamed: aNameList)
 		build;
@@ -36,14 +37,14 @@ PMPackageDependenciesChecker >> dependenciesForPackagesNamed: aNameList [
 	select: #isSeen
 ]
 
-{ #category : #'compute - clustering' }
+{ #category : 'compute - clustering' }
 PMPackageDependenciesChecker >> groupCandidates [
 	^ self imageDependencies values 
 		flatCollect: [ :each | self groupCandidatesFor: each ]
 		as: Set 
 ]
 
-{ #category : #'compute - clustering' }
+{ #category : 'compute - clustering' }
 PMPackageDependenciesChecker >> groupCandidatesFor: aCollection [
 	| result |
 	result := OrderedCollection new.
@@ -55,7 +56,7 @@ PMPackageDependenciesChecker >> groupCandidatesFor: aCollection [
 	^ result asSet
 ]
 
-{ #category : #'compute - clustering' }
+{ #category : 'compute - clustering' }
 PMPackageDependenciesChecker >> groupCandidatesWithFirstElementFor: aCollection [
 	| result |
 	result := OrderedCollection new: aCollection size -1.
@@ -65,23 +66,23 @@ PMPackageDependenciesChecker >> groupCandidatesWithFirstElementFor: aCollection 
 	^ result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMPackageDependenciesChecker >> imageDependencies [
 	imageDependencies ifNil: [ self buildImageDependencyMap ].
 	^ imageDependencies 
 ]
 
-{ #category : #'compute - dependencies' }
+{ #category : 'compute - dependencies' }
 PMPackageDependenciesChecker >> imagePackageDependencies [
 	^ self dependenciesForPackagesNamed: RPackage organizer packageNames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMPackageDependenciesChecker >> manifestOf: aPackageName [
 	^ (RPackage named: aPackageName) packageManifest
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMPackageDependenciesChecker >> ongoingPackageUnitOf: aPackageName [
 	| manifest ongoing |
 	manifest := self manifestOf: aPackageName.
@@ -92,21 +93,21 @@ PMPackageDependenciesChecker >> ongoingPackageUnitOf: aPackageName [
 
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PMPackageDependenciesChecker >> packagesBeginningWith: aListOfPrefix do: aBlock [ 
 	(self imageDependencies associationsSelect: 
 		[ :assoc | aListOfPrefix anySatisfy: [ :prefix | assoc key beginsWith: prefix ] ])
 		associationsDo: [ :each | aBlock value: each ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMPackageDependenciesChecker >> sortedTopGroupsWithAtLeast: numberOfDependencies [
 	^ (self topGroups 
 		reject: [ :each | each value < numberOfDependencies ]) 
 			sorted: [ :a :b | a value > b value ]
 ]
 
-{ #category : #'compute - clustering' }
+{ #category : 'compute - clustering' }
 PMPackageDependenciesChecker >> topGroups [
 	^ self groupCandidates collect: 
 		[ :each |
@@ -114,7 +115,7 @@ PMPackageDependenciesChecker >> topGroups [
 			[ :aDependencySet | (aDependencySet includesAll: each) ifTrue: [ 1 ] ifFalse: [ 0 ] ]) ]
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PMPackageDependenciesChecker >> updateDependenciesOf: aPackageName [
 	(self ongoingPackageUnitOf: aPackageName) 
 		dependencies: ((self imageDependencies at: aPackageName)

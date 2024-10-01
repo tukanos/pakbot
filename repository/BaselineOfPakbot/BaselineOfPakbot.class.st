@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfPakbot,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfPakbot
+	#name : 'BaselineOfPakbot',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfPakbot',
+	#package : 'BaselineOfPakbot'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfPakbot >> baseline: spec [
 	<baseline>
 	spec
@@ -24,7 +25,7 @@ BaselineOfPakbot >> baseline: spec [
 				group: 'tests' with: #('Pakbot-Tests' 'Pakbot-IntegrationTests') ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPakbot >> iceberg: spec [
 	
 	spec
@@ -34,7 +35,7 @@ BaselineOfPakbot >> iceberg: spec [
 				loads: #('Iceberg-Memory') ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPakbot >> pakbotUI: spec [
 
 	spec

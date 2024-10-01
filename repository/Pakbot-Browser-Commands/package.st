@@ -1,1 +1,1 @@
-Package { #name : #'Pakbot-Browser-Commands' }
+Package { #name : 'Pakbot-Browser-Commands' }

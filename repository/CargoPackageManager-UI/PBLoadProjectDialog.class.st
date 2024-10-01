@@ -4,17 +4,19 @@ Small dialog window to ask the user what to load? metadata, all, assembly?
 	self example
 "
 Class {
-	#name : #PBLoadProjectDialog,
-	#superclass : #ComposablePresenter,
+	#name : 'PBLoadProjectDialog',
+	#superclass : 'ComposablePresenter',
 	#instVars : [
 		'project',
 		'optionsList',
 		'detailPanel'
 	],
-	#category : #'CargoPackageManager-UI-Loading'
+	#category : 'CargoPackageManager-UI-Loading',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Loading'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBLoadProjectDialog class >> defaultSpec [
 	<spec: #default>
 	
@@ -25,7 +27,7 @@ PBLoadProjectDialog class >> defaultSpec [
 				newRow: #detailPanel ]
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBLoadProjectDialog class >> example [
 	<example>
 	| project |
@@ -36,30 +38,30 @@ PBLoadProjectDialog class >> example [
 	(self onProject: project) openDialogWithSpec
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBLoadProjectDialog class >> onProject: aProject [ 
 	^ self basicNew
 		initializeWithProject: aProject;
 		yourself.
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PBLoadProjectDialog >> accept [
 	
 	self selectedAction execute.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadProjectDialog >> detailPanel [
 	^ detailPanel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBLoadProjectDialog >> initialExtent [
 	^ 500@300
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBLoadProjectDialog >> initializeWidgets [
 	optionsList := self newFastTable.
 	detailPanel := self newReadOnlyText.
@@ -70,13 +72,13 @@ PBLoadProjectDialog >> initializeWidgets [
 		selectIndex: 1
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBLoadProjectDialog >> initializeWithProject: aProject [ 
 	project := aProject.
 	super initialize.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBLoadProjectDialog >> loadOptionsDataSource [
 
 	^ FTEasyListDataSource new
@@ -86,19 +88,19 @@ PBLoadProjectDialog >> loadOptionsDataSource [
 		yourself
 ]
 
-{ #category : #opening }
+{ #category : 'opening' }
 PBLoadProjectDialog >> openDialogWithSpec [
 	^ super openDialogWithSpec
 		okAction: [ self accept ];
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadProjectDialog >> optionsList [
 	^ optionsList
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBLoadProjectDialog >> selectedAction [
 	| selectedIndex |
 	selectedIndex := optionsList widget selectedIndex.
@@ -106,7 +108,7 @@ PBLoadProjectDialog >> selectedAction [
 	^ optionsList widget dataSource elementAt: selectedIndex
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PBLoadProjectDialog >> selectionChanged: aFTSelectionChanged [ 
 	
 	detailPanel widget contentsWrapped: (self selectedAction ifNil: [ '' ] ifNotNil: #description).
@@ -118,7 +120,7 @@ PBLoadProjectDialog >> selectionChanged: aFTSelectionChanged [
 		ifNotNil: [ self window toolbar okButton enable ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadProjectDialog >> title [
 	^ 'Load Project'
 ]

@@ -1,6 +1,6 @@
 Class {
-	#name : #PBAbstractCalypsoTest,
-	#superclass : #PBAbstractTest,
+	#name : 'PBAbstractCalypsoTest',
+	#superclass : 'PBAbstractTest',
 	#instVars : [
 		'systemEnvironment',
 		'navigationEnvironment',
@@ -9,27 +9,28 @@ Class {
 		'project',
 		'browser'
 	],
-	#category : #'CargoPackageManager-UI-Tests'
+	#category : 'CargoPackageManager-UI-Tests',
+	#package : 'CargoPackageManager-UI-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PBAbstractCalypsoTest >> assertCommands: commands includes: aClass [
 
 	self assert: (commands anySatisfy: [ :each | each command class = aClass ])
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBAbstractCalypsoTest >> assertCommands: commands notIncludes: aClass [
 
 	self assert: (commands noneSatisfy: [ :each | each command class = aClass ])
 ]
 
-{ #category : #utility }
+{ #category : 'utility' }
 PBAbstractCalypsoTest >> command: aCommandClass for: anItem [
 	^ (self commandsOfItem: anItem) detect: [ :each | each command isKindOf: aCommandClass ]
 ]
 
-{ #category : #utility }
+{ #category : 'utility' }
 PBAbstractCalypsoTest >> commandsOfItem: anItem [
 	| aContext selection datasource |
 	datasource := ClyCollapsedDataSource empty.
@@ -40,12 +41,12 @@ PBAbstractCalypsoTest >> commandsOfItem: anItem [
 	^ CmdContextMenuActivation createActivatorsExecutableInContext: aContext
 ]
 
-{ #category : #utility }
+{ #category : 'utility' }
 PBAbstractCalypsoTest >> contextClass [
 	^ ClyProjectContextOfFullBrowser
 ]
 
-{ #category : #utility }
+{ #category : 'utility' }
 PBAbstractCalypsoTest >> expandNodeNamed: aString [ 
 	
 	| items datasource |
@@ -54,7 +55,7 @@ PBAbstractCalypsoTest >> expandNodeNamed: aString [
 	items do: [ :each | each expand ].
 ]
 
-{ #category : #utility }
+{ #category : 'utility' }
 PBAbstractCalypsoTest >> findChildInBrowser: aString [ 
 	
 	| datasource column |
@@ -66,20 +67,20 @@ PBAbstractCalypsoTest >> findChildInBrowser: aString [
 		datasource cellColumn: column row: i]) detect: [ :anItem | anItem label contents beginsWith: aString ] ifNone: [ nil ]
 ]
 
-{ #category : #utility }
+{ #category : 'utility' }
 PBAbstractCalypsoTest >> findProject: aName [
 
 	^ query execute items detect: [ :each | each name = aName ] ifNone: [ nil ]
 ]
 
-{ #category : #utility }
+{ #category : 'utility' }
 PBAbstractCalypsoTest >> findUIItem: aName [
 	^ self projectUIItem items
 		detect: [ :each | each name = aName ]
 		ifNone: [ nil ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBAbstractCalypsoTest >> openBrowser [
 	browser := ClyFullBrowser
 		on: navigationEnvironment
@@ -88,12 +89,12 @@ PBAbstractCalypsoTest >> openBrowser [
 	browser open
 ]
 
-{ #category : #utility }
+{ #category : 'utility' }
 PBAbstractCalypsoTest >> projectUIItem [
 	^ self findProject: project name
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBAbstractCalypsoTest >> setUp [
 	super setUp.
 	systemEnvironment := ClySystemEnvironment new.
@@ -110,7 +111,7 @@ PBAbstractCalypsoTest >> setUp [
 	
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBAbstractCalypsoTest >> tearDown [
 
 	browser ifNotNil: [ browser close. browser := nil. ].

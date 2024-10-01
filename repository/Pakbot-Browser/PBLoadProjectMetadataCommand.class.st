@@ -2,25 +2,27 @@
 This action only loads the project metedata into the registry.
 "
 Class {
-	#name : #PBLoadProjectMetadataCommand,
-	#superclass : #PBLoadProjectCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBLoadProjectMetadataCommand',
+	#superclass : 'PBLoadProjectCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBLoadProjectMetadataCommand class >> isAvailableFor: aProject [
 
 	^ aProject isRegistered not
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadProjectMetadataCommand >> description [
 
 	^ 'Will load the project metadata (description, list of packages, dependencies).
 It will not load any package into the system but the metadata will be browsable through the system browser project view. From this project view, you will be able to load the project or part of it.'
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBLoadProjectMetadataCommand >> doExecute [
 
 	PBPackageRegistry default
@@ -29,13 +31,13 @@ PBLoadProjectMetadataCommand >> doExecute [
 	PBProjectCreated announceOnProject: project.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadProjectMetadataCommand >> iconName [
 
 	^ #haloView
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadProjectMetadataCommand >> name [
 
 	^ 'Load the project metadata'

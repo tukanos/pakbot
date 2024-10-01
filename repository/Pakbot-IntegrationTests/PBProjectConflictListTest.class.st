@@ -1,6 +1,6 @@
 Class {
-	#name : #PBProjectConflictListTest,
-	#superclass : #PBAbstractTest,
+	#name : 'PBProjectConflictListTest',
+	#superclass : 'PBAbstractTest',
 	#instVars : [
 		'resolution',
 		'registry',
@@ -10,10 +10,12 @@ Class {
 		'configurationProject2V1',
 		'configurationProject2V2'
 	],
-	#category : #'Pakbot-IntegrationTests-Conflicts'
+	#category : 'Pakbot-IntegrationTests-Conflicts',
+	#package : 'Pakbot-IntegrationTests',
+	#tag : 'Conflicts'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PBProjectConflictListTest >> setUp [
 
 	super setUp.
@@ -43,7 +45,7 @@ PBProjectConflictListTest >> setUp [
 		
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectConflictListTest >> testConflictingDependenciesToSameProjectAreFlattenedInOneConflict [
 
 	project addDependency: configurationProjectV1.
@@ -55,7 +57,7 @@ PBProjectConflictListTest >> testConflictingDependenciesToSameProjectAreFlattene
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectConflictListTest >> testConflictingDependenciesToSameProjectHaveCorrectProjectName [
 
 	| conflict |
@@ -68,7 +70,7 @@ PBProjectConflictListTest >> testConflictingDependenciesToSameProjectHaveCorrect
 	self assert: conflict projectName equals: configurationProjectV1 name
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectConflictListTest >> testConflictingDependenciesToSameProjectHaveTwoTheTwoDependencies [
 
 	| conflict |
@@ -83,7 +85,7 @@ PBProjectConflictListTest >> testConflictingDependenciesToSameProjectHaveTwoTheT
 		resolution resolutionFor: configurationProjectV2 }.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBProjectConflictListTest >> testConflictingDependenciesToTwoProjectsHaveTwoConflicts [
 
 	project addDependency: configurationProjectV1.

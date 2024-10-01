@@ -3,24 +3,26 @@ I'm an input widget representing a Git repository.
 I have a button allowing to change the repository URL either by selecting an existing repository (declared in Iceberg) or by creating a new one.
 "
 Class {
-	#name : #PBRepositoryPresenter,
-	#superclass : #SpPresenterWithModel,
+	#name : 'PBRepositoryPresenter',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'label',
 		'button',
 		'icon'
 	],
-	#category : #'Pakbot-Browser-Presenters'
+	#category : 'Pakbot-Browser-Presenters',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBRepositoryPresenter class >> example [
 
 	<example>
 	^ (self on: PBProjectVersion example) open
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBRepositoryPresenter >> connectPresenters [
 	
 	button action: [ 
@@ -29,7 +31,7 @@ PBRepositoryPresenter >> connectPresenters [
 			execute ].
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBRepositoryPresenter >> defaultLayout [
 
 	^ SpBoxLayout newLeftToRight 
@@ -39,7 +41,7 @@ PBRepositoryPresenter >> defaultLayout [
 			yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBRepositoryPresenter >> initializePresenters [
 	
 	icon := self newImage.
@@ -47,7 +49,7 @@ PBRepositoryPresenter >> initializePresenters [
 	button := self newButton.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBRepositoryPresenter >> modelChanged [ 
 
 	icon image: (self iconNamed: self repository iconName).
@@ -55,12 +57,12 @@ PBRepositoryPresenter >> modelChanged [
 	button iconName: self repository editionIconName.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBRepositoryPresenter >> project [
 	^ self model ifNotNil: [ :model | model project ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBRepositoryPresenter >> repository [
 	^ self project 
 		ifNil: [ PBNoRepository new ]

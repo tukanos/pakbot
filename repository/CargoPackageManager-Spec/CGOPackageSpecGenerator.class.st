@@ -3,16 +3,17 @@ A PackageSpecGenerator is used to generate PackageSpec stubs.
 
 "
 Class {
-	#name : #CGOPackageSpecGenerator,
-	#superclass : #Object,
+	#name : 'CGOPackageSpecGenerator',
+	#superclass : 'Object',
 	#instVars : [
 		'package',
 		'class'
 	],
-	#category : 'CargoPackageManager-Spec'
+	#category : 'CargoPackageManager-Spec',
+	#package : 'CargoPackageManager-Spec'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CGOPackageSpecGenerator class >> generateFor: aPackageName withDependencies: dependencies [
 		self new
 			package: aPackageName;
@@ -23,7 +24,7 @@ CGOPackageSpecGenerator class >> generateFor: aPackageName withDependencies: dep
 			yourself.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CGOPackageSpecGenerator >> addDependencies: packagesName [
 	| methodText |
 	
@@ -39,19 +40,19 @@ CGOPackageSpecGenerator >> addDependencies: packagesName [
 	class compile: methodText.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CGOPackageSpecGenerator >> addNameMethod [
 	class compile: 'name
 	^ ''' , package , ''''
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CGOPackageSpecGenerator >> addVersionMethod [
 	class compile: 'version
 	package version: '''''
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CGOPackageSpecGenerator >> createClass [
 	| className |
 	className := (self normalizedPackageName: package) , 'Spec'.
@@ -63,12 +64,12 @@ CGOPackageSpecGenerator >> createClass [
 		category: 'PackagesManager-SeasideDescription'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CGOPackageSpecGenerator >> normalizedPackageName: name [
 	^name reject: [ :char | char = $- ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CGOPackageSpecGenerator >> package: aString [
 	package := aString
 ]

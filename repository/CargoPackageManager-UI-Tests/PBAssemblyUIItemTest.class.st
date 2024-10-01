@@ -1,19 +1,20 @@
 Class {
-	#name : #PBAssemblyUIItemTest,
-	#superclass : #PBAbstractCalypsoTest,
+	#name : 'PBAssemblyUIItemTest',
+	#superclass : 'PBAbstractCalypsoTest',
 	#instVars : [
 		'loadedPackage',
 		'notLoadedPackage'
 	],
-	#category : #'CargoPackageManager-UI-Tests'
+	#category : 'CargoPackageManager-UI-Tests',
+	#package : 'CargoPackageManager-UI-Tests'
 }
 
-{ #category : #utils }
+{ #category : 'utils' }
 PBAssemblyUIItemTest >> contextClass [
 	^ PBPackageContextOfFullBrowser 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBAssemblyUIItemTest >> setUp [
 	| assembly package |
 	super setUp.
@@ -25,7 +26,7 @@ PBAssemblyUIItemTest >> setUp [
 	assembly addPackage: package
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAssemblyUIItemTest >> testAProjectShowsAssemblies [
 
 	| projectUI assembly |
@@ -37,7 +38,7 @@ PBAssemblyUIItemTest >> testAProjectShowsAssemblies [
 	self assert: assembly isAssembly.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBAssemblyUIItemTest >> testRemoveAssemblyCommandRemovesIt [
 
 	| projectUI assembly |

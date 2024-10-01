@@ -2,37 +2,39 @@
 A simple menu group entry for Pkabot in Iceberg
 "
 Class {
-	#name : #PBIcebergPakbotMenuGroup,
-	#superclass : #CmdMenuGroup,
-	#category : #'Pakbot-Browser-Iceberg-Integration'
+	#name : 'PBIcebergPakbotMenuGroup',
+	#superclass : 'CmdMenuGroup',
+	#category : 'Pakbot-Browser-Iceberg-Integration',
+	#package : 'Pakbot-Browser',
+	#tag : 'Iceberg-Integration'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 PBIcebergPakbotMenuGroup >> addCommandsForRepository: anIceTipRepositoryModel intoGroup: aSpCommandGroup [
 	{ PBDisablePakbotProjectCommand . PBEnablePakbotProjectCommand }
 		do: [ :command | 
 			aSpCommandGroup register: (self specCommandFor: command context: anIceTipRepositoryModel) ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIcebergPakbotMenuGroup >> description [
 
 	^ 'Pakbot operations'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIcebergPakbotMenuGroup >> name [
 
 	^ 'Pakbot'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBIcebergPakbotMenuGroup >> order [
 	"Plugins are SmallInteger maxVal - 2000 .. SmallInteger maxVal"
 	^ SmallInteger maxVal - 1100
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PBIcebergPakbotMenuGroup >> specCommandFor: aCmCommand context: anIceTipRepositoryModel [
 	 ^ (aCmCommand forSpecWithIconNamed: aCmCommand defaultIconName)
 		context: anIceTipRepositoryModel;

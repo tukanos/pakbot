@@ -3,29 +3,31 @@ Presenter displaying both current resolution and potential conflits.
 After conflicts are solved, proceed to the load action.
 "
 Class {
-	#name : #PBLoadPreviewPresenter,
-	#superclass : #SpPresenterWithModel,
+	#name : 'PBLoadPreviewPresenter',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'resolutionPanel',
 		'conflictsPanel'
 	],
-	#category : #'Pakbot-Browser-Presenters'
+	#category : 'Pakbot-Browser-Presenters',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBLoadPreviewPresenter class >> example [
 	<example>
 
 	(self on: PBResolutionPresenter conflictingResolutionExample) openDialog
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 PBLoadPreviewPresenter >> accept [
 	conflictsPanel accept.
 	self resolution load
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBLoadPreviewPresenter >> defaultLayout [
 
 	^ SpPanedLayout newLeftToRight 
@@ -41,7 +43,7 @@ PBLoadPreviewPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBLoadPreviewPresenter >> initializeDialogWindow: aWindow [
 
 	super initializeDialogWindow: aWindow.
@@ -54,26 +56,26 @@ PBLoadPreviewPresenter >> initializeDialogWindow: aWindow [
 	self updateOkButton.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBLoadPreviewPresenter >> initializePresenters [ 
 
 	conflictsPanel := PBConflictsPresenter on: self resolution.
 	resolutionPanel := PBResolutionPresenter on: self resolution.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadPreviewPresenter >> okButton [ 
 
 	^ self window buttons detect: [ :each | each label = 'Ok' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadPreviewPresenter >> resolution [
 
 	^ self model
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBLoadPreviewPresenter >> updateOkButton [
 
 	^ conflictsPanel hasConflicts
@@ -81,7 +83,7 @@ PBLoadPreviewPresenter >> updateOkButton [
 		ifFalse: [ self okButton enable ]
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBLoadPreviewPresenter >> updateResolutionPresenter [
 	
 	resolutionPanel updateResolutionTree.

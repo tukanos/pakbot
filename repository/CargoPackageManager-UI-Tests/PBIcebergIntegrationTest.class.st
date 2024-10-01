@@ -1,16 +1,17 @@
 Class {
-	#name : #PBIcebergIntegrationTest,
-	#superclass : #TestCase,
+	#name : 'PBIcebergIntegrationTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'location',
 		'projectName',
 		'repository',
 		'browser'
 	],
-	#category : #'CargoPackageManager-UI-Tests'
+	#category : 'CargoPackageManager-UI-Tests',
+	#package : 'CargoPackageManager-UI-Tests'
 }
 
-{ #category : #utility }
+{ #category : 'utility' }
 PBIcebergIntegrationTest >> openIcebergAndGetPakbotMenu [
 	| repositoryDataSource repositoryIndex menu |
 	browser := IceTipRepositoriesBrowser new 
@@ -26,7 +27,7 @@ PBIcebergIntegrationTest >> openIcebergAndGetPakbotMenu [
 	^ menu itemWithWording: 'Pakbot'.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBIcebergIntegrationTest >> setUp [
 	super setUp.
 	location := '/foo'.
@@ -42,14 +43,14 @@ PBIcebergIntegrationTest >> setUp [
 	
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBIcebergIntegrationTest >> tearDown [ 
 	super tearDown.
 	repository forget.
 	browser ifNotNil: [ browser delete].
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBIcebergIntegrationTest >> testDisablePakbotIntegrationIsAvailableWhenRepositoryUsesPakbotProject [
 	| pakbotMenuGroup menuItem |
 	
@@ -67,7 +68,7 @@ PBIcebergIntegrationTest >> testDisablePakbotIntegrationIsAvailableWhenRepositor
 	self assert: menuItem isNil.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBIcebergIntegrationTest >> testEnablePakbotIntegrationIsAvailableWhenRepositoryDoesNotUsePakbotProjectButMetadataIsAvailable [
 	| pakbotMenuGroup menuItem |
 	
@@ -84,7 +85,7 @@ PBIcebergIntegrationTest >> testEnablePakbotIntegrationIsAvailableWhenRepository
 	self assert: menuItem isNil.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBIcebergIntegrationTest >> testPakbotIntegrationNotAvailableWhenRepositoryDoesNotHavePakbotMetadata [
 	| pakbotMenuGroup |
 	

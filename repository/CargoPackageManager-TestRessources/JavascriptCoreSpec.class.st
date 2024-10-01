@@ -1,10 +1,12 @@
 Class {
-	#name : #JavascriptCoreSpec,
-	#superclass : #Seaside31PackageSpec,
-	#category : 'CargoPackageManager-TestRessources-SeasideDesc-JsJquery'
+	#name : 'JavascriptCoreSpec',
+	#superclass : 'Seaside31PackageSpec',
+	#category : 'CargoPackageManager-TestRessources-SeasideDesc-JsJquery',
+	#package : 'CargoPackageManager-TestRessources',
+	#tag : 'SeasideDesc-JsJquery'
 }
 
-{ #category : #spec }
+{ #category : 'spec' }
 JavascriptCoreSpec >> dependencies [
 	^ { #'Seaside-Core' -> #('=3.1') .
 		#'Seaside-Canvas' -> #('=3.1') .
@@ -12,17 +14,17 @@ JavascriptCoreSpec >> dependencies [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 JavascriptCoreSpec >> name [
 	^ 'Javascript-Core'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 JavascriptCoreSpec >> repositories [
 	^ #('http://smalltalkhub.com/mc/Seaside/Seaside31/main')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 JavascriptCoreSpec >> sourcePackageVersion [
 	^ { #backend -> #monticello .
 		#repositoryUrl -> 'http://smalltalkhub.com/mc/Seaside/Seaside31/main' .
@@ -30,12 +32,12 @@ JavascriptCoreSpec >> sourcePackageVersion [
 		#versionString -> 'pmm.95' } asDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 JavascriptCoreSpec >> srcArtifact [
 	^ 'Javascript-Core-pmm.95'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 JavascriptCoreSpec >> version [
 	^  '3.1'
 ]

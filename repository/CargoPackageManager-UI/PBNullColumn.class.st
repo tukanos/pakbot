@@ -1,10 +1,12 @@
 Class {
-	#name : #PBNullColumn,
-	#superclass : #PBConflictsColumn,
-	#category : #'CargoPackageManager-UI-Conflicts'
+	#name : 'PBNullColumn',
+	#superclass : 'PBConflictsColumn',
+	#category : 'CargoPackageManager-UI-Conflicts',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Conflicts'
 }
 
-{ #category : #reading }
+{ #category : 'reading' }
 PBNullColumn >> header [
 	^ SimpleButtonMorph new
 		layoutPolicy: RowLayout new;
@@ -18,13 +20,13 @@ PBNullColumn >> header [
 		yourself
 ]
 
-{ #category : #'meta-object-protocol' }
+{ #category : 'meta-object-protocol' }
 PBNullColumn >> read: anObject [
 
 	^ '' asMorph
 ]
 
-{ #category : #'meta-object-protocol' }
+{ #category : 'meta-object-protocol' }
 PBNullColumn >> width [
 	^ 1
 ]

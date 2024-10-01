@@ -4,28 +4,30 @@ I'm the UI to browse the content of a Pakbot package repository.
 I list projects as well as available versions.
 "
 Class {
-	#name : #PakbotRepositoryBrowser,
-	#superclass : #SpApplication,
+	#name : 'PakbotRepositoryBrowser',
+	#superclass : 'SpApplication',
 	#instVars : [
 		'packageRepository'
 	],
-	#category : #'Pakbot-Browser-Repository'
+	#category : 'Pakbot-Browser-Repository',
+	#package : 'Pakbot-Browser',
+	#tag : 'Repository'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PakbotRepositoryBrowser class >> open [
 	<script>
 	
 	self new start
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PakbotRepositoryBrowser >> packageRepository [
 	
 	^ packageRepository ifNil: [ PBPackageRepository default ]
 ]
 
-{ #category : #starting }
+{ #category : 'starting' }
 PakbotRepositoryBrowser >> start [ 
 	(PBPackageRepositoryPresenter on: self packageRepository)
 		application: self;

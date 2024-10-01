@@ -2,15 +2,17 @@
 Presenter used to display the resolution of a dependency, i.e. display the dependency graph
 "
 Class {
-	#name : #PBResolutionPresenter,
-	#superclass : #SpPresenterWithModel,
+	#name : 'PBResolutionPresenter',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'resolutionTree'
 	],
-	#category : #'Pakbot-Browser-Presenters'
+	#category : 'Pakbot-Browser-Presenters',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBResolutionPresenter class >> conflictingResolutionExample [
 
 	| registry |
@@ -24,7 +26,7 @@ PBResolutionPresenter class >> conflictingResolutionExample [
 	
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBResolutionPresenter class >> example [
 	<example>
 
@@ -32,14 +34,14 @@ PBResolutionPresenter class >> example [
 	(self on: self conflictingResolutionExample) open
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolutionPresenter >> conflictStatusIconFor: aResolvedItem [
 	
 	^ aResolvedItem conflictStatusIconName
 		ifNotNil: [ :iconName | self iconNamed: iconName ]
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBResolutionPresenter >> defaultLayout [ 
 	
 	^ SpBoxLayout newTopToBottom 
@@ -59,7 +61,7 @@ PBResolutionPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolutionPresenter >> initializePresenters [
 
 	resolutionTree := self newTreeTable
@@ -78,12 +80,12 @@ PBResolutionPresenter >> initializePresenters [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolutionPresenter >> resolution [
 	^ self model
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBResolutionPresenter >> updateResolutionTree [
 	
 	resolutionTree updateRootsKeepingSelection: resolutionTree roots

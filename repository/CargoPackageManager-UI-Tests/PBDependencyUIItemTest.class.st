@@ -1,14 +1,15 @@
 Class {
-	#name : #PBDependencyUIItemTest,
-	#superclass : #PBAbstractCalypsoTest,
+	#name : 'PBDependencyUIItemTest',
+	#superclass : 'PBAbstractCalypsoTest',
 	#instVars : [
 		'configurationProjectV1',
 		'configurationProjectV2'
 	],
-	#category : #'CargoPackageManager-UI-Tests'
+	#category : 'CargoPackageManager-UI-Tests',
+	#package : 'CargoPackageManager-UI-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PBDependencyUIItemTest >> setUp [
 	super setUp.
 
@@ -16,7 +17,7 @@ PBDependencyUIItemTest >> setUp [
 	configurationProjectV2 := PBMetacelloConfigurationProjectDependency name: 'CargoTestExample' repositoryUrl: 'http://smalltalkhub.com/mc/Pharo/CargoTestRepository/main' version: '2.0'	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBDependencyUIItemTest >> testProjectWithInstalledDependencyShowsNormalIcon [
 
 	| dependency |
@@ -42,7 +43,7 @@ PBDependencyUIItemTest >> testProjectWithInstalledDependencyShowsNormalIcon [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBDependencyUIItemTest >> testProjectWithNotInstalledDependencyIsShownWithError [
 
 	| dependency |
@@ -61,7 +62,7 @@ PBDependencyUIItemTest >> testProjectWithNotInstalledDependencyIsShownWithError 
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBDependencyUIItemTest >> testProjectWithNotInstalledDependencyIsShownWithWarning [
 
 	| dependency |

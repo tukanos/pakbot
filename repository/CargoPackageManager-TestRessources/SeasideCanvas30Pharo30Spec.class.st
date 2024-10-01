@@ -1,10 +1,12 @@
 Class {
-	#name : #SeasideCanvas30Pharo30Spec,
-	#superclass : #Seaside31PackageSpec,
-	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Pharo'
+	#name : 'SeasideCanvas30Pharo30Spec',
+	#superclass : 'Seaside31PackageSpec',
+	#category : 'CargoPackageManager-TestRessources-SeasideDesc-Pharo',
+	#package : 'CargoPackageManager-TestRessources',
+	#tag : 'SeasideDesc-Pharo'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideCanvas30Pharo30Spec >> dependencies [
 	"(package addDependency: 'Seaside-Core')
 		addFixedVersionConstraint: package version;
@@ -15,27 +17,27 @@ SeasideCanvas30Pharo30Spec >> dependencies [
 	^ #()
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideCanvas30Pharo30Spec >> name [
 	^ 'Seaside-Pharo-Canvas'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideCanvas30Pharo30Spec >> platformRequirements [
 	^ #(#squeakCommon)
 ]
 
-{ #category : #spec }
+{ #category : 'spec' }
 SeasideCanvas30Pharo30Spec >> provisions [
 	^ #(#'Seaside-Canvas-Platform@1.0')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideCanvas30Pharo30Spec >> repositories [
 	^ #('http://smalltalkhub.com/mc/Seaside/Seaside31/main')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideCanvas30Pharo30Spec >> sourcePackageVersion [
 	^ { #backend -> #monticello .
 		#repositoryUrl -> 'http://smalltalkhub.com/mc/Seaside/Seaside31/main' .
@@ -43,12 +45,12 @@ SeasideCanvas30Pharo30Spec >> sourcePackageVersion [
 		#versionString -> 'pmm.4' } asDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideCanvas30Pharo30Spec >> srcArtifact [
 	^ 'Seaside-Pharo-Canvas-pmm.4'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 SeasideCanvas30Pharo30Spec >> version [
 	^  '3.0'
 ]

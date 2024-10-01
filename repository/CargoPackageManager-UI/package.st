@@ -1,1 +1,1 @@
-Package { #name : #'CargoPackageManager-UI' }
+Package { #name : 'CargoPackageManager-UI' }

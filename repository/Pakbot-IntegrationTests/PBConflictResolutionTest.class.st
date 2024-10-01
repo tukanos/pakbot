@@ -1,17 +1,19 @@
 Class {
-	#name : #PBConflictResolutionTest,
-	#superclass : #PBAbstractTest,
-	#category : #'Pakbot-IntegrationTests-Conflicts'
+	#name : 'PBConflictResolutionTest',
+	#superclass : 'PBAbstractTest',
+	#category : 'Pakbot-IntegrationTests-Conflicts',
+	#package : 'Pakbot-IntegrationTests',
+	#tag : 'Conflicts'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PBConflictResolutionTest >> performTest [
 	PBPackageRegistry 
 		useDefaultRegistry: testRegistry
 		during: [ self perform: testSelector asSymbol ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictResolutionTest >> testConflictingMetacelloDependenciesCanBeResolvedUsingAVersion [
 
 	| projectOne dep2 dep1 conflict solution resolution |
@@ -48,7 +50,7 @@ PBConflictResolutionTest >> testConflictingMetacelloDependenciesCanBeResolvedUsi
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictResolutionTest >> testConflictingMetacelloDependenciesCanBeResolvedUsingAnotherVersion [
 
 	| projectOne dep2 dep1 conflict solution resolution |
@@ -85,7 +87,7 @@ PBConflictResolutionTest >> testConflictingMetacelloDependenciesCanBeResolvedUsi
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictResolutionTest >> testConflictingMetacelloDependenciesExceptionHasConflicts [
 
 	| projectOne |
@@ -105,7 +107,7 @@ PBConflictResolutionTest >> testConflictingMetacelloDependenciesExceptionHasConf
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictResolutionTest >> testConflictingMetacelloDependenciesExceptionHasOneConflictForTheDependency [
 
 	| projectOne dep2 dep1 |
@@ -133,7 +135,7 @@ PBConflictResolutionTest >> testConflictingMetacelloDependenciesExceptionHasOneC
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictResolutionTest >> testConflictingMetacelloDependenciesThrowsException [
 
 	| projectOne |
@@ -151,7 +153,7 @@ PBConflictResolutionTest >> testConflictingMetacelloDependenciesThrowsException 
 	self should: [ projectOne load ] raise: PBProjectHasConflictsError 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictResolutionTest >> testConflictingMetacelloDependencyWithInstalledUsingDifferentVersionHasBothVersions [
 
 	| project configurationProjectV1 |
@@ -179,7 +181,7 @@ PBConflictResolutionTest >> testConflictingMetacelloDependencyWithInstalledUsing
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBConflictResolutionTest >> testConflictingMetacelloDependencyWithInstalledUsingDifferentVersionResolvedWithInstalledDoesNotInstallNothing [
 
 	| project configurationProjectV1 resolution conflict solution |

@@ -5,28 +5,30 @@ I also allow to edit these meta-data.
 I mainly interact with PBProjectElement[Unit/Assembly]
 "
 Class {
-	#name : #PBLoadableUnitOverviewPresenter,
-	#superclass : #SpPresenterWithModel,
+	#name : 'PBLoadableUnitOverviewPresenter',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'nameInputField',
 		'versionInputField',
 		'descriptionText',
 		'repositoryInputField'
 	],
-	#category : #'Pakbot-Browser-Presenters'
+	#category : 'Pakbot-Browser-Presenters',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBLoadableUnitOverviewPresenter class >> example [
 	^ self openOn: (PBPackage example)
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBLoadableUnitOverviewPresenter class >> example2 [
 	^ self openWithMinimalLayoutOn: (PBPackage example)
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBLoadableUnitOverviewPresenter class >> minimalLayout [
 
 	^ SpGridLayout build: [ :builder | 
@@ -37,7 +39,7 @@ PBLoadableUnitOverviewPresenter class >> minimalLayout [
 		  column: 2 withConstraints: [ :c | c beExpand ] ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBLoadableUnitOverviewPresenter class >> on: aPBProjectElement [
 
 	^ self
@@ -45,18 +47,18 @@ PBLoadableUnitOverviewPresenter class >> on: aPBProjectElement [
 		 model: aPBProjectElement
 ]
 
-{ #category : #opening }
+{ #category : 'opening' }
 PBLoadableUnitOverviewPresenter class >> openOn: aPBProjectElement [
 
 	(self on: aPBProjectElement) open
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBLoadableUnitOverviewPresenter class >> openWithMinimalLayoutOn: aPBProjectElement [
 	(self on: aPBProjectElement) openWithLayout: self minimalLayout
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBLoadableUnitOverviewPresenter >> defaultLayout [
 
 	^ (SpGridLayout build: [ :builder | 
@@ -77,17 +79,17 @@ PBLoadableUnitOverviewPresenter >> defaultLayout [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadableUnitOverviewPresenter >> description [
 	^ descriptionText text
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadableUnitOverviewPresenter >> description: aString [
 	descriptionText text: aString
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBLoadableUnitOverviewPresenter >> initializePresenters [
 	nameInputField := self newTextInput
 		placeholder: 'MyProject';
@@ -99,12 +101,12 @@ PBLoadableUnitOverviewPresenter >> initializePresenters [
 	descriptionText := self newText.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadableUnitOverviewPresenter >> loadableUnit [
 	^ self model
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBLoadableUnitOverviewPresenter >> modelChanged [ 
 	self loadableUnit ifNil: [ ^ self resetValues ].
 	
@@ -114,27 +116,27 @@ PBLoadableUnitOverviewPresenter >> modelChanged [
 	repositoryInputField model: self loadableUnit
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadableUnitOverviewPresenter >> name [
 	^ nameInputField text
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadableUnitOverviewPresenter >> name: aString [
 	nameInputField text: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadableUnitOverviewPresenter >> registry [
 	^ self application registry
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadableUnitOverviewPresenter >> repository [
 	^ repositoryInputField repository 
 ]
 
-{ #category : #resetting }
+{ #category : 'resetting' }
 PBLoadableUnitOverviewPresenter >> resetValues [
 
 	nameInputField text: ''.
@@ -143,12 +145,12 @@ PBLoadableUnitOverviewPresenter >> resetValues [
 	repositoryInputField model: nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadableUnitOverviewPresenter >> version [
 	^ versionInputField text asSemanticVersion
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadableUnitOverviewPresenter >> version: aString [
 	versionInputField text: aString
 ]

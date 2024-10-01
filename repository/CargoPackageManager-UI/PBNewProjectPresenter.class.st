@@ -2,15 +2,17 @@
 I'm a form you can use to create a new project.
 "
 Class {
-	#name : #PBNewProjectPresenter,
-	#superclass : #SpOptionPresenter,
+	#name : 'PBNewProjectPresenter',
+	#superclass : 'SpOptionPresenter',
 	#instVars : [
 		'projectPanel'
 	],
-	#category : #'CargoPackageManager-UI-NewProject'
+	#category : 'CargoPackageManager-UI-NewProject',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'NewProject'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBNewProjectPresenter class >> example [
 	| panel editionPanel |
 	
@@ -25,7 +27,7 @@ PBNewProjectPresenter class >> example [
 	panel open
 ]
 
-{ #category : #accepting }
+{ #category : 'accepting' }
 PBNewProjectPresenter >> accept [
 
 	| project |
@@ -35,7 +37,7 @@ PBNewProjectPresenter >> accept [
 	^ project
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBNewProjectPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom  
@@ -43,35 +45,35 @@ PBNewProjectPresenter >> defaultLayout [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBNewProjectPresenter >> initializePresenters [
 	
 	projectPanel := self instantiate: PBLoadableUnitOverviewPanel on: (PBProjectVersion named: '').
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBNewProjectPresenter >> optionIcon [
 
 	^ self iconNamed: #dirtyPackage
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBNewProjectPresenter >> optionTitle [
 
 	^ 'New Project'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBNewProjectPresenter >> projectPanel [
 	^ projectPanel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBNewProjectPresenter >> projectPanel: anObject [
 	projectPanel := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBNewProjectPresenter >> registry [
 	
 	^ projectPanel registry

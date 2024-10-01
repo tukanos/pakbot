@@ -1,6 +1,6 @@
-Extension { #name : #NonInteractiveUIManager }
+Extension { #name : 'NonInteractiveUIManager' }
 
-{ #category : #'*CargoPackageManager-UI-Tests' }
+{ #category : '*CargoPackageManager-UI-Tests' }
 NonInteractiveUIManager >> newMenuIn: aThemedMorph for: aModel [
 	"Answer a new menu."
 

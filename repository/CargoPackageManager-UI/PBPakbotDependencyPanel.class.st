@@ -1,20 +1,22 @@
 Class {
-	#name : #PBPakbotDependencyPanel,
-	#superclass : #PBAbstractDependencyPanel,
+	#name : 'PBPakbotDependencyPanel',
+	#superclass : 'PBAbstractDependencyPanel',
 	#instVars : [
 		'projectName',
 		'projectVersion',
 		'projectRepository'
 	],
-	#category : #'CargoPackageManager-UI-NewDependency'
+	#category : 'CargoPackageManager-UI-NewDependency',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'NewDependency'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBPakbotDependencyPanel class >> example [
 	(self on: nil) openWithSpec
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PBPakbotDependencyPanel >> buildDependency [
 	^ PBPakbotProjectDependency
 		named: projectName text
@@ -22,7 +24,7 @@ PBPakbotDependencyPanel >> buildDependency [
 		version: projectVersion text
 ]
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBPakbotDependencyPanel >> defaultLayout [ 
 	^ SpGridLayout new
 		add: 'Name' at: 1@1;
@@ -35,12 +37,12 @@ PBPakbotDependencyPanel >> defaultLayout [
 		
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotDependencyPanel >> icon [
 	^ self iconNamed: #glamorousBookmark
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPakbotDependencyPanel >> initializeForm [
 	projectName := (self instantiate: SpInputTextFieldWithStatusPresenter)
 			placeholder: 'e.g., My Project';
@@ -60,7 +62,7 @@ PBPakbotDependencyPanel >> initializeForm [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPakbotDependencyPanel >> initializeWidgets [
 	self initializeForm.
 	
@@ -69,7 +71,7 @@ PBPakbotDependencyPanel >> initializeWidgets [
 	self layout: self defaultLayout.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPakbotDependencyPanel >> setInitialValues [
 
 	projectName text: self dependency name.
@@ -78,12 +80,12 @@ PBPakbotDependencyPanel >> setInitialValues [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPakbotDependencyPanel >> title [
 	^ 'Pakbot Project'
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 PBPakbotDependencyPanel >> updateDependency [
 
 	self dependency

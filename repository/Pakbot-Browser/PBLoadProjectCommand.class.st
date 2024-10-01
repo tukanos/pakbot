@@ -3,12 +3,14 @@ Subclass me to provide a new way of loading a project.
 My subclasses are dynamically collected by `PBLoadProjectPresenter`.
 "
 Class {
-	#name : #PBLoadProjectCommand,
-	#superclass : #PBProjectCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBLoadProjectCommand',
+	#superclass : 'PBProjectCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadProjectCommand class >> allAvailableFor: aProject [
 
 	^ (self allSubclasses 
@@ -16,7 +18,7 @@ PBLoadProjectCommand class >> allAvailableFor: aProject [
 		thenCollect: [ :aClass | aClass forProject: aProject ]) flattened
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBLoadProjectCommand class >> forProject: aProject [
 
 	^ self new
@@ -24,13 +26,13 @@ PBLoadProjectCommand class >> forProject: aProject [
 		  yourself
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PBLoadProjectCommand class >> isAvailableFor: aProject [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBLoadProjectCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: self iconName;
@@ -39,18 +41,18 @@ PBLoadProjectCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadProjectCommand >> description [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBLoadProjectCommand >> doExecute [
 	^ self subclassResponsibility 
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBLoadProjectCommand >> execute [
 
 	[ ^ self doExecute ]
@@ -58,13 +60,13 @@ PBLoadProjectCommand >> execute [
 		do: [ :ex | ex acceptVisitor: PBErrorVisitor default ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadProjectCommand >> iconName [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBLoadProjectCommand >> name [
 
 	^ self subclassResponsibility 

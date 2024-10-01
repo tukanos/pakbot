@@ -2,23 +2,25 @@
 Panel used to display the resolution of a dependency, i.e. display the dependency graph
 "
 Class {
-	#name : #PBResolutionPanel,
-	#superclass : #ComposablePresenter,
+	#name : 'PBResolutionPanel',
+	#superclass : 'ComposablePresenter',
 	#instVars : [
 		'resolutionTree',
 		'resolution'
 	],
-	#category : #'CargoPackageManager-UI-Resolution'
+	#category : 'CargoPackageManager-UI-Resolution',
+	#package : 'CargoPackageManager-UI',
+	#tag : 'Resolution'
 }
 
-{ #category : #specs }
+{ #category : 'specs' }
 PBResolutionPanel class >> defaultSpec [
 	^ SpecLayout composed
 		add: #resolutionTree;
 		yourself
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 PBResolutionPanel class >> example [
 	<example>
 
@@ -28,7 +30,7 @@ PBResolutionPanel class >> example [
 	(self on: resolution) openWithSpec
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolutionPanel >> doExpandNodesWithConflicts: aCollection [ 
 	
 	aCollection do: [ :aNode |
@@ -36,14 +38,14 @@ PBResolutionPanel >> doExpandNodesWithConflicts: aCollection [
 			self doExpandNodesWithConflicts: aNode children ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolutionPanel >> expandNodesWithConflicts [
 	
 	self doExpandNodesWithConflicts: resolutionTree widget dataSource rootItem children
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolutionPanel >> initializeWidgets [
 	
 	resolutionTree := self newFastTreeTable.
@@ -52,7 +54,7 @@ PBResolutionPanel >> initializeWidgets [
 	self expandNodesWithConflicts	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBResolutionPanel >> resolutionDataSource [
 	| datasource |
 	datasource := PBResolutionDataSource
@@ -62,18 +64,18 @@ PBResolutionPanel >> resolutionDataSource [
 	^ datasource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBResolutionPanel >> resolutionTree [
 	^ resolutionTree 
 ]
 
-{ #category : #'model access' }
+{ #category : 'model access' }
 PBResolutionPanel >> setModelBeforeInitialization: aModel [
 
 	resolution := aModel
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PBResolutionPanel >> updateResolutionTree [
 	
 	resolutionTree widget dataSource updateData.

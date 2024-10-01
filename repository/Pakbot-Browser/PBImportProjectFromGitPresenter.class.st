@@ -3,22 +3,24 @@ I allow to import a Pakbot Project from a Git repository.
 I will fetch the metadata of the project from the Git repository but will not load the project.
 "
 Class {
-	#name : #PBImportProjectFromGitPresenter,
-	#superclass : #SpOptionPresenter,
+	#name : 'PBImportProjectFromGitPresenter',
+	#superclass : 'SpOptionPresenter',
 	#instVars : [
 		'repositoryUrlInputText',
 		'versionInputText',
 		'iceErrorVisitor'
 	],
-	#category : #'Pakbot-Browser-Presenters-NewProject'
+	#category : 'Pakbot-Browser-Presenters-NewProject',
+	#package : 'Pakbot-Browser',
+	#tag : 'Presenters-NewProject'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PBImportProjectFromGitPresenter class >> example [
 	 self new open
 ]
 
-{ #category : #layout }
+{ #category : 'layout' }
 PBImportProjectFromGitPresenter >> defaultLayout [
 	
 	^ SpGridLayout build: [ :builder |
@@ -32,7 +34,7 @@ PBImportProjectFromGitPresenter >> defaultLayout [
 			add: versionInputText ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PBImportProjectFromGitPresenter >> doAccept [
 
 	| project repository |
@@ -50,12 +52,12 @@ PBImportProjectFromGitPresenter >> doAccept [
 	^ project
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBImportProjectFromGitPresenter >> iceErrorVisitor [
 	^ iceErrorVisitor ifNil: [ iceErrorVisitor := IceTipInteractiveErrorVisitor new ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBImportProjectFromGitPresenter >> initializePresenters [ 
 	
 	repositoryUrlInputText := self newTextInput 
@@ -71,19 +73,19 @@ PBImportProjectFromGitPresenter >> initializePresenters [
 		add: versionInputText
 ]
 
-{ #category : #'option list presenter' }
+{ #category : 'option list presenter' }
 PBImportProjectFromGitPresenter >> optionIcon [
 
 	^ self iconNamed: #git
 ]
 
-{ #category : #'option list presenter' }
+{ #category : 'option list presenter' }
 PBImportProjectFromGitPresenter >> optionTitle [
 
 	^ 'Import from Git'
 ]
 
-{ #category : #fetching }
+{ #category : 'fetching' }
 PBImportProjectFromGitPresenter >> repository [
 
 	| repository |

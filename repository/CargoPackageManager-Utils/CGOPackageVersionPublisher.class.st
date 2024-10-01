@@ -2,8 +2,8 @@
 Utility class to automatize the publication of package versions.
 "
 Class {
-	#name : #CGOPackageVersionPublisher,
-	#superclass : #Object,
+	#name : 'CGOPackageVersionPublisher',
+	#superclass : 'Object',
 	#instVars : [
 		'pkgRepository',
 		'srcRepositories',
@@ -12,10 +12,11 @@ Class {
 		'shouldPublishDependencies',
 		'visited'
 	],
-	#category : 'CargoPackageManager-Utils'
+	#category : 'CargoPackageManager-Utils',
+	#package : 'CargoPackageManager-Utils'
 }
 
-{ #category : #utility }
+{ #category : 'utility' }
 CGOPackageVersionPublisher class >> fixPackageUnitNamesOf: aListOfPackageManifest [
 	"Iterate on Package manifests to create or fix the package name when possible.
 	example: 
@@ -30,14 +31,14 @@ CGOPackageVersionPublisher class >> fixPackageUnitNamesOf: aListOfPackageManifes
 				manifest asOngoingPackageVersion updatePackageName: packageName ] ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CGOPackageVersionPublisher class >> on: aCGODirectoryPackageRepository [ 
 	^ self new
 		initializeWith: aCGODirectoryPackageRepository;
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CGOPackageVersionPublisher >> initializeWith: aCGODirectoryPackageRepository [ 
 	pkgRepository := aCGODirectoryPackageRepository.
 	manifests := Set new.
@@ -45,7 +46,7 @@ CGOPackageVersionPublisher >> initializeWith: aCGODirectoryPackageRepository [
 	visited := Set new
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOPackageVersionPublisher >> manifestFor: aPackageName [ 
 	^ [ PackageManifest packageNamed: aPackageName ]
 		on: NotFound 
@@ -54,30 +55,30 @@ CGOPackageVersionPublisher >> manifestFor: aPackageName [
 				do: [ NotFound signalFor: aPackageName ] ]
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 CGOPackageVersionPublisher >> manifests: aListOfManifest [ 
 	manifests addAll: aListOfManifest
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CGOPackageVersionPublisher >> manifestsFor: aListOfPackageNames [ 
 	^ aListOfPackageNames 
 		collect: [ :pkgName | self manifestFor: pkgName ]
 
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 CGOPackageVersionPublisher >> packages: packageNames [ 
 	self manifests: (self manifestsFor: packageNames)
 
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 CGOPackageVersionPublisher >> publishDependencies [
 	shouldPublishDependencies := true
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 CGOPackageVersionPublisher >> publishPackageVersion: ongoing [
 	(visited includes: ongoing)
 		ifTrue: [ ^ self ]
@@ -95,24 +96,24 @@ CGOPackageVersionPublisher >> publishPackageVersion: ongoing [
 	pkgRepository savePackageVersion: ongoing asPackageVersion
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 CGOPackageVersionPublisher >> publishPackages: aListOfPackageNames [
 	(self manifestsFor: aListOfPackageNames)
 		do: [ :each | self publishPackageVersion: each asOngoingPackageVersion ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 CGOPackageVersionPublisher >> run [
 	manifests do: [ :manifest |
 		self publishPackageVersion: manifest asOngoingPackageVersion ]
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 CGOPackageVersionPublisher >> srcRepositories: aListOfRepositoryLocations [ 
 	srcRepositories := aListOfRepositoryLocations
 ]
 
-{ #category : #configuring }
+{ #category : 'configuring' }
 CGOPackageVersionPublisher >> versionBlock: aBlock [
 	"a block that will receive the on going package version as parameter and return the version to use to publish this ongoing package"
 	versionBlock := aBlock

@@ -2,12 +2,14 @@
 Command to remove the Rpackage associated to a package unit.
 "
 Class {
-	#name : #PBRemovePackageFromSystemCommand,
-	#superclass : #PBPackageCommand,
-	#category : #'Pakbot-Browser-Commands'
+	#name : 'PBRemovePackageFromSystemCommand',
+	#superclass : 'PBPackageCommand',
+	#category : 'Pakbot-Browser-Commands',
+	#package : 'Pakbot-Browser',
+	#tag : 'Commands'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 PBRemovePackageFromSystemCommand >> asSpecCommand [
 	^ super asSpecCommand
 		iconName: #delete;
@@ -16,7 +18,7 @@ PBRemovePackageFromSystemCommand >> asSpecCommand [
 		yourself
 ]
 
-{ #category : #executing }
+{ #category : 'executing' }
 PBRemovePackageFromSystemCommand >> execute [
 
 	self package systemPackage removeFromSystem
