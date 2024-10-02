@@ -193,7 +193,7 @@ PBPackage >> satisfyConstraints: aVersion [
 { #category : 'accessing' }
 PBPackage >> systemPackage [
 	
-	^ RPackageOrganizer default packageNamed: self name
+	^ self packageOrganizer package: self name
 ]
 
 { #category : 'updating' }
